@@ -70,7 +70,11 @@
 		<main class="container main">
 			<section class="config-container">
 				<h2 class="title">Configuración</h2>
-				<form class="form" action="#">
+				<form id="form-config" class="form" action="#">
+					<div class="form__field form__field--config">
+						<input id="new-product" class="btn btn-primary" type="button" value="Nuevo" />
+						<input class="btn btn-save btn-save-config" type="submit" value="Guardar" />
+					</div>
 					<div class="form__field">
 						<label class="label" for="esq">Esquite</label>
 						<input id="esq" class="form__input-config" type="number" step="0.01" placeholder="Precio de esquite" />
@@ -128,6 +132,37 @@
 					<div class="form__field">
 						<label class="label" for="li">Limonada</label>
 						<input id="li" class="form__input-config" type="number" step="0.01" placeholder="Precio limonada" />
+					</div>
+				</form>
+				<form id="form-product-new" class="form-product-new" action="#">
+					<h2 class="title">Producto Nuevo</h2>
+					<div class="form__field">
+						<label class="label" for="product">Nombre del producto</label>
+						<input id="product" class="form__input-config" type="text" placeholder="Ingresa el nombre del producto" />
+					</div>
+					<div class="form__field">
+						<label class="label" for="product-price">Precio del producto</label>
+						<input
+							id="product-price"
+							class="form__input-config"
+							type="number"
+							step="0.01"
+							placeholder="Ingresa el precio del producto"
+						/>
+					</div>
+					<div class="form__field">
+						<label class="label" for="category">Selecciona la categoría</label>
+						<div>
+							<select name="category" id="form-category" title="Selecciona la categoría">
+								<option value="Botanas">Botanas</option>
+								<option value="Postres">Postres</option>
+								<option value="Bebidas">Bebidas</option>
+							</select>
+						</div>
+					</div>
+					<div class="form__field form__field-product">
+						<input id="add-product" type="submit" class="btn btn-save" value="Agregar" />
+						<input id="cancel-product" type="button" class="btn btn-danger" value="Cancelar" />
 					</div>
 				</form>
 			</section>

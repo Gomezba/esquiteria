@@ -77,6 +77,10 @@ input:focus {
 	outline: 0;
 }
 
+button {
+	border: none;
+}
+
 /* ---------- layout styles ---------- */
 body > * {
 	/* border: 1px solid var(--bright-yellow); */
@@ -96,14 +100,11 @@ body {
 	grid-template-areas:
 		'header'
 		'main';
-	/* min-height: 100vh; */
-	/* border: 1px solid red; */
 	margin: 0;
 	background-color: var(--almost-dark-gray);
 	font-family: var(--f-family);
 	font-weight: 400;
 	font-size: var(--fs-base);
-	/* overflow-x: hidden; */
 }
 
 .header {
@@ -239,15 +240,47 @@ body {
 }
 
 /* -------------------------------------- */
+/* ---------- buttons ---------- */
 
-/* ---------- form styles ---------- */
-
-.form {
-	/* border: 1px solid white; */
+.btn {
+	padding: var(--pd-btn);
+	background-color: #fff;
+	color: var(--light-gray);
+	font-weight: var(--fw-medium);
 }
+
+.btn-save {
+	background-color: var(--dark-orange);
+}
+
+.btn-primary {
+	background-color: var(--light-blue);
+}
+
+.btn-danger {
+	background-color: var(--dark-red);
+}
+
+/* -------------------------------------- */
+
+/* ---------- alerts ---------- */
+
+/* -------------------------------------- */
+
+/* ---------- form styles configuration---------- */
 
 .form__field {
 	margin-bottom: 0.5em;
+}
+
+.form__field--config {
+	display: flex;
+	justify-content: space-between;
+	position: sticky;
+	top: 47px;
+	background-color: var(--almost-dark-gray);
+	padding: 0.6em 0;
+	z-index: 1;
 }
 
 .label {
@@ -271,13 +304,32 @@ body {
 }
 
 .form__input-config:focus {
-	--pink-dark: #ff0066;
 	outline: 2px solid var(--dark-orange);
 	box-shadow: 0px 0px 4px 3px var(--dark-orange);
 }
 
-.form__input-config:focus ~ label {
-	color: var(--dark-orange);
+.form-product-new {
+	display: none;
+	position: fixed;
+	padding: 1em;
+	top: 3rem;
+	left: 0;
+	height: 100vh;
+	/* background-color: #fff; */
+	background-color: var(--almost-dark-gray);
+	border-radius: var(--br);
+	z-index: 5;
+}
+
+.form-product-new.is-active {
+	display: block;
+}
+
+.form__field-product {
+	display: flex;
+	justify-content: center;
+	gap: var(--gap-md);
+	margin-top: 2em;
 }
 
 /* -------------------------------------- */
