@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Esquiteria</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="/src/css/normalize.css" />
+		<link rel="stylesheet" href="/src/css/styles.css" />
+		<link rel="stylesheet" href="/src/css/loader.css" />
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+		<link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/locale/es.min.js"
+			integrity="sha512-tgY2qswcbQir80Vp67s5ZdbKikl99YmVXp3V/C4Acthk4gI29ONbQ+MR8B5tpESkNoa0N1P7HnSuzC6nOflrwA=="
+			crossorigin="anonymous"
+		></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
+
+		<script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+	</head>
+	<body>
+		<header class="header">
+			<nav class="container main-nav">
+				<figure class="figure">
+					<a href="/src/index.html">
+						<img class="logo" src="/src/assets/img/Esquiteria 2.png" alt="logo" />
+					</a>
+				</figure>
+				<ul id="menu" class="menu">
+					<li class="menu__item">
+						<a href="/src/views/order/order.html" class="link menu__link menu__link--yellow" title="Ir a tomar orden"
+							>Tomar orden</a
+						>
+					</li>
+					<li class="menu__item">
+						<a
+							href="/src/views/orders-list/orders-list.html"
+							class="link menu__link menu__link--cyan"
+							title="Ir a lista de ordenes"
+							>Lista de ordenes</a
+						>
+					</li>
+					<li class="menu__item">
+						<a
+							href="/src/views/products-sold/products-sold.html"
+							class="link menu__link menu__link--green"
+							title="Ir a historial de productos"
+							>Ventas del día</a
+						>
+					</li>
+				</ul>
+				<div class="container-options">
+					<a href="/src/views/configuration/configuration.html">
+						<img id="config" src="/src/assets/icons/settings.svg" alt="configuración" />
+					</a>
+					<div id="hamburger-icon" class="hamburger-icon">
+						<div class="hamburger-icon__line"></div>
+						<div class="hamburger-icon__line"></div>
+						<div class="hamburger-icon__line"></div>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<main class="container main">
+			<h2 class="title">Venta total</h2>
+		</main>
+		<script src="/src/js/app.js" type="module"></script>
+	</body>
+</html>
