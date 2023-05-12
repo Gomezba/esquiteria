@@ -12,19 +12,8 @@
 		<link rel="stylesheet" href="/src/css/styles.css" />
 		<link rel="stylesheet" href="/src/css/loader.css" />
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-		<link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/locale/es.min.js"
-			integrity="sha512-tgY2qswcbQir80Vp67s5ZdbKikl99YmVXp3V/C4Acthk4gI29ONbQ+MR8B5tpESkNoa0N1P7HnSuzC6nOflrwA=="
-			crossorigin="anonymous"
-		></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
-
-		<script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
 	</head>
-	<body>
+	<body class="body">
 		<header class="header">
 			<nav class="container main-nav">
 				<figure class="figure">
@@ -73,72 +62,249 @@
 				<form id="form-config" class="form" action="#">
 					<div class="form__field form__field--config">
 						<input id="new-product" class="btn btn-primary" type="button" value="Nuevo" />
-						<input class="btn btn-save btn-save-config" type="submit" value="Guardar" />
+						<input id="btn-save-config" class="btn btn-save btn-save-config" type="submit" value="Guardar" disabled />
 					</div>
-					<div class="form__field">
-						<label class="label" for="esq">Esquite</label>
-						<input id="esq" class="form__input-config" type="number" step="0.01" placeholder="Precio de esquite" />
-					</div>
-					<div class="form__field">
-						<label class="label" for="de">Doriesquite</label>
-						<input id="de" class="form__input-config" type="number" step="0.01" placeholder="Precio de doriesquite" />
-					</div>
-					<div class="form__field">
-						<label class="label" for="dl">Doriloco</label>
-						<input id="dl" class="form__input-config" type="number" step="0.01" placeholder="Precio de doriloco" />
-					</div>
-					<div class="form__field">
-						<label class="label" for="tl">Tostiloco</label>
-						<input id="tl" class="form__input-config" type="number" step="0.01" placeholder="Precio de tostiloco" />
-					</div>
-					<div class="form__field">
-						<label class="label" for="fe">Fresas con crema</label>
-						<input id="fe" class="form__input-config" type="number" step="0.01" placeholder="Precio de fresas con crema" />
-					</div>
-					<div class="form__field">
-						<label class="label" for="ge">Gelatina con durazno</label>
-						<input
-							id="ge"
-							class="form__input-config"
-							type="number"
-							step="0.01"
-							placeholder="Precio de gelatina con durazno"
-						/>
-					</div>
-					<div class="form__field">
-						<label class="label" for="en">Ensalada de manzana</label>
-						<input id="en" class="form__input-config" type="number" step="0.01" placeholder="Precio ensalada de manzana" />
-					</div>
-					<div class="form__field">
-						<label class="label" for="boing">Gomi Boing</label>
-						<input id="boing" class="form__input-config" type="number" step="0.01" placeholder="Precio gomiboing" />
-					</div>
-					<div class="form__field">
-						<label class="label" for="afl">Agua fresca 1L</label>
-						<input id="afl" class="form__input-config" type="number" step="0.01" placeholder="Precio agua fresca 1L" />
-					</div>
-					<div class="form__field">
-						<label class="label" for="anat">Agua Natural 500ml</label>
-						<input id="anat" class="form__input-config" type="number" step="0.01" placeholder="Precio agua natural 500ml" />
-					</div>
-					<div class="form__field">
-						<label class="label" for="pi">Piñada</label>
-						<input id="pi" class="form__input-config" type="number" step="0.01" placeholder="Precio piñada" />
-					</div>
-					<div class="form__field">
-						<label class="label" for="na">Naranjada</label>
-						<input id="na" class="form__input-config" type="number" step="0.01" placeholder="Precio naranjada" />
-					</div>
-					<div class="form__field">
-						<label class="label" for="li">Limonada</label>
-						<input id="li" class="form__input-config" type="number" step="0.01" placeholder="Precio limonada" />
-					</div>
+
+					<section id="botanas-config" class="category-container">
+						<h3>Botanas</h3>
+						<div class="form__field">
+							<label class="label" for="esq">Esquite</label>
+							<div class="form__input-options">
+								<input
+									id="esq"
+									class="form__input-config"
+									type="number"
+									step="0.01"
+									name="esquite"
+									placeholder="Precio de esquite"
+									disabled
+								/>
+								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+							</div>
+						</div>
+						<div class="form__field">
+							<label class="label" for="de">Doriesquite</label>
+							<div class="form__input-options">
+								<input
+									id="de"
+									class="form__input-config"
+									type="number"
+									step="0.01"
+									name="doriesquite"
+									placeholder="Precio de doriesquite"
+									disabled
+								/>
+								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+							</div>
+						</div>
+						<div class="form__field">
+							<label class="label" for="dl">Doriloco</label>
+							<div class="form__input-options">
+								<input
+									id="dl"
+									class="form__input-config"
+									type="number"
+									step="0.01"
+									name="doriloco"
+									placeholder="Precio de doriloco"
+									disabled
+								/>
+								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+							</div>
+						</div>
+						<div class="form__field">
+							<label class="label" for="tl">Tostiloco</label>
+							<div class="form__input-options">
+								<input
+									id="tl"
+									class="form__input-config"
+									type="number"
+									step="0.01"
+									name="tostiloco"
+									placeholder="Precio de tostiloco"
+									disabled
+								/>
+								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+							</div>
+						</div>
+					</section>
+					<section id="desserts-config" class="category-container">
+						<h3>Postres</h3>
+						<div class="form__field">
+							<label class="label" for="fe">Fresas con crema</label>
+							<div class="form__input-options">
+								<input
+									id="fe"
+									class="form__input-config"
+									type="number"
+									step="0.01"
+									name="fresas"
+									placeholder="Precio de fresas con crema"
+									disabled
+								/>
+								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+							</div>
+						</div>
+						<div class="form__field">
+							<label class="label" for="ge">Gelatina con durazno</label>
+							<div class="form__input-options">
+								<input
+									id="ge"
+									class="form__input-config"
+									type="number"
+									step="0.01"
+									name="gelatina"
+									placeholder="Precio de gelatina con durazno"
+									disabled
+								/>
+								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+							</div>
+						</div>
+						<div class="form__field">
+							<label class="label" for="en">Ensalada de manzana</label>
+							<div class="form__input-options">
+								<input
+									id="en"
+									class="form__input-config"
+									type="number"
+									step="0.01"
+									name="ensalada"
+									placeholder="Precio ensalada de manzana"
+									disabled
+								/>
+								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+							</div>
+						</div>
+					</section>
+					<section id="drinks-config" class="category-container">
+						<h3>Bebidas</h3>
+						<div class="form__field">
+							<label class="label" for="boing">Gomi Boing</label>
+							<div class="form__input-options">
+								<input
+									id="boing"
+									class="form__input-config"
+									type="number"
+									step="0.01"
+									name="boing"
+									placeholder="Precio gomiboing"
+									disabled
+								/>
+								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+							</div>
+						</div>
+						<div class="form__field">
+							<label class="label" for="afl">Agua fresca 1L</label>
+							<div class="form__input-options">
+								<input
+									id="afl"
+									class="form__input-config"
+									type="number"
+									step="0.01"
+									name="aguaFrescaLitro"
+									placeholder="Precio agua fresca 1L"
+									disabled
+								/>
+								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+							</div>
+						</div>
+						<div class="form__field">
+							<label class="label" for="afm">Agua fresca 600ml</label>
+							<div class="form__input-options">
+								<input
+									id="afm"
+									class="form__input-config"
+									type="number"
+									step="0.01"
+									name="aguaFrescaMedio"
+									placeholder="Precio agua fresca 600ml"
+									disabled
+								/>
+								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+							</div>
+						</div>
+						<div class="form__field">
+							<label class="label" for="anat">Agua Natural 500ml</label>
+							<div class="form__input-options">
+								<input
+									id="anat"
+									class="form__input-config"
+									type="number"
+									step="0.01"
+									name="aguaNaturalMedio"
+									placeholder="Precio agua natural 500ml"
+									disabled
+								/>
+								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+							</div>
+						</div>
+						<div class="form__field">
+							<label class="label" for="coca">Coca cola</label>
+							<div class="form__input-options">
+								<input
+									id="coca"
+									class="form__input-config"
+									type="number"
+									step="0.01"
+									name="cocaCola"
+									placeholder="Precio coca cola"
+									disabled
+								/>
+								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+							</div>
+						</div>
+						<div class="form__field">
+							<label class="label" for="pi">Piñada</label>
+							<div class="form__input-options">
+								<input
+									id="pi"
+									class="form__input-config"
+									type="number"
+									step="0.01"
+									name="piñada"
+									placeholder="Precio piñada"
+									disabled
+								/>
+								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+							</div>
+						</div>
+						<div class="form__field">
+							<label class="label" for="na">Naranjada</label>
+							<div class="form__input-options">
+								<input
+									id="na"
+									class="form__input-config"
+									type="number"
+									step="0.01"
+									name="naranjada"
+									placeholder="Precio naranjada"
+									disabled
+								/>
+								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+							</div>
+						</div>
+						<div class="form__field">
+							<label class="label" for="li">Limonada</label>
+							<div class="form__input-options">
+								<input
+									id="li"
+									class="form__input-config"
+									type="number"
+									step="0.01"
+									name="limonada"
+									placeholder="Precio limonada"
+									disabled
+								/>
+								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+							</div>
+						</div>
+					</section>
 				</form>
 				<form id="form-product-new" class="form-product-new" action="#">
 					<h2 class="title">Producto Nuevo</h2>
 					<div class="form__field">
 						<label class="label" for="product">Nombre del producto</label>
-						<input id="product" class="form__input-config" type="text" placeholder="Ingresa el nombre del producto" />
+						<input id="product-name" class="form__input-config" type="text" placeholder="Ingresa el nombre del producto" />
 					</div>
 					<div class="form__field">
 						<label class="label" for="product-price">Precio del producto</label>
@@ -153,15 +319,15 @@
 					<div class="form__field">
 						<label class="label" for="category">Selecciona la categoría</label>
 						<div>
-							<select name="category" id="form-category" title="Selecciona la categoría">
-								<option value="Botanas">Botanas</option>
-								<option value="Postres">Postres</option>
-								<option value="Bebidas">Bebidas</option>
+							<select name="category" id="select-category" title="Selecciona la categoría">
+								<option id="botanas-category" value="Botanas">Botanas</option>
+								<option id="postres-category" value="Postres">Postres</option>
+								<option id="bebidas-category" value="Bebidas">Bebidas</option>
 							</select>
 						</div>
 					</div>
 					<div class="form__field form__field-product">
-						<input id="add-product" type="submit" class="btn btn-save" value="Agregar" />
+						<input type="submit" class="btn btn-save" value="Agregar" />
 						<input id="cancel-product" type="button" class="btn btn-danger" value="Cancelar" />
 					</div>
 				</form>

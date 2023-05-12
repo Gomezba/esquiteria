@@ -1,8 +1,12 @@
 import { menuToggle } from './menu/menu.js'
-import { labelColor, newProduct } from './config/config.js'
+import { labelColor, newProduct, showProducts, validateConfig } from './config/config.js'
 
 window.addEventListener('DOMContentLoaded', () => {
 	menuToggle()
-	labelColor()
-	newProduct()
+	if (window.location.pathname.endsWith('/configuration.html')) {
+		showProducts()
+		validateConfig()
+		labelColor()
+		newProduct()
+	}
 })
