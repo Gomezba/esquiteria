@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="/src/css/loader.css" />
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	</head>
-	<body class="body">
+	<body id="body">
 		<header class="header">
 			<nav class="container main-nav">
 				<figure class="figure">
@@ -60,6 +60,7 @@
 			<section class="config-container">
 				<h2 class="title">Configuración</h2>
 				<form id="form-config" class="form" action="#">
+					<button type="button" id="readPrices" class="btn btn-readPrices" data-type="loading">Cargar precios</button>
 					<div class="form__field form__field--config">
 						<button id="new-product" class="btn btn-primary" type="button">Nuevo</button>
 						<button id="btn-save-config" class="btn btn-save btn-save-config" type="submit" disabled>Guardar</button>
@@ -70,61 +71,82 @@
 						<div class="form__field">
 							<label class="label">Esquite</label>
 							<div class="form__input-options">
+								<span class="currency">$</span>
 								<input
 									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="esquite"
-									placeholder="Precio de esquite"
 									disabled
+									title="Input de precio"
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
-								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
+
+								<button type="button" class="btn btn-edit btn-edit-config" title="Editar">
+									<img src="/src/assets/icons/edit.svg" alt="Boton editar" />
+								</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" disabled>
+									<img src="/src/assets/icons/cancel.svg" alt="Boton cancelar" />
+								</button>
 							</div>
 						</div>
 						<div class="form__field">
 							<label class="label">Doriesquite</label>
 							<div class="form__input-options">
+								<span class="currency">$</span>
 								<input
 									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="doriesquite"
-									placeholder="Precio de doriesquite"
+									title="Input de precio"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
-								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" title="Editar">
+									<img src="/src/assets/icons/edit.svg" alt="Boton editar" />
+								</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" disabled>
+									<img src="/src/assets/icons/cancel.svg" alt="Boton cancelar" />
+								</button>
 							</div>
 						</div>
 						<div class="form__field">
 							<label class="label">Doriloco</label>
 							<div class="form__input-options">
+								<span class="currency">$</span>
 								<input
 									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="doriloco"
-									placeholder="Precio de doriloco"
+									title="Input de precio"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
-								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" title="Editar">
+									<img src="/src/assets/icons/edit.svg" alt="Boton editar" />
+								</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" disabled>
+									<img src="/src/assets/icons/cancel.svg" alt="Boton cancelar" />
+								</button>
 							</div>
 						</div>
 						<div class="form__field">
 							<label class="label">Tostiloco</label>
 							<div class="form__input-options">
+								<span class="currency">$</span>
 								<input
 									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="tostiloco"
-									placeholder="Precio de tostiloco"
+									title="Input de precio"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
-								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" title="Editar">
+									<img src="/src/assets/icons/edit.svg" alt="Boton editar" />
+								</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" disabled>
+									<img src="/src/assets/icons/cancel.svg" alt="Boton cancelar" />
+								</button>
 							</div>
 						</div>
 					</section>
@@ -133,46 +155,61 @@
 						<div class="form__field">
 							<label class="label">Fresas con crema</label>
 							<div class="form__input-options">
+								<span class="currency">$</span>
 								<input
 									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="fresas"
-									placeholder="Precio de fresas con crema"
+									title="Input de precio"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
-								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" title="Editar">
+									<img src="/src/assets/icons/edit.svg" alt="Boton editar" />
+								</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" disabled>
+									<img src="/src/assets/icons/cancel.svg" alt="Boton cancelar" />
+								</button>
 							</div>
 						</div>
 						<div class="form__field">
 							<label class="label">Gelatina con durazno</label>
 							<div class="form__input-options">
+								<span class="currency">$</span>
 								<input
 									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="gelatina"
-									placeholder="Precio de gelatina con durazno"
+									title="Input de precio"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
-								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" title="Editar">
+									<img src="/src/assets/icons/edit.svg" alt="Boton editar" />
+								</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" disabled>
+									<img src="/src/assets/icons/cancel.svg" alt="Boton cancelar" />
+								</button>
 							</div>
 						</div>
 						<div class="form__field">
 							<label class="label">Ensalada de manzana</label>
 							<div class="form__input-options">
+								<span class="currency">$</span>
 								<input
 									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="ensalada"
-									placeholder="Precio ensalada de manzana"
+									title="Input de precio"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
-								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" title="Editar">
+									<img src="/src/assets/icons/edit.svg" alt="Boton editar" />
+								</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" disabled>
+									<img src="/src/assets/icons/cancel.svg" alt="Boton cancelar" />
+								</button>
 							</div>
 						</div>
 					</section>
@@ -181,127 +218,168 @@
 						<div class="form__field">
 							<label class="label">Gomi Boing</label>
 							<div class="form__input-options">
+								<span class="currency">$</span>
 								<input
 									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="boing"
-									placeholder="Precio gomiboing"
+									title="Input de precio"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
-								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" title="Editar">
+									<img src="/src/assets/icons/edit.svg" alt="Boton editar" />
+								</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" disabled>
+									<img src="/src/assets/icons/cancel.svg" alt="Boton cancelar" />
+								</button>
 							</div>
 						</div>
 						<div class="form__field">
 							<label class="label">Agua fresca 1L</label>
 							<div class="form__input-options">
+								<span class="currency">$</span>
 								<input
 									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="aguaFrescaLitro"
-									placeholder="Precio agua fresca 1L"
+									title="Input de precio"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
-								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" title="Editar">
+									<img src="/src/assets/icons/edit.svg" alt="Boton editar" />
+								</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" disabled>
+									<img src="/src/assets/icons/cancel.svg" alt="Boton cancelar" />
+								</button>
 							</div>
 						</div>
 						<div class="form__field">
 							<label class="label">Agua fresca 1/2</label>
 							<div class="form__input-options">
+								<span class="currency">$</span>
 								<input
 									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="aguaFrescaMedio"
-									placeholder="Precio agua fresca 600ml"
+									title="Input de precio"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
-								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" title="Editar">
+									<img src="/src/assets/icons/edit.svg" alt="Boton editar" />
+								</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" disabled>
+									<img src="/src/assets/icons/cancel.svg" alt="Boton cancelar" />
+								</button>
 							</div>
 						</div>
 						<div class="form__field">
 							<label class="label">Agua Natural 500ml</label>
 							<div class="form__input-options">
+								<span class="currency">$</span>
 								<input
 									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="aguaNaturalMedio"
-									placeholder="Precio agua natural 500ml"
+									title="Input de precio"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
-								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" title="Editar">
+									<img src="/src/assets/icons/edit.svg" alt="Boton editar" />
+								</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" disabled>
+									<img src="/src/assets/icons/cancel.svg" alt="Boton cancelar" />
+								</button>
 							</div>
 						</div>
 						<div class="form__field">
 							<label class="label">Coca cola</label>
 							<div class="form__input-options">
+								<span class="currency">$</span>
 								<input
 									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="cocaCola"
-									placeholder="Precio coca cola"
+									title="Input de precio"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
-								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" title="Editar">
+									<img src="/src/assets/icons/edit.svg" alt="Boton editar" />
+								</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" disabled>
+									<img src="/src/assets/icons/cancel.svg" alt="Boton cancelar" />
+								</button>
 							</div>
 						</div>
 						<div class="form__field">
 							<label class="label">Piñada</label>
 							<div class="form__input-options">
+								<span class="currency">$</span>
 								<input
 									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="piñada"
-									placeholder="Precio piñada"
+									title="Input de precio"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
-								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" title="Editar">
+									<img src="/src/assets/icons/edit.svg" alt="Boton editar" />
+								</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" disabled>
+									<img src="/src/assets/icons/cancel.svg" alt="Boton cancelar" />
+								</button>
 							</div>
 						</div>
 						<div class="form__field">
 							<label class="label">Naranjada</label>
 							<div class="form__input-options">
+								<span class="currency">$</span>
 								<input
 									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="naranjada"
-									placeholder="Precio naranjada"
+									title="Input de precio"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
-								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" title="Editar">
+									<img src="/src/assets/icons/edit.svg" alt="Boton editar" />
+								</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" disabled>
+									<img src="/src/assets/icons/cancel.svg" alt="Boton cancelar" />
+								</button>
 							</div>
 						</div>
 						<div class="form__field">
 							<label class="label">Limonada</label>
 							<div class="form__input-options">
+								<span class="currency">$</span>
 								<input
 									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="limonada"
-									placeholder="Precio limonada"
+									title="Input de precio"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
-								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" title="Editar">
+									<img src="/src/assets/icons/edit.svg" alt="Boton editar" />
+								</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" disabled>
+									<img src="/src/assets/icons/cancel.svg" alt="Boton cancelar" />
+								</button>
 							</div>
 						</div>
 					</section>
 				</form>
 				<form id="form-product-new" class="form-product-new" action="#">
 					<h2 class="title">Producto Nuevo</h2>
+
 					<div class="form__field">
 						<label class="label" for="product">Nombre del producto</label>
 						<input
@@ -332,7 +410,7 @@
 						</div>
 					</div>
 					<div class="form__field form__field-product">
-						<button type="submit" class="btn btn-save">Agregar</button>
+						<button type="submit" class="btn btn-primary">Agregar</button>
 						<button id="cancel-product" type="button" class="btn btn-danger">Cancelar</button>
 					</div>
 				</form>

@@ -4,6 +4,7 @@ const formConfig = document.getElementById('form-config')
 const btnSaveConfig = document.getElementById('btn-save-config')
 const btnEditConfig = document.querySelectorAll('.btn-edit-config')
 const btnCancelConfig = document.querySelectorAll('.btn-cancel-config')
+const priceContent = document.getElementById('readPrices')
 
 // Categorys
 const botanas = document.getElementById('botanas-category')
@@ -14,6 +15,7 @@ const bebidas = document.getElementById('drinks-category')
 const formProduct = document.getElementById('form-product-new')
 const newProductBtn = document.getElementById('new-product')
 const cancelProductBtn = document.getElementById('cancel-product')
+const body = document.getElementById('body')
 
 // Input focus y label
 export function labelColor() {
@@ -34,48 +36,46 @@ class Product {
 	constructor() {
 		this.products = JSON.parse(localStorage.getItem('products')) ?? []
 	}
-
-	editProduct(productos) {
-		this.products = this.products.map((products) =>
-			products.id === parseInt(productos.id) ? (products.price = Number(productos.price)) : products
-		)
-	}
-
-	// editProduct(products) {
-	// 	// this.products = this.products.map((products) => (products.id === Number(productos.id) ? productos : products))
-	// 	console.log(this.products)
-	// 	console.log(products)
-	// }
 }
 
 class Ui {
-	showAlert(msg, id) {
+	showAlert(msg, id, formError) {
 		const alert = document.createElement('DIV')
 		alert.textContent = msg
-		alert.classList.add('error')
-
-		const formInputOptions = document.querySelectorAll('.form__input-options')
-
 		const alertExist = document.querySelector('.error')
-
 		if (alertExist) {
 			alertExist.remove(alertExist)
 		}
-		formInputOptions.forEach((input) => {
-			if (input.dataset.id == id) {
-				input.after(alert)
-				setTimeout(() => {
-					alert.remove()
-				}, 2000)
-			}
-		})
+
+		if (formError === 'config') {
+			const formInputOptions = document.querySelectorAll('.form__input-options')
+
+			alert.classList.add('error')
+
+			formInputOptions.forEach((input) => {
+				if (input.dataset.id == id) {
+					input.after(alert)
+					setTimeout(() => {
+						alert.remove()
+					}, 2000)
+				}
+			})
+		}
+
+		if (formError === 'product') {
+			alert.classList.add('error-product')
+			body.append(alert)
+			setTimeout(() => {
+				alert.remove()
+			}, 2000)
+		}
 	}
 }
 
 const productsInstance = new Product()
 const ui = new Ui()
 
-// console.log(productsInstance.products)
+console.log(productsInstance.products)
 const products = [
 	{
 		name: 'esquite',
@@ -171,16 +171,29 @@ const products = [
 function addLocal() {
 	localStorage.setItem('products', JSON.stringify(products))
 }
-// addLocal()
 
 // ---------------------------------------------------------
 
+export function readingObject() {
+	priceContent.addEventListener('click', (e) => {
+		e.preventDefault()
+		if (priceContent.dataset.type === 'loading') {
+			location.reload()
+			addLocal()
+		}
+
+		console.log(productsInstance.products)
+	})
+}
+
 export function showProducts() {
 	productsInstance.products.forEach((product) => {
-		const { name, price, id } = product
+		const { name, category, price, id } = product
 		formInputMain.forEach((input) => {
 			if (input.name === name) {
 				const btnCancel = input.nextElementSibling.nextElementSibling
+				input.dataset.category = category
+				input.dataset.name = name
 				input.value = price
 				input.dataset.id = id
 				const formInputOptions = input.closest('.form__input-options')
@@ -194,13 +207,14 @@ export function showProducts() {
 btnEditConfig.forEach((btn) => {
 	btn.addEventListener('click', () => {
 		btn.setAttribute('disabled', true)
+		const currency = btn.previousElementSibling.previousSibling.previousSibling
 		const input = btn.previousElementSibling
 		Number(input.value)
 		input.removeAttribute('disabled')
 		input.focus()
 		const cancel = btn.nextElementSibling
 		cancel.removeAttribute('disabled')
-		// btnSaveConfigDisabled()
+		currency.classList.add('currency-black')
 
 		input.addEventListener('input', () => {
 			const moneyRegex = /^(?!0[0-9])[0-9]*(\.[0-9]+)?$/
@@ -208,11 +222,11 @@ btnEditConfig.forEach((btn) => {
 			Number(input.value)
 			let allInputsValid = true
 			if (input.value.trim() === '') {
-				ui.showAlert('Campo obligatorio', id)
+				ui.showAlert('Campo obligatorio', id, 'config')
 				btnSaveConfig.setAttribute('disabled', true)
 				allInputsValid = false
 			} else if (isNaN(Number(input.value)) || !moneyRegex.test(input.value) || input.value <= 0.99) {
-				ui.showAlert('Precio incorrecto', id)
+				ui.showAlert('Precio incorrecto', id, 'config')
 				btnSaveConfig.setAttribute('disabled', true)
 				allInputsValid = false
 			}
@@ -226,6 +240,7 @@ btnEditConfig.forEach((btn) => {
 
 btnCancelConfig.forEach((btn) => {
 	btn.addEventListener('click', () => {
+		const currency = btn.previousElementSibling.previousSibling.previousSibling.previousSibling.previousSibling
 		const edit = btn.previousElementSibling
 		const input = btn.previousElementSibling.previousElementSibling
 		const idCancel = btn.dataset.id
@@ -233,6 +248,7 @@ btnCancelConfig.forEach((btn) => {
 		edit.removeAttribute('disabled')
 		input.setAttribute('disabled', true)
 		btnSaveConfig.setAttribute('disabled', true)
+		currency.classList.remove('currency-black')
 		formInputMain.forEach((input) => {
 			if (idCancel === input.dataset.id) {
 				const product = (input.value = productsInstance.products.find((product) => product.id == idCancel))
@@ -261,24 +277,26 @@ function validateForm(e) {
 				confirmButtonText: 'Aceptar',
 			})
 		} else {
-			const price = input.value
-			const id = input.dataset.id
-			newPrice.push({ price, id })
+			const name = input.dataset.name
+			const category = input.dataset.category
+			const price = Number(input.value)
+			const id = Number(input.dataset.id)
+
+			newPrice.push({ name, category, price, id })
+			localStorage.setItem('products', JSON.stringify(newPrice))
 		}
 	})
-	// console.log(newPrice)
+
 	if (validate) {
-		productsInstance.editProduct(newPrice)
-		// console.log(productsInstance.products)
 		Swal.fire({
 			icon: 'success',
 			title: 'Producto actualizado',
 			showConfirmButton: false,
 			timer: 1500,
 		})
-		// setTimeout(() => {
-		// 	location.reload()
-		// }, 1501)
+		setTimeout(() => {
+			location.reload()
+		}, 1501)
 	}
 }
 
@@ -305,19 +323,20 @@ function labelColorProduct() {
 function validateProduct(e) {
 	e.preventDefault()
 	const productName = document.getElementById('product-name').value.trim()
-	const productPrice = Number(document.getElementById('product-price').value.trim())
-	const selectCategory = document.getElementById('select-category')
+	const productPrice = document.getElementById('product-price').value
+	const selectCategory = document.getElementById('select-category').value
+	const moneyRegex = /^(?!0[0-9])[0-9]*(\.[0-9]+)?$/
 
 	// 	botanas-category
 	// postres-category
 	// bebidas-category
 	if (productName === '' || productPrice === '') {
-		ui.showAlert('Todos los campos son obligatorios')
+		ui.showAlert('Todos los campos son obligatorios', null, 'product')
 		return
 	}
 
-	if (isNaN(productPrice) || productPrice <= 0) {
-		ui.showAlert('Precio incorrecto')
+	if (isNaN(productPrice) || !moneyRegex.test(productPrice) || productPrice <= 0.99) {
+		ui.showAlert('Precio incorrecto', null, 'product')
 		return
 	}
 

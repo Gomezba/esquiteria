@@ -14,9 +14,10 @@
 	--text-black: #000200;
 	--bg-alert-exit: #77b540;
 	--color-pink: #ff0066a1;
-	--pink-dark: #ff0066;
+	--pink-dark: #d4124dc0;
 	--color-purple: #990099;
 	--dark-orange: #d1831d;
+	--color-disabled: #ffffff31;
 
 	/* typography */
 	--f-family: 'Poppins', sans-serif;
@@ -100,6 +101,7 @@ body > * {
 }
 
 body {
+	position: relative;
 	display: grid;
 	grid-template-columns: 1fr;
 	grid-template-rows: 50px 1fr;
@@ -261,6 +263,7 @@ body {
 }
 
 .btn-primary {
+	/* --light-blue: #d4124dc0; */
 	background-color: var(--light-blue);
 }
 
@@ -269,12 +272,33 @@ body {
 }
 
 .btn-edit {
-	background-color: var(--bg-alert-exit);
+	/* background-color: var(--light-blue); */
+	background-color: var(--pink-dark);
 }
 
 .btn-cancel {
 	background-color: var(--dark-red);
 }
+.btn-cancel[disabled] {
+	--dark-red: #a70300d3;
+	background-color: var(--dark-red);
+}
+
+.btn-save-config[disabled] {
+	color: var(--color-disabled);
+}
+
+.btn-readPrices {
+	display: block;
+	background-color: var(--dark-green);
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.btn-save-config[disabled] {
+	background-color: var(--color-disabled);
+}
+
 /* -------------------------------------- */
 
 /* ---------- alerts ---------- */
@@ -287,6 +311,18 @@ body {
 	padding-block: 0.5em;
 	/* z-index: 20; */
 	font-size: var(--fs-base);
+}
+
+.error-product {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: var(--dark-red);
+	color: var(--light-gray);
+	text-align: center;
+	padding-block: 0.5em;
+	z-index: 50;
+	font-size: var(--fs-lg);
 }
 
 /* -------------------------------------- */
@@ -334,16 +370,35 @@ body {
 .form__input-config-product {
 	width: 100%;
 	background-color: #fff;
+	padding-left: 1.4rem;
 }
 
 .form__input-options {
+	position: relative;
 	display: flex;
 	gap: var(--gap-sm);
 }
 
+.currency {
+	position: absolute;
+	left: 0;
+	bottom: 1.3px;
+	font-size: 1.37rem;
+	padding-left: 0.4rem;
+	color: var(--light-gray);
+}
+
+.currency-black {
+	color: black;
+}
+
+/* .form__input-config-main:focus + .currency {
+	color: black;
+} */
+
 .form__input-options input[disabled] {
-	background-color: #969390;
-	color: rgba(0, 0, 0, 0.692);
+	--light-gray: #f5f5f596;
+	background-color: var(--color-disabled);
 	color: var(--light-gray);
 }
 
@@ -355,23 +410,18 @@ body {
 
 .btn-edit-config,
 .btn-cancel-config {
-	padding: var(--pd-btn-sm);
-}
-
-.btn-save-config[disabled],
-.btn-cancel-config[disabled] {
-	background-color: #969390;
+	padding: 0 1.2em;
 }
 
 /* Form new product */
 .form-product-new {
-	display: none;
+	/* display: none; */
 	position: fixed;
 	padding: 1em;
 	top: 3rem;
 	left: 0;
+	width: 100%;
 	height: 100vh;
-	/* background-color: #fff; */
 	background-color: var(--almost-dark-gray);
 	border-radius: var(--br);
 	z-index: 5;
