@@ -280,14 +280,13 @@ body {
 /* ---------- alerts ---------- */
 
 .error {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	background-color: var(--dark-red);
-	color: var(--light-gray);
-	text-align: center;
-	padding-block: 1.3em;
-	z-index: 20;
+	/* width: 100%; */
+	/* background-color: var(--dark-red); */
+	color: var(--dark-red);
+	/* text-align: center; */
+	padding-block: 0.5em;
+	/* z-index: 20; */
+	font-size: var(--fs-base);
 }
 
 /* -------------------------------------- */
@@ -345,6 +344,7 @@ body {
 .form__input-options input[disabled] {
 	background-color: #969390;
 	color: rgba(0, 0, 0, 0.692);
+	color: var(--light-gray);
 }
 
 .form__input-config-main:focus,

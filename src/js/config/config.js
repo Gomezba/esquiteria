@@ -5,8 +5,6 @@ const btnSaveConfig = document.getElementById('btn-save-config')
 const btnEditConfig = document.querySelectorAll('.btn-edit-config')
 const btnCancelConfig = document.querySelectorAll('.btn-cancel-config')
 
-const body = document.querySelector('.body')
-
 // Categorys
 const botanas = document.getElementById('botanas-category')
 const postres = document.getElementById('desserts-category')
@@ -37,31 +35,47 @@ class Product {
 		this.products = JSON.parse(localStorage.getItem('products')) ?? []
 	}
 
-	addProduct() {}
-
-	editProduct(id, price) {
-		// const { id, price } = prod
-		this.products = this.products.map((product) => (product.id === id ? (product.price = price) : product))
+	editProduct(productos) {
+		this.products = this.products.map((products) =>
+			products.id === parseInt(productos.id) ? (products.price = Number(productos.price)) : products
+		)
 	}
+
+	// editProduct(products) {
+	// 	// this.products = this.products.map((products) => (products.id === Number(productos.id) ? productos : products))
+	// 	console.log(this.products)
+	// 	console.log(products)
+	// }
 }
 
 class Ui {
-	showAlert(msg) {
+	showAlert(msg, id) {
 		const alert = document.createElement('DIV')
 		alert.textContent = msg
 		alert.classList.add('error')
 
-		body.append(alert)
-		setTimeout(() => {
-			alert.remove()
-		}, 2000)
+		const formInputOptions = document.querySelectorAll('.form__input-options')
+
+		const alertExist = document.querySelector('.error')
+
+		if (alertExist) {
+			alertExist.remove(alertExist)
+		}
+		formInputOptions.forEach((input) => {
+			if (input.dataset.id == id) {
+				input.after(alert)
+				setTimeout(() => {
+					alert.remove()
+				}, 2000)
+			}
+		})
 	}
 }
 
 const productsInstance = new Product()
 const ui = new Ui()
 
-console.log(productsInstance)
+// console.log(productsInstance.products)
 const products = [
 	{
 		name: 'esquite',
@@ -160,23 +174,18 @@ function addLocal() {
 // addLocal()
 
 // ---------------------------------------------------------
-// Funcionalidad de desabilitar
-function btnSaveConfigDisabled() {
-	const input = Array.from(formInputMain).find((inp) => !inp.hasAttribute('disabled'))
 
-	if (input) {
-		btnSaveConfig.removeAttribute('disabled')
-	} else {
-		btnSaveConfig.setAttribute('disabled', true)
-	}
-}
 export function showProducts() {
 	productsInstance.products.forEach((product) => {
 		const { name, price, id } = product
 		formInputMain.forEach((input) => {
 			if (input.name === name) {
+				const btnCancel = input.nextElementSibling.nextElementSibling
 				input.value = price
 				input.dataset.id = id
+				const formInputOptions = input.closest('.form__input-options')
+				formInputOptions.dataset.id = id
+				btnCancel.dataset.id = id
 			}
 		})
 	})
@@ -186,11 +195,32 @@ btnEditConfig.forEach((btn) => {
 	btn.addEventListener('click', () => {
 		btn.setAttribute('disabled', true)
 		const input = btn.previousElementSibling
+		Number(input.value)
 		input.removeAttribute('disabled')
 		input.focus()
 		const cancel = btn.nextElementSibling
 		cancel.removeAttribute('disabled')
-		btnSaveConfigDisabled()
+		// btnSaveConfigDisabled()
+
+		input.addEventListener('input', () => {
+			const moneyRegex = /^(?!0[0-9])[0-9]*(\.[0-9]+)?$/
+			const id = input.dataset.id
+			Number(input.value)
+			let allInputsValid = true
+			if (input.value.trim() === '') {
+				ui.showAlert('Campo obligatorio', id)
+				btnSaveConfig.setAttribute('disabled', true)
+				allInputsValid = false
+			} else if (isNaN(Number(input.value)) || !moneyRegex.test(input.value) || input.value <= 0.99) {
+				ui.showAlert('Precio incorrecto', id)
+				btnSaveConfig.setAttribute('disabled', true)
+				allInputsValid = false
+			}
+
+			if (allInputsValid) {
+				btnSaveConfig.removeAttribute('disabled')
+			}
+		})
 	})
 })
 
@@ -198,10 +228,18 @@ btnCancelConfig.forEach((btn) => {
 	btn.addEventListener('click', () => {
 		const edit = btn.previousElementSibling
 		const input = btn.previousElementSibling.previousElementSibling
+		const idCancel = btn.dataset.id
 		btn.setAttribute('disabled', true)
 		edit.removeAttribute('disabled')
 		input.setAttribute('disabled', true)
-		btnSaveConfigDisabled()
+		btnSaveConfig.setAttribute('disabled', true)
+		formInputMain.forEach((input) => {
+			if (idCancel === input.dataset.id) {
+				const product = (input.value = productsInstance.products.find((product) => product.id == idCancel))
+				const { price } = product
+				input.value = price
+			}
+		})
 	})
 })
 // --------------------------------------------
@@ -210,57 +248,38 @@ btnCancelConfig.forEach((btn) => {
 function validateForm(e) {
 	e.preventDefault()
 
-	let allInputsValid = true
-	const moneyRegex = /^(?!0[0-9])[0-9]*(\.[0-9]+)?$/
+	let validate = true
+	let newPrice = []
 
 	formInputMain.forEach((input) => {
-		Number(input.value)
 		if (input.value.trim() === '') {
-			allInputsValid = false
-			// alert(`El valor '${input.value}' en '${input.id}' no es válido.`)
-			ui.showAlert('Todos los campos son obligatorios')
-			return
-		}
-
-		if (isNaN(Number(input.value)) || !moneyRegex.test(input.value) || input.value <= 0.99) {
-			allInputsValid = false
-			ui.showAlert('Precio incorrecto')
-			return
-		}
-
-		if (allInputsValid) {
-			formInputMain.forEach((inp) => {
-				inp.addEventListener('input', (e) => {
-					const idProd = e.target.dataset.id
-					const priceProd = e.target.value
-
-					console.log(idProd)
-					console.log(priceProd)
-
-					productsInstance.editProduct(idProd, priceProd)
-				})
+			validate = false
+			Swal.fire({
+				icon: 'error',
+				title: '¡Error!',
+				text: 'Ha ocurrido un error inesperado.',
+				confirmButtonText: 'Aceptar',
 			})
-			// const idProd = e.target.dataset.id
-			// const priceProd = e.target.value
-
-			// console.log(idProd)
-			// console.log(priceProd)
-
-			// console.log(e.target)
-
-			// productsInstance.editProduct(productId, productToUpdate)
-
-			// Swal.fire({
-			// 	icon: 'success',
-			// 	title: 'Producto actualizado',
-			// 	showConfirmButton: false,
-			// 	timer: 1500,
-			// })
-			// setTimeout(() => {
-			// 	location.reload()
-			// }, 1501)
+		} else {
+			const price = input.value
+			const id = input.dataset.id
+			newPrice.push({ price, id })
 		}
 	})
+	// console.log(newPrice)
+	if (validate) {
+		productsInstance.editProduct(newPrice)
+		// console.log(productsInstance.products)
+		Swal.fire({
+			icon: 'success',
+			title: 'Producto actualizado',
+			showConfirmButton: false,
+			timer: 1500,
+		})
+		// setTimeout(() => {
+		// 	location.reload()
+		// }, 1501)
+	}
 }
 
 export function validateConfig() {
