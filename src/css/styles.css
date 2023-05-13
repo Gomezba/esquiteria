@@ -76,6 +76,7 @@ ul {
 input {
 	border: 0;
 	border-radius: var(--br);
+	height: 35px;
 }
 
 input:focus {
@@ -270,6 +271,10 @@ body {
 .btn-edit {
 	background-color: var(--bg-alert-exit);
 }
+
+.btn-cancel {
+	background-color: var(--dark-red);
+}
 /* -------------------------------------- */
 
 /* ---------- alerts ---------- */
@@ -326,10 +331,10 @@ body {
 	font-weight: var(--fw-bold);
 }
 
-.form__input-config {
-	--light-gray: #dddddd;
+.form__input-config-main,
+.form__input-config-product {
 	width: 100%;
-	background-color: var(--light-gray);
+	background-color: #fff;
 }
 
 .form__input-options {
@@ -342,16 +347,19 @@ body {
 	color: rgba(0, 0, 0, 0.692);
 }
 
-.form__input-config:focus {
+.form__input-config-main:focus,
+.form__input-config-product:focus {
 	outline: 2px solid var(--dark-orange);
 	box-shadow: 0px 0px 4px 3px var(--dark-orange);
 }
 
-.btn-edit-config {
+.btn-edit-config,
+.btn-cancel-config {
 	padding: var(--pd-btn-sm);
 }
 
-.btn-save-config[disabled] {
+.btn-save-config[disabled],
+.btn-cancel-config[disabled] {
 	background-color: #969390;
 }
 

@@ -1,7 +1,9 @@
-const formInput = document.querySelectorAll('.form__input-config')
+const formInputProduct = document.querySelectorAll('.form__input-config-product')
+const formInputMain = document.querySelectorAll('.form__input-config-main')
 const formConfig = document.getElementById('form-config')
 const btnSaveConfig = document.getElementById('btn-save-config')
 const btnEditConfig = document.querySelectorAll('.btn-edit-config')
+const btnCancelConfig = document.querySelectorAll('.btn-cancel-config')
 
 const body = document.querySelector('.body')
 
@@ -15,8 +17,9 @@ const formProduct = document.getElementById('form-product-new')
 const newProductBtn = document.getElementById('new-product')
 const cancelProductBtn = document.getElementById('cancel-product')
 
+// Input focus y label
 export function labelColor() {
-	formInput.forEach((input) => {
+	formInputMain.forEach((input) => {
 		let label
 		input.addEventListener('focus', () => {
 			label = input.parentElement.previousElementSibling
@@ -36,8 +39,8 @@ class Product {
 
 	addProduct() {}
 
-	editProduct(prod) {
-		const { id, price } = prod
+	editProduct(id, price) {
+		// const { id, price } = prod
 		this.products = this.products.map((product) => (product.id === id ? (product.price = price) : product))
 	}
 }
@@ -64,115 +67,219 @@ const products = [
 		name: 'esquite',
 		category: 'botanas',
 		price: 25,
-		id: Date.now(),
+		id: 11,
 	},
 	{
 		name: 'doriesquite',
 		category: 'botanas',
 		price: 45,
-		id: Date.now(),
+		id: 22,
 	},
 	{
 		name: 'doriloco',
 		category: 'botanas',
 		price: 35,
-		id: Date.now(),
+		id: 33,
 	},
 	{
 		name: 'tostiloco',
 		category: 'botanas',
 		price: 35,
-		id: Date.now(),
+		id: 44,
 	},
 	{
 		name: 'fresas',
 		category: 'postre',
 		price: 45,
-		id: Date.now(),
+		id: 55,
 	},
 	{
 		name: 'gelatina',
 		category: 'postre',
 		price: 45,
-		id: Date.now(),
+		id: 66,
 	},
 	{
 		name: 'ensalada',
 		category: 'postre',
 		price: 45,
-		id: Date.now(),
+		id: 77,
 	},
 	{
 		name: 'boing',
 		category: 'bebidas',
 		price: 35,
-		id: Date.now(),
+		id: 88,
 	},
 	{
 		name: 'aguaFrescaLitro',
 		category: 'bebidas',
 		price: 25,
-		id: Date.now(),
+		id: 99,
 	},
 	{
 		name: 'aguaFrescaMedio',
 		category: 'bebidas',
 		price: 15,
-		id: Date.now(),
+		id: 10,
 	},
 	{
 		name: 'cocaCola',
 		category: 'bebidas',
 		price: 22,
-		id: Date.now(),
+		id: 1111,
 	},
 	{
 		name: 'aguaNaturalMedio',
 		category: 'bebidas',
 		price: 10,
-		id: Date.now(),
+		id: 1212,
 	},
 	{
 		name: 'piñada',
 		category: 'bebidas',
 		price: 35,
-		id: Date.now(),
+		id: 1313,
 	},
 	{
 		name: 'naranjada',
 		category: 'bebidas',
 		price: 35,
-		id: Date.now(),
+		id: 1414,
 	},
 	{
 		name: 'limonada',
 		category: 'bebidas',
 		price: 35,
-		id: Date.now(),
+		id: 1515,
 	},
 ]
 function addLocal() {
 	localStorage.setItem('products', JSON.stringify(products))
 }
-addLocal()
+// addLocal()
 
+// ---------------------------------------------------------
+// Funcionalidad de desabilitar
+function btnSaveConfigDisabled() {
+	const input = Array.from(formInputMain).find((inp) => !inp.hasAttribute('disabled'))
+
+	if (input) {
+		btnSaveConfig.removeAttribute('disabled')
+	} else {
+		btnSaveConfig.setAttribute('disabled', true)
+	}
+}
 export function showProducts() {
-	const info = productsInstance.products.reduce((acc, { name, price }) => {
-		acc[name] = price
+	productsInstance.products.forEach((product) => {
+		const { name, price, id } = product
+		formInputMain.forEach((input) => {
+			if (input.name === name) {
+				input.value = price
+				input.dataset.id = id
+			}
+		})
+	})
+}
 
-		return acc
-	}, {})
+btnEditConfig.forEach((btn) => {
+	btn.addEventListener('click', () => {
+		btn.setAttribute('disabled', true)
+		const input = btn.previousElementSibling
+		input.removeAttribute('disabled')
+		input.focus()
+		const cancel = btn.nextElementSibling
+		cancel.removeAttribute('disabled')
+		btnSaveConfigDisabled()
+	})
+})
 
-	console.log(info)
+btnCancelConfig.forEach((btn) => {
+	btn.addEventListener('click', () => {
+		const edit = btn.previousElementSibling
+		const input = btn.previousElementSibling.previousElementSibling
+		btn.setAttribute('disabled', true)
+		edit.removeAttribute('disabled')
+		input.setAttribute('disabled', true)
+		btnSaveConfigDisabled()
+	})
+})
+// --------------------------------------------
 
-	formInput.forEach((input) => {
-		const name = input.getAttribute('name')
-		const price = info[name]
+// TODO formulario principal
+function validateForm(e) {
+	e.preventDefault()
 
-		if (price) {
-			input.value = price
-			input.dataset.id = info.id
+	let allInputsValid = true
+	const moneyRegex = /^(?!0[0-9])[0-9]*(\.[0-9]+)?$/
+
+	formInputMain.forEach((input) => {
+		Number(input.value)
+		if (input.value.trim() === '') {
+			allInputsValid = false
+			// alert(`El valor '${input.value}' en '${input.id}' no es válido.`)
+			ui.showAlert('Todos los campos son obligatorios')
+			return
 		}
+
+		if (isNaN(Number(input.value)) || !moneyRegex.test(input.value) || input.value <= 0.99) {
+			allInputsValid = false
+			ui.showAlert('Precio incorrecto')
+			return
+		}
+
+		if (allInputsValid) {
+			formInputMain.forEach((inp) => {
+				inp.addEventListener('input', (e) => {
+					const idProd = e.target.dataset.id
+					const priceProd = e.target.value
+
+					console.log(idProd)
+					console.log(priceProd)
+
+					productsInstance.editProduct(idProd, priceProd)
+				})
+			})
+			// const idProd = e.target.dataset.id
+			// const priceProd = e.target.value
+
+			// console.log(idProd)
+			// console.log(priceProd)
+
+			// console.log(e.target)
+
+			// productsInstance.editProduct(productId, productToUpdate)
+
+			// Swal.fire({
+			// 	icon: 'success',
+			// 	title: 'Producto actualizado',
+			// 	showConfirmButton: false,
+			// 	timer: 1500,
+			// })
+			// setTimeout(() => {
+			// 	location.reload()
+			// }, 1501)
+		}
+	})
+}
+
+export function validateConfig() {
+	formConfig.addEventListener('submit', validateForm)
+}
+
+//TODO Formulario de nuevos productos
+
+function labelColorProduct() {
+	formInputProduct.forEach((input) => {
+		let label
+		input.addEventListener('focus', () => {
+			label = input.previousElementSibling
+			label.classList.add('label-active')
+		})
+
+		input.addEventListener('blur', () => {
+			label.classList.remove('label-active')
+		})
 	})
 }
 
@@ -191,7 +298,7 @@ function validateProduct(e) {
 	}
 
 	if (isNaN(productPrice) || productPrice <= 0) {
-		ui.showAlert('Ingresa una cantidad correcta')
+		ui.showAlert('Precio incorrecto')
 		return
 	}
 
@@ -211,7 +318,7 @@ export function newProduct() {
 		Swal.fire({
 			title: 'Advertencia!',
 			html:
-				'Al momento de agregar un nuevo producto se eliminaran las ordenes registradas así como el historial de ventas, <strong style="color:#d1831d">ASEGURATE DE IMPRIMIR LA INFORMACIÓN ANTES DE AGREGAR UN NUEVO PRODUCTO.</strong>',
+				'Al momento de agregar un nuevo producto se eliminaran las ordenes registradas así como el historial de ventas, <strong style="color:#d1831d">ASEGURATE DE IMPRIMIR LA INFORMACIÓN ANTES DE AGREGAR UN PRODUCTO NUEVO.</strong>',
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonText: 'Sí, continuar',
@@ -219,6 +326,7 @@ export function newProduct() {
 		}).then((result) => {
 			if (result.isConfirmed) {
 				formProduct.classList.add('is-active')
+				labelColorProduct()
 			}
 		})
 	}
@@ -230,29 +338,4 @@ export function newProduct() {
 	})
 
 	newProductBtn.addEventListener('click', warning)
-}
-
-function validateForm(e) {
-	e.preventDefault()
-
-	formInput.forEach((prod) => {
-		if (prod.value === '' || prod.value <= 0 || isNaN(prod)) {
-			ui.showAlert('Precio incorrecto')
-
-			return
-		}
-
-		productsInstance.editProduct()
-
-		Swal.fire({
-			icon: 'success',
-			title: '¡Producto actualizado!',
-			showConfirmButton: false,
-			timer: 1500,
-		})
-	})
-}
-
-export function validateConfig() {
-	formConfig.addEventListener('submit', validateForm)
 }

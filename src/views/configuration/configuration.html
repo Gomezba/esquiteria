@@ -61,241 +61,241 @@
 				<h2 class="title">Configuración</h2>
 				<form id="form-config" class="form" action="#">
 					<div class="form__field form__field--config">
-						<input id="new-product" class="btn btn-primary" type="button" value="Nuevo" />
-						<input id="btn-save-config" class="btn btn-save btn-save-config" type="submit" value="Guardar" disabled />
+						<button id="new-product" class="btn btn-primary" type="button">Nuevo</button>
+						<button id="btn-save-config" class="btn btn-save btn-save-config" type="submit" disabled>Guardar</button>
 					</div>
 
 					<section id="botanas-config" class="category-container">
 						<h3>Botanas</h3>
 						<div class="form__field">
-							<label class="label" for="esq">Esquite</label>
+							<label class="label">Esquite</label>
 							<div class="form__input-options">
 								<input
-									id="esq"
-									class="form__input-config"
+									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="esquite"
 									placeholder="Precio de esquite"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
 							</div>
 						</div>
 						<div class="form__field">
-							<label class="label" for="de">Doriesquite</label>
+							<label class="label">Doriesquite</label>
 							<div class="form__input-options">
 								<input
-									id="de"
-									class="form__input-config"
+									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="doriesquite"
 									placeholder="Precio de doriesquite"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
 							</div>
 						</div>
 						<div class="form__field">
-							<label class="label" for="dl">Doriloco</label>
+							<label class="label">Doriloco</label>
 							<div class="form__input-options">
 								<input
-									id="dl"
-									class="form__input-config"
+									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="doriloco"
 									placeholder="Precio de doriloco"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
 							</div>
 						</div>
 						<div class="form__field">
-							<label class="label" for="tl">Tostiloco</label>
+							<label class="label">Tostiloco</label>
 							<div class="form__input-options">
 								<input
-									id="tl"
-									class="form__input-config"
+									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="tostiloco"
 									placeholder="Precio de tostiloco"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
 							</div>
 						</div>
 					</section>
 					<section id="desserts-config" class="category-container">
 						<h3>Postres</h3>
 						<div class="form__field">
-							<label class="label" for="fe">Fresas con crema</label>
+							<label class="label">Fresas con crema</label>
 							<div class="form__input-options">
 								<input
-									id="fe"
-									class="form__input-config"
+									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="fresas"
 									placeholder="Precio de fresas con crema"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
 							</div>
 						</div>
 						<div class="form__field">
-							<label class="label" for="ge">Gelatina con durazno</label>
+							<label class="label">Gelatina con durazno</label>
 							<div class="form__input-options">
 								<input
-									id="ge"
-									class="form__input-config"
+									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="gelatina"
 									placeholder="Precio de gelatina con durazno"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
 							</div>
 						</div>
 						<div class="form__field">
-							<label class="label" for="en">Ensalada de manzana</label>
+							<label class="label">Ensalada de manzana</label>
 							<div class="form__input-options">
 								<input
-									id="en"
-									class="form__input-config"
+									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="ensalada"
 									placeholder="Precio ensalada de manzana"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
 							</div>
 						</div>
 					</section>
 					<section id="drinks-config" class="category-container">
 						<h3>Bebidas</h3>
 						<div class="form__field">
-							<label class="label" for="boing">Gomi Boing</label>
+							<label class="label">Gomi Boing</label>
 							<div class="form__input-options">
 								<input
-									id="boing"
-									class="form__input-config"
+									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="boing"
 									placeholder="Precio gomiboing"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
 							</div>
 						</div>
 						<div class="form__field">
-							<label class="label" for="afl">Agua fresca 1L</label>
+							<label class="label">Agua fresca 1L</label>
 							<div class="form__input-options">
 								<input
-									id="afl"
-									class="form__input-config"
+									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="aguaFrescaLitro"
 									placeholder="Precio agua fresca 1L"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
 							</div>
 						</div>
 						<div class="form__field">
-							<label class="label" for="afm">Agua fresca 600ml</label>
+							<label class="label">Agua fresca 1/2</label>
 							<div class="form__input-options">
 								<input
-									id="afm"
-									class="form__input-config"
+									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="aguaFrescaMedio"
 									placeholder="Precio agua fresca 600ml"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
 							</div>
 						</div>
 						<div class="form__field">
-							<label class="label" for="anat">Agua Natural 500ml</label>
+							<label class="label">Agua Natural 500ml</label>
 							<div class="form__input-options">
 								<input
-									id="anat"
-									class="form__input-config"
+									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="aguaNaturalMedio"
 									placeholder="Precio agua natural 500ml"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
 							</div>
 						</div>
 						<div class="form__field">
-							<label class="label" for="coca">Coca cola</label>
+							<label class="label">Coca cola</label>
 							<div class="form__input-options">
 								<input
-									id="coca"
-									class="form__input-config"
+									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="cocaCola"
 									placeholder="Precio coca cola"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
 							</div>
 						</div>
 						<div class="form__field">
-							<label class="label" for="pi">Piñada</label>
+							<label class="label">Piñada</label>
 							<div class="form__input-options">
 								<input
-									id="pi"
-									class="form__input-config"
+									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="piñada"
 									placeholder="Precio piñada"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
 							</div>
 						</div>
 						<div class="form__field">
-							<label class="label" for="na">Naranjada</label>
+							<label class="label">Naranjada</label>
 							<div class="form__input-options">
 								<input
-									id="na"
-									class="form__input-config"
+									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="naranjada"
 									placeholder="Precio naranjada"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
 							</div>
 						</div>
 						<div class="form__field">
-							<label class="label" for="li">Limonada</label>
+							<label class="label">Limonada</label>
 							<div class="form__input-options">
 								<input
-									id="li"
-									class="form__input-config"
+									class="form__input-config form__input-config-main"
 									type="number"
 									step="0.01"
 									name="limonada"
 									placeholder="Precio limonada"
 									disabled
 								/>
-								<button type="button" class="btn btn-edit btn-edit-config">Editar</button>
+								<button type="button" class="btn btn-edit btn-edit-config" data-type="edit">Editar</button>
+								<button type="button" class="btn btn-cancel btn-cancel-config" data-type="cancel" disabled>Cancelar</button>
 							</div>
 						</div>
 					</section>
@@ -304,13 +304,18 @@
 					<h2 class="title">Producto Nuevo</h2>
 					<div class="form__field">
 						<label class="label" for="product">Nombre del producto</label>
-						<input id="product-name" class="form__input-config" type="text" placeholder="Ingresa el nombre del producto" />
+						<input
+							id="product-name"
+							class="form__input-config-product"
+							type="text"
+							placeholder="Ingresa el nombre del producto"
+						/>
 					</div>
 					<div class="form__field">
 						<label class="label" for="product-price">Precio del producto</label>
 						<input
 							id="product-price"
-							class="form__input-config"
+							class="form__input-config-product"
 							type="number"
 							step="0.01"
 							placeholder="Ingresa el precio del producto"
@@ -327,8 +332,8 @@
 						</div>
 					</div>
 					<div class="form__field form__field-product">
-						<input type="submit" class="btn btn-save" value="Agregar" />
-						<input id="cancel-product" type="button" class="btn btn-danger" value="Cancelar" />
+						<button type="submit" class="btn btn-save">Agregar</button>
+						<button id="cancel-product" type="button" class="btn btn-danger">Cancelar</button>
 					</div>
 				</form>
 			</section>
