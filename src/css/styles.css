@@ -12,7 +12,7 @@
 	--sky-blue: #52a5bf;
 	--light-blue: #087ea4;
 	--text-black: #000200;
-	--bg-alert-exit: #77b540;
+	--bg-alert-exit: #5c9118;
 	--color-pink: #ff0066a1;
 	--pink-dark: #d4124dc0;
 	--color-purple: #990099;
@@ -195,7 +195,6 @@ body {
 	font-weight: var(--fw-medium);
 	font-size: var(--fs-lg);
 	transform: translateZ(0);
-	user-select: none;
 	color: var(--almost-dark-gray);
 }
 
@@ -259,7 +258,8 @@ body {
 }
 
 .btn-save {
-	background-color: var(--dark-orange);
+	/* background-color: var(--dark-orange); */
+	background-color: #5c9118;
 }
 
 .btn-primary {
@@ -272,16 +272,18 @@ body {
 }
 
 .btn-edit {
-	/* background-color: var(--light-blue); */
 	background-color: var(--pink-dark);
+}
+.btn-edit[disabled] {
+	background-color: var(--color-disabled);
 }
 
 .btn-cancel {
-	background-color: var(--dark-red);
+	background-color: #f00101;
 }
 .btn-cancel[disabled] {
-	--dark-red: #a70300d3;
-	background-color: var(--dark-red);
+	--dark-red: #a703007a;
+	background-color: var(--color-disabled);
 }
 
 .btn-save-config[disabled] {
@@ -290,13 +292,18 @@ body {
 
 .btn-readPrices {
 	display: block;
+	width: 100%;
 	background-color: var(--dark-green);
 	margin-left: auto;
-	margin-right: auto;
+	/* margin-right: auto; */
 }
 
 .btn-save-config[disabled] {
 	background-color: var(--color-disabled);
+}
+
+.btn-deleted {
+	background-color: #da8c17;
 }
 
 /* -------------------------------------- */
@@ -320,9 +327,9 @@ body {
 	background-color: var(--dark-red);
 	color: var(--light-gray);
 	text-align: center;
-	padding-block: 0.5em;
+	padding-block: 0.8em;
 	z-index: 50;
-	font-size: var(--fs-lg);
+	font-size: var(--fs-base);
 }
 
 /* -------------------------------------- */
@@ -330,6 +337,7 @@ body {
 /* ---------- form styles configuration---------- */
 
 .form__field {
+	position: relative;
 	margin-bottom: 0.5em;
 }
 
@@ -388,7 +396,8 @@ body {
 	color: var(--light-gray);
 }
 
-.currency-black {
+.currency-black,
+.currency-product {
 	color: black;
 }
 
@@ -409,13 +418,14 @@ body {
 }
 
 .btn-edit-config,
-.btn-cancel-config {
+.btn-cancel-config,
+.btn-deleted-config {
 	padding: 0 1.2em;
 }
 
 /* Form new product */
 .form-product-new {
-	/* display: none; */
+	display: none;
 	position: fixed;
 	padding: 1em;
 	top: 3rem;
