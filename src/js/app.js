@@ -1,12 +1,11 @@
 import { menuToggle } from './menu/menu.js'
-import { labelColor, newProduct, validateConfig, readingObject, showHtmlProducts } from './config/config.js'
+import { newProduct, validateConfig, readingObject, showHtmlProducts } from './config/config.js'
 
-window.addEventListener('DOMContentLoaded', () => {
+addEventListener('DOMContentLoaded', () => {
 	menuToggle()
-	if (window.location.pathname.endsWith('/configuration.html')) {
+	if (location.pathname.endsWith('/configuration.html')) {
 		readingObject()
 		validateConfig()
-		labelColor()
 		newProduct()
 		showHtmlProducts()
 	}

@@ -1,10 +1,7 @@
 const formInputProduct = document.querySelectorAll('.form__input-config-product')
-const formInputMain = document.querySelectorAll('.form__input-config-main')
 
 const formConfig = document.getElementById('form-config')
 const btnSaveConfig = document.getElementById('btn-save-config')
-// const btnEditConfig = document.querySelectorAll('.btn-edit-config')
-// const btnCancelConfig = document.querySelectorAll('.btn-cancel-config')
 const priceContent = document.getElementById('readPrices')
 
 // Categorys
@@ -25,7 +22,7 @@ const categoryHtml = Object.freeze({
 })
 
 // Input focus y label
-export function labelColor() {
+function labelColor() {
 	const formInputMain = document.querySelectorAll('.form__input-config-main')
 
 	formInputMain.forEach((input) => {
@@ -461,13 +458,13 @@ export function newProduct() {
 	newProductBtn.addEventListener('click', warning)
 }
 
-const newProducto = {
-	name: '',
-	category: '',
-	price: '',
-}
-
 function validateProduct(e) {
+	const newProducto = {
+		name: '',
+		category: '',
+		price: '',
+	}
+
 	e.preventDefault()
 	const productName = document.getElementById('product-name').value.trim()
 	const productPrice = document.getElementById('product-price').value
@@ -510,6 +507,7 @@ function validateProduct(e) {
 
 addEventListener('DOMContentLoaded', () => {
 	setTimeout(() => {
+		labelColor()
 		eventUpdate()
 		eventCancel()
 	}, 2000)
