@@ -37,7 +37,7 @@
 	display: flex;
 	justify-content: space-between;
 	position: sticky;
-	top: 47px;
+	top: 0;
 	background-color: var(--almost-dark-gray);
 	padding: 0.6em 0;
 	z-index: 1;
