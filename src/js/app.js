@@ -9,4 +9,7 @@ addEventListener('DOMContentLoaded', () => {
 		newProduct()
 		showHtmlProducts()
 	}
+
+	if (location.pathname.endsWith('/order.html')) {
+	}
 })

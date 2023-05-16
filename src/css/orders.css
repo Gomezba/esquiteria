@@ -37,18 +37,36 @@
 
 .product__title {
 	margin: 0;
+	padding-left: 1em;
 	color: var(--sky-blue);
 	display: flex;
-	justify-content: center;
-	text-align: center;
+	justify-content: space-between;
+	/* text-align: center; */
 	align-items: center;
+	/* gap: 1em; */
+}
+
+.product__price {
+	--pure-yellow: #ffd50080;
+	color: var(--pure-yellow);
 }
 
 .product__options {
 	display: flex;
-	justify-content: center;
+	justify-content: space-evenly;
 	align-items: center;
-	gap: 2em;
+	gap: 0.2em;
+	/* padding-inline: 0.5em; */
+}
+
+.product__options > * {
+	/* border: 1px solid red; */
+}
+
+.product__contain-btn {
+	display: flex;
+	gap: var(--gap-lg);
+	/* border: 1px solid orange; */
 }
 
 .product__btn {
@@ -74,6 +92,12 @@
 .btn-remove {
 	background-color: var(--pink-dark);
 	background-image: url(/src/assets/icons/remove.svg);
+}
+
+.quantity-product {
+	width: 2rem;
+	color: var(--light-gray);
+	text-align: center;
 }
 
 .arrow-down {
@@ -130,13 +154,13 @@ thead {
 }
 
 thead tr {
-	background-color: #ff6464;
+	background-color: #387bb1;
 }
 
 thead th {
 	margin-right: 1.5em;
 	/* border: 1px solid white; */
-	color: rgba(255, 255, 255, 0.651);
+	color: rgba(255, 255, 255, 0.76);
 }
 
 thead th:nth-child(2),
@@ -157,7 +181,7 @@ tbody tr td:last-child {
 }
 
 tbody tr:nth-child(even) {
-	background-color: #ffebd3ee;
+	background-color: #5baab8c4;
 	/* background-color: #ffd6a7; */
 }
 
