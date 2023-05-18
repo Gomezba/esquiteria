@@ -107,13 +107,14 @@
 	display: none;
 	position: fixed;
 	padding: 1em;
-	top: 3rem;
+	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100vh;
 	background-color: var(--almost-dark-gray);
 	border-radius: var(--br);
 	z-index: 5;
+	/* border: 1px solid red; */
 }
 
 .form-product-new.is-active {

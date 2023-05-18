@@ -111,15 +111,14 @@ body {
 
 .header {
 	grid-area: header;
-	/* position: sticky;
-	top: 0;
-	z-index: 10; */
 }
 
 .main-nav {
 	display: flex;
 	justify-content: space-between;
 	background-color: var(--almost-dark-gray);
+	/* border: 1px solid red; */
+	margin-top: 1em;
 }
 
 .figure {
@@ -150,7 +149,7 @@ body {
 	position: fixed;
 	background-color: var(--light-gray);
 	width: 90%;
-	top: 48px;
+	top: 75px;
 	box-shadow: 0 0 15px 2px #fff;
 	border-radius: var(--br);
 	transform: translateX(130%);

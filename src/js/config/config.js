@@ -171,7 +171,6 @@ class Ui {
 const productsInstance = new Product()
 const ui = new Ui()
 
-console.log(productsInstance.products)
 const products = [
 	{
 		name: 'Esquite',
@@ -198,7 +197,7 @@ const products = [
 		id: 44,
 	},
 	{
-		name: 'Fresas',
+		name: 'Fresas con crema',
 		category: 'postres',
 		price: 45,
 		id: 55,

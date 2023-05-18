@@ -1,5 +1,6 @@
 import { menuToggle } from './menu/menu.js'
 import { newProduct, validateConfig, readingObject, showHtmlProducts } from './config/config.js'
+import { eventsListeners, showProductsHtml } from './order/order.js'
 
 addEventListener('DOMContentLoaded', () => {
 	menuToggle()
@@ -11,5 +12,7 @@ addEventListener('DOMContentLoaded', () => {
 	}
 
 	if (location.pathname.endsWith('/order.html')) {
+		showProductsHtml()
+		eventsListeners()
 	}
 })
