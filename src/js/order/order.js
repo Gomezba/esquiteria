@@ -6,6 +6,11 @@ const botanasContainer = document.getElementById('botanas-container')
 const dessertsContainer = document.getElementById('desserts-container')
 const drinksContainer = document.getElementById('drinks-container')
 
+const productsTableContainer = document.getElementById('products-table')
+const totalOrder = document.getElementById('total-order')
+const customerPay = document.getElementById('money')
+const moneyExchanges = document.getElementById('money-exchanges')
+
 function updatedArrow() {
 	if (botanasContainer.classList.contains('desplegable-container-active')) {
 		arrowBotanas.style.setProperty('background-image', 'url(/src/assets/icons/arrow-up.svg')
@@ -42,7 +47,6 @@ function showProducts() {
 		product.dataset.id = id
 		product.dataset.price = price
 		product.dataset.quantity = 1
-		// product.dataset.quantityUnit = 1
 		const productTitle = document.createElement('P')
 		productTitle.classList.add('product__title')
 		productTitle.textContent = name
@@ -101,6 +105,7 @@ function showProducts() {
 }
 
 let products = []
+let totalGlobal
 
 function addProduct(e) {
 	e.preventDefault()
@@ -108,34 +113,8 @@ function addProduct(e) {
 	const product = e.target.closest('.product')
 	readInfo(product)
 	showPriceQuantity()
-}
-
-function removeProduct(e) {
-	e.preventDefault()
-	const product = e.target.closest('.product')
-	const idProduct = parseInt(product.dataset.id)
-
-	products.forEach((prod) => {
-		// console.log(prod)
-		if (prod.id === idProduct) {
-			if (product.quantity !== 0) {
-				prod.quantity--
-				const priceProduct = prod.price
-				const priceUnit = prod.priceUnit
-				prod.price = priceProduct - priceUnit
-				showPriceQuantity()
-
-				if (prod.quantity === 0) {
-					products = products.filter((prod) => prod.id !== idProduct)
-					document.querySelector(`[id="${prod.id}"]`).textContent = ''
-					document.querySelector(`[data-productprice="${prod.id}"]`).textContent = product.dataset.price
-
-					document.querySelector(`[data-productprice="${prod.id}"]`).classList.remove('product-active')
-					document.querySelector(`[data-idsymbol="${prod.id}"]`).classList.remove('product-active')
-				}
-			}
-		}
-	})
+	createDataTable()
+	totalPrice()
 }
 
 function readInfo(product) {
@@ -168,12 +147,110 @@ function readInfo(product) {
 	}
 }
 
+function removeProduct(e) {
+	e.preventDefault()
+	const product = e.target.closest('.product')
+	const idProduct = parseInt(product.dataset.id)
+
+	products.forEach((prod) => {
+		if (prod.id === idProduct) {
+			if (product.quantity !== 0) {
+				prod.quantity--
+				const priceProduct = prod.price
+				const priceUnit = prod.priceUnit
+				prod.price = priceProduct - priceUnit
+				showPriceQuantity()
+				createDataTable()
+				totalPrice()
+
+				if (prod.quantity === 0) {
+					products = products.filter((prod) => prod.id !== idProduct)
+					document.querySelector(`[id="${prod.id}"]`).textContent = ''
+					document.querySelector(`[data-productprice="${prod.id}"]`).textContent = product.dataset.price
+
+					document.querySelector(`[data-productprice="${prod.id}"]`).classList.remove('product-active')
+					document.querySelector(`[data-idsymbol="${prod.id}"]`).classList.remove('product-active')
+
+					createDataTable()
+					totalPrice()
+				}
+			}
+		}
+	})
+}
+
+function deleteProductOrder(e) {
+	e.preventDefault()
+
+	const idProduct = parseInt(e.target.id)
+
+	products.forEach((prod) => {
+		if (prod.id === idProduct) {
+			products = products.filter((prod) => prod.id !== idProduct)
+			document.querySelector(`[id="${prod.id}"]`).textContent = ''
+			document.querySelector(`[data-productprice="${prod.id}"]`).textContent = prod.priceUnit
+			document.querySelector(`[data-productprice="${prod.id}"]`).classList.remove('product-active')
+			document.querySelector(`[data-idsymbol="${prod.id}"]`).classList.remove('product-active')
+
+			createDataTable()
+			totalPrice()
+		}
+	})
+}
+
+function totalPrice() {
+	const total = products.reduce((total, prodPrice) => total + prodPrice.price, 0)
+	totalOrder.textContent = total
+	totalGlobal = total
+}
+
 function showPriceQuantity() {
 	products.forEach((prod) => {
 		document.querySelector(`[id="${prod.id}"]`).textContent = prod.quantity
 		document.querySelector(`[data-productprice="${prod.id}"]`).textContent = prod.price
 		document.querySelector(`[data-productprice="${prod.id}"]`).classList.add('product-active')
 		document.querySelector(`[data-idsymbol="${prod.id}"]`).classList.add('product-active')
+	})
+}
+
+function createDataTable() {
+	const fragment = document.createDocumentFragment()
+	products.forEach((prod) => {
+		const { name, quantity, price, id, priceUnit } = prod
+		const tr = document.createElement('TR')
+		const tdName = document.createElement('TD')
+		const tdQuantity = document.createElement('TD')
+		const tdPrice = document.createElement('TD')
+		const tdPriceUnit = document.createElement('TD')
+		const tdOptions = document.createElement('TD')
+		const iconDelete = document.createElement('IMG')
+
+		tdName.textContent = name
+		tdQuantity.textContent = quantity
+		tdPriceUnit.textContent = `$${priceUnit}`
+		tdPrice.textContent = `$${price}`
+
+		iconDelete.setAttribute('src', '/src/assets/icons/delete-forever.svg')
+		iconDelete.setAttribute('alt', 'Icono de eliminacion de producto')
+		iconDelete.setAttribute('title', 'Elimina el producto de la orden')
+		iconDelete.setAttribute('id', id)
+
+		iconDelete.addEventListener('click', deleteProductOrder)
+		tdOptions.append(iconDelete)
+		tr.append(tdName, tdPriceUnit, tdQuantity, tdPrice, tdOptions)
+		fragment.append(tr)
+	})
+	productsTableContainer.textContent = ''
+	productsTableContainer.append(fragment)
+}
+
+export function customerPaymentInput() {
+	customerPay.addEventListener('blur', (e) => {
+		e.preventDefault()
+
+		const customerPayment = Number(e.target.value)
+		const moneyEx = customerPayment - totalGlobal
+		moneyExchanges.textContent = moneyEx
 	})
 }
 
@@ -200,3 +277,31 @@ export function showProductsHtml() {
 
 	addEventListener('DOMContentLoaded', updatedArrow())
 }
+
+/*
+puedo tener un objeto que tenga la siguiente estructura
+
+const orden ={
+	fecha: '19/05/2023',
+	cliente: 'anonimo',
+	productos:[
+		{
+		   name: 'doriesquite',
+		   category: 'botanas',
+		   quantity_: '2'
+		   price: 50,
+		   priceUnit: 25,
+               id: 456456		
+		}
+	],
+	detalles: 'esquites sin mayones',
+	total: 50,
+	recibo: 100
+	cambio: 50,
+
+
+	
+	
+	
+}
+*/
