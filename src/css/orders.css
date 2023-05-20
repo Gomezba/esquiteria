@@ -29,23 +29,26 @@
 .arrow-down {
 	--dark-gray: #7f7f7f34;
 	display: block;
-	/* width: 4; */
 	height: 2.5em;
-	/* background-image: url(/src/assets/icons/arrow-down.svg); */
 	background-color: var(--dark-gray);
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-position: center;
-	transition: background-image 0.3s ease-out;
 }
 
 .desplegable-container {
 	/* border: 1px solid red; */
 	--dark-blue: #1a2835a8;
 	display: none;
-	padding: 0.5em 0;
+	padding: 2em 0;
 	background-color: var(--dark-blue);
-	transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.desplegable-container:empty::before {
+	content: 'Sin productos';
+	display: block;
+	color: #fff;
+	text-align: center;
 }
 
 .desplegable-container-active {
@@ -63,7 +66,7 @@
 
 .product__title {
 	margin: 0;
-	color: var(--sky-blue);
+	color: #1c93d8;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -102,7 +105,7 @@
 }
 
 .btn-add {
-	background-color: var(--dark-green);
+	background-color: var(--light-blue);
 	background-image: url(/src/assets/icons/add.svg);
 }
 
@@ -132,12 +135,12 @@
 .product__price {
 	--pure-yellow: #8b8b8b80;
 	color: var(--pure-yellow);
-	/* border: 1px solid red; */
 }
 
 .product-active {
-	--pure-yellow: #ffd50080;
-	color: var(--pure-yellow);
+	/* color: #da790b; */
+	color: #1c93d8;
+	filter: drop-shadow(0px 0px 10px #1c93d8);
 }
 
 .order-specification-section {
@@ -168,17 +171,25 @@
 .label-customer {
 	display: block;
 	text-align: center;
-	color: #fff;
+	color: #2879c5d2;
+	font-weight: var(--fw-medium);
 }
 
 .client-name {
 	display: block;
+	border: 2px solid #145a9b81;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: var(--gap-md);
 	text-align: center;
 	background-color: var(--dark-blue);
 	color: var(--light-gray);
+}
+
+.client-name:focus {
+	--dark-blue-input: #145a9b81;
+	border: 2px solid var(--dark-blue-input);
+	box-shadow: 0px 0px 4px 3px var(--dark-blue-input);
 }
 
 table {
@@ -224,6 +235,10 @@ tbody td {
 	text-align: center;
 }
 
+tbody tr td:nth-child(2) {
+	color: #8b8b8b80;
+}
+
 tfoot td {
 	text-align: right;
 	color: #ffffff96;
@@ -249,17 +264,21 @@ tfoot td {
 
 .label-money {
 	color: #ffffff98;
-	font-size: 1.5rem;
+	font-size: 1.2rem;
 }
 
 .input-received-bill {
-	background-color: #f5e3e38a;
-	border-bottom: 1px solid white;
+	background-color: #eff1f3;
+	color: #363434bb;
 	border-radius: 0;
 	width: 80px;
 	height: 40px;
 	text-align: center;
 	font-size: 1.5rem;
+}
+
+.input-received-bill[disabled] {
+	background-color: var(--color-disabled);
 }
 
 .bill {
@@ -271,6 +290,10 @@ tfoot td {
 .confirm-cancel-order {
 	display: flex;
 	gap: var(--gap-md);
+}
+
+.btn-confirm[disabled] {
+	background-color: var(--color-disabled);
 }
 
 .money-exchanges {

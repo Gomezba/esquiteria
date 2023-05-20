@@ -11,6 +11,13 @@ const totalOrder = document.getElementById('total-order')
 const customerPay = document.getElementById('money')
 const moneyExchanges = document.getElementById('money-exchanges')
 
+const body = document.getElementById('body')
+
+const orderDetails = document.getElementById('details')
+const customerInput = document.getElementById('customer-name')
+const btnConfirm = document.getElementById('confirm')
+const btnCancel = document.getElementById('cancel')
+
 function updatedArrow() {
 	if (botanasContainer.classList.contains('desplegable-container-active')) {
 		arrowBotanas.style.setProperty('background-image', 'url(/src/assets/icons/arrow-up.svg')
@@ -107,6 +114,16 @@ function showProducts() {
 let products = []
 let totalGlobal
 
+const order = {
+	date: '',
+	customer: 'Anonimo',
+	products: '',
+	adicionalInfo: 'Sin detalles',
+	total: '',
+	receivedBill: '',
+	moneyChange: '',
+}
+
 function addProduct(e) {
 	e.preventDefault()
 
@@ -115,6 +132,10 @@ function addProduct(e) {
 	showPriceQuantity()
 	createDataTable()
 	totalPrice()
+	disabledReceived()
+	customerPay.value = ''
+	moneyExchanges.textContent = ''
+	disabledConfirmMoneyExchanges()
 }
 
 function readInfo(product) {
@@ -151,6 +172,8 @@ function removeProduct(e) {
 	e.preventDefault()
 	const product = e.target.closest('.product')
 	const idProduct = parseInt(product.dataset.id)
+	customerPay.value = ''
+	moneyExchanges.textContent = ''
 
 	products.forEach((prod) => {
 		if (prod.id === idProduct) {
@@ -162,6 +185,8 @@ function removeProduct(e) {
 				showPriceQuantity()
 				createDataTable()
 				totalPrice()
+				disabledReceived()
+				disabledConfirmMoneyExchanges()
 
 				if (prod.quantity === 0) {
 					products = products.filter((prod) => prod.id !== idProduct)
@@ -173,6 +198,8 @@ function removeProduct(e) {
 
 					createDataTable()
 					totalPrice()
+					disabledReceived()
+					disabledConfirmMoneyExchanges()
 				}
 			}
 		}
@@ -181,19 +208,36 @@ function removeProduct(e) {
 
 function deleteProductOrder(e) {
 	e.preventDefault()
+	const nameProd =
+		e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling
+			.textContent
 
-	const idProduct = parseInt(e.target.id)
+	Swal.fire({
+		title: '¿Deseas quitar el producto?',
+		html: `<strong>${nameProd}</strong>`,
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonText: 'Quitar producto',
+		cancelButtonText: 'Cancelar',
+	}).then((result) => {
+		if (result.isConfirmed) {
+			const idProduct = parseInt(e.target.id)
+			products.forEach((prod) => {
+				if (prod.id === idProduct) {
+					products = products.filter((prod) => prod.id !== idProduct)
+					document.querySelector(`[id="${prod.id}"]`).textContent = ''
+					document.querySelector(`[data-productprice="${prod.id}"]`).textContent = prod.priceUnit
+					document.querySelector(`[data-productprice="${prod.id}"]`).classList.remove('product-active')
+					document.querySelector(`[data-idsymbol="${prod.id}"]`).classList.remove('product-active')
 
-	products.forEach((prod) => {
-		if (prod.id === idProduct) {
-			products = products.filter((prod) => prod.id !== idProduct)
-			document.querySelector(`[id="${prod.id}"]`).textContent = ''
-			document.querySelector(`[data-productprice="${prod.id}"]`).textContent = prod.priceUnit
-			document.querySelector(`[data-productprice="${prod.id}"]`).classList.remove('product-active')
-			document.querySelector(`[data-idsymbol="${prod.id}"]`).classList.remove('product-active')
-
-			createDataTable()
-			totalPrice()
+					createDataTable()
+					totalPrice()
+					disabledReceived()
+					customerPay.value = ''
+					moneyExchanges.textContent = ''
+					disabledConfirmMoneyExchanges()
+				}
+			})
 		}
 	})
 }
@@ -244,13 +288,45 @@ function createDataTable() {
 	productsTableContainer.append(fragment)
 }
 
+function showAlert(msg) {
+	const alert = document.createElement('DIV')
+	alert.textContent = msg
+	alert.classList.add('error-product')
+	body.append(alert)
+	setTimeout(() => {
+		alert.remove()
+	}, 5000)
+}
+
 export function customerPaymentInput() {
 	customerPay.addEventListener('blur', (e) => {
 		e.preventDefault()
 
 		const customerPayment = Number(e.target.value)
 		const moneyEx = customerPayment - totalGlobal
-		moneyExchanges.textContent = moneyEx
+
+		if (customerPayment < totalGlobal) {
+			showAlert('El pago del cliente no puede ser menor al precio total de la venta')
+			btnConfirm.set
+			order.receivedBill = ''
+			order.moneyChange = ''
+			moneyExchanges.textContent = ''
+		} else {
+			moneyExchanges.textContent = moneyEx
+			order.receivedBill = customerPayment
+			order.moneyChange = moneyEx
+			disabledConfirm()
+		}
+
+		if (e.target.value === '') {
+			btnConfirm.setAttribute('disabled', true)
+		}
+	})
+
+	customerPay.addEventListener('input', (e) => {
+		e.preventDefault()
+		btnConfirm.setAttribute('disabled', true)
+		moneyExchanges.textContent = ''
 	})
 }
 
@@ -278,6 +354,151 @@ export function showProductsHtml() {
 	addEventListener('DOMContentLoaded', updatedArrow())
 }
 
+//TODO Created indexed Db
+const indexedDB = window.indexedDB
+
+const request = indexedDB.open('customerOrders', 1)
+
+let db
+request.onsuccess = () => {
+	db = request.result
+
+	console.log(db)
+}
+
+request.onupgradeneeded = () => {
+	db = request.result
+	console.log('CREATE', db)
+
+	const objectStore = db.createObjectStore('orders', {
+		autoIncrement: true,
+	})
+
+	// Definir los índices
+	objectStore.createIndex('date', 'date', { unique: false })
+	objectStore.createIndex('customer', 'customer', { unique: false })
+}
+
+request.onerror = (err) => {
+	showAlert(`Ocurrio un error en la base de datos ${err}`)
+}
+
+function addOrder(order) {
+	const transaction = db.transaction(['orders'], 'readwrite')
+	const objectStore = transaction.objectStore('orders')
+	const request = objectStore.add(order)
+}
+
+//TODO -----------------------------------------
+
+function resetOrder() {
+	order.date = ''
+	order.customer = 'Anonimo'
+	order.products = ''
+	order.adicionalInfo = 'Sin detalles'
+	order.total = ''
+	order.receivedBill = ''
+	order.moneyChange = ''
+}
+
+export function listenDetailsCustomer() {
+	customerInput.addEventListener('input', (e) => {
+		e.preventDefault()
+		const nombreCliente = e.target.value.trim()
+
+		if (nombreCliente === '') {
+			order.customer = 'Anonimo'
+		} else {
+			order.customer = nombreCliente
+		}
+	})
+
+	orderDetails.addEventListener('input', (e) => {
+		e.preventDefault()
+
+		const details = e.target.value.trim()
+		if (details === '') {
+			order.adicionalInfo = 'Sin detalles'
+		} else {
+			order.adicionalInfo = details
+		}
+	})
+}
+
+function disabledConfirm() {
+	if (order.receivedBill === '') {
+		btnConfirm.setAttribute('disabled', true)
+	}
+
+	if (order.receivedBill !== '') {
+		btnConfirm.removeAttribute('disabled')
+	}
+}
+
+function disabledConfirmMoneyExchanges() {
+	if (moneyExchanges.textContent === '') {
+		btnConfirm.setAttribute('disabled', true)
+	}
+
+	if (moneyExchanges.textContent !== '') {
+		btnConfirm.removeAttribute('disabled')
+	}
+}
+
+function disabledReceived() {
+	if (products) {
+		customerPay.removeAttribute('disabled')
+	}
+
+	if (products.length === 0) {
+		customerPay.setAttribute('disabled', true)
+	}
+}
+
+function validateOrder(e) {
+	e.preventDefault()
+
+	if (products) {
+		order.date = moment().format('LLL')
+		order.products = products
+		order.total = totalGlobal
+		console.log(order)
+		addOrder(order)
+		Swal.fire({
+			icon: 'success',
+			title: '¡Orden creada!',
+			showConfirmButton: false,
+			timer: 1500,
+		})
+		setTimeout(() => {
+			location.reload()
+		}, 1510)
+	}
+}
+
+export function createOrder() {
+	btnConfirm.addEventListener('click', validateOrder)
+
+	btnCancel.addEventListener('click', (e) => {
+		if (!products.length) {
+			showAlert('No existe una orden a cancelar')
+			return
+		}
+
+		Swal.fire({
+			title: '¿Deseas eliminar la orden?',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonText: 'Eliminar orden',
+			cancelButtonText: 'Cancelar',
+		}).then((result) => {
+			if (result.isConfirmed) {
+				location.reload()
+			}
+		})
+	})
+}
+
 /*
 puedo tener un objeto que tenga la siguiente estructura
 
@@ -298,10 +519,6 @@ const orden ={
 	total: 50,
 	recibo: 100
 	cambio: 50,
-
-
-	
-	
 	
 }
 */

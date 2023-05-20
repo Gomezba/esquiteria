@@ -1,6 +1,12 @@
 import { menuToggle } from './menu/menu.js'
 import { newProduct, validateConfig, readingObject, showHtmlProducts } from './config/config.js'
-import { eventsListeners, showProductsHtml, customerPaymentInput } from './order/order.js'
+import {
+	eventsListeners,
+	showProductsHtml,
+	customerPaymentInput,
+	createOrder,
+	listenDetailsCustomer,
+} from './order/order.js'
 
 addEventListener('DOMContentLoaded', () => {
 	menuToggle()
@@ -15,5 +21,7 @@ addEventListener('DOMContentLoaded', () => {
 		showProductsHtml()
 		eventsListeners()
 		customerPaymentInput()
+		createOrder()
+		listenDetailsCustomer()
 	}
 })

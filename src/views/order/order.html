@@ -24,7 +24,7 @@
 			crossorigin="anonymous"
 		></script>
 	</head>
-	<body>
+	<body id="body">
 		<header class="header">
 			<nav class="container main-nav">
 				<figure class="figure">
@@ -103,22 +103,22 @@
 
 			<section class="section-details">
 				<h3 class="subtitle subtitle-details">Detalles de orden</h3>
-				<label class="label-customer" for="client-name">Nombre cliente</label>
-				<input id="client-name" class="client-name" type="text" />
+				<label class="label-customer" for="customer-name">Nombre cliente</label>
+				<input id="customer-name" class="client-name" type="text" />
 				<table class="table-order">
 					<thead>
 						<tr>
 							<th>PROD</th>
 							<th>PU</th>
 							<th>CAN</th>
-							<th>PRC</th>
+							<th>PT</th>
 							<th>OPC</th>
 						</tr>
 					</thead>
 					<tbody id="products-table"></tbody>
 					<tfoot>
 						<tr>
-							<td colspan="4">Total: $<span id="total-order"></span></td>
+							<td colspan="4">Total: $<span id="total-order">0</span></td>
 						</tr>
 					</tfoot>
 				</table>
@@ -126,22 +126,12 @@
 					<div class="received-bill-container">
 						<div>
 							<label class="label-money" for="money">Recibo: $</label>
-							<input id="money" class="input-received-bill" type="number" step="0.01" />
+							<input id="money" class="input-received-bill" type="number" step="0.01" disabled />
 						</div>
-						<!-- <select id="bill" class="bill" name="bill" title="Tipo de billete">
-							<optgroup label="Tipo billete">
-								<option value="20">$20</option>
-								<option value="50">$50</option>
-								<option value="100">$100</option>
-								<option value="200">$200</option>
-								<option value="500">$500</option>
-								<option value="1000">$1000</option>
-							</optgroup>
-						</select> -->
 					</div>
 					<span class="money-exchanges">Cambio: $<span id="money-exchanges"></span></span>
 					<div class="confirm-cancel-order">
-						<button type="button" id="confirm" class="btn btn-primary">Confirmar</button>
+						<button type="button" id="confirm" class="btn btn-primary btn-confirm" disabled>Confirmar</button>
 						<button type="button" id="cancel" class="btn btn-cancel">Cancelar</button>
 					</div>
 				</div>
