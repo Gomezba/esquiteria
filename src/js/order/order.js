@@ -18,26 +18,6 @@ const customerInput = document.getElementById('customer-name')
 const btnConfirm = document.getElementById('confirm')
 const btnCancel = document.getElementById('cancel')
 
-function updatedArrow() {
-	if (botanasContainer.classList.contains('desplegable-container-active')) {
-		arrowBotanas.style.setProperty('background-image', 'url(/src/assets/icons/arrow-up.svg')
-	} else {
-		arrowBotanas.style.setProperty('background-image', 'url(/src/assets/icons/arrow-down.svg')
-	}
-
-	if (dessertsContainer.classList.contains('desplegable-container-active')) {
-		arrowDesserts.style.setProperty('background-image', 'url(/src/assets/icons/arrow-up.svg')
-	} else {
-		arrowDesserts.style.setProperty('background-image', 'url(/src/assets/icons/arrow-down.svg')
-	}
-
-	if (drinksContainer.classList.contains('desplegable-container-active')) {
-		arrowDrinks.style.setProperty('background-image', 'url(/src/assets/icons/arrow-up.svg')
-	} else {
-		arrowDrinks.style.setProperty('background-image', 'url(/src/assets/icons/arrow-down.svg')
-	}
-}
-
 // const obj = document.getElementById('obj')
 // obj.addEventListener('click', () => {
 // 	console.log(products)
@@ -331,44 +311,39 @@ export function customerPaymentInput() {
 }
 
 export function eventsListeners() {
-	arrowBotanas.addEventListener('click', () => {
+	arrowBotanas.addEventListener('click', (e) => {
+		e.target.classList.toggle('active')
 		botanasContainer.classList.toggle('desplegable-container-active')
-		updatedArrow()
 	})
-	arrowDesserts.addEventListener('click', () => {
+	arrowDesserts.addEventListener('click', (e) => {
+		e.target.classList.toggle('active')
 		dessertsContainer.classList.toggle('desplegable-container-active')
-		updatedArrow()
 	})
-	arrowDrinks.addEventListener('click', () => {
+	arrowDrinks.addEventListener('click', (e) => {
+		e.target.classList.toggle('active')
 		drinksContainer.classList.toggle('desplegable-container-active')
-		updatedArrow()
 	})
 }
 
 export function showProductsHtml() {
 	if (JSON.parse(localStorage.getItem('products'))) {
 		showProducts()
-		updatedArrow()
 	}
-
-	addEventListener('DOMContentLoaded', updatedArrow())
 }
 
 //TODO Created indexed Db
+
 const indexedDB = window.indexedDB
 
-const request = indexedDB.open('customerOrders', 1)
+export const request = indexedDB.open('customerOrders', 1)
 
 let db
 request.onsuccess = () => {
 	db = request.result
-
-	console.log(db)
 }
 
 request.onupgradeneeded = () => {
 	db = request.result
-	console.log('CREATE', db)
 
 	const objectStore = db.createObjectStore('orders', {
 		autoIncrement: true,
@@ -498,27 +473,3 @@ export function createOrder() {
 		})
 	})
 }
-
-/*
-puedo tener un objeto que tenga la siguiente estructura
-
-const orden ={
-	fecha: '19/05/2023',
-	cliente: 'anonimo',
-	productos:[
-		{
-		   name: 'doriesquite',
-		   category: 'botanas',
-		   quantity_: '2'
-		   price: 50,
-		   priceUnit: 25,
-               id: 456456		
-		}
-	],
-	detalles: 'esquites sin mayones',
-	total: 50,
-	recibo: 100
-	cambio: 50,
-	
-}
-*/

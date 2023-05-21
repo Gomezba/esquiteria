@@ -50,6 +50,11 @@
 	box-sizing: border-box;
 }
 
+html,
+body {
+	scroll-behavior: smooth; /* Aplicar un desplazamiento suave */
+}
+
 a {
 	text-decoration: none;
 }
