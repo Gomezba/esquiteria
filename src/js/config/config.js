@@ -149,10 +149,6 @@ class Ui {
 			formField.append(label, formInputOptions)
 			fragment.append(formField)
 
-			if (fragment === undefined) {
-				return console.error('Error: el fragmento es nulo')
-			}
-
 			if (category === categoryHtml.botanas) {
 				botanasContainer.append(fragment)
 			}
@@ -304,7 +300,7 @@ export function readingObject() {
 		Swal.fire({
 			title: 'Advertencia!',
 			html:
-				'Al cargar los productos que estan establecidos en el sistema, se <strong style="color:red">eliminarán los productos que se han agregado manualmente, así como cualquier edición hecha</strong>.',
+				'"Ten en cuenta que al cargar los productos establecidos en el sistema, se <strong style="color:#C62828">eliminarán todos los productos agregados manualmente, así como cualquier edición realizada en ellos</strong>."',
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonText: 'Entiendo, deseo continuar',
@@ -399,7 +395,7 @@ function validateForm(e) {
 			Swal.fire({
 				icon: 'error',
 				title: '¡Error!',
-				text: 'Ha ocurrido un error inesperado.',
+				text: 'Ha ocurrido un error inesperado, favor de revisar la cantidad.',
 				confirmButtonText: 'Aceptar',
 			})
 		} else {
@@ -432,29 +428,15 @@ export function validateConfig() {
 
 //TODO Formulario de nuevos productos
 export function newProduct() {
-	function warning() {
-		Swal.fire({
-			title: 'Advertencia!',
-			html:
-				'Al momento de agregar un nuevo producto se eliminaran las ordenes registradas así como el historial de ventas, <strong style="color:#d1831d">ASEGURATE DE IMPRIMIR LA INFORMACIÓN ANTES DE AGREGAR UN PRODUCTO NUEVO.</strong>',
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonText: 'Sí, continuar',
-			cancelButtonText: 'Cancelar',
-		}).then((result) => {
-			if (result.isConfirmed) {
-				formProduct.classList.add('is-active')
-			}
-		})
-	}
-
 	formProduct.addEventListener('submit', validateProduct)
 
 	cancelProductBtn.addEventListener('click', () => {
 		formProduct.classList.remove('is-active')
 	})
 
-	newProductBtn.addEventListener('click', warning)
+	newProductBtn.addEventListener('click', () => {
+		formProduct.classList.add('is-active')
+	})
 }
 
 function validateProduct(e) {

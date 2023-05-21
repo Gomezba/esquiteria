@@ -1,4 +1,17 @@
 import { request } from '../order/order.js'
+const ordersContainer = document.getElementById('orders-container')
+
+const btnDel = document.getElementById('orders-deleted')
+
+function disabledBtn() {
+	if (ordersContainer.textContent === '') {
+		btnDel.setAttribute('disabled', true)
+	}
+
+	if (ordersContainer.textContent !== '') {
+		btnDel.removeAttribute('disabled')
+	}
+}
 
 let db
 
@@ -6,15 +19,70 @@ if (location.pathname.endsWith('orders-list.html')) {
 	request.onsuccess = (e) => {
 		db = e.target.result
 		readData()
+		disabledBtn()
 	}
+
+	btnDel.addEventListener('click', function () {
+		document.getElementById('passwordModal').style.display = 'block'
+	})
+
+	// Cerrar el modal al hacer clic en el botón de cerrar o fuera del modal
+	const modal = document.getElementById('passwordModal')
+	const closeBtn = document.getElementsByClassName('close')[0]
+	addEventListener('click', function (event) {
+		if (event.target === modal) {
+			modal.style.display = 'none'
+		}
+	})
+
+	closeBtn.addEventListener('click', function () {
+		modal.style.display = 'none'
+	})
+
+	// Obtener la contraseña ingresada al hacer clic en el botón de enviar
+	document.getElementById('submitBtn').addEventListener('click', function () {
+		const input = document.getElementById('passwordInput')
+		const password = document.getElementById('passwordInput').value
+		if (password === 'tatis97') {
+			Swal.fire({
+				icon: 'success',
+				title: '¡Las órdenes han sido borradas del sistema!',
+				showConfirmButton: false,
+				timer: 1500,
+			})
+
+			modal.style.display = 'none'
+
+			const request = indexedDB.deleteDatabase('customerOrders')
+			setTimeout(() => {
+				location.reload()
+			}, 1510)
+
+			request.onerror = (event) => {
+				console.log('Error al eliminar la base de datos:', event.target.error)
+			}
+		} else {
+			const alert = document.createElement('P')
+			alert.classList.add('error-modal')
+			alert.textContent = 'Contraseña incorrecta'
+			input.after(alert)
+			setTimeout(() => {
+				alert.remove()
+			}, 2000)
+		}
+	})
 }
 
 request.onerror = (event) => {
-	console.log('Error al abrir la base de datos:', event.target.error)
+	Swal.fire({
+		icon: 'error',
+		title: '¡Error!',
+		text: `Ha ocurrido un error inesperado ${event.target.error}`,
+		confirmButtonText: 'Aceptar',
+	})
 }
 
 function readData() {
-	const ordersContainer = document.getElementById('orders-container')
 	const transaction = db.transaction(['orders'], 'readonly')
 	const objectStore = transaction.objectStore('orders')
 	const request = objectStore.openCursor()
@@ -98,6 +166,7 @@ function readData() {
 		} else {
 			ordersContainer.textContent = ''
 			ordersContainer.append(fragment)
+			disabledBtn()
 		}
 	}
 }

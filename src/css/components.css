@@ -51,7 +51,8 @@
 }
 
 /* Alertas */
-.error {
+.error,
+.error-modal {
 	color: var(--dark-red);
 	padding-block: 0.5em;
 	font-size: var(--fs-base);
@@ -60,12 +61,18 @@
 	position: fixed;
 	top: 0;
 	width: 100%;
-	background-color: var(--dark-red);
+	background-color: #c62828;
 	color: var(--light-gray);
 	text-align: center;
 	padding-block: 0.8em;
 	z-index: 50;
 	font-size: var(--fs-base);
+}
+.error-modal {
+	position: absolute;
+	top: 9em;
+	left: 3.8rem;
+	padding: 0;
 }
 
 table {

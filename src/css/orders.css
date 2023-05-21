@@ -176,11 +176,6 @@
 	color: #fff;
 }
 
-.subtitle-details {
-	/* filter: drop-shadow(0px 0px 25px #fff); */
-	/* color: #e26e21a1; */
-}
-
 .label-customer {
 	display: block;
 	text-align: center;
@@ -229,7 +224,7 @@
 
 .input-received-bill {
 	background-color: #eff1f3;
-	color: #363434bb;
+	color: #000000bb;
 	border-radius: 0;
 	width: 80px;
 	height: 40px;

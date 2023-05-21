@@ -193,7 +193,7 @@ function deleteProductOrder(e) {
 			.textContent
 
 	Swal.fire({
-		title: '¿Deseas quitar el producto?',
+		title: '¿Deseas eliminar este producto de la orden?',
 		html: `<strong>${nameProd}</strong>`,
 		icon: 'warning',
 		showCancelButton: true,
@@ -456,12 +456,12 @@ export function createOrder() {
 
 	btnCancel.addEventListener('click', (e) => {
 		if (!products.length) {
-			showAlert('No existe una orden a cancelar')
+			showAlert('"No hay ninguna orden disponible para cancelar en este momento."')
 			return
 		}
 
 		Swal.fire({
-			title: '¿Deseas eliminar la orden?',
+			title: '"Para eliminar la orden, por favor confirma tu elección."',
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonText: 'Eliminar orden',

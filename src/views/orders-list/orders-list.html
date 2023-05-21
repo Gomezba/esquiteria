@@ -61,6 +61,17 @@
 		</header>
 		<main class="container main">
 			<h2 class="title">Lista de ordenes</h2>
+			<button id="orders-deleted" class="btn btn-del-order" title="Elimina todas las ordenes registradas">
+				Eliminar ordenes registradas
+			</button>
+			<div id="passwordModal" class="modal">
+				<div class="modal-content">
+					<span class="close">&times;</span>
+					<h2>Contraseña de eliminación</h2>
+					<input title="Ingresa contraseña" class="passwordInput" type="password" id="passwordInput" />
+					<button class="submitBtn" id="submitBtn">Enviar</button>
+				</div>
+			</div>
 			<section id="orders-container" class="container-orders"></section>
 		</main>
 		<script src="/src/js/app.js" type="module"></script>
