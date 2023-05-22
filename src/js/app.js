@@ -9,6 +9,7 @@ import {
 } from './order/order.js'
 
 import {} from './list-orders/list-orders.js'
+import {} from './sold-products/sold-products.js'
 
 addEventListener('DOMContentLoaded', () => {
 	menuToggle()

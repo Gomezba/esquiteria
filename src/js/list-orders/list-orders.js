@@ -23,54 +23,67 @@ if (location.pathname.endsWith('orders-list.html')) {
 	}
 
 	btnDel.addEventListener('click', function () {
-		document.getElementById('passwordModal').style.display = 'block'
+		Swal.fire({
+			title: 'Advertencia!',
+			html:
+				'Por favor, tenga en cuenta que al eliminar las órdenes, <strong style="color:#C62828">se borrarán los registros de ventas totales</strong>. Le recomendamos que descargue y guarde el informe de ventas antes de proceder con la eliminación',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonText: 'Entiendo, deseo continuar',
+			cancelButtonText: 'Cancelar',
+		}).then((result) => {
+			if (result.isConfirmed) {
+				document.getElementById('passwordModal').style.display = 'block'
+
+				const closeBtn = document.getElementsByClassName('close')[0]
+				addEventListener('click', function (event) {
+					if (event.target === modal) {
+						modal.style.display = 'none'
+					}
+				})
+				const modal = document.getElementById('passwordModal')
+
+				closeBtn.addEventListener('click', function () {
+					modal.style.display = 'none'
+				})
+
+				// Obtener la contraseña ingresada al hacer clic en el botón de enviar
+				document.getElementById('submitBtn').addEventListener('click', function () {
+					const input = document.getElementById('passwordInput')
+					const password = document.getElementById('passwordInput').value
+					if (password === 'tatis97') {
+						Swal.fire({
+							icon: 'success',
+							title: '¡Las órdenes han sido borradas del sistema!',
+							showConfirmButton: false,
+							timer: 1500,
+						})
+
+						modal.style.display = 'none'
+
+						const request = indexedDB.deleteDatabase('customerOrders')
+						setTimeout(() => {
+							location.reload()
+						}, 1510)
+
+						request.onerror = (event) => {
+							console.log('Error al eliminar la base de datos:', event.target.error)
+						}
+					} else {
+						const alert = document.createElement('P')
+						alert.classList.add('error-modal')
+						alert.textContent = 'Contraseña incorrecta'
+						input.after(alert)
+						setTimeout(() => {
+							alert.remove()
+						}, 2000)
+					}
+				})
+			}
+		})
 	})
 
 	// Cerrar el modal al hacer clic en el botón de cerrar o fuera del modal
-	const modal = document.getElementById('passwordModal')
-	const closeBtn = document.getElementsByClassName('close')[0]
-	addEventListener('click', function (event) {
-		if (event.target === modal) {
-			modal.style.display = 'none'
-		}
-	})
-
-	closeBtn.addEventListener('click', function () {
-		modal.style.display = 'none'
-	})
-
-	// Obtener la contraseña ingresada al hacer clic en el botón de enviar
-	document.getElementById('submitBtn').addEventListener('click', function () {
-		const input = document.getElementById('passwordInput')
-		const password = document.getElementById('passwordInput').value
-		if (password === 'tatis97') {
-			Swal.fire({
-				icon: 'success',
-				title: '¡Las órdenes han sido borradas del sistema!',
-				showConfirmButton: false,
-				timer: 1500,
-			})
-
-			modal.style.display = 'none'
-
-			const request = indexedDB.deleteDatabase('customerOrders')
-			setTimeout(() => {
-				location.reload()
-			}, 1510)
-
-			request.onerror = (event) => {
-				console.log('Error al eliminar la base de datos:', event.target.error)
-			}
-		} else {
-			const alert = document.createElement('P')
-			alert.classList.add('error-modal')
-			alert.textContent = 'Contraseña incorrecta'
-			input.after(alert)
-			setTimeout(() => {
-				alert.remove()
-			}, 2000)
-		}
-	})
 }
 
 request.onerror = (event) => {

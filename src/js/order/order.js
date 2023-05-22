@@ -1,3 +1,5 @@
+import { dia, mes, anio, horas, minutos, fecha } from '../functions/date.js'
+
 const arrowBotanas = document.querySelector('[data-arrow="botanas"]')
 const arrowDesserts = document.querySelector('[data-arrow="desserts"]')
 const arrowDrinks = document.querySelector('[data-arrow="drinks"]')
@@ -43,11 +45,13 @@ function showProducts() {
 		const productContainBtn = document.createElement('DIV')
 		productContainBtn.classList.add('product__contain-btn')
 		const btnRemove = document.createElement('A')
+		btnRemove.classList.add('btn', 'product__btn', 'btn-remove')
+		btnRemove.textContent = '-'
 		btnRemove.addEventListener('click', removeProduct)
 
-		btnRemove.classList.add('btn', 'product__btn', 'btn-remove')
 		const btnAdd = document.createElement('A')
 		btnAdd.classList.add('btn', 'product__btn', 'btn-add')
+		btnAdd.textContent = '+'
 
 		btnAdd.addEventListener('click', addProduct)
 

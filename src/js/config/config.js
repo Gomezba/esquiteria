@@ -175,6 +175,12 @@ const products = [
 		id: 11,
 	},
 	{
+		name: 'Esquite 1/2',
+		category: 'botanas',
+		price: 45,
+		id: 111,
+	},
+	{
 		name: 'Doriesquite',
 		category: 'botanas',
 		price: 45,
