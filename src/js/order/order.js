@@ -24,10 +24,10 @@ const btnCancel = document.getElementById('cancel')
 // obj.addEventListener('click', () => {
 // 	console.log(products)
 // })
+const productsStorage = JSON.parse(localStorage.getItem('products'))
 
 function showProducts() {
-	const products = JSON.parse(localStorage.getItem('products'))
-	products.forEach((prod) => {
+	productsStorage.forEach((prod) => {
 		const fragment = document.createDocumentFragment()
 		const { name, category, price, id } = prod
 		const product = document.createElement('DIV')
@@ -106,6 +106,16 @@ const order = {
 	total: '',
 	receivedBill: '',
 	moneyChange: '',
+}
+
+function resetOrder() {
+	order.date = ''
+	order.customer = 'Anonimo'
+	order.products = ''
+	order.adicionalInfo = 'Sin detalles'
+	order.total = ''
+	order.receivedBill = ''
+	order.moneyChange = ''
 }
 
 function addProduct(e) {
@@ -370,16 +380,6 @@ function addOrder(order) {
 
 //TODO -----------------------------------------
 
-function resetOrder() {
-	order.date = ''
-	order.customer = 'Anonimo'
-	order.products = ''
-	order.adicionalInfo = 'Sin detalles'
-	order.total = ''
-	order.receivedBill = ''
-	order.moneyChange = ''
-}
-
 export function listenDetailsCustomer() {
 	customerInput.addEventListener('input', (e) => {
 		e.preventDefault()
@@ -436,12 +436,11 @@ function disabledReceived() {
 
 function validateOrder(e) {
 	e.preventDefault()
-
+	fecha
 	if (products) {
-		order.date = moment().format('LLL')
+		order.date = `${dia} de ${mes} de ${anio} ${horas}:${minutos}`
 		order.products = products
 		order.total = totalGlobal
-		console.log(order)
 		addOrder(order)
 		Swal.fire({
 			icon: 'success',
@@ -450,15 +449,32 @@ function validateOrder(e) {
 			timer: 1500,
 		})
 		setTimeout(() => {
-			location.reload()
-		}, 1510)
+			resetOrder()
+			products = []
+
+			productsTableContainer.textContent = ''
+			orderDetails.value = ''
+			customerInput.value = ''
+			totalOrder.textContent = '0'
+			customerPay.value = ''
+			moneyExchanges.textContent = ''
+			disabledReceived()
+			disabledConfirm()
+			disabledConfirmMoneyExchanges()
+			productsStorage.forEach((prod) => {
+				document.querySelector(`[id="${prod.id}"]`).textContent = ''
+				document.querySelector(`[data-productprice="${prod.id}"]`).textContent = prod.price
+				document.querySelector(`[data-productprice="${prod.id}"]`).classList.remove('product-active')
+				document.querySelector(`[data-idsymbol="${prod.id}"]`).classList.remove('product-active')
+			})
+		}, 1502)
 	}
 }
 
 export function createOrder() {
 	btnConfirm.addEventListener('click', validateOrder)
 
-	btnCancel.addEventListener('click', (e) => {
+	btnCancel.addEventListener('click', () => {
 		if (!products.length) {
 			showAlert('"No hay ninguna orden disponible para cancelar en este momento."')
 			return
