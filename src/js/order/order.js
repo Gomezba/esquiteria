@@ -268,7 +268,7 @@ function createDataTable() {
 		tdPriceUnit.textContent = `$${priceUnit}`
 		tdPrice.textContent = `$${price}`
 
-		iconDelete.setAttribute('src', '/src/assets/icons/delete-forever.svg')
+		iconDelete.setAttribute('src', '../../assets/icons/delete-forever.svg')
 		iconDelete.setAttribute('alt', 'Icono de eliminacion de producto')
 		iconDelete.setAttribute('title', 'Elimina el producto de la orden')
 		iconDelete.setAttribute('id', id)

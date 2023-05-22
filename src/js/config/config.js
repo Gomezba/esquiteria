@@ -128,17 +128,17 @@ class Ui {
 			btnEdit.classList.add('btn', 'btn-edit', 'btn-edit-config')
 			btnEdit.setAttribute('type', 'button')
 			btnEdit.setAttribute('title', 'Editar')
-			btnEdit.innerHTML = '<img src="/src/assets/icons/edit.svg" alt="Boton editar" />'
+			btnEdit.innerHTML = '<img src="../../assets/icons/edit.svg" alt="Boton editar" />'
 			btnCancel.classList.add('btn', 'btn-cancel', 'btn-cancel-config')
 			btnCancel.setAttribute('type', 'button')
 			btnCancel.setAttribute('title', 'Cancelar edición')
 			btnCancel.setAttribute('disabled', 'true')
 			btnCancel.dataset.id = id
-			btnCancel.innerHTML = '<img src="/src/assets/icons/cancel.svg" alt="Boton cancelar" />'
+			btnCancel.innerHTML = '<img src="../../assets/icons/cancel.svg" alt="Boton cancelar" />'
 			btnDelete.classList.add('btn', 'btn-deleted', 'btn-deleted-config')
 			btnDelete.setAttribute('type', 'button')
 			btnDelete.setAttribute('title', 'Eliminar producto')
-			btnDelete.innerHTML = '<img src="/src/assets/icons/delete.svg" alt="Boton eliminar" />'
+			btnDelete.innerHTML = '<img src="../../assets/icons/delete.svg" alt="Boton eliminar" />'
 
 			btnDelete.addEventListener('click', (e) => {
 				e.preventDefault()
