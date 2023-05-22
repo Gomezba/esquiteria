@@ -467,6 +467,10 @@ function validateOrder(e) {
 				document.querySelector(`[data-productprice="${prod.id}"]`).classList.remove('product-active')
 				document.querySelector(`[data-idsymbol="${prod.id}"]`).classList.remove('product-active')
 			})
+			window.scrollTo({
+				top: 0,
+				behavior: 'smooth',
+			})
 		}, 1502)
 	}
 }
