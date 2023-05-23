@@ -51,7 +51,7 @@ if (location.pathname.endsWith('orders-list.html')) {
 				document.getElementById('submitBtn').addEventListener('click', function () {
 					const input = document.getElementById('passwordInput')
 					const password = document.getElementById('passwordInput').value
-					if (password === 'tatis97') {
+					if (password === 'tatis') {
 						Swal.fire({
 							icon: 'success',
 							title: '¡Las órdenes han sido borradas del sistema!',
@@ -138,19 +138,21 @@ function readData() {
 			cursor.value.products.forEach((prod) => {
 				const tr = document.createElement('TR')
 				const tdProd = document.createElement('TD')
+				const tdPu = document.createElement('TD')
 				const tdQuant = document.createElement('TD')
 				const tdPt = document.createElement('TD')
 
 				tdProd.textContent = prod.name
+				tdPu.textContent = prod.priceUnit
 				tdQuant.textContent = prod.quantity
 				tdPt.textContent = prod.price
 
-				tr.append(tdProd, tdQuant, tdPt)
+				tr.append(tdProd, tdPu, tdQuant, tdPt)
 				tbody.append(tr)
 			})
 
 			const tdTfoot = document.createElement('TD')
-			tdTfoot.setAttribute('colspan', '3')
+			tdTfoot.setAttribute('colspan', '4')
 			tdTfoot.textContent = `Total: $${cursor.value.total}`
 
 			infoTitle.classList.add('order__info-title')
@@ -165,6 +167,7 @@ function readData() {
 			thead.innerHTML = `
           <tr>
             <th>PROD</th>
+			<th>PU</th>
             <th>CAN</th>
             <th>PT</th>
           </tr>

@@ -31,6 +31,7 @@
 	justify-content: end;
 	background-color: var(--dark-gray);
 	height: 2.5em;
+	border-radius: var(--br);
 }
 
 .arrow-down::before {

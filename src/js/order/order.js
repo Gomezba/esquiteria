@@ -269,15 +269,14 @@ function createDataTable() {
 		const tdPrice = document.createElement('TD')
 		const tdPriceUnit = document.createElement('TD')
 		const tdOptions = document.createElement('TD')
-		const iconDelete = document.createElement('IMG')
+		const iconDelete = document.createElement('DIV')
 
 		tdName.textContent = name
 		tdQuantity.textContent = quantity
 		tdPriceUnit.textContent = `$${priceUnit}`
 		tdPrice.textContent = `$${price}`
 
-		iconDelete.setAttribute('src', '../../assets/icons/delete-forever.svg')
-		iconDelete.setAttribute('alt', 'Icono de eliminacion de producto')
+		iconDelete.classList.add('delete-prod')
 		iconDelete.setAttribute('title', 'Elimina el producto de la orden')
 		iconDelete.setAttribute('id', id)
 
@@ -386,7 +385,7 @@ function addOrder(order) {
 	const request = objectStore.add(order)
 
 	request.onsuccess = () => {
-		alertOrderExit()
+		alertExit('Orden completada con éxito')
 		volverNormalidad()
 		closeModal()
 	}
@@ -448,14 +447,14 @@ function disabledReceived() {
 	}
 }
 
-function alertOrderExit() {
+function alertExit(msg) {
 	const alert = document.createElement('DIV')
 	alert.classList.add('order-exit')
-	alert.textContent = 'Orden exitosa'
+	alert.textContent = msg
 	body.append(alert)
 	setTimeout(() => {
 		alert.remove()
-	}, 2000)
+	}, 1300)
 }
 
 function volverNormalidad() {
@@ -513,16 +512,9 @@ if (location.pathname.endsWith('/order.html')) {
 		// Acciones para orden con ticket
 		ticketModal.style.display = 'block'
 		modal.style.display = 'none'
-		// fecha
-		// order.date = `${dia} de ${mes} de ${anio} ${horas}:${minutos}`
-		// order.products = products
-		// order.total = totalGlobal
-		// addOrder(order)
 	})
 
 	imprimirTicketBtn.addEventListener('click', function () {
-		// const macAddress = macInput.value
-
 		const direccionMacDeLaImpresora = impresora.value
 		const licencia = licenciaa.value
 		if (!direccionMacDeLaImpresora) {
@@ -536,8 +528,6 @@ if (location.pathname.endsWith('/order.html')) {
 		imprimirTicket(direccionMacDeLaImpresora, licencia)
 		addOrder(order)
 		closeModal()
-		// crearTicket()
-		// Acciones para imprimir el ticket con la dirección MAC proporcionada
 	})
 
 	cancelarImpresionBtn.addEventListener('click', function () {
@@ -557,17 +547,17 @@ const imprimirTicket = async (macImpresora, licencia) => {
 		.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_IZQUIERDA)
 		.EscribirTexto('Fecha: ' + order.date + '\n')
 		.EscribirTexto('Cliente: ' + order.customer + '\n')
-	// .Feed(1)
+		.Feed(1)
 	// .EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_CENTRO)
 	// .EscribirTexto('Detalles del pedido:\n')
 
 	order.products.forEach((producto) => {
 		conector
 			.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_IZQUIERDA)
-			.EscribirTexto('Nombre: ' + producto.name + '\n')
-			.EscribirTexto('Precio unitario: ' + producto.priceUnit + '\n')
+			.EscribirTexto('Producto: ' + producto.name + '\n')
+			.EscribirTexto('Precio unitario: ' + `$${producto.priceUnit}` + '\n')
 			.EscribirTexto('Cantidad: ' + producto.quantity + '\n')
-			.EscribirTexto('Precio: ' + producto.price + '\n')
+			.EscribirTexto('Precio: ' + `$${producto.price}` + '\n')
 			.Feed(1)
 	})
 
@@ -577,9 +567,9 @@ const imprimirTicket = async (macImpresora, licencia) => {
 		// .Feed(1)
 		.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_IZQUIERDA)
 		// .EscribirTexto('Total: ' + order.total + '\n')
-		.EscribirTexto('Total: ' + order.total + '\n')
-		.EscribirTexto('Recibo: ' + order.receivedBill + '\n')
-		.EscribirTexto('Cambio: ' + order.moneyChange + '\n')
+		.EscribirTexto('Total: ' + `$${order.total}` + '\n')
+		.EscribirTexto('Recibo: ' + `$${order.receivedBill}` + '\n')
+		.EscribirTexto('Cambio: ' + `$${order.moneyChange}` + '\n')
 		.Feed(2)
 		.Corte(1)
 		.Pulso(48, 60, 120)
@@ -600,6 +590,7 @@ function validateOrder(e) {
 	e.preventDefault()
 	if (products) {
 		modal.style.display = 'block'
+		impresora.value = '66:32:ED:C8:E2:59' //Se asigna la mac al input al terminar el ticket para otra venta
 	}
 }
 
@@ -620,7 +611,8 @@ export function createOrder() {
 			cancelButtonText: 'Cancelar',
 		}).then((result) => {
 			if (result.isConfirmed) {
-				location.reload()
+				alertExit('La orden ha sido eliminada exitosamente.')
+				volverNormalidad()
 			}
 		})
 	})

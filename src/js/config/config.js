@@ -199,22 +199,40 @@ const products = [
 		id: 44,
 	},
 	{
-		name: 'Fresas con crema',
+		name: 'Fresas C.C',
 		category: 'postres',
 		price: 45,
 		id: 55,
 	},
 	{
-		name: 'Gelatina con durazno',
+		name: 'Fresas C.C 1/2',
+		category: 'postres',
+		price: 35,
+		id: 6622,
+	},
+	{
+		name: 'Gelatina C.D',
 		category: 'postres',
 		price: 45,
 		id: 66,
 	},
 	{
-		name: 'Ensalada de manzana',
+		name: 'Gelatina C.D 1/2',
+		category: 'postres',
+		price: 35,
+		id: 6695,
+	},
+	{
+		name: 'Ensalada D.M',
 		category: 'postres',
 		price: 45,
 		id: 77,
+	},
+	{
+		name: 'Ensalada D.M 1/2',
+		category: 'postres',
+		price: 35,
+		id: 7798,
 	},
 	{
 		name: 'Gomiboing',
@@ -223,13 +241,13 @@ const products = [
 		id: 88,
 	},
 	{
-		name: 'Agua fresca 1L',
+		name: 'Agua F.1L',
 		category: 'bebidas',
 		price: 25,
 		id: 99,
 	},
 	{
-		name: 'Agua fresca 1/2',
+		name: 'Agua F.1/2',
 		category: 'bebidas',
 		price: 15,
 		id: 10,
@@ -241,7 +259,7 @@ const products = [
 		id: 1111,
 	},
 	{
-		name: 'Agua natural 500ml',
+		name: 'Agua Nat.500ml',
 		category: 'bebidas',
 		price: 10,
 		id: 1212,

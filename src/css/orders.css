@@ -23,6 +23,7 @@
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-position: center;
+	border-radius: var(--br);
 }
 
 .arrow-down img {
@@ -46,9 +47,11 @@
 }
 
 .desplegable-container:empty::before {
-	content: 'Sin productos';
-	color: #fff;
+	display: block;
+	content: 'No se han configurado productos en el sistema. Por favor, diríjase a la sección de configuración para agregarlos';
+	color: #ffffffa4;
 	text-align: center;
+	padding: 0 0.3em;
 }
 
 .desplegable-container-active {
@@ -119,6 +122,36 @@
 
 .btn-remove {
 	background-color: var(--pink-dark);
+}
+
+.delete-prod {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 35px;
+	height: 35px;
+	background-color: transparent;
+	border-radius: 50%;
+	border: 3px solid #426aa7;
+	padding: 4px;
+	margin: 0.5em 0;
+}
+
+.delete-prod::before,
+.delete-prod::after {
+	content: '';
+	display: block;
+	height: 3px;
+	background-color: #c2bfbf;
+	border-radius: 1em;
+}
+
+.delete-prod::before {
+	transform: rotate(45deg);
+}
+
+.delete-prod::after {
+	transform: rotate(-45deg);
 }
 
 .product__container-quantity {
@@ -218,8 +251,7 @@
 .input-received-bill {
 	background-color: #eff1f3;
 	color: #000000bb;
-	border-radius: 0;
-	width: 80px;
+	width: 150px;
 	height: 40px;
 	text-align: center;
 	font-size: 1.5rem;

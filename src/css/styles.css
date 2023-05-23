@@ -234,6 +234,8 @@ table {
 	margin-bottom: var(--gap-md);
 	background-color: var(--dark-blue);
 	color: #ffffffcb;
+	border-radius: var(--br);
+	overflow: hidden;
 }
 
 thead {
