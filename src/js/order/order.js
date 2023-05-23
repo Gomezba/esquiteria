@@ -1,5 +1,5 @@
 import { dia, mes, anio, horas, minutos, fecha } from '../functions/date.js'
-// import { crearTicket } from '../tickets/createTicket.js'
+import { ConectorEscposAndroid } from '../tickets/ConectorEscposAndroid.js'
 
 const arrowBotanas = document.querySelector('[data-arrow="botanas"]')
 const arrowDesserts = document.querySelector('[data-arrow="desserts"]')
@@ -29,7 +29,8 @@ const cancelarBtn = document.getElementById('cancelarBtn')
 const ticketModal = document.getElementById('ticketModal')
 const imprimirTicketBtn = document.getElementById('imprimirTicketBtn')
 const cancelarImpresionBtn = document.getElementById('cancelarImpresionBtn')
-const macInput = document.getElementById('macInput')
+const licenciaa = document.getElementById('licencia')
+const impresora = document.getElementById('macInput')
 
 const productsStorage = JSON.parse(localStorage.getItem('products'))
 
@@ -493,6 +494,7 @@ function closeModal() {
 // 	console.log(order)
 // })
 
+const URLPlugin = 'http://localhost:8000'
 if (location.pathname.endsWith('/order.html')) {
 	sinTicketBtn.addEventListener('click', function () {
 		// Acciones para orden sin ticket
@@ -521,10 +523,17 @@ if (location.pathname.endsWith('/order.html')) {
 	imprimirTicketBtn.addEventListener('click', function () {
 		// const macAddress = macInput.value
 
+		const direccionMacDeLaImpresora = impresora.value
+		const licencia = licenciaa.value
+		if (!direccionMacDeLaImpresora) {
+			return alert('Por favor escribe la MAC de la impresora')
+		}
+
 		fecha
 		order.date = `${dia} de ${mes} de ${anio} ${horas}:${minutos}`
 		order.products = products
 		order.total = totalGlobal
+		imprimirTicket(direccionMacDeLaImpresora, licencia)
 		addOrder(order)
 		closeModal()
 		// crearTicket()
@@ -534,6 +543,57 @@ if (location.pathname.endsWith('/order.html')) {
 	cancelarImpresionBtn.addEventListener('click', function () {
 		closeModal()
 	})
+}
+
+const imprimirTicket = async (macImpresora, licencia) => {
+	const conector = new ConectorEscposAndroid(licencia, URLPlugin)
+	conector
+		.Iniciar()
+		.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_CENTRO)
+		// .DescargarImagenDeInternetEImprimir('http://assets.stickpng.com/thumbs/587e32259686194a55adab73.png', 0, 216)
+		.Iniciar() // En mi impresora debo invocar a "Iniciar" después de imprimir una imagen
+		.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_CENTRO)
+		.Feed(1)
+		.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_IZQUIERDA)
+		.EscribirTexto('Fecha: ' + order.date + '\n')
+		.EscribirTexto('Cliente: ' + order.customer + '\n')
+	// .Feed(1)
+	// .EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_CENTRO)
+	// .EscribirTexto('Detalles del pedido:\n')
+
+	order.products.forEach((producto) => {
+		conector
+			.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_IZQUIERDA)
+			.EscribirTexto('Nombre: ' + producto.name + '\n')
+			.EscribirTexto('Precio unitario: ' + producto.priceUnit + '\n')
+			.EscribirTexto('Cantidad: ' + producto.quantity + '\n')
+			.EscribirTexto('Precio: ' + producto.price + '\n')
+			.Feed(1)
+	})
+
+	conector
+		// .EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_CENTRO)
+		// .EscribirTexto('Detalles: ' + ticketData.detalles + '\n')
+		// .Feed(1)
+		.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_IZQUIERDA)
+		// .EscribirTexto('Total: ' + order.total + '\n')
+		.EscribirTexto('Total: ' + order.total + '\n')
+		.EscribirTexto('Recibo: ' + order.receivedBill + '\n')
+		.EscribirTexto('Cambio: ' + order.moneyChange + '\n')
+		.Feed(2)
+		.Corte(1)
+		.Pulso(48, 60, 120)
+
+	try {
+		const respuesta = await conector.imprimirEn(macImpresora)
+		if (respuesta === true) {
+			alert('Impreso correctamente')
+		} else {
+			alert('Error: ' + respuesta)
+		}
+	} catch (e) {
+		alert('Error imprimiendo: ' + e.message)
+	}
 }
 
 function validateOrder(e) {

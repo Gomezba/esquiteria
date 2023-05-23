@@ -1,4 +1,4 @@
-const ConectorEscposAndroid = (() => {
+export const ConectorEscposAndroid = (() => {
 	class Operacion {
 		constructor(nombre, argumentos) {
 			this.nombre = nombre

@@ -13,8 +13,6 @@
 		<link rel="stylesheet" href="../../css/components.css" />
 		<link rel="stylesheet" href="../../css/orders.css" />
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-		<script src="../../js/tickets/ConectorEscposAndroid.js" type="text/javascript"></script>
-		<script src="../../js/tickets/createTicket.js" type="text/javascript"></script>
 	</head>
 	<body id="body">
 		<header class="header">
@@ -149,11 +147,16 @@
 						placeholder="Ejemplo: 00:11:22:33:44:55"
 						value="66:32:ED:C8:E2:59"
 					/>
+					<div class="control" hidden>
+						<input id="licencia" class="input" type="text" placeholder="Licencia si es que cuentas con ella" />
+					</div>
 					<button id="imprimirTicketBtn" class="btn btn-primary">Imprimir ticket</button>
 					<button id="cancelarImpresionBtn" class="btn btn-danger">Cancelar</button>
 				</div>
 			</div>
 		</main>
 		<script src="../../js/app.js" type="module"></script>
+		<script src="../../js/tickets/ConectorEscposAndroid.js" type="module"></script>
+		<script src="../../js/tickets/createTicket.js" type="module"></script>
 	</body>
 </html>
