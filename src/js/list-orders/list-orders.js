@@ -123,7 +123,7 @@ function readData() {
 			wrapperOrder.classList.add('wrapper-order')
 			arrowIcon.classList.add('arrow-down')
 			arrowIcon.addEventListener('click', accordeon)
-			img.setAttribute('src', '/src/assets/icons/arrow-down.svg')
+			img.setAttribute('src', '../../assets/icons/arrow-down.svg')
 			img.setAttribute('alt', 'arrow down')
 			order.classList.add('order')
 			date.classList.add('order__date')
