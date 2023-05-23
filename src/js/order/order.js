@@ -20,11 +20,18 @@ const customerInput = document.getElementById('customer-name')
 const btnConfirm = document.getElementById('confirm')
 const btnCancel = document.getElementById('cancel')
 
-// const obj = document.getElementById('obj')
-// obj.addEventListener('click', () => {
-// 	console.log(products)
-// })
+const modal = document.getElementById('modal')
+const sinTicketBtn = document.getElementById('sinTicketBtn')
+const conTicketBtn = document.getElementById('conTicketBtn')
+const cancelarBtn = document.getElementById('cancelarBtn')
+
 const productsStorage = JSON.parse(localStorage.getItem('products'))
+
+const obj = document.getElementById('obj')
+obj.addEventListener('click', () => {
+	console.log(products)
+	console.log(order)
+})
 
 function showProducts() {
 	productsStorage.forEach((prod) => {
@@ -434,44 +441,98 @@ function disabledReceived() {
 	}
 }
 
+function alertOrderExit() {
+	const alert = document.createElement('DIV')
+	alert.classList.add('order-exit')
+	alert.textContent = 'Orden exitosa'
+	body.append(alert)
+	setTimeout(() => {
+		alert.remove()
+	}, 2000)
+}
+
+function volverNormalidad() {
+	// setTimeout(() => {
+	// 	resetOrder()
+	// 	products = []
+	// 	productsTableContainer.textContent = ''
+	// 	orderDetails.value = ''
+	// 	customerInput.value = ''
+	// 	totalOrder.textContent = '0'
+	// 	customerPay.value = ''
+	// 	moneyExchanges.textContent = ''
+	// 	disabledReceived()
+	// 	disabledConfirm()
+	// 	disabledConfirmMoneyExchanges()
+	// 	productsStorage.forEach((prod) => {
+	// 		document.querySelector(`[id="${prod.id}"]`).textContent = ''
+	// 		document.querySelector(`[data-productprice="${prod.id}"]`).textContent = prod.price
+	// 		document.querySelector(`[data-productprice="${prod.id}"]`).classList.remove('product-active')
+	// 		document.querySelector(`[data-idsymbol="${prod.id}"]`).classList.remove('product-active')
+	// 	})
+	// 	window.scrollTo({
+	// 		top: 0,
+	// 		behavior: 'smooth',
+	// 	})
+	// }, 1502)
+}
+
+function closeModal() {
+	modal.style.display = 'none'
+}
+
 function validateOrder(e) {
 	e.preventDefault()
-	fecha
 	if (products) {
-		order.date = `${dia} de ${mes} de ${anio} ${horas}:${minutos}`
-		order.products = products
-		order.total = totalGlobal
-		addOrder(order)
-		Swal.fire({
-			icon: 'success',
-			title: '¡Orden creada!',
-			showConfirmButton: false,
-			timer: 1500,
-		})
-		setTimeout(() => {
-			resetOrder()
-			products = []
+		fecha
+		modal.style.display = 'block'
 
-			productsTableContainer.textContent = ''
-			orderDetails.value = ''
-			customerInput.value = ''
-			totalOrder.textContent = '0'
-			customerPay.value = ''
-			moneyExchanges.textContent = ''
-			disabledReceived()
-			disabledConfirm()
-			disabledConfirmMoneyExchanges()
-			productsStorage.forEach((prod) => {
-				document.querySelector(`[id="${prod.id}"]`).textContent = ''
-				document.querySelector(`[data-productprice="${prod.id}"]`).textContent = prod.price
-				document.querySelector(`[data-productprice="${prod.id}"]`).classList.remove('product-active')
-				document.querySelector(`[data-idsymbol="${prod.id}"]`).classList.remove('product-active')
-			})
-			window.scrollTo({
-				top: 0,
-				behavior: 'smooth',
-			})
-		}, 1502)
+		sinTicketBtn.addEventListener('click', function () {
+			// Acciones para orden sin ticket
+			order.date = `${dia} de ${mes} de ${anio} ${horas}:${minutos}`
+			order.products = products
+			order.total = totalGlobal
+			addOrder(order)
+			setTimeout(() => {
+				resetOrder()
+				products = []
+
+				productsTableContainer.textContent = ''
+				orderDetails.value = ''
+				customerInput.value = ''
+				totalOrder.textContent = '0'
+				customerPay.value = ''
+				moneyExchanges.textContent = ''
+				disabledReceived()
+				disabledConfirm()
+				disabledConfirmMoneyExchanges()
+				productsStorage.forEach((prod) => {
+					document.querySelector(`[id="${prod.id}"]`).textContent = ''
+					document.querySelector(`[data-productprice="${prod.id}"]`).textContent = prod.price
+					document.querySelector(`[data-productprice="${prod.id}"]`).classList.remove('product-active')
+					document.querySelector(`[data-idsymbol="${prod.id}"]`).classList.remove('product-active')
+				})
+				window.scrollTo({
+					top: 0,
+					behavior: 'smooth',
+				})
+			}, 1502)
+			closeModal()
+		})
+
+		conTicketBtn.addEventListener('click', function () {
+			// Acciones para orden con ticket
+			order.date = `${dia} de ${mes} de ${anio} ${horas}:${minutos}`
+			order.products = products
+			order.total = totalGlobal
+			addOrder(order)
+			volverNormalidad()
+			closeModal()
+		})
+
+		cancelarBtn.addEventListener('click', function () {
+			closeModal()
+		})
 	}
 }
 
