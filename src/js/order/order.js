@@ -1,4 +1,5 @@
 import { dia, mes, anio, horas, minutos, fecha } from '../functions/date.js'
+// import { crearTicket } from '../tickets/createTicket.js'
 
 const arrowBotanas = document.querySelector('[data-arrow="botanas"]')
 const arrowDesserts = document.querySelector('[data-arrow="desserts"]')
@@ -25,13 +26,12 @@ const sinTicketBtn = document.getElementById('sinTicketBtn')
 const conTicketBtn = document.getElementById('conTicketBtn')
 const cancelarBtn = document.getElementById('cancelarBtn')
 
-const productsStorage = JSON.parse(localStorage.getItem('products'))
+const ticketModal = document.getElementById('ticketModal')
+const imprimirTicketBtn = document.getElementById('imprimirTicketBtn')
+const cancelarImpresionBtn = document.getElementById('cancelarImpresionBtn')
+const macInput = document.getElementById('macInput')
 
-const obj = document.getElementById('obj')
-obj.addEventListener('click', () => {
-	console.log(products)
-	console.log(order)
-})
+const productsStorage = JSON.parse(localStorage.getItem('products'))
 
 function showProducts() {
 	productsStorage.forEach((prod) => {
@@ -383,6 +383,12 @@ function addOrder(order) {
 	const transaction = db.transaction(['orders'], 'readwrite')
 	const objectStore = transaction.objectStore('orders')
 	const request = objectStore.add(order)
+
+	request.onsuccess = () => {
+		alertOrderExit()
+		volverNormalidad()
+		closeModal()
+	}
 }
 
 //TODO -----------------------------------------
@@ -452,87 +458,88 @@ function alertOrderExit() {
 }
 
 function volverNormalidad() {
-	// setTimeout(() => {
-	// 	resetOrder()
-	// 	products = []
-	// 	productsTableContainer.textContent = ''
-	// 	orderDetails.value = ''
-	// 	customerInput.value = ''
-	// 	totalOrder.textContent = '0'
-	// 	customerPay.value = ''
-	// 	moneyExchanges.textContent = ''
-	// 	disabledReceived()
-	// 	disabledConfirm()
-	// 	disabledConfirmMoneyExchanges()
-	// 	productsStorage.forEach((prod) => {
-	// 		document.querySelector(`[id="${prod.id}"]`).textContent = ''
-	// 		document.querySelector(`[data-productprice="${prod.id}"]`).textContent = prod.price
-	// 		document.querySelector(`[data-productprice="${prod.id}"]`).classList.remove('product-active')
-	// 		document.querySelector(`[data-idsymbol="${prod.id}"]`).classList.remove('product-active')
-	// 	})
-	// 	window.scrollTo({
-	// 		top: 0,
-	// 		behavior: 'smooth',
-	// 	})
-	// }, 1502)
+	resetOrder()
+	products = []
+	productsTableContainer.textContent = ''
+	orderDetails.value = ''
+	customerInput.value = ''
+	totalOrder.textContent = '0'
+	customerPay.value = ''
+	moneyExchanges.textContent = ''
+	disabledReceived()
+	disabledConfirm()
+	disabledConfirmMoneyExchanges()
+	productsStorage.forEach((prod) => {
+		document.querySelector(`[id="${prod.id}"]`).textContent = ''
+		document.querySelector(`[data-productprice="${prod.id}"]`).textContent = prod.price
+		document.querySelector(`[data-productprice="${prod.id}"]`).classList.remove('product-active')
+		document.querySelector(`[data-idsymbol="${prod.id}"]`).classList.remove('product-active')
+	})
+	window.scrollTo({
+		top: 0,
+		behavior: 'smooth',
+	})
 }
 
 function closeModal() {
 	modal.style.display = 'none'
+	ticketModal.style.display = 'none'
+	macInput.value = ''
+}
+
+// const obj = document.getElementById('obj')
+// obj.addEventListener('click', () => {
+// 	console.log(products)
+// 	console.log(order)
+// })
+
+if (location.pathname.endsWith('/order.html')) {
+	sinTicketBtn.addEventListener('click', function () {
+		// Acciones para orden sin ticket
+		fecha
+		order.date = `${dia} de ${mes} de ${anio} ${horas}:${minutos}`
+		order.products = products
+		order.total = totalGlobal
+		addOrder(order)
+	})
+
+	cancelarBtn.addEventListener('click', function () {
+		closeModal()
+	})
+
+	conTicketBtn.addEventListener('click', function () {
+		// Acciones para orden con ticket
+		ticketModal.style.display = 'block'
+		modal.style.display = 'none'
+		// fecha
+		// order.date = `${dia} de ${mes} de ${anio} ${horas}:${minutos}`
+		// order.products = products
+		// order.total = totalGlobal
+		// addOrder(order)
+	})
+
+	imprimirTicketBtn.addEventListener('click', function () {
+		// const macAddress = macInput.value
+
+		fecha
+		order.date = `${dia} de ${mes} de ${anio} ${horas}:${minutos}`
+		order.products = products
+		order.total = totalGlobal
+		addOrder(order)
+		closeModal()
+		// crearTicket()
+		// Acciones para imprimir el ticket con la dirección MAC proporcionada
+	})
+
+	cancelarImpresionBtn.addEventListener('click', function () {
+		closeModal()
+	})
 }
 
 function validateOrder(e) {
 	e.preventDefault()
 	if (products) {
-		fecha
 		modal.style.display = 'block'
-
-		sinTicketBtn.addEventListener('click', function () {
-			// Acciones para orden sin ticket
-			order.date = `${dia} de ${mes} de ${anio} ${horas}:${minutos}`
-			order.products = products
-			order.total = totalGlobal
-			addOrder(order)
-			setTimeout(() => {
-				resetOrder()
-				products = []
-
-				productsTableContainer.textContent = ''
-				orderDetails.value = ''
-				customerInput.value = ''
-				totalOrder.textContent = '0'
-				customerPay.value = ''
-				moneyExchanges.textContent = ''
-				disabledReceived()
-				disabledConfirm()
-				disabledConfirmMoneyExchanges()
-				productsStorage.forEach((prod) => {
-					document.querySelector(`[id="${prod.id}"]`).textContent = ''
-					document.querySelector(`[data-productprice="${prod.id}"]`).textContent = prod.price
-					document.querySelector(`[data-productprice="${prod.id}"]`).classList.remove('product-active')
-					document.querySelector(`[data-idsymbol="${prod.id}"]`).classList.remove('product-active')
-				})
-				window.scrollTo({
-					top: 0,
-					behavior: 'smooth',
-				})
-			}, 1502)
-			closeModal()
-		})
-
-		conTicketBtn.addEventListener('click', function () {
-			// Acciones para orden con ticket
-			order.date = `${dia} de ${mes} de ${anio} ${horas}:${minutos}`
-			order.products = products
-			order.total = totalGlobal
-			addOrder(order)
-			volverNormalidad()
-			closeModal()
-		})
-
-		cancelarBtn.addEventListener('click', function () {
-			closeModal()
-		})
 	}
 }
 

@@ -286,3 +286,20 @@ button {
 	z-index: 50;
 	font-size: var(--fs-base);
 }
+
+.input-mac {
+	display: block;
+	width: 100%;
+	border: 2px solid orange;
+	text-align: center;
+}
+
+#cancelarImpresionBtn {
+	margin: 0;
+}
+
+#imprimirTicketBtn {
+	margin: 0;
+	margin-top: 1.5em;
+	margin-bottom: 1em;
+}

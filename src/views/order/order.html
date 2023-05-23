@@ -66,7 +66,7 @@
 		<main class="container main">
 			<h2 class="title">Tomar Orden</h2>
 			<section class="products-container">
-				<button id="obj">obj</button>
+				<!-- <button id="obj">obj</button> -->
 				<section class="section section-botanas">
 					<h3 class="subtitle">Botanas</h3>
 					<a data-arrow="botanas" class="arrow-down"> <img src="/src/assets/icons/arrow-down.svg" alt="arrow down" /></a>
@@ -141,7 +141,23 @@
 					<button id="cancelarBtn" class="btn btn-danger">Cancelar</button>
 				</div>
 			</div>
+
+			<div id="ticketModal" class="modal">
+				<div class="modal-content">
+					<h2>Imprimir ticket</h2>
+					<label for="macInput">Dirección MAC:</label>
+					<input
+						type="text"
+						id="macInput"
+						class="input-mac"
+						placeholder="Ejemplo: 00:11:22:33:44:55"
+						value="66:32:ED:C8:E2:59"
+					/>
+					<button id="imprimirTicketBtn" class="btn btn-primary">Imprimir ticket</button>
+					<button id="cancelarImpresionBtn" class="btn btn-danger">Cancelar</button>
+				</div>
+			</div>
 		</main>
-		<script src="/src/js/app.js" type="module"></script>
+		<script src="../../js/app.js" type="module"></script>
 	</body>
 </html>
