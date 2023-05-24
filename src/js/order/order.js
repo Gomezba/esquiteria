@@ -493,8 +493,8 @@ function closeModal() {
 // 	console.log(order)
 // })
 
-// const URLPlugin = 'http://localhost:8000'
-const URLPlugin = 'https://la-esquiteria-zac.netlify.app'
+const URLPlugin = 'http://localhost:8000'
+// const URLPlugin = 'https://la-esquiteria-zac.netlify.app'
 if (location.pathname.endsWith('/order.html')) {
 	sinTicketBtn.addEventListener('click', function () {
 		// Acciones para orden sin ticket
