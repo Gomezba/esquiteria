@@ -7,7 +7,7 @@ export const ConectorEscposAndroid = (() => {
 	}
 
 	class ConectorPlugin {
-		static URL_PLUGIN_POR_DEFECTO = 'http://localhost:8000'
+		static URL_PLUGIN_POR_DEFECTO = 'https://la-esquiteria-zac.netlify.app'
 		static Operacion = Operacion
 		static TAMAÑO_IMAGEN_NORMAL = 0
 		static TAMAÑO_IMAGEN_DOBLE_ANCHO = 1
