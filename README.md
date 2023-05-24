@@ -1,4 +1,4 @@
-# Control de Ventas de Esquites, Postres, Dorilocos y Bebidas de Aguas Frescas y más.
+# Control de Ventas de Botanas, Postres y Bebidas.
 
 Este proyecto es una aplicación web para el control de ordenes de comida tradicional mexicana, específicamente esquites, postres, dorilocos y bebidas de aguas frescas y mucho más.
 
@@ -19,7 +19,6 @@ La aplicación permite al personal
 - HTML
 - CSS
 - JavaScript
-- gridJs
 - autoPdf
 
 ## Autor
