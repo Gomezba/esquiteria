@@ -493,7 +493,9 @@ function closeModal() {
 // 	console.log(order)
 // })
 
-const URLPlugin = 'http://localhost:8000'
+// const URLPlugin = 'http://localhost:8000'
+const URLPlugin =
+	'https://main--enchanting-figolla-6fb58a.netlify.app/?fbclid=IwAR2SpftLiO-_rUaMKFChcfcn8dZYQHt3Q3SK9DY66eoOnS44F1n26QOkkec'
 if (location.pathname.endsWith('/order.html')) {
 	sinTicketBtn.addEventListener('click', function () {
 		// Acciones para orden sin ticket
