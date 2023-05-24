@@ -537,32 +537,41 @@ if (location.pathname.endsWith('/order.html')) {
 
 const imprimirTicket = async (macImpresora, licencia) => {
 	const conector = new ConectorEscposAndroid(licencia, URLPlugin)
-	conector.Iniciar().EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_CENTRO)
-	CargarImagenLocalEImprimir('../../assets/img/Esquiteria 2.png', 0, 216)
+	conector
+		.Iniciar()
+		// .EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_CENTRO)
+		// .CargarImagenLocalEImprimir('/src/assets/img/Esquiteria 2.png', 0, 216)
 		// .DescargarImagenDeInternetEImprimir('http://assets.stickpng.com/thumbs/587e32259686194a55adab73.png', 0, 216)
 		// .Iniciar() // En mi impresora debo invocar a "Iniciar" después de imprimir una imagen
-		.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_CENTRO)
-		.Feed(1)
+		// .EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_CENTRO)
+		// .Feed(1)
 		.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_IZQUIERDA)
 		.EscribirTexto('Fecha: ' + order.date + '\n')
 		.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_CENTRO)
-		.EscribirTexto('Cliente: ' + order.customer + '\n')
+		.EscribirTexto('Cliente: ' + order.customer.toUpperCase() + '\n')
 		.Feed(1)
-		// .EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_CENTRO)
-		// .EscribirTexto('Detalles del pedido:\n')
+	// .EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_CENTRO)
+	// .EscribirTexto('Detalles del pedido:\n')
 
-		.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_CENTRO)
-		.EscribirTexto('PROD     PU    CAN     PT' + '\n')
-		.Feed(1)
+	// .EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_IZQUIERDA)
+	// .EscribirTexto('PRODUDCTO           PU  CAN     PT')
 	order.products.forEach((producto) => {
 		conector
 			.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_IZQUIERDA)
 			.EscribirTexto(`${producto.name}  $${producto.priceUnit} ${producto.quantity} $${producto.price}` + '\n')
-			// .EscribirTexto('Producto: ' + producto.name + '\n')
-			// .EscribirTexto('Precio unitario: ' + `$${producto.priceUnit}` + '\n')
-			// .EscribirTexto('Cantidad: ' + producto.quantity + '\n')
-			// .EscribirTexto('Precio: ' + `$${producto.price}` + '\n')
-			.Feed(1)
+		// .EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_IZQUIERDA)
+		// .EscribirTexto(`${producto.name} `)
+		// .EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_DERECHA)
+		// .EscribirTexto(`$${producto.priceUnit}`)
+		// .EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_DERECHA)
+		// .EscribirTexto(`${producto.priceUnit}`)
+		// .EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_DERECHA)
+		// .EscribirTexto(`$${producto.price}`)
+		// .EscribirTexto('Producto: ' + producto.name + '\n')
+		// .EscribirTexto('Precio unitario: ' + `$${producto.priceUnit}` + '\n')
+		// .EscribirTexto('Cantidad: ' + producto.quantity + '\n')
+		// .EscribirTexto('Precio: ' + `$${producto.price}` + '\n')
+		// .Feed(1)
 	})
 
 	conector
@@ -581,7 +590,7 @@ const imprimirTicket = async (macImpresora, licencia) => {
 	try {
 		const respuesta = await conector.imprimirEn(macImpresora)
 		if (respuesta === true) {
-			alert('Impreso correctamente')
+			alertExit('Ticket exitoso')
 		} else {
 			alert('Error: ' + respuesta)
 		}
