@@ -244,6 +244,12 @@ function deleteProductOrder(e) {
 	})
 }
 
+// function totalPrice() {
+// 	const total = products.reduce((total, prodPrice) => total + prodPrice.price, 0)
+// 	totalOrder.textContent = total
+// 	totalGlobal = total
+// }
+
 function totalPrice() {
 	const total = products.reduce((total, prodPrice) => total + prodPrice.price, 0)
 	totalOrder.textContent = total
@@ -502,6 +508,7 @@ if (location.pathname.endsWith('/order.html')) {
 		order.date = `${dia} de ${mes} de ${anio} ${horas}:${minutos}`
 		order.products = products
 		order.total = totalGlobal
+		order.id = Date.now()
 		addOrder(order)
 	})
 
@@ -538,30 +545,89 @@ if (location.pathname.endsWith('/order.html')) {
 
 const imprimirTicket = async (macImpresora, licencia) => {
 	const conector = new ConectorEscposAndroid(licencia, URLPlugin)
+
 	conector
 		.Iniciar()
-
-		.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_IZQUIERDA)
-		.EscribirTexto('Fecha: ' + order.date + '\n')
+		.EstablecerEnfatizado(true)
+		.EstablecerTamañoFuente(2, 2)
 		.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_CENTRO)
-		.EscribirTexto('Cliente: ' + order.customer.toUpperCase() + '\n')
-		.Feed(1)
+		.EscribirTexto('LA ESQUITERIA\n')
+		.EstablecerTamañoFuente(1, 1)
+		.EstablecerEnfatizado(false)
+
+	conector.EscribirTexto(order.date + '\n').Feed(1)
+
+	if (order.customer !== 'Anonimo') {
+		conector.EscribirTexto('Cliente: ' + order.customer.toUpperCase() + '\n').Feed(1)
+	}
+
+	const maxNombreLength = order.products.reduce((max, producto) => {
+		return producto.name.length > max ? producto.name.length : max
+	}, 0)
+
+	const maxPuLength = order.products.reduce((max, producto) => {
+		return producto.priceUnit.toString().length > max ? producto.priceUnit.toString().length : max
+	}, 0)
+
+	const maxCanLength = order.products.reduce((max, producto) => {
+		return producto.quantity.toString().length > max ? producto.quantity.toString().length : max
+	}, 0)
+
+	const maxPtLength = order.products.reduce((max, producto) => {
+		return producto.price.toString().length > max ? producto.price.toString().length : max
+	}, 0)
+
+	const encabezado =
+		'PROD'.padEnd(maxNombreLength, ' ') +
+		'  P.U'.padEnd(maxPuLength, ' ') +
+		'  CAN'.padEnd(maxCanLength, ' ') +
+		' TOTAL ACUM'.padEnd(maxPtLength, ' ')
+	conector.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_IZQUIERDA).EscribirTexto(encabezado + '\n')
 
 	order.products.forEach((producto) => {
-		conector
-			.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_IZQUIERDA)
-			.EscribirTexto(`${producto.name}  $${producto.priceUnit} ${producto.quantity} $${producto.price}` + '\n')
+		const nombreProducto = producto.name.padEnd(maxNombreLength, ' ')
+		const pu = producto.priceUnit.toString().padEnd(maxPuLength, ' ')
+		const can = producto.quantity.toString().padEnd(maxCanLength, ' ')
+		const pt = producto.price.toString().padEnd(maxPtLength, ' ')
+		const lineaProducto = `${nombreProducto}  $${pu}   ${can}   $${pt}`
+		conector.EscribirTexto(lineaProducto + '\n')
+	})
+
+	const formattedTotal = order.total.toLocaleString(undefined, {
+		minimumFractionDigits: 2,
+		maximumFractionDigits: 2,
+	})
+
+	const formattedReceived = order.receivedBill.toLocaleString(undefined, {
+		minimumFractionDigits: 2,
+		maximumFractionDigits: 2,
+	})
+
+	const formattedMoneyChange = order.moneyChange.toLocaleString(undefined, {
+		minimumFractionDigits: 2,
+		maximumFractionDigits: 2,
 	})
 
 	conector
-		// .EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_CENTRO)
-		// .EscribirTexto('Detalles: ' + ticketData.detalles + '\n')
-		// .Feed(1)
-		.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_IZQUIERDA)
+		.Feed(1)
+		.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_DERECHA)
+		.EscribirTexto('Total: ' + `$${formattedTotal}` + '\n')
+		.EscribirTexto('P.R: ' + `$${formattedReceived}` + '\n')
+		.EscribirTexto('Cambio: ' + `$${formattedMoneyChange}` + '\n')
+		.Feed(1)
 
-		.EscribirTexto('Total: ' + `$${order.total}` + '\n')
-		.EscribirTexto('Recibo: ' + `$${order.receivedBill}` + '\n')
-		.EscribirTexto('Cambio: ' + `$${order.moneyChange}` + '\n')
+	if (order.adicionalInfo !== 'Sin detalles') {
+		conector
+			.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_CENTRO)
+			.EscribirTexto('Detalles de la orden:' + '\n')
+			.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_IZQUIERDA)
+			.EscribirTexto(order.adicionalInfo)
+	}
+
+	conector
+		.Feed(1)
+		.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_CENTRO)
+		.EscribirTexto('Gracias por su preferencia!')
 		.Feed(2)
 		.Corte(1)
 		.Pulso(48, 60, 120)

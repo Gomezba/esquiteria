@@ -40,9 +40,13 @@ if (location.pathname.endsWith('/products-sold.html')) {
 					}
 				})
 
+				const productosOrdenados = Object.entries(resultados).sort(([nombreA], [nombreB]) => {
+					return nombreA.localeCompare(nombreB)
+				})
+
 				tbody.innerHTML = ''
 
-				Object.entries(resultados).forEach(([nombre, { cantidad, precioTotal }]) => {
+				productosOrdenados.forEach(([nombre, { cantidad, precioTotal }]) => {
 					const row = document.createElement('tr')
 
 					const productoCell = document.createElement('td')
@@ -63,7 +67,12 @@ if (location.pathname.endsWith('/products-sold.html')) {
 				})
 
 				const totalSpan = document.getElementById('total')
-				totalSpan.textContent = `$${precioGlobal}`
+
+				const formattedTotal = precioGlobal.toLocaleString(undefined, {
+					minimumFractionDigits: 2,
+					maximumFractionDigits: 2,
+				})
+				totalSpan.textContent = `$${formattedTotal}`
 			}
 
 			request.onerror = (event) => {

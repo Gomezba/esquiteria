@@ -280,3 +280,54 @@ tfoot td {
 	color: #ffffff96;
 	font-size: 1.2rem;
 }
+
+/* Syles modal ticket */
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+	background-color: #fefefe;
+	margin: 20% auto;
+	padding: 20px;
+	padding-bottom: 50px;
+	border: 1px solid #888;
+	width: 300px;
+	text-align: center;
+}
+.order-exit {
+	background-color: #5bbd34;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	color: var(--light-gray);
+	text-align: center;
+	padding-block: 0.8em;
+	z-index: 50;
+	font-size: var(--fs-base);
+}
+
+.input-mac {
+	display: block;
+	width: 100%;
+	border: 2px solid orange;
+	text-align: center;
+}
+
+.print-ticket-btn {
+	margin: 0;
+	margin-top: 1.5em;
+	margin-bottom: 1em;
+}
+
+.print-cancel-btn {
+	margin: 0;
+}
