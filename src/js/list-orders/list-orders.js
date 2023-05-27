@@ -302,7 +302,7 @@ if (location.pathname.endsWith('/orders-list.html')) {
 			'PROD'.padEnd(maxNombreLength, ' ') +
 			'  P.U'.padEnd(maxPuLength, ' ') +
 			'  CAN'.padEnd(maxCanLength, ' ') +
-			' TOTAL ACUM'.padEnd(maxPtLength, ' ')
+			' SUBTOTAL'.padEnd(maxPtLength, ' ')
 		conector.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_IZQUIERDA).EscribirTexto(encabezado + '\n')
 
 		order.products.forEach((producto) => {
