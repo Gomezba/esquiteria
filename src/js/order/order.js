@@ -149,9 +149,13 @@ function addProduct(e) {
 	createDataTable()
 	totalPrice()
 	disabledReceived()
+	resetCustomerPayMoneyChange()
+	disabledConfirmMoneyExchanges()
+}
+
+function resetCustomerPayMoneyChange() {
 	customerPay.value = ''
 	moneyExchanges.textContent = ''
-	disabledConfirmMoneyExchanges()
 }
 
 function readInfo(product) {
@@ -188,8 +192,7 @@ function removeProduct(e) {
 	e.preventDefault()
 	const product = e.target.closest('.product')
 	const idProduct = parseInt(product.dataset.id)
-	customerPay.value = ''
-	moneyExchanges.textContent = ''
+	resetCustomerPayMoneyChange()
 
 	products.forEach((prod) => {
 		if (prod.id === idProduct) {
@@ -533,8 +536,7 @@ function volverNormalidad() {
 	orderDetails.value = ''
 	customerInput.value = ''
 	totalOrder.textContent = '0'
-	customerPay.value = ''
-	moneyExchanges.textContent = ''
+	resetCustomerPayMoneyChange()
 	disabledReceived()
 	disabledConfirm()
 	disabledConfirmMoneyExchanges()
