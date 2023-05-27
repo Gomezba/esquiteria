@@ -8,6 +8,7 @@ const priceContent = document.getElementById('readPrices')
 const botanasContainer = document.getElementById('botanas-category')
 const postresContainer = document.getElementById('desserts-category')
 const bebidasContainer = document.getElementById('drinks-category')
+const otrosContainer = document.getElementById('others-category')
 
 // new form product
 const formProduct = document.getElementById('form-product-new')
@@ -15,10 +16,44 @@ const newProductBtn = document.getElementById('new-product')
 const cancelProductBtn = document.getElementById('cancel-product')
 const body = document.getElementById('body')
 
+const warning = document.getElementById('warning')
+
+if (location.pathname.endsWith('/configuration.html')) {
+	warning.addEventListener('click', () => {
+		Swal.fire({
+			icon: false,
+			title: false,
+			html:
+				'<div style="text-align: justify;">' +
+				'<p>Si ya tienes ventas registradas y deseas cambiar el precio de un producto, asegurate de descargar el <strong>PDF</strong> del total de las ventas y eliminar las ventas registradas, para que no haya discrepancias en la venta total de cada producto.</p>' +
+				'<p>Al editar un precio se aplica únicamente al producto en cuestión y no afecta retrospectivamente a las ventas ya registradas. Por lo tanto, aunque el precio haya cambiado, el total de ventas del día permanecerá inalterado, lo que puede dar lugar a discrepancias en las cifras.</p>' +
+				'</div>',
+			showConfirmButton: false,
+			allowOutsideClick: false,
+			allowEscapeKey: false,
+			footer: '<button class="btn btn-primary"id="cerrar">Cerrar</button>',
+		}).then((result) => {
+			if (
+				result.isConfirmed ||
+				result.dismiss === Swal.DismissReason.backdrop ||
+				result.dismiss === Swal.DismissReason.esc
+			) {
+				Swal.close() // Cierra la alerta al hacer clic en el botón "Cerrar" o en cualquier área externa
+			}
+		})
+
+		// Cerrar la alerta al hacer clic en el botón "Cerrar"
+		document.getElementById('cerrar').addEventListener('click', () => {
+			Swal.close()
+		})
+	})
+}
+
 const categoryHtml = Object.freeze({
 	botanas: 'botanas',
 	postres: 'postres',
 	bebidas: 'bebidas',
+	otros: 'otros',
 })
 
 // Input focus y label
@@ -160,6 +195,10 @@ class Ui {
 			if (category === categoryHtml.bebidas) {
 				bebidasContainer.append(fragment)
 			}
+
+			if (category === categoryHtml.otros) {
+				otrosContainer.append(fragment)
+			}
 		})
 	}
 }
@@ -241,6 +280,12 @@ const products = [
 		id: 88,
 	},
 	{
+		name: 'Jugo Boing',
+		category: 'bebidas',
+		price: 15,
+		id: 8877,
+	},
+	{
 		name: 'Agua F.1L',
 		category: 'bebidas',
 		price: 25,
@@ -259,10 +304,22 @@ const products = [
 		id: 1111,
 	},
 	{
+		name: 'Coca mini',
+		category: 'bebidas',
+		price: 15,
+		id: 1112,
+	},
+	{
 		name: 'Agua Nat.500ml',
 		category: 'bebidas',
 		price: 10,
 		id: 1212,
+	},
+	{
+		name: 'Agua Nat.1L',
+		category: 'bebidas',
+		price: 15,
+		id: 1280,
 	},
 	{
 		name: 'Piñada',
@@ -282,6 +339,24 @@ const products = [
 		price: 35,
 		id: 1515,
 	},
+	{
+		name: 'Bolsa fritura',
+		category: 'otros',
+		price: 20,
+		id: 1615,
+	},
+	{
+		name: 'Cuchara-Tenedor',
+		category: 'otros',
+		price: 2,
+		id: 1697,
+	},
+	{
+		name: 'Vaso',
+		category: 'otros',
+		price: 3,
+		id: 1698,
+	},
 ]
 function addLocal() {
 	localStorage.setItem('products', JSON.stringify(products))
@@ -300,7 +375,6 @@ function deletedProduct(prod) {
 		cancelButtonText: 'Cancelar',
 	}).then((result) => {
 		if (result.isConfirmed) {
-			// productsInstance.deletedProductObj(id)
 			const existingProducts = JSON.parse(localStorage.getItem('products')) ?? []
 			const newProducts = existingProducts.filter((prod) => prod.id !== id)
 			localStorage.setItem('products', JSON.stringify(newProducts))

@@ -19,7 +19,7 @@ function disabledBtn() {
 
 let db
 
-if (location.pathname.endsWith('orders-list.html')) {
+if (location.pathname.endsWith('/orders-list.html')) {
 	request.onsuccess = (e) => {
 		db = e.target.result
 		readData()
@@ -194,6 +194,7 @@ if (location.pathname.endsWith('orders-list.html')) {
 				inputMac.classList.add('input-mac')
 				inputMac.setAttribute('placeholder', 'Ejemplo: 00:11:22:33:44:55')
 				inputMac.setAttribute('value', '66:32:ED:C8:E2:59')
+				inputMac.setAttribute('disabled', 'true')
 				const div = document.createElement('DIV')
 				div.classList.add('control')
 				div.setAttribute('hidden', 'true')
@@ -377,9 +378,28 @@ if (location.pathname.endsWith('orders-list.html')) {
 	function accordeon(e) {
 		e.preventDefault()
 
-		e.target.classList.toggle('active')
+		const element = e.target
+		const isActive = element.classList.contains('active')
+		const offset = -240
 
-		const order = e.target.nextElementSibling
+		const order = element.nextElementSibling
 		order.classList.toggle('order-active')
+
+		const isMobile = window.matchMedia('(max-width: 959px)').matches
+
+		if (!isActive && isMobile) {
+			order.scrollIntoView({
+				behavior: 'smooth',
+				block: 'start',
+			})
+
+			const elementOffset = window.pageYOffset - offset
+			window.scrollTo({
+				top: elementOffset,
+				behavior: 'smooth',
+			})
+		}
+
+		element.classList.toggle('active')
 	}
 }

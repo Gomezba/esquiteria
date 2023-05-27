@@ -5,6 +5,12 @@
 	max-width: 1440px;
 }
 
+@media (min-width: 620px) {
+	.main {
+		width: 50%;
+	}
+}
+
 .title {
 	color: var(--color-pink);
 	text-transform: uppercase;

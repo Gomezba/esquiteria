@@ -31,6 +31,7 @@ if (location.pathname.endsWith('/products-sold.html')) {
 								resultados[nombre] = {
 									cantidad: 0,
 									precioTotal: 0,
+									precioUnitario: precio, // Agregar la propiedad para el precio unitario
 								}
 							}
 
@@ -46,12 +47,16 @@ if (location.pathname.endsWith('/products-sold.html')) {
 
 				tbody.innerHTML = ''
 
-				productosOrdenados.forEach(([nombre, { cantidad, precioTotal }]) => {
+				productosOrdenados.forEach(([nombre, { cantidad, precioTotal, precioUnitario }]) => {
 					const row = document.createElement('tr')
 
 					const productoCell = document.createElement('td')
 					productoCell.textContent = nombre
 					row.appendChild(productoCell)
+
+					const precioUnitarioCell = document.createElement('td')
+					precioUnitarioCell.textContent = `$${precioUnitario}`
+					row.appendChild(precioUnitarioCell)
 
 					const cantidadCell = document.createElement('td')
 					cantidadCell.textContent = cantidad
@@ -106,7 +111,7 @@ if (location.pathname.endsWith('/products-sold.html')) {
 			tableData.push(rowData)
 		})
 
-		// Configurar el tamaño de fuente en 18px
+		// Configurar el tamaño de fuente en 24px
 		const styles = {
 			fontSize: 24,
 		}
@@ -122,11 +127,11 @@ if (location.pathname.endsWith('/products-sold.html')) {
 		doc.text(fechaDescarga, 117, 20) // Agregar fecha
 
 		doc.autoTable({
-			head: [['PRODUCTO', 'CAN', 'PRECIO TOTAL']],
+			head: [['PRODUCTO', 'PU', 'CAN', 'TOTAL']],
 			body: tableData,
 			startY: 30,
 			columnStyles: {
-				2: { halign: 'right' }, // Ajustar el ancho de la columna
+				3: { halign: 'right' }, // Ajustar el ancho de la columna
 			},
 			// margin: { top: 20 },
 			styles: styles, // Aplicar estilos de fuente

@@ -1,7 +1,0 @@
-table {
-	background-color: var(--dark-blue);
-}
-
-tbody tr td:nth-child(2) {
-	color: #ffffffcb;
-}

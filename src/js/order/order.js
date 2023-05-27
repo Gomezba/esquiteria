@@ -4,10 +4,14 @@ import { ConectorEscposAndroid } from '../tickets/ConectorEscposAndroid.js'
 const arrowBotanas = document.querySelector('[data-arrow="botanas"]')
 const arrowDesserts = document.querySelector('[data-arrow="desserts"]')
 const arrowDrinks = document.querySelector('[data-arrow="drinks"]')
+const arrowOthers = document.querySelector('[data-arrow="others"]')
+const arrowCustomized = document.querySelector('[data-arrow="customized"]')
 
 const botanasContainer = document.getElementById('botanas-container')
 const dessertsContainer = document.getElementById('desserts-container')
 const drinksContainer = document.getElementById('drinks-container')
+const othersContainer = document.getElementById('others-container')
+const customizedContainer = document.getElementById('customized-container')
 
 const productsTableContainer = document.getElementById('products-table')
 const totalOrder = document.getElementById('total-order')
@@ -25,6 +29,12 @@ const modal = document.getElementById('modal')
 const sinTicketBtn = document.getElementById('sinTicketBtn')
 const conTicketBtn = document.getElementById('conTicketBtn')
 const cancelarBtn = document.getElementById('cancelarBtn')
+
+const formCustomized = document.getElementById('form-customized')
+const btnCalc = document.getElementById('btn-calc')
+const addCustomized = document.getElementById('add-customized')
+const cancelCustomized = document.getElementById('cancel-customized')
+const customizedTotal = document.getElementById('customized-total')
 
 const ticketModal = document.getElementById('ticketModal')
 const imprimirTicketBtn = document.getElementById('imprimirTicketBtn')
@@ -99,6 +109,10 @@ function showProducts() {
 
 		if (drinksContainer.dataset.category === category) {
 			drinksContainer.append(fragment)
+		}
+
+		if (othersContainer.dataset.category === category) {
+			othersContainer.append(fragment)
 		}
 	})
 }
@@ -224,13 +238,29 @@ function deleteProductOrder(e) {
 	}).then((result) => {
 		if (result.isConfirmed) {
 			const idProduct = parseInt(e.target.id)
+
 			products.forEach((prod) => {
 				if (prod.id === idProduct) {
 					products = products.filter((prod) => prod.id !== idProduct)
-					document.querySelector(`[id="${prod.id}"]`).textContent = ''
-					document.querySelector(`[data-productprice="${prod.id}"]`).textContent = prod.priceUnit
-					document.querySelector(`[data-productprice="${prod.id}"]`).classList.remove('product-active')
-					document.querySelector(`[data-idsymbol="${prod.id}"]`).classList.remove('product-active')
+					const element = document.querySelector(`[id="${prod.id}"]`)
+					const priceElement = document.querySelector(`[data-productprice="${prod.id}"]`)
+					const idSymbolElement = document.querySelector(`[data-idsymbol="${prod.id}"]`)
+
+					if (!element || !priceElement || !idSymbolElement) {
+						// Omitir el elemento nulo y continuar con la siguiente iteración
+						createDataTable()
+						totalPrice()
+						disabledReceived()
+						customerPay.value = ''
+						moneyExchanges.textContent = ''
+						disabledConfirmMoneyExchanges()
+						return
+					}
+
+					element.textContent = ''
+					priceElement.textContent = prod.priceUnit
+					priceElement.classList.remove('product-active')
+					idSymbolElement.classList.remove('product-active')
 
 					createDataTable()
 					totalPrice()
@@ -244,12 +274,6 @@ function deleteProductOrder(e) {
 	})
 }
 
-// function totalPrice() {
-// 	const total = products.reduce((total, prodPrice) => total + prodPrice.price, 0)
-// 	totalOrder.textContent = total
-// 	totalGlobal = total
-// }
-
 function totalPrice() {
 	const total = products.reduce((total, prodPrice) => total + prodPrice.price, 0)
 	totalOrder.textContent = total
@@ -258,10 +282,16 @@ function totalPrice() {
 
 function showPriceQuantity() {
 	products.forEach((prod) => {
-		document.querySelector(`[id="${prod.id}"]`).textContent = prod.quantity
-		document.querySelector(`[data-productprice="${prod.id}"]`).textContent = prod.price
-		document.querySelector(`[data-productprice="${prod.id}"]`).classList.add('product-active')
-		document.querySelector(`[data-idsymbol="${prod.id}"]`).classList.add('product-active')
+		const quantityElement = document.querySelector(`[id="${prod.id}"]`)
+		const priceElement = document.querySelector(`[data-productprice="${prod.id}"]`)
+		const idSymbolElement = document.querySelector(`[data-idsymbol="${prod.id}"]`)
+		//Validación para cuando se agrega prod personalizado
+		if (quantityElement && priceElement && idSymbolElement) {
+			quantityElement.textContent = prod.quantity
+			priceElement.textContent = prod.price
+			priceElement.classList.add('product-active')
+			idSymbolElement.classList.add('product-active')
+		}
 	})
 }
 
@@ -295,16 +325,6 @@ function createDataTable() {
 	productsTableContainer.append(fragment)
 }
 
-function showAlert(msg) {
-	const alert = document.createElement('DIV')
-	alert.textContent = msg
-	alert.classList.add('error-product')
-	body.append(alert)
-	setTimeout(() => {
-		alert.remove()
-	}, 5000)
-}
-
 export function customerPaymentInput() {
 	customerPay.addEventListener('blur', (e) => {
 		e.preventDefault()
@@ -313,7 +333,7 @@ export function customerPaymentInput() {
 		const moneyEx = customerPayment - totalGlobal
 
 		if (customerPayment < totalGlobal) {
-			showAlert('El pago del cliente no puede ser menor al precio total de la venta')
+			showAlert('El pago no puede ser menor a la venta.', 'error-received')
 			btnConfirm.set
 			order.receivedBill = ''
 			order.moneyChange = ''
@@ -350,6 +370,14 @@ export function eventsListeners() {
 		e.target.classList.toggle('active')
 		drinksContainer.classList.toggle('desplegable-container-active')
 	})
+	arrowOthers.addEventListener('click', (e) => {
+		e.target.classList.toggle('active')
+		othersContainer.classList.toggle('desplegable-container-active')
+	})
+	arrowCustomized.addEventListener('click', (e) => {
+		e.target.classList.toggle('active')
+		customizedContainer.classList.toggle('desplegable-container-active')
+	})
 }
 
 export function showProductsHtml() {
@@ -382,7 +410,7 @@ request.onupgradeneeded = () => {
 }
 
 request.onerror = (err) => {
-	showAlert(`Ocurrio un error en la base de datos ${err}`)
+	showAlert(`Ocurrio un error en la base de datos ${err}`, 'error-fixed')
 }
 
 function addOrder(order) {
@@ -391,7 +419,7 @@ function addOrder(order) {
 	const request = objectStore.add(order)
 
 	request.onsuccess = () => {
-		alertExit('Orden completada con éxito')
+		showAlert('Orden completada con éxito', 'exit')
 		volverNormalidad()
 		closeModal()
 	}
@@ -453,14 +481,49 @@ function disabledReceived() {
 	}
 }
 
-function alertExit(msg) {
+function showAlert(msg, type) {
 	const alert = document.createElement('DIV')
-	alert.classList.add('order-exit')
 	alert.textContent = msg
-	body.append(alert)
-	setTimeout(() => {
-		alert.remove()
-	}, 1300)
+	if (type === 'error-fixed') {
+		body.append(alert)
+		alert.classList.add('error-product')
+		setTimeout(() => {
+			alert.remove()
+		}, 5000)
+	}
+
+	if (type === 'error-customized') {
+		alert.classList.add('error-product')
+		customizedContainer.prepend(alert)
+		setTimeout(() => {
+			alert.remove()
+		}, 1300)
+	}
+
+	if (type === 'exit-customized') {
+		alert.classList.add('order-exit')
+		customizedContainer.prepend(alert)
+		setTimeout(() => {
+			alert.remove()
+		}, 1300)
+	}
+
+	if (type === 'error-received') {
+		alert.classList.add('error')
+		customerPay.closest('.received-bill-container').after(alert)
+		setTimeout(() => {
+			alert.remove()
+		}, 3000)
+	}
+
+	if (type === 'exit') {
+		alert.classList
+		alert.classList.add('order-exit')
+		body.append(alert)
+		setTimeout(() => {
+			alert.remove()
+		}, 1300)
+	}
 }
 
 function volverNormalidad() {
@@ -500,7 +563,6 @@ function closeModal() {
 // })
 
 const URLPlugin = 'http://localhost:8000'
-// const URLPlugin = 'https://la-esquiteria-zac.netlify.app'
 if (location.pathname.endsWith('/order.html')) {
 	sinTicketBtn.addEventListener('click', function () {
 		// Acciones para orden sin ticket
@@ -540,6 +602,90 @@ if (location.pathname.endsWith('/order.html')) {
 
 	cancelarImpresionBtn.addEventListener('click', function () {
 		closeModal()
+	})
+
+	// formm customzied
+
+	btnCalc.addEventListener('click', (e) => {
+		e.preventDefault()
+		const productNameInput = document.getElementById('product-name')
+		const productName = productNameInput.value.trim()
+		const prodPriceInput = document.getElementById('product-price')
+		const productPrice = Number(prodPriceInput.value)
+		const quantProduct = document.getElementById('quant-prod')
+		const quantityValue = parseInt(quantProduct.value)
+
+		const moneyRegex = /^(?!0[0-9])[0-9]*(\.[0-9]+)?$/
+
+		if (productName === '' || productPrice == '') {
+			showAlert('Ambos campos son obligatorios', 'error-customized')
+			return
+		}
+		if (isNaN(productPrice) || !moneyRegex.test(productPrice) || productPrice <= 0.99) {
+			showAlert('Precio incorrecto', 'error-customized')
+			return
+		}
+
+		quantProduct.addEventListener('change', () => {
+			addCustomized.setAttribute('disabled', 'true')
+			customizedTotal.textContent = ''
+		})
+
+		prodPriceInput.addEventListener('input', () => {
+			addCustomized.setAttribute('disabled', 'true')
+			customizedTotal.textContent = ''
+		})
+
+		productNameInput.addEventListener('input', () => {
+			addCustomized.setAttribute('disabled', 'true')
+		})
+
+		const total = productPrice * quantityValue
+		customizedTotal.textContent = total
+		addCustomized.removeAttribute('disabled')
+
+		productsStorage.forEach((prod) => {
+			if (prod.name === productName) {
+				showAlert('Nombre de producto existente en el sistema', 'error-customized')
+				addCustomized.setAttribute('disabled', 'true')
+			}
+		})
+	})
+
+	formCustomized.addEventListener('submit', (e) => {
+		e.preventDefault()
+
+		const productName = formCustomized.querySelector('#product-name').value
+		const productPrice = formCustomized.querySelector('#product-price').value
+		const total = formCustomized.querySelector('#customized-total').textContent
+		const quantityValue = formCustomized.querySelector('#quant-prod').value
+
+		const productCustomized = {
+			name: productName,
+			quantity: parseInt(quantityValue),
+			price: Number(total),
+			priceUnit: Number(productPrice),
+			id: Date.now(),
+		}
+
+		products.push(productCustomized)
+		createDataTable()
+		totalPrice()
+		customizedTotal.textContent = ''
+		formCustomized.reset()
+		showAlert('Producto agregado', 'exit-customized')
+		addCustomized.setAttribute('disabled', 'true')
+		customerPay.removeAttribute('disabled')
+		customerPay.value = ''
+		moneyExchanges.textContent = ''
+		btnConfirm.setAttribute('disabled', 'true')
+	})
+
+	cancelCustomized.addEventListener('click', (e) => {
+		e.preventDefault()
+		addCustomized.setAttribute('disabled', 'true')
+		customizedTotal.textContent = ''
+		formCustomized.reset()
 	})
 }
 
@@ -635,7 +781,7 @@ const imprimirTicket = async (macImpresora, licencia) => {
 	try {
 		const respuesta = await conector.imprimirEn(macImpresora)
 		if (respuesta === true) {
-			alertExit('Ticket exitoso')
+			showAlert('Ticket exitoso', 'exit')
 		} else {
 			alert('Error: ' + respuesta)
 		}
@@ -657,7 +803,7 @@ export function createOrder() {
 
 	btnCancel.addEventListener('click', () => {
 		if (!products.length) {
-			showAlert('"No hay ninguna orden disponible para cancelar en este momento."')
+			showAlert('"No hay ninguna orden disponible para cancelar en este momento."', 'error-fixed')
 			return
 		}
 
@@ -669,8 +815,8 @@ export function createOrder() {
 			cancelButtonText: 'Cancelar',
 		}).then((result) => {
 			if (result.isConfirmed) {
-				alertExit('La orden ha sido eliminada exitosamente.')
 				volverNormalidad()
+				showAlert('La orden ha sido eliminada exitosamente.', 'exit')
 			}
 		})
 	})

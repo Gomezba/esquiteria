@@ -78,9 +78,57 @@
 					<a data-arrow="drinks" class="arrow-down"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 					<div id="drinks-container" class="desplegable-container" data-category="bebidas"></div>
 				</section>
+
+				<section class="section section-others">
+					<h3 class="subtitle">Otros</h3>
+					<a data-arrow="others" class="arrow-down"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
+					<div id="others-container" class="desplegable-container" data-category="otros"></div>
+				</section>
+
+				<section class="section section-customized">
+					<h3 class="subtitle">Personalizado</h3>
+					<a data-arrow="customized" class="arrow-down"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
+					<div id="customized-container" class="desplegable-container" data-category="customized">
+						<form id="form-customized" class="customized-options">
+							<div>
+								<label for="product-name">Nombre del producto</label>
+								<input type="text" id="product-name" />
+							</div>
+							<div>
+								<label for="product-price">Precio del producto</label>
+								<input type="number" id="product-price" step="0.01" />
+							</div>
+							<div>
+								<label for="quant-prod">Cantidad de producto</label>
+								<select id="quant-prod" class="select-quantity">
+									<!-- <option disabled selected value="">Seleccionar</option> -->
+									<option value="1" selected>1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+								</select>
+							</div>
+							<div class="personalized-total-label">Total: $<span id="customized-total" class="customized-total"></span></div>
+							<button id="btn-calc" class="btn btn-primary btn-calc" type="button">Calcular</button>
+							<div>
+								<button id="add-customized" type="submit" class="btn btn-save" disabled>Agregar</button>
+								<button id="cancel-customized" type="button" class="btn btn-cancel">Cancelar</button>
+							</div>
+						</form>
+					</div>
+				</section>
 			</section>
 			<section class="order-specification-section">
-				<label class="label-details" for="details">Información adicional</label>
+				<h3 class="subtitle subtitle-details">Detalles de orden</h3>
+				<label class="label-customer" for="customer-name">Nombre cliente (Opcional)</label>
+				<input id="customer-name" class="client-name" type="text" />
+				<label class="label-details" for="details">Información adicional (Opcional)</label>
 				<textarea
 					class="details-area"
 					title="Especificación de orden"
@@ -92,9 +140,6 @@
 			</section>
 
 			<section class="section-details">
-				<h3 class="subtitle subtitle-details">Detalles de orden</h3>
-				<label class="label-customer" for="customer-name">Nombre cliente</label>
-				<input id="customer-name" class="client-name" type="text" />
 				<table class="table-order">
 					<thead>
 						<tr>
@@ -120,6 +165,7 @@
 						</div>
 					</div>
 					<span class="money-exchanges">Cambio: $<span id="money-exchanges"></span></span>
+
 					<div class="confirm-cancel-order">
 						<button type="button" id="confirm" class="btn btn-primary btn-confirm" disabled>Confirmar</button>
 						<button type="button" id="cancel" class="btn btn-cancel">Cancelar</button>
@@ -146,6 +192,7 @@
 						class="input-mac"
 						placeholder="Ejemplo: 00:11:22:33:44:55"
 						value="66:32:ED:C8:E2:59"
+						disabled
 					/>
 					<div class="control" hidden>
 						<input id="licencia" class="input" type="text" placeholder="Licencia si es que cuentas con ella" />
@@ -157,6 +204,5 @@
 		</main>
 		<script src="../../js/app.js" type="module"></script>
 		<script src="../../js/tickets/ConectorEscposAndroid.js" type="module"></script>
-		<script src="../../js/tickets/createTicket.js" type="module"></script>
 	</body>
 </html>

@@ -94,7 +94,8 @@ input:focus {
 }
 
 button {
-	border: none;
+	border: 0;
+	outline: none;
 }
 
 /* ---------- layout styles ---------- */
@@ -115,7 +116,6 @@ body {
 }
 
 .header {
-	/* border: 1px solid red; */
 	position: sticky;
 	top: 0;
 	z-index: 10;
@@ -129,7 +129,6 @@ body {
 	justify-content: space-between;
 	background-color: var(--almost-dark-gray);
 	margin-top: 1em;
-	/* border: 1px solid red; */
 }
 
 .figure {
@@ -220,6 +219,58 @@ body {
 	background-color: var(--dark-green);
 }
 
+/* Styles menu responsive */
+
+@media (min-width: 640px) {
+	.hamburger-icon {
+		display: none;
+	}
+
+	.menu {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		position: initial;
+		background-color: transparent;
+		width: auto;
+		top: 0;
+		box-shadow: none;
+		border-radius: initial;
+		transform: none;
+		transition: none;
+	}
+
+	.menu__item {
+		padding: var(--pd-sm);
+		text-transform: uppercase;
+		text-align: center;
+		border-bottom: none;
+		filter: drop-shadow(0px 0px 60px white);
+	}
+
+	.menu__link {
+		font-size: var(--fs-md);
+		color: #bdbaba;
+		font-weight: var(--fw-bold);
+	}
+
+	.menu__link:nth-child(1)::after {
+		bottom: -2px;
+	}
+
+	.menu__link--yellow {
+		filter: none;
+	}
+
+	.menu__link--cyan {
+		filter: none;
+	}
+
+	.menu__link--green {
+		filter: none;
+	}
+}
+
 .main {
 	grid-area: main;
 	min-height: 100vh;
@@ -273,6 +324,9 @@ tbody td {
 
 tbody tr td:nth-child(2) {
 	color: #8b8b8b80;
+}
+tbody tr td:nth-child(3) {
+	color: #04e60498;
 }
 
 tfoot td {

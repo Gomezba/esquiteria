@@ -1,3 +1,8 @@
+@media (min-width: 620px) {
+	.main {
+		width: 50%;
+	}
+}
 .btn-readPrices {
 	display: block;
 	width: 100%;
@@ -30,6 +35,8 @@
 }
 
 .category-container h3 {
+	text-align: center;
+	width: 100%;
 	color: var(--dark-gray);
 }
 
@@ -114,7 +121,6 @@
 	background-color: var(--almost-dark-gray);
 	border-radius: var(--br);
 	z-index: 5;
-	/* border: 1px solid red; */
 }
 
 .form-product-new.is-active {
@@ -129,3 +135,9 @@
 }
 
 /* -------------------------------------- */
+
+.warning {
+	background-color: rgb(83, 72, 57);
+	border-radius: var(--br);
+	width: 70px;
+}
