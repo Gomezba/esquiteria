@@ -82,12 +82,16 @@
 	visibility: hidden;
 }
 
-.desplegable-container:empty::before {
+.desplegable-container:empty::before,
+.desplegable-container-specification:empty::before {
 	display: block;
 	content: 'No se han configurado productos en el sistema. Por favor, diríjase a la sección de configuración para agregarlos';
 	color: #ffffffa4;
 	text-align: center;
 	padding: 0 0.3em;
+}
+.desplegable-container-specification:empty::before {
+	content: 'No se han agregado productos al carrito';
 }
 
 .desplegable-container-active {
@@ -251,6 +255,7 @@
 	background-color: var(--dark-blue);
 	color: #fff;
 	border-radius: var(--br);
+	white-space: pre-line;
 }
 
 .label-customer {
@@ -346,4 +351,105 @@
 
 .btn-save[disabled] {
 	background-color: var(--color-disabled);
+}
+
+/* especification styles producst */
+
+.specification__subtitle {
+	color: var(--dark-gray);
+	text-align: center;
+	margin: 0;
+}
+
+.specification-esquites,
+.specification-esquites-med,
+.specification-doriesquite,
+.specification-doriloco,
+.specification-tostiloco,
+.specification-fresas,
+.specification-fresas-med,
+.specification-gelatina,
+.specification-gelatina-med,
+.specification-manzana,
+.specification-manzana-med,
+.specification-gomiboing {
+	display: none;
+}
+
+.specification-active {
+	display: block;
+}
+
+.specification {
+	--dark-blue: #1a242e;
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap-sm);
+	background-color: var(--dark-blue);
+}
+
+.specification__container {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap-sm);
+	margin-bottom: 1.5em;
+}
+
+.specification__container > * {
+	border: 1px solid rgba(177, 166, 166, 0.164);
+}
+
+.specification__container label {
+	display: flex;
+	align-items: center;
+	gap: var(--gap-md);
+	color: rgb(103, 153, 194);
+}
+
+.specification__container select {
+	width: 150px;
+}
+
+.specification__container input {
+	accent-color: #1f9974;
+}
+
+.specification__select {
+	display: flex;
+	gap: var(--gap-sm);
+	margin-bottom: var(--gap-md);
+}
+
+.specification__select select {
+	width: 40%;
+	height: 30px;
+}
+
+.specification__prod {
+	border-bottom: 1px solid rgba(202, 198, 198, 0.575);
+	border-top: 1px solid rgba(202, 198, 198, 0.575);
+	padding: 1em 0.3em;
+}
+.specification__prod-name {
+	color: #ddd;
+	font-weight: var(--fw-bold);
+	filter: drop-shadow(0px 0px 9px yellow);
+	margin: 0;
+}
+.specification__buttons {
+	display: flex;
+	justify-content: center;
+	height: 30px;
+	gap: var(--gap-sm);
+}
+
+.specification__buttons button {
+	padding: 0 0.5em;
+}
+
+@media (min-width: 320px) and (max-width: 350px) {
+	.specification__buttons button {
+		padding: 0 0.5em;
+		font-size: 13px;
+	}
 }

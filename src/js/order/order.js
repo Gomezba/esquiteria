@@ -6,12 +6,27 @@ const arrowDesserts = document.querySelector('[data-arrow="desserts"]')
 const arrowDrinks = document.querySelector('[data-arrow="drinks"]')
 const arrowOthers = document.querySelector('[data-arrow="others"]')
 const arrowCustomized = document.querySelector('[data-arrow="customized"]')
+const arrowSpecification = document.querySelector('[data-arrow="specification"]')
 
 const botanasContainer = document.getElementById('botanas-container')
 const dessertsContainer = document.getElementById('desserts-container')
 const drinksContainer = document.getElementById('drinks-container')
 const othersContainer = document.getElementById('others-container')
 const customizedContainer = document.getElementById('customized-container')
+const specificationContainer = document.getElementById('specification-container')
+
+const esquitesContainer = document.getElementById('specification-esquites')
+const esquitesMedContainer = document.getElementById('specification-esquites-med')
+const doriesquiteContainer = document.getElementById('specification-doriesquite')
+const dorilocoContainer = document.getElementById('specification-doriloco')
+const tostilocoContainer = document.getElementById('specification-tostiloco')
+const fresasContainer = document.getElementById('specification-fresas')
+const fresasMedContainer = document.getElementById('specification-fresas-med')
+const gelatinaContainer = document.getElementById('specification-gelatina')
+const gelatinaMedContainer = document.getElementById('specification-gelatina-med')
+const manzanaContainer = document.getElementById('specification-manzana')
+const manzanaMedContainer = document.getElementById('specification-manzana-med')
+const gomiboingContainer = document.getElementById('specification-gomiboing')
 
 const productsTableContainer = document.getElementById('products-table')
 const totalOrder = document.getElementById('total-order')
@@ -64,14 +79,23 @@ function showProducts() {
 		productContainBtn.classList.add('product__contain-btn')
 		const btnRemove = document.createElement('A')
 		btnRemove.classList.add('btn', 'product__btn', 'btn-remove')
+		btnRemove.setAttribute('id', name)
 		btnRemove.textContent = '-'
 		btnRemove.addEventListener('click', removeProduct)
+		if (btnRemove.id === 'Esquite') {
+			btnRemove.addEventListener('click', removeUltimateFormEsquites)
+		}
 
 		const btnAdd = document.createElement('A')
 		btnAdd.classList.add('btn', 'product__btn', 'btn-add')
 		btnAdd.textContent = '+'
+		btnAdd.setAttribute('id', name)
 
 		btnAdd.addEventListener('click', addProduct)
+
+		if (btnAdd.id === 'Esquite') {
+			btnAdd.addEventListener('click', genFormEsquite)
+		}
 
 		const productContainerQuantity = document.createElement('DIV')
 		productContainerQuantity.classList.add('product__container-quantity')
@@ -138,6 +162,281 @@ function resetOrder() {
 	order.total = ''
 	order.receivedBill = ''
 	order.moneyChange = ''
+}
+
+// TODO REMUEVE FORMULARIO DEL CONTENEDOR ESQUITES
+function removeUltimateFormEsquites() {
+	const forms = esquitesContainer.getElementsByClassName('specification__prod')
+
+	if (forms.length > 0) {
+		let lastForm = forms[forms.length - 1]
+		lastForm.remove()
+	}
+}
+
+const obj = document.getElementById('obj')
+obj.addEventListener('click', () => {
+	console.log(detalles)
+})
+
+let detalles = []
+
+// TODO AÑADIR DETALLES AL TEXTAREA
+function addDetailsArea() {
+	const newContent = detalles.map((det) => det.detalle).join('\n')
+	orderDetails.value = newContent
+}
+
+// TODO ENVIAR FORMULMARIO DETALLES
+function enviarFormulario(e, form) {
+	e.preventDefault()
+
+	// Obtener el identificador único del formulario
+	const formId = form.getAttribute('data-form-id')
+
+	// Verificar si no se ha seleccionado la primera opción en algún select
+	const selects = Array.from(form.querySelectorAll('select'))
+	const isAnyOptionSelected = selects.some((select) => select.value !== select.querySelector('option').value)
+
+	// Construir la oración de acuerdo al resultado
+	let sentence = '1 Esquite con todo'
+
+	if (isAnyOptionSelected) {
+		sentence = '1 Esquite'
+
+		const selectedValues = selects
+			.filter((select) => select.value !== select.querySelector('option').value)
+			.map((select) => select.value)
+
+		if (selectedValues.length > 0) {
+			sentence += ' ' + selectedValues.join(', ')
+		}
+	}
+
+	// Buscar el detalle correspondiente al formulario en el array global
+	const detalleIndex = detalles.findIndex((detalle) => detalle.id === formId)
+
+	// Si se encontró el detalle, actualizarlo; de lo contrario, crear un nuevo objeto de detalle
+	if (detalleIndex !== -1) {
+		detalles[detalleIndex].detalle = sentence
+	} else {
+		// Crear el objeto de detalle
+		const detalle = {
+			id: formId,
+			detalle: sentence,
+			name: 'esquite',
+		}
+
+		// Agregar el objeto de detalle al array global
+		detalles.push(detalle)
+	}
+
+	// Imprimir el array de detalles en la consola (opcional)
+	console.log(detalles)
+
+	// Llamar a la función para actualizar el área de detalles
+	addDetailsArea()
+}
+
+// TODO GENERA EL FORMULARIO DE ESQUITES DETALLES
+
+function genFormEsquite() {
+	const html = `
+    <form class="specification__prod" data-form-id="${Date.now()}">
+      <div class="specification__select">
+        <p class="specification__prod-name"> Esquite</p>
+        <select>
+          <option value="normal" selected>Normal</option>
+          <option value="mas caldo que grano">Mas caldo que grano</option>
+          <option value="mas grano que caldo">Mas grano que caldo</option>
+        </select>
+      </div>
+      <div class="specification__container">
+        <div>
+          <label>Mayonesa</label>
+          <select>
+            <option value="mayonesa" selected>Mayonesa</option>
+            <option value="sin mayonesa">Sin mayonesa</option>
+            <option value="poca mayonesa">Poca mayonesa</option>
+            <option value="mucha mayonesa">Mucha mayonesa</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="specification__label">Queso</label>
+          <select>
+            <option value="queso" selected>Queso</option>
+            <option value="sin queso">Sin queso</option>
+            <option value="poco queso">Poco queso</option>
+            <option value="mucho queso">Mucho queso</option>
+          </select>
+        </div>
+        <div>
+          <label class="specification__label">Chile</label>
+          <select>
+            <option value="chile" selected>Chile</option>
+            <option value="sin chile">Sin chile</option>
+            <option value="poco chile">Poco chile</option>
+            <option value="mucho chile">Mucho chile</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="specification__label">Limón</label>
+          <select>
+            <option value="limon" selected>Limón</option>
+            <option value="sin limon">Sin limón</option>
+            <option value="poco limon">Poco limón</option>
+            <option value="mucho limon">Mucho limón</option>
+          </select>
+        </div>
+      </div>
+      <div class="specification__buttons">
+        <button type="button" class="btn btn-primary">Agregar detalle</button>
+        <button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+      </div>
+    </form>
+  `
+
+	esquitesContainer.innerHTML += html
+
+	// Obtener el formulario recién creado
+	const newForm = esquitesContainer.lastElementChild
+
+	// Agregar el formulario al contenedor
+	esquitesContainer.appendChild(newForm)
+	// Llamar a la función para actualizar los contadores de los formularios
+	updateEsquiteCounts(esquitesContainer, 'Esquite')
+}
+
+// TODO ESCUCHADOR DE CONTENEDOR DE DETALLES
+
+// Asignar el controlador de eventos al contenedor
+esquitesContainer.addEventListener('click', function (event) {
+	if (event.target.classList.contains('btn-primary')) {
+		const btnDelete = event.target.nextElementSibling
+		btnDelete.removeAttribute('disabled')
+		const form = event.target.closest('form')
+		enviarFormulario(event, form)
+		showAlert('Detalle agregado', 'exit')
+	}
+
+	if (event.target.classList.contains('btn-cancel')) {
+		const esqProd = document.querySelector('.product[data-name="Esquite"]')
+		const idProduct = parseInt(esqProd.dataset.id)
+		removeDetails(esqProd, idProduct)
+		const form = event.target.closest('form')
+		const formId = form.dataset.formId
+		form.remove()
+		removeDetailsById(formId, 'Esquite')
+		showAlert('Producto eliminado', 'exit')
+	}
+})
+
+function removeDetailsById(id, prod) {
+	const index = detalles.findIndex((det) => det.id === id)
+	if (index !== -1) {
+		detalles.splice(index, 1)
+		if (prod === 'Esquite') {
+			updateEsquiteCounts(esquitesContainer, prod)
+			console.log(esquitesContainer)
+		}
+		if (prod === 'Esquite 1/2') {
+			updateEsquiteCounts(esquitesMedContainer, prod)
+		}
+		if (prod === 'Doriesquite') {
+			updateEsquiteCounts(doriesquiteContainer, prod)
+		}
+		if (prod === 'Doriloco') {
+			updateEsquiteCounts(dorilocoContainer, prod)
+		}
+		if (prod === 'Tostiloco') {
+			updateEsquiteCounts(tostilocoContainer, prod)
+		}
+		if (prod === 'Fresas C.C') {
+			updateEsquiteCounts(fresasContainer, prod)
+		}
+		if (prod === 'Fresas C.C 1/2') {
+			updateEsquiteCounts(fresasMedContainer, prod)
+		}
+		if (prod === 'Gelatina C.D') {
+			updateEsquiteCounts(gelatinaContainer, prod)
+		}
+		if (prod === 'Gelatina C.D 1/2') {
+			updateEsquiteCounts(gelatinaMedContainer, prod)
+		}
+		if (prod === 'Ensalada D.M') {
+			updateEsquiteCounts(manzanaContainer, prod)
+		}
+		if (prod === 'Ensalada D.M 1/2') {
+			updateEsquiteCounts(manzanaMedContainer, prod)
+		}
+		if (prod === 'Gomiboing') {
+			updateEsquiteCounts(gomiboingContainer, prod)
+		}
+		addDetailsArea()
+	}
+}
+
+function updateEsquiteCounts(container, nameProd) {
+	const forms = Array.from(container.getElementsByClassName('specification__prod'))
+
+	forms.forEach((form, index) => {
+		const prodName = form.querySelector('.specification__prod-name')
+		prodName.textContent = `${index + 1} ${nameProd}`
+	})
+}
+
+// TODO FUNCION PARA REMOVER LOS PRODUCTOS DESDE DETALLES
+function removeDetails(product, idProduct) {
+	resetCustomerPayMoneyChange()
+
+	products.forEach((prod) => {
+		if (prod.id === idProduct) {
+			if (product.quantity !== 0) {
+				prod.quantity--
+				const priceProduct = prod.price
+				const priceUnit = prod.priceUnit
+				prod.price = priceProduct - priceUnit
+				showPriceQuantity()
+				createDataTable()
+				totalPrice()
+				disabledReceived()
+				disabledConfirmMoneyExchanges()
+
+				if (prod.quantity === 0) {
+					products = products.filter((prod) => prod.id !== idProduct)
+					document.querySelector(`[id="${prod.id}"]`).textContent = ''
+					document.querySelector(`[data-productprice="${prod.id}"]`).textContent = product.dataset.price
+
+					document.querySelector(`[data-productprice="${prod.id}"]`).classList.remove('product-active')
+					document.querySelector(`[data-idsymbol="${prod.id}"]`).classList.remove('product-active')
+
+					createDataTable()
+					totalPrice()
+					disabledReceived()
+					disabledConfirmMoneyExchanges()
+				}
+			}
+		}
+	})
+}
+
+// TODO FUNCION PARA VOLVER A LA NORMALIDAD DE DETALLES
+function resetDetallesContainer() {
+	detalles = []
+	orderDetails.textContent = ''
+	esquitesContainer.textContent = ''
+	esquitesMedContainer.textContent = ''
+	doriesquiteContainer.textContent = ''
+	dorilocoContainer.textContent = ''
+	tostilocoContainer.textContent = ''
+	fresasContainer.textContent = ''
+	gelatinaContainer.textContent = ''
+	gelatinaMedContainer.textContent = ''
+	manzanaContainer.textContent = ''
+	manzanaMedContainer.textContent = ''
+	gomiboingContainer.textContent = ''
 }
 
 function addProduct(e) {
@@ -244,6 +543,11 @@ function deleteProductOrder(e) {
 
 			products.forEach((prod) => {
 				if (prod.id === idProduct) {
+					if (prod.name === 'Esquite') {
+						detalles = detalles.filter((det) => !det.name === 'Esquite')
+						addDetailsArea()
+						esquitesContainer.textContent = ''
+					}
 					products = products.filter((prod) => prod.id !== idProduct)
 					const element = document.querySelector(`[id="${prod.id}"]`)
 					const priceElement = document.querySelector(`[data-productprice="${prod.id}"]`)
@@ -381,6 +685,10 @@ export function eventsListeners() {
 		e.target.classList.toggle('active')
 		customizedContainer.classList.toggle('desplegable-container-active')
 	})
+	arrowSpecification.addEventListener('click', (e) => {
+		e.target.classList.toggle('active')
+		specificationContainer.classList.toggle('desplegable-container-active')
+	})
 }
 
 export function showProductsHtml() {
@@ -424,6 +732,7 @@ function addOrder(order) {
 	request.onsuccess = () => {
 		showAlert('Orden completada con éxito', 'exit')
 		volverNormalidad()
+		resetDetallesContainer()
 		closeModal()
 	}
 }
@@ -557,12 +866,6 @@ function closeModal() {
 	ticketModal.style.display = 'none'
 	macInput.value = ''
 }
-
-// const obj = document.getElementById('obj')
-// obj.addEventListener('click', () => {
-// 	console.log(products)
-// 	console.log(order)
-// })
 
 const URLPlugin = 'http://localhost:8000'
 if (location.pathname.endsWith('/order.html')) {
@@ -818,6 +1121,7 @@ export function createOrder() {
 		}).then((result) => {
 			if (result.isConfirmed) {
 				volverNormalidad()
+				resetDetallesContainer()
 				showAlert('La orden ha sido eliminada exitosamente.', 'exit')
 			}
 		})
