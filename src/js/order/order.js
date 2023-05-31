@@ -27,6 +27,8 @@ const gelatinaMedContainer = document.getElementById('specification-gelatina-med
 const manzanaContainer = document.getElementById('specification-manzana')
 const manzanaMedContainer = document.getElementById('specification-manzana-med')
 const gomiboingContainer = document.getElementById('specification-gomiboing')
+const aguaFrescaContainer = document.getElementById('specification-agua-fresca')
+const aguaFrescaMedContainer = document.getElementById('specification-agua-fresca-med')
 
 const productsTableContainer = document.getElementById('products-table')
 const totalOrder = document.getElementById('total-order')
@@ -124,6 +126,12 @@ function showProducts() {
 		if (btnRemove.id === 'Gomiboing') {
 			btnRemove.addEventListener('click', removeUltimateFormGomiboing)
 		}
+		if (btnRemove.id === 'Agua F.1L') {
+			btnRemove.addEventListener('click', removeUltimateAguaFresca)
+		}
+		if (btnRemove.id === 'Agua F.1/2') {
+			btnRemove.addEventListener('click', removeUltimateAguaFrescaMed)
+		}
 
 		const btnAdd = document.createElement('A')
 		btnAdd.classList.add('btn', 'product__btn', 'btn-add')
@@ -168,6 +176,12 @@ function showProducts() {
 		}
 		if (btnAdd.id === 'Gomiboing') {
 			btnAdd.addEventListener('click', genFormGomiboing)
+		}
+		if (btnRemove.id === 'Agua F.1L') {
+			btnAdd.addEventListener('click', genFormAguaFresca)
+		}
+		if (btnRemove.id === 'Agua F.1/2') {
+			btnAdd.addEventListener('click', genFormAguaFrescaMed)
 		}
 
 		const productContainerQuantity = document.createElement('DIV')
@@ -333,6 +347,23 @@ function removeUltimateFormGomiboing() {
 		let lastForm = forms[forms.length - 1]
 		lastForm.remove()
 	}
+}
+function removeUltimateAguaFresca() {
+	const forms = aguaFrescaContainer.getElementsByClassName('specification__prod')
+
+	if (forms.length > 0) {
+		let lastForm = forms[forms.length - 1]
+		lastForm.remove()
+	}
+}
+function removeUltimateAguaFrescaMed() {
+	const forms = aguaFrescaMedContainer.getElementsByClassName('specification__prod')
+
+	if (forms.length > 0) {
+		let lastForm = forms[forms.length - 1]
+		lastForm.remove()
+	}
+	genFormAguaFrescaMed
 }
 
 let detalles = []
@@ -568,27 +599,28 @@ function genFormDoriesquite() {
 	<div class="specification__select">
 		<p class="specification__prod-name">Doriesquite</p>
 		<select>
-		<option value="" disabled>Seleccionar</option>
-		<option value="nacho" selected>Nacho</option>
-		<option value="tostitos">Tostitos</option>
-		<option value="flaming">Flaming</option>
-		<option value="pizzerolas">Pizzerolas</option>
-		<option value="incognita">Incog</option>
-		<option value="dinamita">Dinamita</option>
-		<option value="fritos">Fritos</option>
-		<option value="cheto flaming">Cheto flaming</option>
-		<option value="rancheritos">Rancheritos</option>
-		<option value="rufles">Rufles</option>
-		<option value="crujitos">Crujitos</option>
-		<option value="sabritas">Sabritas</option>
-		<option value="sabritas adobadas">Sabritas.A</option>
-		<option value="sabritas crujientes">Sabritas.C</option>
-		<option value="sabritas flaming">Sabritas.F</option>
-		<option value="colmillos">Colmillo</option>
-		<option value="takis fuego">Takis fuego</option>
-		<option value="takis guacamole">Takis guacamole</option>
-		<option value="takis amarillos">Takis salsa brava</option>
-	</select>
+			<option value="" disabled>Seleccionar</option>
+			<option value="nacho" selected>Nacho</option>
+			<option value="flaming">Flaming</option>
+			<option value="incognita">Incognita</option>
+			<option value="sabritas crujientes moradas">Sabritas C. Moradas</option>
+			<option value="chetos flaming">Chetos flaming</option>
+			<option value="tostito">Tostito</option>
+			<option value="chetos naranja">Chetos naranja</option>
+			<option value="sabritas flaming">Sabritas.F</option>
+			<option value="crujitos">Crujitos</option>
+			<option value="rancheritos">Rancheritos</option>
+			<option value="pizzerolas">Pizzerolas</option>
+			<option value="dinamita">Dinamita</option>
+			<option value="fritos">Fritos</option>
+			<option value="rufles">Rufles</option>
+			<option value="sabritas clasicas">Sabritas clásicas</option>
+			<option value="sabritas adobadas">Sabritas.A</option>
+			<option value="colmillos">Colmillo</option>
+			<option value="takis fuego">Takis fuego</option>
+			<option value="takis guacamole">Takis guacamole</option>
+			<option value="takis amarillos">Takis salsa brava</option>
+		</select>
 
 		<select>
 			<option value="normal" selected>Normal</option>
@@ -613,9 +645,9 @@ function genFormDoriesquite() {
 			<label class="specification__label">Queso polvo</label>
 		<select>
 			<option value="queso" selected>Queso polvo</option>
-			<option value="s/queso">Sin queso</option>
-			<option value="p/queso">Poco queso</option>
-			<option value="m/queso">Mucho queso</option>
+			<option value="s/queso polvo">Sin queso polvo</option>
+			<option value="p/queso polvo">Poco queso polvo</option>
+			<option value="m/queso polvo">Mucho queso polvo</option>
 			<option value="solo con queso polvo">Solo queso polvo</option>
 		</select>
 		</div>
@@ -682,20 +714,21 @@ function genFormDoriloco() {
 						<select>
 						<option value="" disabled>Seleccionar</option>
 						<option value="nacho" selected>Nacho</option>
-						<option value="tostitos">Tostitos</option>
 						<option value="flaming">Flaming</option>
+						<option value="incognita">Incognita</option>
+						<option value="sabritas crujientes moradas">Sabritas C. Moradas</option>
+						<option value="chetos flaming">Chetos flaming</option>
+						<option value="tostito">Tostito</option>
+						<option value="chetos naranja">Chetos naranja</option>
+						<option value="sabritas flaming">Sabritas.F</option>
+						<option value="crujitos">Crujitos</option>
+						<option value="rancheritos">Rancheritos</option>
 						<option value="pizzerolas">Pizzerolas</option>
-						<option value="incognita">Incog</option>
 						<option value="dinamita">Dinamita</option>
 						<option value="fritos">Fritos</option>
-						<option value="cheto flaming">Cheto flaming</option>
-						<option value="rancheritos">Rancheritos</option>
 						<option value="rufles">Rufles</option>
-						<option value="crujitos">Crujitos</option>
-						<option value="sabritas">Sabritas</option>
+						<option value="sabritas clasicas">Sabritas clásicas</option>
 						<option value="sabritas adobadas">Sabritas.A</option>
-						<option value="sabritas crujientes">Sabritas.C</option>
-						<option value="sabritas flaming">Sabritas.F</option>
 						<option value="colmillos">Colmillo</option>
 						<option value="takis fuego">Takis fuego</option>
 						<option value="takis guacamole">Takis guacamole</option>
@@ -1013,22 +1046,13 @@ function genFormFresas() {
 		<div>
 			<label class="specification__label"> Lechera </label>
 			<select>
-				<option value="lechera" selected>Lechera</option>
-				<option value="s/lechera">Sin lechera</option>
+				<option value="sin lechera" selected>Sin lechera</option>
+				<option value="c/lechera">Con lechera</option>
 				<option value="p/lechera">Poca lechera</option>
 				<option value="m/lechera">Mucha lechera</option>
 				<option value="solo con lechera">Solo lechera</option>
 			</select>
-		</div>
-		<div>
-			<label class="specification__label"> Banderilla</label>
-			<select>
-				<option value="banderilla" selected>Banderilla</option>
-				<option value="s/banderilla">Sin banderilla</option>
-				<option value="b/extra">Banderilla extra</option>
-				<option value="solo con banderilla">Solo banderilla</option>
-			</select>
-		</div>
+		</div>	
 
 		<div>
 			<p class="prev-label">Previsualización de detalle</p>
@@ -1109,22 +1133,13 @@ function genFormFresasMed() {
 		<div>
 			<label class="specification__label"> Lechera </label>
 			<select>
-				<option value="lechera" selected>Lechera</option>
-				<option value="s/lechera">Sin lechera</option>
+				<option value="sin lechera" selected>Sin lechera</option>
+				<option value="c/lechera">Con lechera</option>
 				<option value="p/lechera">Poca lechera</option>
 				<option value="m/lechera">Mucha lechera</option>
 				<option value="solo con lechera">Solo lechera</option>
 			</select>
-		</div>
-		<div>
-			<label class="specification__label"> Banderilla</label>
-			<select>
-				<option value="banderilla" selected>Banderilla</option>
-				<option value="s/banderilla">Sin banderilla</option>
-				<option value="b/extra">Banderilla extra</option>
-				<option value="solo con banderilla">Solo banderilla</option>
-			</select>
-		</div>
+		</div>		
 
 		<div>
 			<p class="prev-label">Previsualización de detalle</p>
@@ -1205,22 +1220,14 @@ function genFormGelatina() {
 		<div>
 			<label class="specification__label"> Lechera </label>
 			<select>
-				<option value="lechera" selected>Lechera</option>
-				<option value="s/lechera">Sin lechera</option>
+				<option value="sin lechera" selected>Sin lechera</option>
+				<option value="c/lechera">Con lechera</option>
 				<option value="p/lechera">Poca lechera</option>
 				<option value="m/lechera">Mucha lechera</option>
 				<option value="solo con lechera">Solo lechera</option>
 			</select>
 		</div>
-		<div>
-			<label class="specification__label"> Banderilla</label>
-			<select>
-				<option value="banderilla" selected>Banderilla</option>
-				<option value="s/banderilla">Sin banderilla</option>
-				<option value="b/extra">Banderilla extra</option>
-				<option value="solo con banderilla">Solo banderilla</option>
-			</select>
-		</div>
+		
 
 		<div>
 			<p class="prev-label">Previsualización de detalle</p>
@@ -1301,22 +1308,13 @@ function genFormGelatinaMed() {
 		<div>
 			<label class="specification__label"> Lechera </label>
 			<select>
-				<option value="lechera" selected>Lechera</option>
-				<option value="s/lechera">Sin lechera</option>
+				<option value="sin lechera" selected>Sin lechera</option>
+				<option value="c/lechera">Con lechera</option>
 				<option value="p/lechera">Poca lechera</option>
 				<option value="m/lechera">Mucha lechera</option>
 				<option value="solo con lechera">Solo lechera</option>
 			</select>
-		</div>
-		<div>
-			<label class="specification__label"> Banderilla</label>
-			<select>
-				<option value="banderilla" selected>Banderilla</option>
-				<option value="s/banderilla">Sin banderilla</option>
-				<option value="b/extra">Banderilla extra</option>
-				<option value="solo con banderilla">Solo banderilla</option>
-			</select>
-		</div>
+		</div>		
 
 		<div>
 			<p class="prev-label">Previsualización de detalle</p>
@@ -1397,22 +1395,13 @@ function genFormEnsalada() {
 		<div>
 			<label class="specification__label"> Lechera </label>
 			<select>
-				<option value="lechera" selected>Lechera</option>
-				<option value="s/lechera">Sin lechera</option>
+				<option value="sin lechera" selected>Sin lechera</option>
+				<option value="c/lechera">Con lechera</option>
 				<option value="p/lechera">Poca lechera</option>
 				<option value="m/lechera">Mucha lechera</option>
 				<option value="solo con lechera">Solo lechera</option>
 			</select>
-		</div>
-		<div>
-			<label class="specification__label"> Banderilla</label>
-			<select>
-				<option value="banderilla" selected>Banderilla</option>
-				<option value="s/banderilla">Sin banderilla</option>
-				<option value="b/extra">Banderilla extra</option>
-				<option value="solo con banderilla">Solo banderilla</option>
-			</select>
-		</div>
+		</div>		
 
 		<div>
 			<p class="prev-label">Previsualización de detalle</p>
@@ -1493,22 +1482,13 @@ function genFormEnsaladaMed() {
 		<div>
 			<label class="specification__label"> Lechera </label>
 			<select>
-				<option value="lechera" selected>Lechera</option>
-				<option value="s/lechera">Sin lechera</option>
+				<option value="sin lechera" selected>Sin lechera</option>
+				<option value="c/lechera">Con lechera</option>
 				<option value="p/lechera">Poca lechera</option>
 				<option value="m/lechera">Mucha lechera</option>
 				<option value="solo con lechera">Solo lechera</option>
 			</select>
-		</div>
-		<div>
-			<label class="specification__label"> Banderilla</label>
-			<select>
-				<option value="banderilla" selected>Banderilla</option>
-				<option value="s/banderilla">Sin banderilla</option>
-				<option value="b/extra">Banderilla extra</option>
-				<option value="solo con banderilla">Solo banderilla</option>
-			</select>
-		</div>
+		</div>		
 
 		<div>
 			<p class="prev-label">Previsualización de detalle</p>
@@ -1544,6 +1524,7 @@ function genFormGomiboing() {
 						<option value="guayaba">Guayaba</option>
 						<option value="fresa">Fresa</option>
 						<option value="naranja">Naranja</option>
+						<option value="manzana">Manzana</option>
 					</select>
 				</div>
 				<div class="specification__container">
@@ -1562,6 +1543,15 @@ function genFormGomiboing() {
 							<option value="s/gomitas">Sin gomitas</option>
 							<option value="poquitas gomitas">Pocas gomitas</option>
 							<option value="solo con gomitas">Solo gomitas</option>
+						</select>
+					</div>
+					<div>
+						<label class="specification__label"> Skwinkles </label>
+						<select>
+							<option value="skwinkles" selected>Skwinkles</option>
+							<option value="s/skwinkles">Sin skwinkles</option>
+							<option value="pocos skwinkles">Pocos skwinkles</option>
+							<option value="solo con skwinkles">Solo skwinkles</option>
 						</select>
 					</div>
 					<div>
@@ -1636,14 +1626,103 @@ function genFormGomiboing() {
 	updateCountsProd(gomiboingContainer, 'Gomiboing')
 }
 
+function genFormAguaFresca() {
+	const html = `
+	<form class="specification__prod" data-form-id="${Date.now()}">
+				<div class="specification__select">
+					<p class="specification__prod-name">Agua fresca 1L</p>
+					<select>
+						<option value="naranja" selected>Naranja</option>
+						<option value="fresa">Fresa</option>
+						<option value="horchata">Horchata</option>
+						<option value="pepino con limon">Pepino con limón</option>
+					</select>
+				</div>
+				<div class="specification__container">
+					<div>
+						<label class="specification__label"> Hielo </label>
+						<select>
+							<option value="hielo" selected>Hielo</option>
+							<option value="s/hielo">Sin hielo</option>
+							<option value="p/hielo">Poco hielo</option>
+							<option value="m/hielo">Mucho hielo</option>
+						</select>
+					</div>				
+					
+					<div>
+						<p class="prev-label">Previsualización de detalle</p>
+						<div class="prev-detalle"></div>
+					</div>
+				</div>
+				<div class="specification__buttons">
+					<button type="button" class="btn btn-primary">Agregar detalle</button>
+					<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+				</div>
+			</form>
+  `
+
+	aguaFrescaContainer.insertAdjacentHTML('beforeend', html)
+
+	// // Obtener el formulario recién creado
+	// const newForm = gomiboingContainer.lastElementChild
+
+	// // Agregar el formulario al contenedor
+	// gomiboingContainer.appendChild(newForm)
+	// Llamar a la función para actualizar los contadores de los formularios
+	updateCountsProd(aguaFrescaContainer, 'Agua F.1L')
+}
+
+function genFormAguaFrescaMed() {
+	const html = `
+	<form class="specification__prod" data-form-id="${Date.now()}">
+				<div class="specification__select">
+					<p class="specification__prod-name">Agua fresca 1/2 L</p>
+					<select>
+						<option value="naranja" selected>Naranja</option>
+						<option value="fresa">Fresa</option>
+						<option value="horchata">Horchata</option>
+						<option value="pepino con limon">Pepino con limón</option>
+					</select>
+				</div>
+				<div class="specification__container">
+					<div>
+						<label class="specification__label"> Hielo </label>
+						<select>
+							<option value="hielo" selected>Hielo</option>
+							<option value="s/hielo">Sin hielo</option>
+							<option value="p/hielo">Poco hielo</option>
+							<option value="m/hielo">Mucho hielo</option>
+						</select>
+					</div>				
+					
+					<div>
+						<p class="prev-label">Previsualización de detalle</p>
+						<div class="prev-detalle"></div>
+					</div>
+				</div>
+				<div class="specification__buttons">
+					<button type="button" class="btn btn-primary">Agregar detalle</button>
+					<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+				</div>
+			</form>
+  `
+
+	aguaFrescaMedContainer.insertAdjacentHTML('beforeend', html)
+
+	// // Obtener el formulario recién creado
+	// const newForm = gomiboingContainer.lastElementChild
+
+	// // Agregar el formulario al contenedor
+	// gomiboingContainer.appendChild(newForm)
+	// Llamar a la función para actualizar los contadores de los formularios
+	updateCountsProd(aguaFrescaMedContainer, 'Agua F.1/2')
+}
+
 // TODO ESCUCHADOR DE CONTENEDOR DE DETALLES
 if (location.pathname.endsWith('/order.html')) {
 	// Asignar el controlador de eventos al contenedor
 	esquitesContainer.addEventListener('click', function (event) {
 		if (event.target.classList.contains('btn-primary')) {
-			const prevDetalle = event.target.closest('.specification__prod')
-			const divPrev = prevDetalle.querySelector('.prev-detalle')
-
 			const product = document.querySelector('.product[data-name="Esquite"]')
 			const productName = product.dataset.name
 			const btnDelete = event.target.nextElementSibling
@@ -2037,6 +2116,72 @@ if (location.pathname.endsWith('/order.html')) {
 			})
 		}
 	})
+
+	aguaFrescaContainer.addEventListener('click', function (event) {
+		if (event.target.classList.contains('btn-primary')) {
+			const product = document.querySelector('.product[data-name="Agua F.1L"]')
+			const productName = product.dataset.name
+			const btnDelete = event.target.nextElementSibling
+			btnDelete.removeAttribute('disabled')
+			const form = event.target.closest('form')
+			enviarFormulario(event, form, productName)
+			showAlert('Detalle agregado', 'exit')
+		}
+
+		if (event.target.classList.contains('btn-cancel')) {
+			Swal.fire({
+				title: '¿Estás seguro de eliminar el producto?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonText: 'Eliminar',
+				cancelButtonText: 'Cancelar',
+			}).then((result) => {
+				if (result.isConfirmed) {
+					const product = document.querySelector('.product[data-name="Agua F.1L"]')
+					const idProduct = parseInt(product.dataset.id)
+					removeDetails(product, idProduct)
+					const form = event.target.closest('form')
+					const formId = form.dataset.formId
+					form.remove()
+					removeDetailsById(formId, 'Agua F.1L')
+					showAlert('Producto eliminado', 'exit')
+				}
+			})
+		}
+	})
+
+	aguaFrescaMedContainer.addEventListener('click', function (event) {
+		if (event.target.classList.contains('btn-primary')) {
+			const product = document.querySelector('.product[data-name="Agua F.1/2"]')
+			const productName = product.dataset.name
+			const btnDelete = event.target.nextElementSibling
+			btnDelete.removeAttribute('disabled')
+			const form = event.target.closest('form')
+			enviarFormulario(event, form, productName)
+			showAlert('Detalle agregado', 'exit')
+		}
+
+		if (event.target.classList.contains('btn-cancel')) {
+			Swal.fire({
+				title: '¿Estás seguro de eliminar el producto?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonText: 'Eliminar',
+				cancelButtonText: 'Cancelar',
+			}).then((result) => {
+				if (result.isConfirmed) {
+					const product = document.querySelector('.product[data-name="Agua F.1/2"]')
+					const idProduct = parseInt(product.dataset.id)
+					removeDetails(product, idProduct)
+					const form = event.target.closest('form')
+					const formId = form.dataset.formId
+					form.remove()
+					removeDetailsById(formId, 'Agua F.1/2')
+					showAlert('Producto eliminado', 'exit')
+				}
+			})
+		}
+	})
 }
 function removeDetailsById(id, prod) {
 	const index = detalles.findIndex((det) => det.id === id)
@@ -2078,6 +2223,12 @@ function removeDetailsById(id, prod) {
 		}
 		if (prod === 'Gomiboing') {
 			updateCountsProd(gomiboingContainer, prod)
+		}
+		if (prod === 'Agua F.1L') {
+			updateCountsProd(aguaFrescaContainer, prod)
+		}
+		if (prod === 'Agua F.1/2') {
+			updateCountsProd(aguaFrescaMedContainer, prod)
 		}
 		addDetailsArea()
 	}
@@ -2142,6 +2293,8 @@ function resetDetallesContainer() {
 	manzanaContainer.textContent = ''
 	manzanaMedContainer.textContent = ''
 	gomiboingContainer.textContent = ''
+	aguaFrescaContainer.textContent = ''
+	aguaFrescaMedContainer.textContent = ''
 }
 
 function addProduct(e) {
@@ -2274,7 +2427,7 @@ function deleteProductOrder(e) {
 						tostilocoContainer.textContent = ''
 					}
 					if (prod.name === 'Fresas C.C') {
-						detalles = detalles.filter((det) => !det.name !== 'Fresas C.C')
+						detalles = detalles.filter((det) => det.name !== 'Fresas C.C')
 						addDetailsArea()
 						fresasContainer.textContent = ''
 					}
@@ -2307,6 +2460,16 @@ function deleteProductOrder(e) {
 						detalles = detalles.filter((det) => det.name !== 'Gomiboing')
 						addDetailsArea()
 						gomiboingContainer.textContent = ''
+					}
+					if (prod.name === 'Agua F.1L') {
+						detalles = detalles.filter((det) => det.name !== 'Agua F.1L')
+						addDetailsArea()
+						aguaFrescaContainer.textContent = ''
+					}
+					if (prod.name === 'Agua F.1/2') {
+						detalles = detalles.filter((det) => det.name !== 'Agua F.1/2')
+						addDetailsArea()
+						aguaFrescaMedContainer.textContent = ''
 					}
 					products = products.filter((prod) => prod.id !== idProduct)
 					const element = document.querySelector(`[id="${prod.id}"]`)

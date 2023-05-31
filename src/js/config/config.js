@@ -322,7 +322,7 @@ const products = [
 		id: 1280,
 	},
 	{
-		name: 'Piñada',
+		name: 'Pinada',
 		category: 'bebidas',
 		price: 35,
 		id: 1313,
@@ -344,6 +344,12 @@ const products = [
 		category: 'otros',
 		price: 20,
 		id: 1615,
+	},
+	{
+		name: 'Gomitas',
+		category: 'otros',
+		price: 15,
+		id: 1616,
 	},
 	{
 		name: 'Cuchara-Tenedor',
