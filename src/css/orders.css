@@ -37,6 +37,9 @@
 
 .select-quantity {
 	text-align: center;
+	background-color: #fff;
+	border-radius: 0.8em;
+	width: 60px;
 }
 
 .subtitle {
@@ -374,10 +377,7 @@
 	flex-direction: column;
 	gap: var(--gap-sm);
 	margin-bottom: 1.5em;
-}
-
-.specification__container > * {
-	border: 1px solid rgba(177, 166, 166, 0.164);
+	padding: 0 1em;
 }
 
 .specification__container label {
@@ -390,14 +390,9 @@
 .specification__container select {
 	width: 170px;
 	border-radius: 1rem;
-	background-color: #54778b;
-	color: #130f0f;
+	background-color: #18445e;
+	color: #ebe8e3;
 	border: 1px solid white;
-}
-
-.specification__container select option {
-	color: #fff;
-	border: 1px solid red;
 }
 
 .specification__container input {
@@ -457,4 +452,5 @@
 	color: #63b6a4;
 	width: 100%;
 	min-height: 30px;
+	border-radius: var(--br);
 }

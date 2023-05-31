@@ -345,55 +345,6 @@ function addDetailsArea() {
 }
 
 // TODO ENVIAR FORMULMARIO DETALLES
-// function enviarFormulario(e, form, nameProd) {
-// 	e.preventDefault()
-
-// 	// Obtener el identificador único del formulario
-// 	const formId = form.getAttribute('data-form-id')
-
-// 	// Verificar si no se ha seleccionado la primera opción en algún select
-// 	const selects = Array.from(form.querySelectorAll('select'))
-// 	const isAnyOptionSelected = selects.some((select) => select.value !== select.querySelector('option').value)
-
-// 	// Construir la oración de acuerdo al resultado
-// 	let sentence = `1 ${nameProd} con todo`
-
-// 	if (isAnyOptionSelected) {
-// 		sentence = `1 ${nameProd}, `
-
-// 		const selectedValues = selects
-// 			.filter((select) => select.value !== select.querySelector('option').value)
-// 			.map((select) => select.value)
-
-// 		if (selectedValues.length > 0) {
-// 			sentence += ' ' + selectedValues.join(', ')
-// 		}
-// 	}
-
-// 	// Buscar el detalle correspondiente al formulario en el array global
-// 	const detalleIndex = detalles.findIndex((detalle) => detalle.id === formId)
-
-// 	// Si se encontró el detalle, actualizarlo; de lo contrario, crear un nuevo objeto de detalle
-// 	if (detalleIndex !== -1) {
-// 		detalles[detalleIndex].detalle = sentence
-// 	} else {
-// 		// Crear el objeto de detalle
-// 		const detalle = {
-// 			id: formId,
-// 			detalle: sentence,
-// 			name: nameProd,
-// 		}
-
-// 		// Agregar el objeto de detalle al array global
-// 		detalles.push(detalle)
-// 	}
-
-// 	// Imprimir el array de detalles en la consola (opcional)
-// 	console.log(detalles)
-
-// 	// Llamar a la función para actualizar el área de detalles
-// 	addDetailsArea()
-// }
 
 function enviarFormulario(e, form, nameProd) {
 	e.preventDefault()
@@ -682,7 +633,7 @@ function genFormDoriesquite() {
 			<label class="specification__label"> Chile </label>
 			<select>
 				<option value="chile" selected>Chile</option>
-				<option value="s/hile">Sin chile</option>
+				<option value="s/chile">Sin chile</option>
 				<option value="p/chile">Poco chile</option>
 				<option value="m/chile">Mucho chile</option>
 				<option value="solo con chile">Solo chile</option>
