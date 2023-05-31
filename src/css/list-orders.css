@@ -30,6 +30,21 @@
 	font-size: 3rem;
 }
 
+.wrapper-order {
+	color: #aaa;
+	position: relative;
+}
+
+.wrapper-order::before {
+	content: attr(data-customer);
+	position: absolute;
+	top: 50%;
+	left: 60%;
+	transform: translateY(-50%);
+	font-weight: var(--fw-medium);
+	text-transform: uppercase;
+}
+
 .arrow-down {
 	position: relative;
 	--dark-gray: #7f7f7f34;
@@ -43,7 +58,7 @@
 .arrow-down::before {
 	counter-increment: order;
 	content: 'ORDEN ' counter(order);
-	color: var(--light-gray);
+	color: #aaa;
 	position: absolute;
 	top: 8.5px;
 	left: 20px;

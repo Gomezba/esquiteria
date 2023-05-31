@@ -122,6 +122,7 @@ if (location.pathname.endsWith('/orders-list.html')) {
 				const moneyExchanges = document.createElement('P')
 
 				wrapperOrder.classList.add('wrapper-order')
+				wrapperOrder.dataset.customer = cursor.value.customer
 				arrowIcon.classList.add('arrow-down')
 				arrowIcon.addEventListener('click', accordeon)
 				img.setAttribute('src', '../../assets/icons/arrow-down.svg')
