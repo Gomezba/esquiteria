@@ -59,6 +59,12 @@ const impresora = document.getElementById('macInput')
 
 const productsStorage = JSON.parse(localStorage.getItem('products'))
 
+// const obj = document.getElementById('obj')
+// obj.addEventListener('click', () => {
+// 	console.log(orderDetails.value)
+// 	console.log(order)
+// })
+
 function showProducts() {
 	productsStorage.forEach((prod) => {
 		const fragment = document.createDocumentFragment()
@@ -85,6 +91,39 @@ function showProducts() {
 		if (btnRemove.id === 'Esquite') {
 			btnRemove.addEventListener('click', removeUltimateFormEsquites)
 		}
+		if (btnRemove.id === 'Esquite 1/2') {
+			btnRemove.addEventListener('click', removeUltimateFormEsquitesMed)
+		}
+		if (btnRemove.id === 'Doriesquite') {
+			btnRemove.addEventListener('click', removeUltimateFormDoriesquite)
+		}
+		if (btnRemove.id === 'Doriloco') {
+			btnRemove.addEventListener('click', removeUltimateFormDoriloco)
+		}
+		if (btnRemove.id === 'Tostiloco') {
+			btnRemove.addEventListener('click', removeUltimateFormTostiloco)
+		}
+		if (btnRemove.id === 'Fresas C.C') {
+			btnRemove.addEventListener('click', removeUltimateFormFresas)
+		}
+		if (btnRemove.id === 'Fresas C.C 1/2') {
+			btnRemove.addEventListener('click', removeUltimateFormFresasMed)
+		}
+		if (btnRemove.id === 'Gelatina C.D') {
+			btnRemove.addEventListener('click', removeUltimateFormGelatina)
+		}
+		if (btnRemove.id === 'Gelatina C.D 1/2') {
+			btnRemove.addEventListener('click', removeUltimateFormGelatinaMed)
+		}
+		if (btnRemove.id === 'Ensalada D.M') {
+			btnRemove.addEventListener('click', removeUltimateFormEnsalada)
+		}
+		if (btnRemove.id === 'Ensalada D.M 1/2') {
+			btnRemove.addEventListener('click', removeUltimateFormEnsaladaMed)
+		}
+		if (btnRemove.id === 'Gomiboing') {
+			btnRemove.addEventListener('click', removeUltimateFormGomiboing)
+		}
 
 		const btnAdd = document.createElement('A')
 		btnAdd.classList.add('btn', 'product__btn', 'btn-add')
@@ -95,6 +134,40 @@ function showProducts() {
 
 		if (btnAdd.id === 'Esquite') {
 			btnAdd.addEventListener('click', genFormEsquite)
+		}
+		if (btnAdd.id === 'Esquite 1/2') {
+			btnAdd.addEventListener('click', genFormEsquiteMed)
+		}
+		if (btnAdd.id === 'Doriesquite') {
+			btnAdd.addEventListener('click', genFormDoriesquite)
+		}
+		if (btnAdd.id === 'Doriloco') {
+			btnAdd.addEventListener('click', genFormDoriloco)
+		}
+		if (btnAdd.id === 'Tostiloco') {
+			btnAdd.addEventListener('click', genFormTostiloco)
+		}
+		if (btnAdd.id === 'Fresas C.C') {
+			btnAdd.addEventListener('click', genFormFresas)
+		}
+		if (btnAdd.id === 'Fresas C.C 1/2') {
+			btnAdd.addEventListener('click', genFormFresasMed)
+		}
+		if (btnAdd.id === 'Gelatina C.D') {
+			btnAdd.addEventListener('click', genFormGelatina)
+		}
+		if (btnAdd.id === 'Gelatina C.D 1/2') {
+			btnAdd.addEventListener('click', genFormGelatinaMed)
+		}
+
+		if (btnAdd.id === 'Ensalada D.M') {
+			btnAdd.addEventListener('click', genFormEnsalada)
+		}
+		if (btnAdd.id === 'Ensalada D.M 1/2') {
+			btnAdd.addEventListener('click', genFormEnsaladaMed)
+		}
+		if (btnAdd.id === 'Gomiboing') {
+			btnAdd.addEventListener('click', genFormGomiboing)
 		}
 
 		const productContainerQuantity = document.createElement('DIV')
@@ -173,11 +246,94 @@ function removeUltimateFormEsquites() {
 		lastForm.remove()
 	}
 }
+function removeUltimateFormEsquitesMed() {
+	const forms = esquitesMedContainer.getElementsByClassName('specification__prod')
 
-const obj = document.getElementById('obj')
-obj.addEventListener('click', () => {
-	console.log(detalles)
-})
+	if (forms.length > 0) {
+		let lastForm = forms[forms.length - 1]
+		lastForm.remove()
+	}
+}
+function removeUltimateFormDoriesquite() {
+	const forms = doriesquiteContainer.getElementsByClassName('specification__prod')
+
+	if (forms.length > 0) {
+		let lastForm = forms[forms.length - 1]
+		lastForm.remove()
+	}
+}
+function removeUltimateFormDoriloco() {
+	const forms = dorilocoContainer.getElementsByClassName('specification__prod')
+
+	if (forms.length > 0) {
+		let lastForm = forms[forms.length - 1]
+		lastForm.remove()
+	}
+}
+function removeUltimateFormTostiloco() {
+	const forms = tostilocoContainer.getElementsByClassName('specification__prod')
+
+	if (forms.length > 0) {
+		let lastForm = forms[forms.length - 1]
+		lastForm.remove()
+	}
+}
+function removeUltimateFormFresas() {
+	const forms = fresasContainer.getElementsByClassName('specification__prod')
+
+	if (forms.length > 0) {
+		let lastForm = forms[forms.length - 1]
+		lastForm.remove()
+	}
+}
+function removeUltimateFormFresasMed() {
+	const forms = fresasMedContainer.getElementsByClassName('specification__prod')
+
+	if (forms.length > 0) {
+		let lastForm = forms[forms.length - 1]
+		lastForm.remove()
+	}
+}
+function removeUltimateFormGelatina() {
+	const forms = gelatinaContainer.getElementsByClassName('specification__prod')
+
+	if (forms.length > 0) {
+		let lastForm = forms[forms.length - 1]
+		lastForm.remove()
+	}
+}
+function removeUltimateFormGelatinaMed() {
+	const forms = gelatinaMedContainer.getElementsByClassName('specification__prod')
+
+	if (forms.length > 0) {
+		let lastForm = forms[forms.length - 1]
+		lastForm.remove()
+	}
+}
+function removeUltimateFormEnsalada() {
+	const forms = manzanaContainer.getElementsByClassName('specification__prod')
+
+	if (forms.length > 0) {
+		let lastForm = forms[forms.length - 1]
+		lastForm.remove()
+	}
+}
+function removeUltimateFormEnsaladaMed() {
+	const forms = manzanaMedContainer.getElementsByClassName('specification__prod')
+
+	if (forms.length > 0) {
+		let lastForm = forms[forms.length - 1]
+		lastForm.remove()
+	}
+}
+function removeUltimateFormGomiboing() {
+	const forms = gomiboingContainer.getElementsByClassName('specification__prod')
+
+	if (forms.length > 0) {
+		let lastForm = forms[forms.length - 1]
+		lastForm.remove()
+	}
+}
 
 let detalles = []
 
@@ -185,10 +341,61 @@ let detalles = []
 function addDetailsArea() {
 	const newContent = detalles.map((det) => det.detalle).join('\n')
 	orderDetails.value = newContent
+	order.adicionalInfo = orderDetails.value
 }
 
 // TODO ENVIAR FORMULMARIO DETALLES
-function enviarFormulario(e, form) {
+// function enviarFormulario(e, form, nameProd) {
+// 	e.preventDefault()
+
+// 	// Obtener el identificador único del formulario
+// 	const formId = form.getAttribute('data-form-id')
+
+// 	// Verificar si no se ha seleccionado la primera opción en algún select
+// 	const selects = Array.from(form.querySelectorAll('select'))
+// 	const isAnyOptionSelected = selects.some((select) => select.value !== select.querySelector('option').value)
+
+// 	// Construir la oración de acuerdo al resultado
+// 	let sentence = `1 ${nameProd} con todo`
+
+// 	if (isAnyOptionSelected) {
+// 		sentence = `1 ${nameProd}, `
+
+// 		const selectedValues = selects
+// 			.filter((select) => select.value !== select.querySelector('option').value)
+// 			.map((select) => select.value)
+
+// 		if (selectedValues.length > 0) {
+// 			sentence += ' ' + selectedValues.join(', ')
+// 		}
+// 	}
+
+// 	// Buscar el detalle correspondiente al formulario en el array global
+// 	const detalleIndex = detalles.findIndex((detalle) => detalle.id === formId)
+
+// 	// Si se encontró el detalle, actualizarlo; de lo contrario, crear un nuevo objeto de detalle
+// 	if (detalleIndex !== -1) {
+// 		detalles[detalleIndex].detalle = sentence
+// 	} else {
+// 		// Crear el objeto de detalle
+// 		const detalle = {
+// 			id: formId,
+// 			detalle: sentence,
+// 			name: nameProd,
+// 		}
+
+// 		// Agregar el objeto de detalle al array global
+// 		detalles.push(detalle)
+// 	}
+
+// 	// Imprimir el array de detalles en la consola (opcional)
+// 	console.log(detalles)
+
+// 	// Llamar a la función para actualizar el área de detalles
+// 	addDetailsArea()
+// }
+
+function enviarFormulario(e, form, nameProd) {
 	e.preventDefault()
 
 	// Obtener el identificador único del formulario
@@ -199,10 +406,10 @@ function enviarFormulario(e, form) {
 	const isAnyOptionSelected = selects.some((select) => select.value !== select.querySelector('option').value)
 
 	// Construir la oración de acuerdo al resultado
-	let sentence = '1 Esquite con todo'
+	let sentence = `1 ${nameProd} con todo`
 
 	if (isAnyOptionSelected) {
-		sentence = '1 Esquite'
+		sentence = `1 ${nameProd}, `
 
 		const selectedValues = selects
 			.filter((select) => select.value !== select.querySelector('option').value)
@@ -224,7 +431,7 @@ function enviarFormulario(e, form) {
 		const detalle = {
 			id: formId,
 			detalle: sentence,
-			name: 'esquite',
+			name: nameProd,
 		}
 
 		// Agregar el objeto de detalle al array global
@@ -234,17 +441,23 @@ function enviarFormulario(e, form) {
 	// Imprimir el array de detalles en la consola (opcional)
 	console.log(detalles)
 
+	// Obtener referencia al textarea dentro del formulario actual
+	const orderDetails = form.querySelector('.prev-detalle')
+
+	// Actualizar el valor del textarea con el detalle correspondiente
+	orderDetails.textContent = sentence
+
 	// Llamar a la función para actualizar el área de detalles
 	addDetailsArea()
 }
 
-// TODO GENERA EL FORMULARIO DE ESQUITES DETALLES
+// TODO GENERA EL FORMULARIO DE PRODUCTOS
 
 function genFormEsquite() {
 	const html = `
     <form class="specification__prod" data-form-id="${Date.now()}">
       <div class="specification__select">
-        <p class="specification__prod-name"> Esquite</p>
+        <p class="specification__prod-name">Esquite</p>
         <select>
           <option value="normal" selected>Normal</option>
           <option value="mas caldo que grano">Mas caldo que grano</option>
@@ -256,9 +469,10 @@ function genFormEsquite() {
           <label>Mayonesa</label>
           <select>
             <option value="mayonesa" selected>Mayonesa</option>
-            <option value="sin mayonesa">Sin mayonesa</option>
-            <option value="poca mayonesa">Poca mayonesa</option>
-            <option value="mucha mayonesa">Mucha mayonesa</option>
+            <option value="s/mayonesa">Sin mayonesa</option>
+            <option value="p/mayonesa">Poca mayonesa</option>
+            <option value="m/mayonesa">Mucha mayonesa</option>
+            <option value="solo con mayonesa">Solo mayonesa</option>
           </select>
         </div>
 
@@ -266,18 +480,20 @@ function genFormEsquite() {
           <label class="specification__label">Queso</label>
           <select>
             <option value="queso" selected>Queso</option>
-            <option value="sin queso">Sin queso</option>
-            <option value="poco queso">Poco queso</option>
-            <option value="mucho queso">Mucho queso</option>
+            <option value="s/queso">Sin queso</option>
+            <option value="p/queso">Poco queso</option>
+            <option value="m/queso">Mucho queso</option>
+            <option value="solo con queso">Solo queso</option>
           </select>
         </div>
         <div>
           <label class="specification__label">Chile</label>
           <select>
             <option value="chile" selected>Chile</option>
-            <option value="sin chile">Sin chile</option>
-            <option value="poco chile">Poco chile</option>
-            <option value="mucho chile">Mucho chile</option>
+            <option value="s/chile">Sin chile</option>
+            <option value="p/chile">Poco chile</option>
+            <option value="m/chile">Mucho chile</option>
+            <option value="solo con chile">Solo chile</option>
           </select>
         </div>
 
@@ -285,11 +501,17 @@ function genFormEsquite() {
           <label class="specification__label">Limón</label>
           <select>
             <option value="limon" selected>Limón</option>
-            <option value="sin limon">Sin limón</option>
-            <option value="poco limon">Poco limón</option>
-            <option value="mucho limon">Mucho limón</option>
+            <option value="s/limon">Sin limón</option>
+            <option value="p/limon">Poco limón</option>
+            <option value="m/limon">Mucho limón</option>
+            <option value="solo con limon">Solo limón</option>
           </select>
         </div>
+	
+		<div>
+			<p class="prev-label">Previsualización de detalle</p>
+			<div class="prev-detalle"></div>
+		</div>
       </div>
       <div class="specification__buttons">
         <button type="button" class="btn btn-primary">Agregar detalle</button>
@@ -298,87 +520,1619 @@ function genFormEsquite() {
     </form>
   `
 
-	esquitesContainer.innerHTML += html
+	esquitesContainer.insertAdjacentHTML('beforeend', html)
+	// esquitesContainer.innerHTML += html
+
+	// // Obtener el formulario recién creado
+	// const newForm = esquitesContainer.lastElementChild
+
+	// // Agregar el formulario al contenedor
+	// esquitesContainer.appendChild(newForm)
+
+	// Llamar a la función para actualizar los contadores de los formularios
+	updateCountsProd(esquitesContainer, 'Esquite')
+}
+
+function genFormEsquiteMed() {
+	const html = `
+    <form class="specification__prod" data-form-id="${Date.now()}">
+      <div class="specification__select">
+        <p class="specification__prod-name">Esquite 1/2</p>
+        <select>
+          <option value="normal" selected>Normal</option>
+          <option value="mas caldo que grano">Mas caldo que grano</option>
+          <option value="mas grano que caldo">Mas grano que caldo</option>
+        </select>
+      </div>
+      <div class="specification__container">
+        <div>
+          <label>Mayonesa</label>
+          <select>
+            <option value="mayonesa" selected>Mayonesa</option>
+            <option value="s/mayonesa">Sin mayonesa</option>
+            <option value="p/mayonesa">Poca mayonesa</option>
+            <option value="m/mayonesa">Mucha mayonesa</option>
+            <option value="solo con mayonesa">Solo mayonesa</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="specification__label">Queso</label>
+          <select>
+            <option value="queso" selected>Queso</option>
+            <option value="s/queso">Sin queso</option>
+            <option value="p/queso">Poco queso</option>
+            <option value="m/queso">Mucho queso</option>
+            <option value="solo con queso">Solo queso</option>
+          </select>
+        </div>
+		<div>
+		<label class="specification__label">Chile</label>
+		<select>
+		  <option value="chile" selected>Chile</option>
+		  <option value="s/chile">Sin chile</option>
+		  <option value="p/chile">Poco chile</option>
+		  <option value="m/chile">Mucho chile</option>
+		  <option value="solo con chile">Solo chile</option>
+		</select>
+	  </div>
+
+        <div>
+		<label class="specification__label">Limón</label>
+		<select>
+		  <option value="limon" selected>Limón</option>
+		  <option value="s/limon">Sin limón</option>
+		  <option value="p/limon">Poco limón</option>
+		  <option value="solo con limon">Mucho limón</option>
+		</select>
+        </div>
+
+		<div>
+			<p class="prev-label">Previsualización de detalle</p>
+			<div class="prev-detalle"></div>
+		</div>
+
+      </div>
+      <div class="specification__buttons">
+        <button type="button" class="btn btn-primary">Agregar detalle</button>
+        <button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+      </div>
+    </form>
+  `
+
+	esquitesMedContainer.insertAdjacentHTML('beforeend', html)
 
 	// Obtener el formulario recién creado
-	const newForm = esquitesContainer.lastElementChild
+	// const newForm = esquitesMedContainer.lastElementChild
 
-	// Agregar el formulario al contenedor
-	esquitesContainer.appendChild(newForm)
+	// // Agregar el formulario al contenedor
+	// esquitesMedContainer.appendChild(newForm)
 	// Llamar a la función para actualizar los contadores de los formularios
-	updateEsquiteCounts(esquitesContainer, 'Esquite')
+	updateCountsProd(esquitesMedContainer, 'Esquite 1/2')
+}
+
+function genFormDoriesquite() {
+	const html = `
+	<form class="specification__prod" data-form-id="${Date.now()}">
+	<div class="specification__select">
+		<p class="specification__prod-name">Doriesquite</p>
+		<select>
+		<option value="" disabled>Seleccionar</option>
+		<option value="nacho" selected>Nacho</option>
+		<option value="tostitos">Tostitos</option>
+		<option value="flaming">Flaming</option>
+		<option value="pizzerolas">Pizzerolas</option>
+		<option value="incognita">Incog</option>
+		<option value="dinamita">Dinamita</option>
+		<option value="fritos">Fritos</option>
+		<option value="cheto flaming">Cheto flaming</option>
+		<option value="rancheritos">Rancheritos</option>
+		<option value="rufles">Rufles</option>
+		<option value="crujitos">Crujitos</option>
+		<option value="sabritas">Sabritas</option>
+		<option value="sabritas adobadas">Sabritas.A</option>
+		<option value="sabritas crujientes">Sabritas.C</option>
+		<option value="sabritas flaming">Sabritas.F</option>
+		<option value="colmillos">Colmillo</option>
+		<option value="takis fuego">Takis fuego</option>
+		<option value="takis guacamole">Takis guacamole</option>
+		<option value="takis amarillos">Takis salsa brava</option>
+	</select>
+
+		<select>
+			<option value="normal" selected>Normal</option>
+			<option value="mas caldo que grano">Mas caldo que grano</option>
+			<option value="mas grano que caldo">Mas grano que caldo</option>
+		</select>
+	</div>
+
+	<div class="specification__container">
+		<div>
+			<label>Mayonesa</label>
+			<select>
+			<option value="mayonesa" selected>Mayonesa</option>
+			<option value="s/mayonesa">Sin mayonesa</option>
+			<option value="p/mayonesa">Poca mayonesa</option>
+			<option value="m/mayonesa">Mucha mayonesa</option>
+			<option value="solo con mayonesa">Solo mayonesa</option>
+			</select>
+		</div>
+
+		<div>
+			<label class="specification__label">Queso polvo</label>
+		<select>
+			<option value="queso" selected>Queso polvo</option>
+			<option value="s/queso">Sin queso</option>
+			<option value="p/queso">Poco queso</option>
+			<option value="m/queso">Mucho queso</option>
+			<option value="solo con queso polvo">Solo queso polvo</option>
+		</select>
+		</div>
+		<div>
+			<label class="specification__label">Queso amarillo</label>
+			<select>
+				<option value="queso" selected>Queso amarillo</option>
+				<option value="s/queso amarillo">Sin queso amarillo</option>
+				<option value="p/queso amarillo">Poco queso amarillo</option>
+				<option value="m/queso amarillo">Mucho queso amarillo</option>
+				<option value="solo queso amarillo">Solo queso amarillo</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Chile </label>
+			<select>
+				<option value="chile" selected>Chile</option>
+				<option value="s/hile">Sin chile</option>
+				<option value="p/chile">Poco chile</option>
+				<option value="m/chile">Mucho chile</option>
+				<option value="solo con chile">Solo chile</option>
+			</select>
+		</div>
+
+		<div>
+			<label class="specification__label"> Limón </label>
+			<select>
+				<option value="limon" selected>Limón</option>
+				<option value="s/limon">Sin limón</option>
+				<option value="p/limon">Poco limón</option>
+				<option value="m/limon">Mucho limón</option>
+				<option value="solo con limon">Solo limón</option>
+			</select>
+		</div>
+
+		<div>
+			<p class="prev-label">Previsualización de detalle</p>
+			<div class="prev-detalle"></div>
+		</div>
+	</div>
+	<div class="specification__buttons">
+		<button type="button" class="btn btn-primary">Agregar detalle</button>
+		<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+	</div>
+</form>
+  `
+
+	doriesquiteContainer.insertAdjacentHTML('beforeend', html)
+
+	// // Obtener el formulario recién creado
+	// const newForm = doriesquiteContainer.lastElementChild
+
+	// // Agregar el formulario al contenedor
+	// doriesquiteContainer.appendChild(newForm)
+	// Llamar a la función para actualizar los contadores de los formularios
+	updateCountsProd(doriesquiteContainer, 'Doriesquite')
+}
+
+function genFormDoriloco() {
+	const html = `
+	<form class="specification__prod" data-form-id="${Date.now()}">
+					<div class="specification__select">
+						<p class="specification__prod-name">Doriloco</p>
+						<select>
+						<option value="" disabled>Seleccionar</option>
+						<option value="nacho" selected>Nacho</option>
+						<option value="tostitos">Tostitos</option>
+						<option value="flaming">Flaming</option>
+						<option value="pizzerolas">Pizzerolas</option>
+						<option value="incognita">Incog</option>
+						<option value="dinamita">Dinamita</option>
+						<option value="fritos">Fritos</option>
+						<option value="cheto flaming">Cheto flaming</option>
+						<option value="rancheritos">Rancheritos</option>
+						<option value="rufles">Rufles</option>
+						<option value="crujitos">Crujitos</option>
+						<option value="sabritas">Sabritas</option>
+						<option value="sabritas adobadas">Sabritas.A</option>
+						<option value="sabritas crujientes">Sabritas.C</option>
+						<option value="sabritas flaming">Sabritas.F</option>
+						<option value="colmillos">Colmillo</option>
+						<option value="takis fuego">Takis fuego</option>
+						<option value="takis guacamole">Takis guacamole</option>
+						<option value="takis amarillos">Takis salsa brava</option>
+						</select>
+					</div>
+
+					<div class="specification__container">
+						<div>
+							<label class="specification__label"> Jicama </label>
+							<select>
+								<option value="jicama" selected>Jicama</option>
+								<option value="s/jicama">Sin jicama</option>
+								<option value="p/jicama">Poca jicama</option>
+								<option value="m/jicama">Mucha jicama</option>
+								<option value="solo con jicama">Solo jicama</option>
+							</select>
+						</div>
+						<div>
+							<label class="specification__label"> Pepino </label>
+							<select>
+								<option value="pepino" selected> Pepino</option>
+								<option value="s/pepino">Sin pepino</option>
+								<option value="p/pepino">Poco pepino</option>
+								<option value="m/pepino">Mucho pepino</option>
+								<option value="solo con pepino">Solo pepino</option>
+							</select>
+						</div>
+						<div>
+							<label class="specification__label"> Zanahoria </label>
+							<select>
+								<option value="zanahoria" selected>Zanahoria</option>
+								<option value="s/zanahoria">Sin zanahoria</option>
+								<option value="p/zanahoria">Poca zanahoria</option>
+								<option value="m/zanahoria">Mucha zanahoria</option>
+								<option value="solo con zanahoria">Solo zanahoria</option>
+							</select>
+						</div>
+						<div>
+							<label class="specification__label"> Cacahuates </label>
+							<select>
+								<option value="cacahuates" selected>Cacahuates</option>
+								<option value="s/cacahuates">Sin cacahuates</option>
+								<option value="p/cacahuates">Pocos cacahuates</option>
+								<option value="m/cacahuates">Muchos cacahuates</option>
+								<option value="solo con cacahuates">Solo cacahuates</option>
+							</select>
+						</div>
+						<div>
+							<label class="specification__label"> Gomitas </label>
+							<select>
+								<option value="gomitas" selected>Gomitas</option>
+								<option value="s/gomitas">Sin gomitas</option>
+								<option value="p/gomitas">Pocas gomitas</option>
+								<option value="m/gomitas">Muchas gomitas</option>
+								<option value="solo con gomitas">Solo gomitas</option>
+							</select>
+						</div>
+						<div>
+							<label class="specification__label"> Chamoy </label>
+							<select>
+								<option value="chamoy" selected>Chamoy</option>
+								<option value="s/chamoy">Sin chamoy</option>
+								<option value="p/chamoy">Poco chamoy</option>
+								<option value="m/chamoy">Mucho chamoy</option>
+								<option value="solo con chamoy">Solo chamoy</option>
+							</select>
+						</div>
+						<div>
+							<label class="specification__label"> Miguelito </label>
+							<select>
+								<option value="miguelito" selected>Miguelito</option>
+								<option value="s/miguelito">Sin miguelito</option>
+								<option value="p/miguelito">Poco miguelito</option>
+								<option value="m/miguelito">Mucho miguelito</option>
+								<option value="solo con miguelito">Solo miguelito</option>
+							</select>
+						</div>
+						<div>
+							<label class="specification__label"> Salsa </label>
+							<select>
+								<option value="salsa" selected>Salsa</option>
+								<option value="s/salsa">Sin salsa</option>
+								<option value="p/salsa">Poca salsa</option>
+								<option value="m/salsa">Mucha salsa</option>
+								<option value="solo con salsa">Solo salsa</option>
+							</select>
+						</div>
+						<div>
+							<label class="specification__label"> Limón </label>
+							<select>
+								<option value="limon" selected>Limón</option>
+								<option value="s/limon">Sin limón</option>
+								<option value="p/limon">Poco limón</option>
+								<option value="m/limon">Mucho limón</option>
+								<option value="solo con limon">Solo limón</option>
+							</select>
+						</div>
+
+						<div>
+							<label class="specification__label"> Banderilla </label>
+							<select>
+								<option value="banderilla" selected>Banderilla</option>
+								<option value="s/banderilla">Sin banderilla</option>
+								<option value="solo con banderilla">Con pura banderilla</option>
+							</select>
+						</div>
+
+						<div>
+							<p class="prev-label">Previsualización de detalle</p>
+							<div class="prev-detalle"></div>
+						</div>
+
+					</div>
+					<div class="specification__buttons">
+						<button type="button" class="btn btn-primary">Agregar detalle</button>
+						<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+					</div>
+				</form>
+
+  `
+
+	dorilocoContainer.insertAdjacentHTML('beforeend', html)
+
+	// // Obtener el formulario recién creado
+	// const newForm = dorilocoContainer.lastElementChild
+
+	// // Agregar el formulario al contenedor
+	// dorilocoContainer.appendChild(newForm)
+	// Llamar a la función para actualizar los contadores de los formularios
+	updateCountsProd(dorilocoContainer, 'Doriloco')
+}
+
+function genFormTostiloco() {
+	const html = `
+	<form class="specification__prod" data-form-id="${Date.now()}">
+					<p class="specification__prod-name">Tostiloco</p>
+					<div class="specification__container">
+						<div>
+							<label class="specification__label"> Jicama </label>
+							<select>
+								<option value="jicama" selected>Jicama</option>
+								<option value="s/jicama">Sin jicama</option>
+								<option value="p/jicama">Poca jicama</option>
+								<option value="m/jicama">Mucha jicama</option>
+								<option value="solo con jicama">Solo jicama</option>
+							</select>
+						</div>
+						<div>
+							<label class="specification__label"> Pepino </label>
+							<select>
+								<option value="pepino" selected> Pepino</option>
+								<option value="s/pepino">Sin pepino</option>
+								<option value="p/pepino">Poco pepino</option>
+								<option value="m/pepino">Mucho pepino</option>
+								<option value="solo con pepino">Solo pepino</option>
+							</select>
+						</div>
+						<div>
+							<label class="specification__label"> Zanahoria </label>
+							<select>
+								<option value="zanahoria" selected>Zanahoria</option>
+								<option value="s/zanahoria">Sin zanahoria</option>
+								<option value="p/zanahoria">Poca zanahoria</option>
+								<option value="m/zanahoria">Mucha zanahoria</option>
+								<option value="solo con zanahoria">Solo zanahoria</option>
+							</select>
+						</div>
+						<div>
+							<label class="specification__label"> Cacahuates </label>
+							<select>
+								<option value="cacahuates" selected>Cacahuates</option>
+								<option value="s/cacahuates">Sin cacahuates</option>
+								<option value="p/cacahuates">Pocos cacahuates</option>
+								<option value="m/cacahuates">Muchos cacahuates</option>
+								<option value="solo con cacahuates">Solo cacahuates</option>
+							</select>
+						</div>
+						<div>
+							<label class="specification__label"> Gomitas </label>
+							<select>
+								<option value="gomitas" selected>Gomitas</option>
+								<option value="s/gomitas">Sin gomitas</option>
+								<option value="p/gomitas">Pocas gomitas</option>
+								<option value="m/gomitas">Muchas gomitas</option>
+								<option value="solo con gomitas">Solo gomitas</option>
+							</select>
+						</div>
+						<div>
+							<label class="specification__label"> Chamoy </label>
+							<select>
+								<option value="chamoy" selected>Chamoy</option>
+								<option value="s/chamoy">Sin chamoy</option>
+								<option value="p/chamoy">Poco chamoy</option>
+								<option value="m/chamoy">Mucho chamoy</option>
+								<option value="solo con chamoy">Solo chamoy</option>
+							</select>
+						</div>
+						<div>
+							<label class="specification__label"> Miguelito </label>
+							<select>
+								<option value="miguelito" selected>Miguelito</option>
+								<option value="s/miguelito">Sin miguelito</option>
+								<option value="p/miguelito">Poco miguelito</option>
+								<option value="m/miguelito">Mucho miguelito</option>
+								<option value="solo con miguelito">Solo miguelito</option>
+							</select>
+						</div>
+						<div>
+							<label class="specification__label"> Salsa </label>
+							<select>
+								<option value="salsa" selected>Salsa</option>
+								<option value="s/salsa">Sin salsa</option>
+								<option value="p/salsa">Poca salsa</option>
+								<option value="m/salsa">Mucha salsa</option>
+								<option value="solo con salsa">Solo salsa</option>
+							</select>
+						</div>
+						<div>
+							<label class="specification__label"> Limón </label>
+							<select>
+								<option value="limon" selected>Limón</option>
+								<option value="s/limon">Sin limón</option>
+								<option value="p/limon">Poco limón</option>
+								<option value="m/limon">Mucho limón</option>
+								<option value="solo con limon">Solo limón</option>
+							</select>
+						</div>
+						<div>
+							<label class="specification__label"> Banderilla </label>
+							<select>
+								<option value="banderilla" selected>Banderilla</option>
+								<option value="s/banderilla">Sin banderilla</option>
+								<option value="solo con banderilla">Con pura banderilla</option>
+							</select>
+						</div>
+
+						<div>
+							<p class="prev-label">Previsualización de detalle</p>
+							<div class="prev-detalle"></div>
+						</div>
+
+					</div>
+					<div class="specification__buttons">
+						<button type="button" class="btn btn-primary">Agregar detalle</button>
+						<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+					</div>
+				</form>
+  `
+
+	tostilocoContainer.insertAdjacentHTML('beforeend', html)
+
+	// // Obtener el formulario recién creado
+	// const newForm = tostilocoContainer.lastElementChild
+
+	// // Agregar el formulario al contenedor
+	// tostilocoContainer.appendChild(newForm)
+	// Llamar a la función para actualizar los contadores de los formularios
+	updateCountsProd(tostilocoContainer, 'Tostiloco')
+}
+
+function genFormFresas() {
+	const html = `
+	<form class="specification__prod" data-form-id="${Date.now()}">
+	<p class="specification__prod-name">Fresas C.C</p>
+	<div class="specification__container">
+		<div>
+			<label class="specification__label"> Chantilly</label>
+			<select>
+				<option value="chantilly" selected>Chantilly</option>
+				<option value="s/chantilly">Sin chantilly</option>
+				<option value="p/chantilly">Poco chantilly</option>
+				<option value="m/chantilly">Mucho chantilly</option>
+				<option value="solo con chantilly">Solo chantilly</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Chocolate liquido </label>
+			<select>
+				<option value="chocolate" selected>Chocolate</option>
+				<option value="s/chocolate liq">Sin chocolate</option>
+				<option value="p/chocolate liq">Poco chocolate</option>
+				<option value="m/chocolate liq">Mucho chocolate</option>
+				<option value="solo con chocolate liquido">Solo chocolate liquido</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Galleta </label>
+			<select>
+				<option value="galleta" selected>Galleta</option>
+				<option value="s/galleta">Sin galleta</option>
+				<option value="g/extra">Galleta extra</option>
+				<option value="solo con galleta">Solo con galleta</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Choc. Vaquita </label>
+			<select>
+				<option value="chocolate vaquita" selected>Choc-vaquita</option>
+				<option value="s/choc.vaq">Sin chocolate vaquita</option>
+				<option value="choc-vaq-extra">Choc vaq-extra</option>
+				<option value="solo con chocolate vaquita">Solo choc-vaquita</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Chochitos </label>
+			<select>
+				<option value="chochitos" selected>Chochitos</option>
+				<option value="s/chochitos">Sin chochitos</option>
+				<option value="p/chochitos">Pocos chochitos</option>
+				<option value="m/chochitos">Muchos chochitos</option>
+				<option value="solo con chochitos">Solo chochitos</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Lechera </label>
+			<select>
+				<option value="lechera" selected>Lechera</option>
+				<option value="s/lechera">Sin lechera</option>
+				<option value="p/lechera">Poca lechera</option>
+				<option value="m/lechera">Mucha lechera</option>
+				<option value="solo con lechera">Solo lechera</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Banderilla</label>
+			<select>
+				<option value="banderilla" selected>Banderilla</option>
+				<option value="s/banderilla">Sin banderilla</option>
+				<option value="b/extra">Banderilla extra</option>
+				<option value="solo con banderilla">Solo banderilla</option>
+			</select>
+		</div>
+
+		<div>
+			<p class="prev-label">Previsualización de detalle</p>
+			<div class="prev-detalle"></div>
+		</div>
+	</div>
+	<div class="specification__buttons">
+		<button type="button" class="btn btn-primary">Agregar detalle</button>
+		<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+	</div>
+</form>
+  `
+
+	fresasContainer.insertAdjacentHTML('beforeend', html)
+
+	// // Obtener el formulario recién creado
+	// const newForm = fresasContainer.lastElementChild
+
+	// // Agregar el formulario al contenedor
+	// fresasContainer.appendChild(newForm)
+	// Llamar a la función para actualizar los contadores de los formularios
+	updateCountsProd(fresasContainer, 'Fresas C.C')
+}
+
+function genFormFresasMed() {
+	const html = `
+	<form class="specification__prod" data-form-id="${Date.now()}">
+	<p class="specification__prod-name">Fresas C.C 1/2</p>
+	<div class="specification__container">
+		<div>
+			<label class="specification__label"> Chantilly</label>
+			<select>
+				<option value="chantilly" selected>Chantilly</option>
+				<option value="s/chantilly">Sin chantilly</option>
+				<option value="p/chantilly">Poco chantilly</option>
+				<option value="m/chantilly">Mucho chantilly</option>
+				<option value="solo con chantilly">Solo chantilly</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Chocolate liquido </label>
+			<select>
+				<option value="chocolate" selected>Chocolate</option>
+				<option value="s/chocolate liq">Sin chocolate</option>
+				<option value="p/chocolate liq">Poco chocolate</option>
+				<option value="m/chocolate liq">Mucho chocolate</option>
+				<option value="solo con chocolate liquido">Solo chocolate liquido</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Galleta </label>
+			<select>
+				<option value="galleta" selected>Galleta</option>
+				<option value="s/galleta">Sin galleta</option>
+				<option value="g/extra">Galleta extra</option>
+				<option value="solo con galleta">Solo con galleta</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Choc. Vaquita </label>
+			<select>
+				<option value="chocolate vaquita" selected>Choc-vaquita</option>
+				<option value="s/choc.vaq">Sin chocolate vaquita</option>
+				<option value="choc-vaq-extra">Choc vaq-extra</option>
+				<option value="solo con chocolate vaquita">Solo choc-vaquita</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Chochitos </label>
+			<select>
+				<option value="chochitos" selected>Chochitos</option>
+				<option value="s/chochitos">Sin chochitos</option>
+				<option value="p/chochitos">Pocos chochitos</option>
+				<option value="m/chochitos">Muchos chochitos</option>
+				<option value="solo con chochitos">Solo chochitos</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Lechera </label>
+			<select>
+				<option value="lechera" selected>Lechera</option>
+				<option value="s/lechera">Sin lechera</option>
+				<option value="p/lechera">Poca lechera</option>
+				<option value="m/lechera">Mucha lechera</option>
+				<option value="solo con lechera">Solo lechera</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Banderilla</label>
+			<select>
+				<option value="banderilla" selected>Banderilla</option>
+				<option value="s/banderilla">Sin banderilla</option>
+				<option value="b/extra">Banderilla extra</option>
+				<option value="solo con banderilla">Solo banderilla</option>
+			</select>
+		</div>
+
+		<div>
+			<p class="prev-label">Previsualización de detalle</p>
+			<div class="prev-detalle"></div>
+		</div>
+	</div>
+	<div class="specification__buttons">
+		<button type="button" class="btn btn-primary">Agregar detalle</button>
+		<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+	</div>
+</form>
+  `
+
+	fresasMedContainer.insertAdjacentHTML('beforeend', html)
+
+	// // Obtener el formulario recién creado
+	// const newForm = fresasMedContainer.lastElementChild
+
+	// // Agregar el formulario al contenedor
+	// fresasMedContainer.appendChild(newForm)
+	// Llamar a la función para actualizar los contadores de los formularios
+	updateCountsProd(fresasMedContainer, 'Fresas C.C 1/2')
+}
+
+function genFormGelatina() {
+	const html = `
+	<form class="specification__prod" data-form-id="${Date.now()}">
+	<p class="specification__prod-name">Gelatina C.D</p>
+	<div class="specification__container">
+		<div>
+			<label class="specification__label"> Chantilly</label>
+			<select>
+				<option value="chantilly" selected>Chantilly</option>
+				<option value="s/chantilly">Sin chantilly</option>
+				<option value="p/chantilly">Poco chantilly</option>
+				<option value="m/chantilly">Mucho chantilly</option>
+				<option value="solo con chantilly">Solo chantilly</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Chocolate liquido </label>
+			<select>
+				<option value="chocolate" selected>Chocolate</option>
+				<option value="s/chocolate liq">Sin chocolate</option>
+				<option value="p/chocolate liq">Poco chocolate</option>
+				<option value="m/chocolate liq">Mucho chocolate</option>
+				<option value="solo con chocolate liquido">Solo chocolate liquido</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Galleta </label>
+			<select>
+				<option value="galleta" selected>Galleta</option>
+				<option value="s/galleta">Sin galleta</option>
+				<option value="g/extra">Galleta extra</option>
+				<option value="solo con galleta">Solo con galleta</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Choc. Vaquita </label>
+			<select>
+				<option value="chocolate vaquita" selected>Choc-vaquita</option>
+				<option value="s/choc.vaq">Sin chocolate vaquita</option>
+				<option value="choc-vaq-extra">Choc vaq-extra</option>
+				<option value="solo con chocolate vaquita">Solo choc-vaquita</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Chochitos </label>
+			<select>
+				<option value="chochitos" selected>Chochitos</option>
+				<option value="s/chochitos">Sin chochitos</option>
+				<option value="p/chochitos">Pocos chochitos</option>
+				<option value="m/chochitos">Muchos chochitos</option>
+				<option value="solo con chochitos">Solo chochitos</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Lechera </label>
+			<select>
+				<option value="lechera" selected>Lechera</option>
+				<option value="s/lechera">Sin lechera</option>
+				<option value="p/lechera">Poca lechera</option>
+				<option value="m/lechera">Mucha lechera</option>
+				<option value="solo con lechera">Solo lechera</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Banderilla</label>
+			<select>
+				<option value="banderilla" selected>Banderilla</option>
+				<option value="s/banderilla">Sin banderilla</option>
+				<option value="b/extra">Banderilla extra</option>
+				<option value="solo con banderilla">Solo banderilla</option>
+			</select>
+		</div>
+
+		<div>
+			<p class="prev-label">Previsualización de detalle</p>
+			<div class="prev-detalle"></div>
+		</div>
+	</div>
+	<div class="specification__buttons">
+		<button type="button" class="btn btn-primary">Agregar detalle</button>
+		<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+	</div>
+</form>
+  `
+
+	gelatinaContainer.insertAdjacentHTML('beforeend', html)
+
+	// Obtener el formulario recién creado
+	// const newForm = gelatinaContainer.lastElementChild
+
+	// // Agregar el formulario al contenedor
+	// gelatinaContainer.appendChild(newForm)
+	// Llamar a la función para actualizar los contadores de los formularios
+	updateCountsProd(gelatinaContainer, 'Gelatina C.D')
+}
+
+function genFormGelatinaMed() {
+	const html = `
+	<form class="specification__prod" data-form-id="${Date.now()}">
+	<p class="specification__prod-name">Gelatina C.D 1/2</p>
+	<div class="specification__container">
+		<div>
+			<label class="specification__label"> Chantilly</label>
+			<select>
+				<option value="chantilly" selected>Chantilly</option>
+				<option value="s/chantilly">Sin chantilly</option>
+				<option value="p/chantilly">Poco chantilly</option>
+				<option value="m/chantilly">Mucho chantilly</option>
+				<option value="solo con chantilly">Solo chantilly</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Chocolate liquido </label>
+			<select>
+				<option value="chocolate" selected>Chocolate</option>
+				<option value="s/chocolate liq">Sin chocolate</option>
+				<option value="p/chocolate liq">Poco chocolate</option>
+				<option value="m/chocolate liq">Mucho chocolate</option>
+				<option value="solo con chocolate liquido">Solo chocolate liquido</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Galleta </label>
+			<select>
+				<option value="galleta" selected>Galleta</option>
+				<option value="s/galleta">Sin galleta</option>
+				<option value="g/extra">Galleta extra</option>
+				<option value="solo con galleta">Solo con galleta</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Choc. Vaquita </label>
+			<select>
+				<option value="chocolate vaquita" selected>Choc-vaquita</option>
+				<option value="s/choc.vaq">Sin chocolate vaquita</option>
+				<option value="choc-vaq-extra">Choc vaq-extra</option>
+				<option value="solo con chocolate vaquita">Solo choc-vaquita</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Chochitos </label>
+			<select>
+				<option value="chochitos" selected>Chochitos</option>
+				<option value="s/chochitos">Sin chochitos</option>
+				<option value="p/chochitos">Pocos chochitos</option>
+				<option value="m/chochitos">Muchos chochitos</option>
+				<option value="solo con chochitos">Solo chochitos</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Lechera </label>
+			<select>
+				<option value="lechera" selected>Lechera</option>
+				<option value="s/lechera">Sin lechera</option>
+				<option value="p/lechera">Poca lechera</option>
+				<option value="m/lechera">Mucha lechera</option>
+				<option value="solo con lechera">Solo lechera</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Banderilla</label>
+			<select>
+				<option value="banderilla" selected>Banderilla</option>
+				<option value="s/banderilla">Sin banderilla</option>
+				<option value="b/extra">Banderilla extra</option>
+				<option value="solo con banderilla">Solo banderilla</option>
+			</select>
+		</div>
+
+		<div>
+			<p class="prev-label">Previsualización de detalle</p>
+			<div class="prev-detalle"></div>
+		</div>
+	</div>
+	<div class="specification__buttons">
+		<button type="button" class="btn btn-primary">Agregar detalle</button>
+		<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+	</div>
+</form>
+  `
+
+	gelatinaMedContainer.insertAdjacentHTML('beforeend', html)
+
+	// // Obtener el formulario recién creado
+	// const newForm = gelatinaMedContainer.lastElementChild
+
+	// // Agregar el formulario al contenedor
+	// gelatinaMedContainer.appendChild(newForm)
+	// Llamar a la función para actualizar los contadores de los formularios
+	updateCountsProd(gelatinaMedContainer, 'Gelatina C.D 1/2')
+}
+
+function genFormEnsalada() {
+	const html = `
+	<form class="specification__prod" data-form-id="${Date.now()}">
+	<p class="specification__prod-name">Ensalada D.M</p>
+	<div class="specification__container">
+		<div>
+			<label class="specification__label"> Chantilly</label>
+			<select>
+				<option value="chantilly" selected>Chantilly</option>
+				<option value="s/chantilly">Sin chantilly</option>
+				<option value="p/chantilly">Poco chantilly</option>
+				<option value="m/chantilly">Mucho chantilly</option>
+				<option value="solo con chantilly">Solo chantilly</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Chocolate liquido </label>
+			<select>
+				<option value="chocolate" selected>Chocolate</option>
+				<option value="s/chocolate liq">Sin chocolate</option>
+				<option value="p/chocolate liq">Poco chocolate</option>
+				<option value="m/chocolate liq">Mucho chocolate</option>
+				<option value="solo con chocolate liquido">Solo chocolate liquido</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Galleta </label>
+			<select>
+				<option value="galleta" selected>Galleta</option>
+				<option value="s/galleta">Sin galleta</option>
+				<option value="g/extra">Galleta extra</option>
+				<option value="solo con galleta">Solo con galleta</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Choc. Vaquita </label>
+			<select>
+				<option value="chocolate vaquita" selected>Choc-vaquita</option>
+				<option value="s/choc.vaq">Sin chocolate vaquita</option>
+				<option value="choc-vaq-extra">Choc vaq-extra</option>
+				<option value="solo con chocolate vaquita">Solo choc-vaquita</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Chochitos </label>
+			<select>
+				<option value="chochitos" selected>Chochitos</option>
+				<option value="s/chochitos">Sin chochitos</option>
+				<option value="p/chochitos">Pocos chochitos</option>
+				<option value="m/chochitos">Muchos chochitos</option>
+				<option value="solo con chochitos">Solo chochitos</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Lechera </label>
+			<select>
+				<option value="lechera" selected>Lechera</option>
+				<option value="s/lechera">Sin lechera</option>
+				<option value="p/lechera">Poca lechera</option>
+				<option value="m/lechera">Mucha lechera</option>
+				<option value="solo con lechera">Solo lechera</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Banderilla</label>
+			<select>
+				<option value="banderilla" selected>Banderilla</option>
+				<option value="s/banderilla">Sin banderilla</option>
+				<option value="b/extra">Banderilla extra</option>
+				<option value="solo con banderilla">Solo banderilla</option>
+			</select>
+		</div>
+
+		<div>
+			<p class="prev-label">Previsualización de detalle</p>
+			<div class="prev-detalle"></div>
+		</div>
+	</div>
+	<div class="specification__buttons">
+		<button type="button" class="btn btn-primary">Agregar detalle</button>
+		<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+	</div>
+</form>
+  `
+
+	manzanaContainer.insertAdjacentHTML('beforeend', html)
+
+	// // Obtener el formulario recién creado
+	// const newForm = manzanaContainer.lastElementChild
+
+	// // Agregar el formulario al contenedor
+	// manzanaContainer.appendChild(newForm)
+	// Llamar a la función para actualizar los contadores de los formularios
+	updateCountsProd(manzanaContainer, 'Ensalada D.M')
+}
+
+function genFormEnsaladaMed() {
+	const html = `
+	<form class="specification__prod" data-form-id="${Date.now()}">
+	<p class="specification__prod-name">Ensalada D.M 1/2</p>
+	<div class="specification__container">
+		<div>
+			<label class="specification__label"> Chantilly</label>
+			<select>
+				<option value="chantilly" selected>Chantilly</option>
+				<option value="s/chantilly">Sin chantilly</option>
+				<option value="p/chantilly">Poco chantilly</option>
+				<option value="m/chantilly">Mucho chantilly</option>
+				<option value="solo con chantilly">Solo chantilly</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Chocolate liquido </label>
+			<select>
+				<option value="chocolate" selected>Chocolate</option>
+				<option value="s/chocolate liq">Sin chocolate</option>
+				<option value="p/chocolate liq">Poco chocolate</option>
+				<option value="m/chocolate liq">Mucho chocolate</option>
+				<option value="solo con chocolate liquido">Solo chocolate liquido</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Galleta </label>
+			<select>
+				<option value="galleta" selected>Galleta</option>
+				<option value="s/galleta">Sin galleta</option>
+				<option value="g/extra">Galleta extra</option>
+				<option value="solo con galleta">Solo con galleta</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Choc. Vaquita </label>
+			<select>
+				<option value="chocolate vaquita" selected>Choc-vaquita</option>
+				<option value="s/choc.vaq">Sin chocolate vaquita</option>
+				<option value="choc-vaq-extra">Choc vaq-extra</option>
+				<option value="solo con chocolate vaquita">Solo choc-vaquita</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Chochitos </label>
+			<select>
+				<option value="chochitos" selected>Chochitos</option>
+				<option value="s/chochitos">Sin chochitos</option>
+				<option value="p/chochitos">Pocos chochitos</option>
+				<option value="m/chochitos">Muchos chochitos</option>
+				<option value="solo con chochitos">Solo chochitos</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Lechera </label>
+			<select>
+				<option value="lechera" selected>Lechera</option>
+				<option value="s/lechera">Sin lechera</option>
+				<option value="p/lechera">Poca lechera</option>
+				<option value="m/lechera">Mucha lechera</option>
+				<option value="solo con lechera">Solo lechera</option>
+			</select>
+		</div>
+		<div>
+			<label class="specification__label"> Banderilla</label>
+			<select>
+				<option value="banderilla" selected>Banderilla</option>
+				<option value="s/banderilla">Sin banderilla</option>
+				<option value="b/extra">Banderilla extra</option>
+				<option value="solo con banderilla">Solo banderilla</option>
+			</select>
+		</div>
+
+		<div>
+			<p class="prev-label">Previsualización de detalle</p>
+			<div class="prev-detalle"></div>
+		</div>
+	</div>
+	<div class="specification__buttons">
+		<button type="button" class="btn btn-primary">Agregar detalle</button>
+		<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+	</div>
+</form>
+  `
+
+	manzanaMedContainer.insertAdjacentHTML('beforeend', html)
+
+	// // Obtener el formulario recién creado
+	// const newForm = manzanaMedContainer.lastElementChild
+
+	// // Agregar el formulario al contenedor
+	// manzanaMedContainer.appendChild(newForm)
+	// Llamar a la función para actualizar los contadores de los formularios
+	updateCountsProd(manzanaMedContainer, 'Ensalada D.M 1/2')
+}
+
+function genFormGomiboing() {
+	const html = `
+	<form class="specification__prod" data-form-id="${Date.now()}">
+				<div class="specification__select">
+					<p class="specification__prod-name">Gomiboing</p>
+					<select>
+						<option value="mango" selected>Mango</option>
+						<option value="uva">Uva</option>
+						<option value="guayaba">Guayaba</option>
+						<option value="fresa">Fresa</option>
+						<option value="naranja">Naranja</option>
+					</select>
+				</div>
+				<div class="specification__container">
+					<div>
+						<label class="specification__label"> Escarchado </label>
+						<select>
+							<option value="escarchado" selected>Escarchado</option>
+							<option value="s/escarchar">Sin escarchar</option>
+							<option value="solo escarchado">Solo escarchado</option>
+						</select>
+					</div>
+					<div>
+						<label class="specification__label"> Gomitas </label>
+						<select>
+							<option value="gomitas" selected>Gomitas</option>
+							<option value="s/gomitas">Sin gomitas</option>
+							<option value="poquitas gomitas">Pocas gomitas</option>
+							<option value="solo con gomitas">Solo gomitas</option>
+						</select>
+					</div>
+					<div>
+						<label class="specification__label"> Miguelito </label>
+						<select>
+							<option value="miguelito" selected>Miguelito</option>
+							<option value="s/miguelito">Sin miguelito</option>
+							<option value="p/miguelito">Poco miguelito</option>
+							<option value="m/miguelito">Mucho miguelito</option>
+							<option value="solo con miguelito">Solo miguelito</option>
+						</select>
+					</div>
+					<div>
+						<label class="specification__label"> Chamoy </label>
+						<select>
+							<option value="chamoy" selected>Chamoy</option>
+							<option value="s/chamoy">Sin chamoy</option>
+							<option value="p/chamoy">Poco chamoy</option>
+							<option value="m/chamoy">Mucho chamoy</option>
+							<option value="solo con chamoy">Solo chamoy</option>
+						</select>
+					</div>
+					<div>
+						<label class="specification__label"> Salsa </label>
+						<select>
+							<option value="salsa" selected>Salsa</option>
+							<option value="s/salsa">Sin salsa</option>
+							<option value="p/salsa">Poca salsa</option>
+							<option value="m/salsa">Mucha salsa</option>
+							<option value="solo con salsa">Solo salsa</option>
+						</select>
+					</div>
+					<div>
+						<label class="specification__label"> Limón </label>
+						<select>
+							<option value="limon" selected>Limón</option>
+							<option value="s/limon">Sin limón</option>
+							<option value="p/limon">Poco limón</option>
+							<option value="m/limon">Mucho limón</option>
+							<option value="solo con limon">Solo limón</option>
+						</select>
+					</div>
+					<div>
+						<label class="specification__label"> Banderilla </label>
+						<select>
+							<option value="banderilla" selected>Banderilla</option>
+							<option value="s/banderilla">Sin banderilla</option>
+							<option value="solo con banderilla">Solo banderilla</option>
+						</select>
+					</div>
+
+					<div>
+						<p class="prev-label">Previsualización de detalle</p>
+						<div class="prev-detalle"></div>
+					</div>
+				</div>
+				<div class="specification__buttons">
+					<button type="button" class="btn btn-primary">Agregar detalle</button>
+					<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+				</div>
+			</form>
+  `
+
+	gomiboingContainer.insertAdjacentHTML('beforeend', html)
+
+	// // Obtener el formulario recién creado
+	// const newForm = gomiboingContainer.lastElementChild
+
+	// // Agregar el formulario al contenedor
+	// gomiboingContainer.appendChild(newForm)
+	// Llamar a la función para actualizar los contadores de los formularios
+	updateCountsProd(gomiboingContainer, 'Gomiboing')
 }
 
 // TODO ESCUCHADOR DE CONTENEDOR DE DETALLES
+if (location.pathname.endsWith('/order.html')) {
+	// Asignar el controlador de eventos al contenedor
+	esquitesContainer.addEventListener('click', function (event) {
+		if (event.target.classList.contains('btn-primary')) {
+			const prevDetalle = event.target.closest('.specification__prod')
+			const divPrev = prevDetalle.querySelector('.prev-detalle')
 
-// Asignar el controlador de eventos al contenedor
-esquitesContainer.addEventListener('click', function (event) {
-	if (event.target.classList.contains('btn-primary')) {
-		const btnDelete = event.target.nextElementSibling
-		btnDelete.removeAttribute('disabled')
-		const form = event.target.closest('form')
-		enviarFormulario(event, form)
-		showAlert('Detalle agregado', 'exit')
-	}
+			const product = document.querySelector('.product[data-name="Esquite"]')
+			const productName = product.dataset.name
+			const btnDelete = event.target.nextElementSibling
+			btnDelete.removeAttribute('disabled')
+			const form = event.target.closest('form')
+			enviarFormulario(event, form, productName)
+			showAlert('Detalle agregado', 'exit')
+		}
 
-	if (event.target.classList.contains('btn-cancel')) {
-		const esqProd = document.querySelector('.product[data-name="Esquite"]')
-		const idProduct = parseInt(esqProd.dataset.id)
-		removeDetails(esqProd, idProduct)
-		const form = event.target.closest('form')
-		const formId = form.dataset.formId
-		form.remove()
-		removeDetailsById(formId, 'Esquite')
-		showAlert('Producto eliminado', 'exit')
-	}
-})
+		if (event.target.classList.contains('btn-cancel')) {
+			Swal.fire({
+				title: '¿Estás seguro de eliminar el producto?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonText: 'Eliminar',
+				cancelButtonText: 'Cancelar',
+			}).then((result) => {
+				if (result.isConfirmed) {
+					const product = document.querySelector('.product[data-name="Esquite"]')
+					const idProduct = parseInt(product.dataset.id)
+					removeDetails(product, idProduct)
+					const form = event.target.closest('form')
+					const formId = form.dataset.formId
+					form.remove()
+					removeDetailsById(formId, 'Esquite')
+					showAlert('Producto eliminado', 'exit')
+				}
+			})
+		}
+	})
 
+	esquitesMedContainer.addEventListener('click', function (event) {
+		if (event.target.classList.contains('btn-primary')) {
+			const product = document.querySelector('.product[data-name="Esquite 1/2"]')
+			const productName = product.dataset.name
+			const btnDelete = event.target.nextElementSibling
+			btnDelete.removeAttribute('disabled')
+			const form = event.target.closest('form')
+			enviarFormulario(event, form, productName)
+			showAlert('Detalle agregado', 'exit')
+		}
+
+		if (event.target.classList.contains('btn-cancel')) {
+			Swal.fire({
+				title: '¿Estás seguro de eliminar el producto?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonText: 'Eliminar',
+				cancelButtonText: 'Cancelar',
+			}).then((result) => {
+				if (result.isConfirmed) {
+					const product = document.querySelector('.product[data-name="Esquite 1/2"]')
+					const idProduct = parseInt(product.dataset.id)
+					removeDetails(product, idProduct)
+					const form = event.target.closest('form')
+					const formId = form.dataset.formId
+					form.remove()
+					removeDetailsById(formId, 'Esquite 1/2')
+					showAlert('Producto eliminado', 'exit')
+				}
+			})
+		}
+	})
+
+	doriesquiteContainer.addEventListener('click', function (event) {
+		if (event.target.classList.contains('btn-primary')) {
+			const product = document.querySelector('.product[data-name="Doriesquite"]')
+			const productName = product.dataset.name
+			const btnDelete = event.target.nextElementSibling
+			btnDelete.removeAttribute('disabled')
+			const form = event.target.closest('form')
+			enviarFormulario(event, form, productName)
+			showAlert('Detalle agregado', 'exit')
+		}
+
+		if (event.target.classList.contains('btn-cancel')) {
+			Swal.fire({
+				title: '¿Estás seguro de eliminar el producto?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonText: 'Eliminar',
+				cancelButtonText: 'Cancelar',
+			}).then((result) => {
+				if (result.isConfirmed) {
+					const product = document.querySelector('.product[data-name="Doriesquite"]')
+					const idProduct = parseInt(product.dataset.id)
+					removeDetails(product, idProduct)
+					const form = event.target.closest('form')
+					const formId = form.dataset.formId
+					form.remove()
+					removeDetailsById(formId, 'Doriesquite')
+					showAlert('Producto eliminado', 'exit')
+				}
+			})
+		}
+	})
+
+	dorilocoContainer.addEventListener('click', function (event) {
+		if (event.target.classList.contains('btn-primary')) {
+			const product = document.querySelector('.product[data-name="Doriloco"]')
+			const productName = product.dataset.name
+			const btnDelete = event.target.nextElementSibling
+			btnDelete.removeAttribute('disabled')
+			const form = event.target.closest('form')
+			enviarFormulario(event, form, productName)
+			showAlert('Detalle agregado', 'exit')
+		}
+
+		if (event.target.classList.contains('btn-cancel')) {
+			Swal.fire({
+				title: '¿Estás seguro de eliminar el producto?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonText: 'Eliminar',
+				cancelButtonText: 'Cancelar',
+			}).then((result) => {
+				if (result.isConfirmed) {
+					const product = document.querySelector('.product[data-name="Doriloco"]')
+					const idProduct = parseInt(product.dataset.id)
+					removeDetails(product, idProduct)
+					const form = event.target.closest('form')
+					const formId = form.dataset.formId
+					form.remove()
+					removeDetailsById(formId, 'Doriloco')
+					showAlert('Producto eliminado', 'exit')
+				}
+			})
+		}
+	})
+
+	tostilocoContainer.addEventListener('click', function (event) {
+		if (event.target.classList.contains('btn-primary')) {
+			const product = document.querySelector('.product[data-name="Tostiloco"]')
+			const productName = product.dataset.name
+			const btnDelete = event.target.nextElementSibling
+			btnDelete.removeAttribute('disabled')
+			const form = event.target.closest('form')
+			enviarFormulario(event, form, productName)
+			showAlert('Detalle agregado', 'exit')
+		}
+
+		if (event.target.classList.contains('btn-cancel')) {
+			Swal.fire({
+				title: '¿Estás seguro de eliminar el producto?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonText: 'Eliminar',
+				cancelButtonText: 'Cancelar',
+			}).then((result) => {
+				if (result.isConfirmed) {
+					const product = document.querySelector('.product[data-name="Tostiloco"]')
+					const idProduct = parseInt(product.dataset.id)
+					removeDetails(product, idProduct)
+					const form = event.target.closest('form')
+					const formId = form.dataset.formId
+					form.remove()
+					removeDetailsById(formId, 'Tostiloco')
+					showAlert('Producto eliminado', 'exit')
+				}
+			})
+		}
+	})
+
+	fresasContainer.addEventListener('click', function (event) {
+		if (event.target.classList.contains('btn-primary')) {
+			const product = document.querySelector('.product[data-name="Fresas C.C"]')
+			const productName = product.dataset.name
+			const btnDelete = event.target.nextElementSibling
+			btnDelete.removeAttribute('disabled')
+			const form = event.target.closest('form')
+			enviarFormulario(event, form, productName)
+			showAlert('Detalle agregado', 'exit')
+		}
+
+		if (event.target.classList.contains('btn-cancel')) {
+			Swal.fire({
+				title: '¿Estás seguro de eliminar el producto?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonText: 'Eliminar',
+				cancelButtonText: 'Cancelar',
+			}).then((result) => {
+				if (result.isConfirmed) {
+					const product = document.querySelector('.product[data-name="Fresas C.C"]')
+					const idProduct = parseInt(product.dataset.id)
+					removeDetails(product, idProduct)
+					const form = event.target.closest('form')
+					const formId = form.dataset.formId
+					form.remove()
+					removeDetailsById(formId, 'Fresas C.C')
+					showAlert('Producto eliminado', 'exit')
+				}
+			})
+		}
+	})
+
+	fresasMedContainer.addEventListener('click', function (event) {
+		if (event.target.classList.contains('btn-primary')) {
+			const product = document.querySelector('.product[data-name="Fresas C.C 1/2"]')
+			const productName = product.dataset.name
+			const btnDelete = event.target.nextElementSibling
+			btnDelete.removeAttribute('disabled')
+			const form = event.target.closest('form')
+			enviarFormulario(event, form, productName)
+			showAlert('Detalle agregado', 'exit')
+		}
+
+		if (event.target.classList.contains('btn-cancel')) {
+			Swal.fire({
+				title: '¿Estás seguro de eliminar el producto?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonText: 'Eliminar',
+				cancelButtonText: 'Cancelar',
+			}).then((result) => {
+				if (result.isConfirmed) {
+					const product = document.querySelector('.product[data-name="Fresas C.C 1/2"]')
+					const idProduct = parseInt(product.dataset.id)
+					removeDetails(product, idProduct)
+					const form = event.target.closest('form')
+					const formId = form.dataset.formId
+					form.remove()
+					removeDetailsById(formId, 'Fresas C.C 1/2')
+					showAlert('Producto eliminado', 'exit')
+				}
+			})
+		}
+	})
+
+	gelatinaContainer.addEventListener('click', function (event) {
+		if (event.target.classList.contains('btn-primary')) {
+			const product = document.querySelector('.product[data-name="Gelatina C.D"]')
+			const productName = product.dataset.name
+			const btnDelete = event.target.nextElementSibling
+			btnDelete.removeAttribute('disabled')
+			const form = event.target.closest('form')
+			enviarFormulario(event, form, productName)
+			showAlert('Detalle agregado', 'exit')
+		}
+
+		if (event.target.classList.contains('btn-cancel')) {
+			Swal.fire({
+				title: '¿Estás seguro de eliminar el producto?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonText: 'Eliminar',
+				cancelButtonText: 'Cancelar',
+			}).then((result) => {
+				if (result.isConfirmed) {
+					const product = document.querySelector('.product[data-name="Gelatina C.D"]')
+					const idProduct = parseInt(product.dataset.id)
+					removeDetails(product, idProduct)
+					const form = event.target.closest('form')
+					const formId = form.dataset.formId
+					form.remove()
+					removeDetailsById(formId, 'Gelatina C.D')
+					showAlert('Producto eliminado', 'exit')
+				}
+			})
+		}
+	})
+
+	gelatinaMedContainer.addEventListener('click', function (event) {
+		if (event.target.classList.contains('btn-primary')) {
+			const product = document.querySelector('.product[data-name="Gelatina C.D 1/2"]')
+			const productName = product.dataset.name
+			const btnDelete = event.target.nextElementSibling
+			btnDelete.removeAttribute('disabled')
+			const form = event.target.closest('form')
+			enviarFormulario(event, form, productName)
+			showAlert('Detalle agregado', 'exit')
+		}
+
+		if (event.target.classList.contains('btn-cancel')) {
+			Swal.fire({
+				title: '¿Estás seguro de eliminar el producto?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonText: 'Eliminar',
+				cancelButtonText: 'Cancelar',
+			}).then((result) => {
+				if (result.isConfirmed) {
+					const product = document.querySelector('.product[data-name="Gelatina C.D 1/2"]')
+					const idProduct = parseInt(product.dataset.id)
+					removeDetails(product, idProduct)
+					const form = event.target.closest('form')
+					const formId = form.dataset.formId
+					form.remove()
+					removeDetailsById(formId, 'Gelatina C.D 1/2')
+					showAlert('Producto eliminado', 'exit')
+				}
+			})
+		}
+	})
+
+	manzanaContainer.addEventListener('click', function (event) {
+		if (event.target.classList.contains('btn-primary')) {
+			const product = document.querySelector('.product[data-name="Ensalada D.M"]')
+			const productName = product.dataset.name
+			const btnDelete = event.target.nextElementSibling
+			btnDelete.removeAttribute('disabled')
+			const form = event.target.closest('form')
+			enviarFormulario(event, form, productName)
+			showAlert('Detalle agregado', 'exit')
+		}
+
+		if (event.target.classList.contains('btn-cancel')) {
+			Swal.fire({
+				title: '¿Estás seguro de eliminar el producto?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonText: 'Eliminar',
+				cancelButtonText: 'Cancelar',
+			}).then((result) => {
+				if (result.isConfirmed) {
+					const product = document.querySelector('.product[data-name="Ensalada D.M"]')
+					const idProduct = parseInt(product.dataset.id)
+					removeDetails(product, idProduct)
+					const form = event.target.closest('form')
+					const formId = form.dataset.formId
+					form.remove()
+					removeDetailsById(formId, 'Ensalada D.M')
+					showAlert('Producto eliminado', 'exit')
+				}
+			})
+		}
+	})
+
+	manzanaMedContainer.addEventListener('click', function (event) {
+		if (event.target.classList.contains('btn-primary')) {
+			const product = document.querySelector('.product[data-name="Ensalada D.M 1/2]')
+			const productName = product.dataset.name
+			const btnDelete = event.target.nextElementSibling
+			btnDelete.removeAttribute('disabled')
+			const form = event.target.closest('form')
+			enviarFormulario(event, form, productName)
+			showAlert('Detalle agregado', 'exit')
+		}
+
+		if (event.target.classList.contains('btn-cancel')) {
+			Swal.fire({
+				title: '¿Estás seguro de eliminar el producto?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonText: 'Eliminar',
+				cancelButtonText: 'Cancelar',
+			}).then((result) => {
+				if (result.isConfirmed) {
+					const product = document.querySelector('.product[data-name="Ensalada D.M 1/2"]')
+					const idProduct = parseInt(product.dataset.id)
+					removeDetails(product, idProduct)
+					const form = event.target.closest('form')
+					const formId = form.dataset.formId
+					form.remove()
+					removeDetailsById(formId, 'Ensalada D.M 1/2')
+					showAlert('Producto eliminado', 'exit')
+				}
+			})
+		}
+	})
+
+	gomiboingContainer.addEventListener('click', function (event) {
+		if (event.target.classList.contains('btn-primary')) {
+			const product = document.querySelector('.product[data-name="Gomiboing"]')
+			const productName = product.dataset.name
+			const btnDelete = event.target.nextElementSibling
+			btnDelete.removeAttribute('disabled')
+			const form = event.target.closest('form')
+			enviarFormulario(event, form, productName)
+			showAlert('Detalle agregado', 'exit')
+		}
+
+		if (event.target.classList.contains('btn-cancel')) {
+			Swal.fire({
+				title: '¿Estás seguro de eliminar el producto?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonText: 'Eliminar',
+				cancelButtonText: 'Cancelar',
+			}).then((result) => {
+				if (result.isConfirmed) {
+					const product = document.querySelector('.product[data-name="Gomiboing"]')
+					const idProduct = parseInt(product.dataset.id)
+					removeDetails(product, idProduct)
+					const form = event.target.closest('form')
+					const formId = form.dataset.formId
+					form.remove()
+					removeDetailsById(formId, 'GomiBoing')
+					showAlert('Producto eliminado', 'exit')
+				}
+			})
+		}
+	})
+}
 function removeDetailsById(id, prod) {
 	const index = detalles.findIndex((det) => det.id === id)
 	if (index !== -1) {
 		detalles.splice(index, 1)
 		if (prod === 'Esquite') {
-			updateEsquiteCounts(esquitesContainer, prod)
+			updateCountsProd(esquitesContainer, prod)
 			console.log(esquitesContainer)
 		}
 		if (prod === 'Esquite 1/2') {
-			updateEsquiteCounts(esquitesMedContainer, prod)
+			updateCountsProd(esquitesMedContainer, prod)
 		}
 		if (prod === 'Doriesquite') {
-			updateEsquiteCounts(doriesquiteContainer, prod)
+			updateCountsProd(doriesquiteContainer, prod)
 		}
 		if (prod === 'Doriloco') {
-			updateEsquiteCounts(dorilocoContainer, prod)
+			updateCountsProd(dorilocoContainer, prod)
 		}
 		if (prod === 'Tostiloco') {
-			updateEsquiteCounts(tostilocoContainer, prod)
+			updateCountsProd(tostilocoContainer, prod)
 		}
 		if (prod === 'Fresas C.C') {
-			updateEsquiteCounts(fresasContainer, prod)
+			updateCountsProd(fresasContainer, prod)
 		}
 		if (prod === 'Fresas C.C 1/2') {
-			updateEsquiteCounts(fresasMedContainer, prod)
+			updateCountsProd(fresasMedContainer, prod)
 		}
 		if (prod === 'Gelatina C.D') {
-			updateEsquiteCounts(gelatinaContainer, prod)
+			updateCountsProd(gelatinaContainer, prod)
 		}
 		if (prod === 'Gelatina C.D 1/2') {
-			updateEsquiteCounts(gelatinaMedContainer, prod)
+			updateCountsProd(gelatinaMedContainer, prod)
 		}
 		if (prod === 'Ensalada D.M') {
-			updateEsquiteCounts(manzanaContainer, prod)
+			updateCountsProd(manzanaContainer, prod)
 		}
 		if (prod === 'Ensalada D.M 1/2') {
-			updateEsquiteCounts(manzanaMedContainer, prod)
+			updateCountsProd(manzanaMedContainer, prod)
 		}
 		if (prod === 'Gomiboing') {
-			updateEsquiteCounts(gomiboingContainer, prod)
+			updateCountsProd(gomiboingContainer, prod)
 		}
 		addDetailsArea()
 	}
 }
 
-function updateEsquiteCounts(container, nameProd) {
+function updateCountsProd(container, nameProd) {
 	const forms = Array.from(container.getElementsByClassName('specification__prod'))
 
 	forms.forEach((form, index) => {
@@ -544,9 +2298,64 @@ function deleteProductOrder(e) {
 			products.forEach((prod) => {
 				if (prod.id === idProduct) {
 					if (prod.name === 'Esquite') {
-						detalles = detalles.filter((det) => !det.name === 'Esquite')
+						detalles = detalles.filter((det) => det.name !== 'Esquite')
 						addDetailsArea()
 						esquitesContainer.textContent = ''
+					}
+					if (prod.name === 'Esquite 1/2') {
+						detalles = detalles.filter((det) => det.name !== 'Esquite 1/2')
+						addDetailsArea()
+						esquitesMedContainer.textContent = ''
+					}
+					if (prod.name === 'Doriesquite') {
+						detalles = detalles.filter((det) => det.name !== 'Doriesquite')
+						addDetailsArea()
+						doriesquiteContainer.textContent = ''
+					}
+					if (prod.name === 'Doriloco') {
+						detalles = detalles.filter((det) => det.name !== 'Doriloco')
+						addDetailsArea()
+						dorilocoContainer.textContent = ''
+					}
+					if (prod.name === 'Tostiloco') {
+						detalles = detalles.filter((det) => det.name !== 'Tostiloco')
+						addDetailsArea()
+						tostilocoContainer.textContent = ''
+					}
+					if (prod.name === 'Fresas C.C') {
+						detalles = detalles.filter((det) => !det.name !== 'Fresas C.C')
+						addDetailsArea()
+						fresasContainer.textContent = ''
+					}
+					if (prod.name === 'Fresas C.C 1/2') {
+						detalles = detalles.filter((det) => det.name !== 'Fresas C.C 1/2')
+						addDetailsArea()
+						fresasMedContainer.textContent = ''
+					}
+					if (prod.name === 'Gelatina C.D') {
+						detalles = detalles.filter((det) => det.name !== 'Gelatina C.D')
+						addDetailsArea()
+						gelatinaContainer.textContent = ''
+					}
+					if (prod.name === 'Gelatina C.D 1/2') {
+						detalles = detalles.filter((det) => det.name !== 'Gelatina C.D 1/2')
+						addDetailsArea()
+						gelatinaMedContainer.textContent = ''
+					}
+					if (prod.name === 'Ensalada D.M') {
+						detalles = detalles.filter((det) => det.name !== 'Ensalada D.M')
+						addDetailsArea()
+						manzanaContainer.textContent = ''
+					}
+					if (prod.name === 'Ensalada D.M  1/2') {
+						detalles = detalles.filter((det) => det.name !== 'Ensalada D.M 1/2')
+						addDetailsArea()
+						manzanaMedContainer.textContent = ''
+					}
+					if (prod.name === 'Gomiboing') {
+						detalles = detalles.filter((det) => det.name !== 'Gomiboing')
+						addDetailsArea()
+						gomiboingContainer.textContent = ''
 					}
 					products = products.filter((prod) => prod.id !== idProduct)
 					const element = document.querySelector(`[id="${prod.id}"]`)

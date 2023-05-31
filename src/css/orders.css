@@ -361,25 +361,6 @@
 	margin: 0;
 }
 
-.specification-esquites,
-.specification-esquites-med,
-.specification-doriesquite,
-.specification-doriloco,
-.specification-tostiloco,
-.specification-fresas,
-.specification-fresas-med,
-.specification-gelatina,
-.specification-gelatina-med,
-.specification-manzana,
-.specification-manzana-med,
-.specification-gomiboing {
-	display: none;
-}
-
-.specification-active {
-	display: block;
-}
-
 .specification {
 	--dark-blue: #1a242e;
 	display: flex;
@@ -407,7 +388,16 @@
 }
 
 .specification__container select {
-	width: 150px;
+	width: 170px;
+	border-radius: 1rem;
+	background-color: #54778b;
+	color: #130f0f;
+	border: 1px solid white;
+}
+
+.specification__container select option {
+	color: #fff;
+	border: 1px solid red;
 }
 
 .specification__container input {
@@ -423,17 +413,20 @@
 .specification__select select {
 	width: 40%;
 	height: 30px;
+	border-radius: 1rem;
 }
 
 .specification__prod {
 	border-bottom: 1px solid rgba(202, 198, 198, 0.575);
 	border-top: 1px solid rgba(202, 198, 198, 0.575);
 	padding: 1em 0.3em;
+	margin-bottom: 1em;
 }
 .specification__prod-name {
 	color: #ddd;
-	font-weight: var(--fw-bold);
-	filter: drop-shadow(0px 0px 9px yellow);
+	font-weight: var(--fw-semi-bold);
+	filter: drop-shadow(0px 0px 15px yellow);
+	/* font-size: 9px; */
 	margin: 0;
 }
 .specification__buttons {
@@ -447,9 +440,21 @@
 	padding: 0 0.5em;
 }
 
-@media (min-width: 320px) and (max-width: 350px) {
+@media (min-width: 320px) and (max-width: 374px) {
 	.specification__buttons button {
 		padding: 0 0.5em;
 		font-size: 13px;
 	}
+}
+
+.prev-label {
+	color: var(--dark-orange);
+	text-align: center;
+}
+
+.prev-detalle {
+	border: 1px solid #1c93d8;
+	color: #63b6a4;
+	width: 100%;
+	min-height: 30px;
 }
