@@ -208,7 +208,7 @@ const ui = new Ui()
 
 const products = [
 	{
-		name: 'Esquite',
+		name: 'Esquite ch',
 		category: 'botanas',
 		price: 25,
 		id: 11,

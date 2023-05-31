@@ -90,7 +90,7 @@ function showProducts() {
 		btnRemove.setAttribute('id', name)
 		btnRemove.textContent = '-'
 		btnRemove.addEventListener('click', removeProduct)
-		if (btnRemove.id === 'Esquite') {
+		if (btnRemove.id === 'Esquite ch') {
 			btnRemove.addEventListener('click', removeUltimateFormEsquites)
 		}
 		if (btnRemove.id === 'Esquite 1/2') {
@@ -140,7 +140,7 @@ function showProducts() {
 
 		btnAdd.addEventListener('click', addProduct)
 
-		if (btnAdd.id === 'Esquite') {
+		if (btnAdd.id === 'Esquite ch') {
 			btnAdd.addEventListener('click', genFormEsquite)
 		}
 		if (btnAdd.id === 'Esquite 1/2') {
@@ -439,7 +439,7 @@ function genFormEsquite() {
 	const html = `
     <form class="specification__prod" data-form-id="${Date.now()}">
       <div class="specification__select">
-        <p class="specification__prod-name">Esquite</p>
+        <p class="specification__prod-name">Esquite ch</p>
         <select>
           <option value="normal" selected>Normal</option>
           <option value="mas caldo que grano">Mas caldo que grano</option>
@@ -512,7 +512,7 @@ function genFormEsquite() {
 	// esquitesContainer.appendChild(newForm)
 
 	// Llamar a la función para actualizar los contadores de los formularios
-	updateCountsProd(esquitesContainer, 'Esquite')
+	updateCountsProd(esquitesContainer, 'Esquite ch')
 }
 
 function genFormEsquiteMed() {
@@ -1723,7 +1723,7 @@ if (location.pathname.endsWith('/order.html')) {
 	// Asignar el controlador de eventos al contenedor
 	esquitesContainer.addEventListener('click', function (event) {
 		if (event.target.classList.contains('btn-primary')) {
-			const product = document.querySelector('.product[data-name="Esquite"]')
+			const product = document.querySelector('.product[data-name="Esquite ch"]')
 			const productName = product.dataset.name
 			const btnDelete = event.target.nextElementSibling
 			btnDelete.removeAttribute('disabled')
@@ -1741,13 +1741,13 @@ if (location.pathname.endsWith('/order.html')) {
 				cancelButtonText: 'Cancelar',
 			}).then((result) => {
 				if (result.isConfirmed) {
-					const product = document.querySelector('.product[data-name="Esquite"]')
+					const product = document.querySelector('.product[data-name="Esquite ch"]')
 					const idProduct = parseInt(product.dataset.id)
 					removeDetails(product, idProduct)
 					const form = event.target.closest('form')
 					const formId = form.dataset.formId
 					form.remove()
-					removeDetailsById(formId, 'Esquite')
+					removeDetailsById(formId, 'Esquite ch')
 					showAlert('Producto eliminado', 'exit')
 				}
 			})
@@ -2187,7 +2187,7 @@ function removeDetailsById(id, prod) {
 	const index = detalles.findIndex((det) => det.id === id)
 	if (index !== -1) {
 		detalles.splice(index, 1)
-		if (prod === 'Esquite') {
+		if (prod === 'Esquite ch') {
 			updateCountsProd(esquitesContainer, prod)
 			console.log(esquitesContainer)
 		}
@@ -2401,8 +2401,8 @@ function deleteProductOrder(e) {
 
 			products.forEach((prod) => {
 				if (prod.id === idProduct) {
-					if (prod.name === 'Esquite') {
-						detalles = detalles.filter((det) => det.name !== 'Esquite')
+					if (prod.name === 'Esquite ch') {
+						detalles = detalles.filter((det) => det.name !== 'Esquite ch')
 						addDetailsArea()
 						esquitesContainer.textContent = ''
 					}
