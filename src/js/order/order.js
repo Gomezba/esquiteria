@@ -61,12 +61,6 @@ const impresora = document.getElementById('macInput')
 
 const productsStorage = JSON.parse(localStorage.getItem('products'))
 
-// const obj = document.getElementById('obj')
-// obj.addEventListener('click', () => {
-// 	console.log(orderDetails.value)
-// 	console.log(order)
-// })
-
 function showProducts() {
 	productsStorage.forEach((prod) => {
 		const fragment = document.createDocumentFragment()
@@ -363,7 +357,6 @@ function removeUltimateAguaFrescaMed() {
 		let lastForm = forms[forms.length - 1]
 		lastForm.remove()
 	}
-	genFormAguaFrescaMed
 }
 
 let detalles = []
@@ -419,9 +412,6 @@ function enviarFormulario(e, form, nameProd) {
 		// Agregar el objeto de detalle al array global
 		detalles.push(detalle)
 	}
-
-	// Imprimir el array de detalles en la consola (opcional)
-	console.log(detalles)
 
 	// Obtener referencia al textarea dentro del formulario actual
 	const orderDetails = form.querySelector('.prev-detalle')
@@ -503,15 +493,6 @@ function genFormEsquite() {
   `
 
 	esquitesContainer.insertAdjacentHTML('beforeend', html)
-	// esquitesContainer.innerHTML += html
-
-	// // Obtener el formulario recién creado
-	// const newForm = esquitesContainer.lastElementChild
-
-	// // Agregar el formulario al contenedor
-	// esquitesContainer.appendChild(newForm)
-
-	// Llamar a la función para actualizar los contadores de los formularios
 	updateCountsProd(esquitesContainer, 'Esquite ch')
 }
 
@@ -583,13 +564,6 @@ function genFormEsquiteMed() {
   `
 
 	esquitesMedContainer.insertAdjacentHTML('beforeend', html)
-
-	// Obtener el formulario recién creado
-	// const newForm = esquitesMedContainer.lastElementChild
-
-	// // Agregar el formulario al contenedor
-	// esquitesMedContainer.appendChild(newForm)
-	// Llamar a la función para actualizar los contadores de los formularios
 	updateCountsProd(esquitesMedContainer, 'Esquite 1/2')
 }
 
@@ -696,13 +670,6 @@ function genFormDoriesquite() {
   `
 
 	doriesquiteContainer.insertAdjacentHTML('beforeend', html)
-
-	// // Obtener el formulario recién creado
-	// const newForm = doriesquiteContainer.lastElementChild
-
-	// // Agregar el formulario al contenedor
-	// doriesquiteContainer.appendChild(newForm)
-	// Llamar a la función para actualizar los contadores de los formularios
 	updateCountsProd(doriesquiteContainer, 'Doriesquite')
 }
 
@@ -852,13 +819,6 @@ function genFormDoriloco() {
   `
 
 	dorilocoContainer.insertAdjacentHTML('beforeend', html)
-
-	// // Obtener el formulario recién creado
-	// const newForm = dorilocoContainer.lastElementChild
-
-	// // Agregar el formulario al contenedor
-	// dorilocoContainer.appendChild(newForm)
-	// Llamar a la función para actualizar los contadores de los formularios
 	updateCountsProd(dorilocoContainer, 'Doriloco')
 }
 
@@ -980,13 +940,6 @@ function genFormTostiloco() {
   `
 
 	tostilocoContainer.insertAdjacentHTML('beforeend', html)
-
-	// // Obtener el formulario recién creado
-	// const newForm = tostilocoContainer.lastElementChild
-
-	// // Agregar el formulario al contenedor
-	// tostilocoContainer.appendChild(newForm)
-	// Llamar a la función para actualizar los contadores de los formularios
 	updateCountsProd(tostilocoContainer, 'Tostiloco')
 }
 
@@ -1067,13 +1020,6 @@ function genFormFresas() {
   `
 
 	fresasContainer.insertAdjacentHTML('beforeend', html)
-
-	// // Obtener el formulario recién creado
-	// const newForm = fresasContainer.lastElementChild
-
-	// // Agregar el formulario al contenedor
-	// fresasContainer.appendChild(newForm)
-	// Llamar a la función para actualizar los contadores de los formularios
 	updateCountsProd(fresasContainer, 'Fresas C.C')
 }
 
@@ -1154,13 +1100,6 @@ function genFormFresasMed() {
   `
 
 	fresasMedContainer.insertAdjacentHTML('beforeend', html)
-
-	// // Obtener el formulario recién creado
-	// const newForm = fresasMedContainer.lastElementChild
-
-	// // Agregar el formulario al contenedor
-	// fresasMedContainer.appendChild(newForm)
-	// Llamar a la función para actualizar los contadores de los formularios
 	updateCountsProd(fresasMedContainer, 'Fresas C.C 1/2')
 }
 
@@ -1242,13 +1181,6 @@ function genFormGelatina() {
   `
 
 	gelatinaContainer.insertAdjacentHTML('beforeend', html)
-
-	// Obtener el formulario recién creado
-	// const newForm = gelatinaContainer.lastElementChild
-
-	// // Agregar el formulario al contenedor
-	// gelatinaContainer.appendChild(newForm)
-	// Llamar a la función para actualizar los contadores de los formularios
 	updateCountsProd(gelatinaContainer, 'Gelatina C.D')
 }
 
@@ -1329,13 +1261,6 @@ function genFormGelatinaMed() {
   `
 
 	gelatinaMedContainer.insertAdjacentHTML('beforeend', html)
-
-	// // Obtener el formulario recién creado
-	// const newForm = gelatinaMedContainer.lastElementChild
-
-	// // Agregar el formulario al contenedor
-	// gelatinaMedContainer.appendChild(newForm)
-	// Llamar a la función para actualizar los contadores de los formularios
 	updateCountsProd(gelatinaMedContainer, 'Gelatina C.D 1/2')
 }
 
@@ -1393,6 +1318,16 @@ function genFormEnsalada() {
 			</select>
 		</div>
 		<div>
+			<label class="specification__label"> Nuez </label>
+			<select>
+				<option value="nuez" selected>Nuez</option>
+				<option value="s/nuez">Sin nuez</option>
+				<option value="p/nuez">Poca nuez</option>
+				<option value="m/nuez">Mucha nuez</option>
+				<option value="solo con nuez">Solo nuez</option>
+			</select>
+		</div>	
+		<div>
 			<label class="specification__label"> Lechera </label>
 			<select>
 				<option value="sin lechera" selected>Sin lechera</option>
@@ -1416,13 +1351,6 @@ function genFormEnsalada() {
   `
 
 	manzanaContainer.insertAdjacentHTML('beforeend', html)
-
-	// // Obtener el formulario recién creado
-	// const newForm = manzanaContainer.lastElementChild
-
-	// // Agregar el formulario al contenedor
-	// manzanaContainer.appendChild(newForm)
-	// Llamar a la función para actualizar los contadores de los formularios
 	updateCountsProd(manzanaContainer, 'Ensalada D.M')
 }
 
@@ -1480,6 +1408,16 @@ function genFormEnsaladaMed() {
 			</select>
 		</div>
 		<div>
+			<label class="specification__label"> Nuez </label>
+			<select>
+				<option value="nuez" selected>Nuez</option>
+				<option value="s/nuez">Sin nuez</option>
+				<option value="p/nuez">Poca nuez</option>
+				<option value="m/nuez">Mucha nuez</option>
+				<option value="solo con nuez">Solo nuez</option>
+			</select>
+		</div>	
+		<div>
 			<label class="specification__label"> Lechera </label>
 			<select>
 				<option value="sin lechera" selected>Sin lechera</option>
@@ -1488,7 +1426,8 @@ function genFormEnsaladaMed() {
 				<option value="m/lechera">Mucha lechera</option>
 				<option value="solo con lechera">Solo lechera</option>
 			</select>
-		</div>		
+		</div>
+		
 
 		<div>
 			<p class="prev-label">Previsualización de detalle</p>
@@ -1503,13 +1442,6 @@ function genFormEnsaladaMed() {
   `
 
 	manzanaMedContainer.insertAdjacentHTML('beforeend', html)
-
-	// // Obtener el formulario recién creado
-	// const newForm = manzanaMedContainer.lastElementChild
-
-	// // Agregar el formulario al contenedor
-	// manzanaMedContainer.appendChild(newForm)
-	// Llamar a la función para actualizar los contadores de los formularios
 	updateCountsProd(manzanaMedContainer, 'Ensalada D.M 1/2')
 }
 
@@ -1616,13 +1548,6 @@ function genFormGomiboing() {
   `
 
 	gomiboingContainer.insertAdjacentHTML('beforeend', html)
-
-	// // Obtener el formulario recién creado
-	// const newForm = gomiboingContainer.lastElementChild
-
-	// // Agregar el formulario al contenedor
-	// gomiboingContainer.appendChild(newForm)
-	// Llamar a la función para actualizar los contadores de los formularios
 	updateCountsProd(gomiboingContainer, 'Gomiboing')
 }
 
@@ -1632,7 +1557,8 @@ function genFormAguaFresca() {
 				<div class="specification__select">
 					<p class="specification__prod-name">Agua fresca 1L</p>
 					<select>
-						<option value="naranja" selected>Naranja</option>
+						<option value=""selected disabled>Seleccionar</option>
+						<option value="naranja" >Naranja</option>
 						<option value="fresa">Fresa</option>
 						<option value="horchata">Horchata</option>
 						<option value="pepino con limon">Pepino con limón</option>
@@ -1662,13 +1588,6 @@ function genFormAguaFresca() {
   `
 
 	aguaFrescaContainer.insertAdjacentHTML('beforeend', html)
-
-	// // Obtener el formulario recién creado
-	// const newForm = gomiboingContainer.lastElementChild
-
-	// // Agregar el formulario al contenedor
-	// gomiboingContainer.appendChild(newForm)
-	// Llamar a la función para actualizar los contadores de los formularios
 	updateCountsProd(aguaFrescaContainer, 'Agua F.1L')
 }
 
@@ -1678,7 +1597,8 @@ function genFormAguaFrescaMed() {
 				<div class="specification__select">
 					<p class="specification__prod-name">Agua fresca 1/2 L</p>
 					<select>
-						<option value="naranja" selected>Naranja</option>
+						<option value=""selected disabled>Seleccionar</option>
+						<option value="naranja" >Naranja</option>
 						<option value="fresa">Fresa</option>
 						<option value="horchata">Horchata</option>
 						<option value="pepino con limon">Pepino con limón</option>
@@ -1708,13 +1628,6 @@ function genFormAguaFrescaMed() {
   `
 
 	aguaFrescaMedContainer.insertAdjacentHTML('beforeend', html)
-
-	// // Obtener el formulario recién creado
-	// const newForm = gomiboingContainer.lastElementChild
-
-	// // Agregar el formulario al contenedor
-	// gomiboingContainer.appendChild(newForm)
-	// Llamar a la función para actualizar los contadores de los formularios
 	updateCountsProd(aguaFrescaMedContainer, 'Agua F.1/2')
 }
 
@@ -2053,7 +1966,7 @@ if (location.pathname.endsWith('/order.html')) {
 
 	manzanaMedContainer.addEventListener('click', function (event) {
 		if (event.target.classList.contains('btn-primary')) {
-			const product = document.querySelector('.product[data-name="Ensalada D.M 1/2]')
+			const product = document.querySelector('.product[data-name="Ensalada D.M 1/2"]')
 			const productName = product.dataset.name
 			const btnDelete = event.target.nextElementSibling
 			btnDelete.removeAttribute('disabled')
@@ -2189,7 +2102,6 @@ function removeDetailsById(id, prod) {
 		detalles.splice(index, 1)
 		if (prod === 'Esquite ch') {
 			updateCountsProd(esquitesContainer, prod)
-			console.log(esquitesContainer)
 		}
 		if (prod === 'Esquite 1/2') {
 			updateCountsProd(esquitesMedContainer, prod)

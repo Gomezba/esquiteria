@@ -391,8 +391,8 @@
 	width: 170px;
 	border-radius: 1rem;
 	background-color: #18445e;
-	color: #ebe8e3;
-	border: 1px solid white;
+	color: #ebe8e3be;
+	border: 1px solid rgba(255, 255, 255, 0.514);
 }
 
 .specification__container input {
@@ -418,10 +418,8 @@
 	margin-bottom: 1em;
 }
 .specification__prod-name {
-	color: #ddd;
+	color: #a5a2a2;
 	font-weight: var(--fw-semi-bold);
-	filter: drop-shadow(0px 0px 15px yellow);
-	/* font-size: 9px; */
 	margin: 0;
 }
 .specification__buttons {
