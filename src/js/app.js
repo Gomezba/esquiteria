@@ -30,6 +30,12 @@ addEventListener('DOMContentLoaded', () => {
 	}
 
 	if (location.pathname.endsWith('/order.html')) {
+		window.addEventListener('beforeunload', function (event) {
+			// Mostrar una alerta al intentar recargar la página
+			event.preventDefault()
+			event.returnValue = '¿Estás seguro de que deseas recargar la página?'
+		})
+
 		showProductsHtml()
 		eventsListeners()
 		customerPaymentInput()
