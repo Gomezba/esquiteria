@@ -1,4 +1,4 @@
-import { dia, mes, anio, horas, minutos, fecha } from '../functions/date.js'
+import { obtenerFechaActual } from '../functions/date.js'
 import { ConectorEscposAndroid } from '../tickets/ConectorEscposAndroid.js'
 
 const arrowBotanas = document.querySelector('[data-arrow="botanas"]')
@@ -58,6 +58,13 @@ const imprimirTicketBtn = document.getElementById('imprimirTicketBtn')
 const cancelarImpresionBtn = document.getElementById('cancelarImpresionBtn')
 const licenciaa = document.getElementById('licencia')
 const impresora = document.getElementById('macInput')
+
+const tomarPedido = document.getElementById('tomar-pedido')
+const btnShowOrder = document.getElementById('show-order-list')
+const btnRegresar = document.getElementById('regresar')
+const btnDel = document.getElementById('orders-deleted')
+const sectionOder = document.getElementById('section-order')
+const ordersContainer = document.getElementById('orders-container')
 
 const productsStorage = JSON.parse(localStorage.getItem('products'))
 
@@ -247,115 +254,115 @@ function resetOrder() {
 
 // TODO REMUEVE FORMULARIO DEL CONTENEDOR ESQUITES
 function removeUltimateFormEsquites() {
-	const forms = esquitesContainer.getElementsByClassName('specification__prod')
+	const sections = esquitesContainer.getElementsByClassName('section-sp')
 
-	if (forms.length > 0) {
-		let lastForm = forms[forms.length - 1]
-		lastForm.remove()
+	if (sections.length > 0) {
+		let lastSection = sections[sections.length - 1]
+		lastSection.remove()
 	}
 }
 function removeUltimateFormEsquitesMed() {
-	const forms = esquitesMedContainer.getElementsByClassName('specification__prod')
+	const sections = esquitesMedContainer.getElementsByClassName('section-sp|')
 
-	if (forms.length > 0) {
-		let lastForm = forms[forms.length - 1]
-		lastForm.remove()
+	if (sections.length > 0) {
+		let lastSection = sections[sections.length - 1]
+		lastSection.remove()
 	}
 }
 function removeUltimateFormDoriesquite() {
-	const forms = doriesquiteContainer.getElementsByClassName('specification__prod')
+	const sections = doriesquiteContainer.getElementsByClassName('section-sp')
 
-	if (forms.length > 0) {
-		let lastForm = forms[forms.length - 1]
-		lastForm.remove()
+	if (sections.length > 0) {
+		let lastSection = sections[sections.length - 1]
+		lastSection.remove()
 	}
 }
 function removeUltimateFormDoriloco() {
-	const forms = dorilocoContainer.getElementsByClassName('specification__prod')
+	const sections = dorilocoContainer.getElementsByClassName('section-sp')
 
-	if (forms.length > 0) {
-		let lastForm = forms[forms.length - 1]
-		lastForm.remove()
+	if (sections.length > 0) {
+		let lastSection = sections[sections.length - 1]
+		lastSection.remove()
 	}
 }
 function removeUltimateFormTostiloco() {
-	const forms = tostilocoContainer.getElementsByClassName('specification__prod')
+	const sections = tostilocoContainer.getElementsByClassName('section-sp')
 
-	if (forms.length > 0) {
-		let lastForm = forms[forms.length - 1]
-		lastForm.remove()
+	if (sections.length > 0) {
+		let lastSection = sections[sections.length - 1]
+		lastSection.remove()
 	}
 }
 function removeUltimateFormFresas() {
-	const forms = fresasContainer.getElementsByClassName('specification__prod')
+	const sections = fresasContainer.getElementsByClassName('section-sp')
 
-	if (forms.length > 0) {
-		let lastForm = forms[forms.length - 1]
-		lastForm.remove()
+	if (sections.length > 0) {
+		let lastSection = sections[sections.length - 1]
+		lastSection.remove()
 	}
 }
 function removeUltimateFormFresasMed() {
-	const forms = fresasMedContainer.getElementsByClassName('specification__prod')
+	const sections = fresasMedContainer.getElementsByClassName('section-sp')
 
-	if (forms.length > 0) {
-		let lastForm = forms[forms.length - 1]
-		lastForm.remove()
+	if (sections.length > 0) {
+		let lastSection = sections[sections.length - 1]
+		lastSection.remove()
 	}
 }
 function removeUltimateFormGelatina() {
-	const forms = gelatinaContainer.getElementsByClassName('specification__prod')
+	const sections = gelatinaContainer.getElementsByClassName('section-sp')
 
-	if (forms.length > 0) {
-		let lastForm = forms[forms.length - 1]
-		lastForm.remove()
+	if (sections.length > 0) {
+		let lastSection = sections[sections.length - 1]
+		lastSection.remove()
 	}
 }
 function removeUltimateFormGelatinaMed() {
-	const forms = gelatinaMedContainer.getElementsByClassName('specification__prod')
+	const sections = gelatinaMedContainer.getElementsByClassName('section-sp')
 
-	if (forms.length > 0) {
-		let lastForm = forms[forms.length - 1]
-		lastForm.remove()
+	if (sections.length > 0) {
+		let lastSection = sections[sections.length - 1]
+		lastSection.remove()
 	}
 }
 function removeUltimateFormEnsalada() {
-	const forms = manzanaContainer.getElementsByClassName('specification__prod')
+	const sections = manzanaContainer.getElementsByClassName('section-sp')
 
-	if (forms.length > 0) {
-		let lastForm = forms[forms.length - 1]
-		lastForm.remove()
+	if (sections.length > 0) {
+		let lastSection = sections[sections.length - 1]
+		lastSection.remove()
 	}
 }
 function removeUltimateFormEnsaladaMed() {
-	const forms = manzanaMedContainer.getElementsByClassName('specification__prod')
+	const sections = manzanaMedContainer.getElementsByClassName('section-sp')
 
-	if (forms.length > 0) {
-		let lastForm = forms[forms.length - 1]
-		lastForm.remove()
+	if (sections.length > 0) {
+		let lastSection = sections[sections.length - 1]
+		lastSection.remove()
 	}
 }
 function removeUltimateFormGomiboing() {
-	const forms = gomiboingContainer.getElementsByClassName('specification__prod')
+	const sections = gomiboingContainer.getElementsByClassName('section-sp')
 
-	if (forms.length > 0) {
-		let lastForm = forms[forms.length - 1]
-		lastForm.remove()
+	if (sections.length > 0) {
+		let lastSection = sections[sections.length - 1]
+		lastSection.remove()
 	}
 }
 function removeUltimateAguaFresca() {
-	const forms = aguaFrescaContainer.getElementsByClassName('specification__prod')
+	const sections = aguaFrescaContainer.getElementsByClassName('section-sp')
 
-	if (forms.length > 0) {
-		let lastForm = forms[forms.length - 1]
-		lastForm.remove()
+	if (sections.length > 0) {
+		let lastSection = sections[sections.length - 1]
+		lastSection.remove()
 	}
 }
 function removeUltimateAguaFrescaMed() {
-	const forms = aguaFrescaMedContainer.getElementsByClassName('specification__prod')
+	const sections = aguaFrescaMedContainer.getElementsByClassName('section-sp')
 
-	if (forms.length > 0) {
-		let lastForm = forms[forms.length - 1]
-		lastForm.remove()
+	if (sections.length > 0) {
+		let lastSection = sections[sections.length - 1]
+		lastSection.remove()
 	}
 }
 
@@ -426,7 +433,13 @@ function enviarFormulario(e, form, nameProd) {
 // TODO GENERA EL FORMULARIO DE PRODUCTOS
 
 function genFormEsquite() {
+	const section = document.createElement('section')
+	section.classList.add('section-sp')
+
 	const html = `
+	
+	<h3 class='prod-l'></h3>
+	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
     <form class="specification__prod" data-form-id="${Date.now()}">
       <div class="specification__select">
         <p class="specification__prod-name">Esquite ch</p>
@@ -490,14 +503,30 @@ function genFormEsquite() {
         <button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
       </div>
     </form>
+	
   `
 
-	esquitesContainer.insertAdjacentHTML('beforeend', html)
+	section.innerHTML = html
+
+	const form = section.querySelector('form')
+	const arrow = section.querySelector('.arrow-down-sp')
+	arrow.addEventListener('click', (e) => {
+		e.preventDefault()
+		arrow.classList.toggle('active')
+		form.classList.toggle('active')
+	})
+
+	esquitesContainer.appendChild(section)
 	updateCountsProd(esquitesContainer, 'Esquite ch')
 }
 
 function genFormEsquiteMed() {
-	const html = `
+	const section = document.createElement('section')
+	section.classList.add('section-sp')
+
+	const html = `	
+	<h3 class='prod-l'></h3>
+	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
     <form class="specification__prod" data-form-id="${Date.now()}">
       <div class="specification__select">
         <p class="specification__prod-name">Esquite 1/2</p>
@@ -563,12 +592,27 @@ function genFormEsquiteMed() {
     </form>
   `
 
-	esquitesMedContainer.insertAdjacentHTML('beforeend', html)
+	section.innerHTML = html
+
+	const form = section.querySelector('form')
+	const arrow = section.querySelector('.arrow-down-sp')
+	arrow.addEventListener('click', (e) => {
+		e.preventDefault()
+		arrow.classList.toggle('active')
+		form.classList.toggle('active')
+	})
+
+	esquitesMedContainer.appendChild(section)
 	updateCountsProd(esquitesMedContainer, 'Esquite 1/2')
 }
 
 function genFormDoriesquite() {
-	const html = `
+	const section = document.createElement('section')
+	section.classList.add('section-sp')
+
+	const html = `	
+	<h3 class='prod-l'></h3>
+	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 	<div class="specification__select">
 		<p class="specification__prod-name">Doriesquite</p>
@@ -668,13 +712,27 @@ function genFormDoriesquite() {
 	</div>
 </form>
   `
+	section.innerHTML = html
 
-	doriesquiteContainer.insertAdjacentHTML('beforeend', html)
+	const form = section.querySelector('form')
+	const arrow = section.querySelector('.arrow-down-sp')
+	arrow.addEventListener('click', (e) => {
+		e.preventDefault()
+		arrow.classList.toggle('active')
+		form.classList.toggle('active')
+	})
+
+	doriesquiteContainer.appendChild(section)
 	updateCountsProd(doriesquiteContainer, 'Doriesquite')
 }
 
 function genFormDoriloco() {
-	const html = `
+	const section = document.createElement('section')
+	section.classList.add('section-sp')
+
+	const html = `	
+	<h3 class='prod-l'></h3>
+	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 					<div class="specification__select">
 						<p class="specification__prod-name">Doriloco</p>
@@ -817,13 +875,27 @@ function genFormDoriloco() {
 				</form>
 
   `
+	section.innerHTML = html
 
-	dorilocoContainer.insertAdjacentHTML('beforeend', html)
+	const form = section.querySelector('form')
+	const arrow = section.querySelector('.arrow-down-sp')
+	arrow.addEventListener('click', (e) => {
+		e.preventDefault()
+		arrow.classList.toggle('active')
+		form.classList.toggle('active')
+	})
+
+	dorilocoContainer.appendChild(section)
 	updateCountsProd(dorilocoContainer, 'Doriloco')
 }
 
 function genFormTostiloco() {
-	const html = `
+	const section = document.createElement('section')
+	section.classList.add('section-sp')
+
+	const html = `	
+	<h3 class='prod-l'></h3>
+	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 					<p class="specification__prod-name">Tostiloco</p>
 					<div class="specification__container">
@@ -938,13 +1010,27 @@ function genFormTostiloco() {
 					</div>
 				</form>
   `
+	section.innerHTML = html
 
-	tostilocoContainer.insertAdjacentHTML('beforeend', html)
+	const form = section.querySelector('form')
+	const arrow = section.querySelector('.arrow-down-sp')
+	arrow.addEventListener('click', (e) => {
+		e.preventDefault()
+		arrow.classList.toggle('active')
+		form.classList.toggle('active')
+	})
+
+	tostilocoContainer.appendChild(section)
 	updateCountsProd(tostilocoContainer, 'Tostiloco')
 }
 
 function genFormFresas() {
-	const html = `
+	const section = document.createElement('section')
+	section.classList.add('section-sp')
+
+	const html = `	
+	<h3 class='prod-l'></h3>
+	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 	<p class="specification__prod-name">Fresas C.C</p>
 	<div class="specification__container">
@@ -1019,12 +1105,27 @@ function genFormFresas() {
 </form>
   `
 
-	fresasContainer.insertAdjacentHTML('beforeend', html)
+	section.innerHTML = html
+
+	const form = section.querySelector('form')
+	const arrow = section.querySelector('.arrow-down-sp')
+	arrow.addEventListener('click', (e) => {
+		e.preventDefault()
+		arrow.classList.toggle('active')
+		form.classList.toggle('active')
+	})
+
+	fresasContainer.appendChild(section)
 	updateCountsProd(fresasContainer, 'Fresas C.C')
 }
 
 function genFormFresasMed() {
-	const html = `
+	const section = document.createElement('section')
+	section.classList.add('section-sp')
+
+	const html = `	
+	<h3 class='prod-l'></h3>
+	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 	<p class="specification__prod-name">Fresas C.C 1/2</p>
 	<div class="specification__container">
@@ -1098,13 +1199,27 @@ function genFormFresasMed() {
 	</div>
 </form>
   `
+	section.innerHTML = html
 
-	fresasMedContainer.insertAdjacentHTML('beforeend', html)
+	const form = section.querySelector('form')
+	const arrow = section.querySelector('.arrow-down-sp')
+	arrow.addEventListener('click', (e) => {
+		e.preventDefault()
+		arrow.classList.toggle('active')
+		form.classList.toggle('active')
+	})
+
+	fresasMedContainer.appendChild(section)
 	updateCountsProd(fresasMedContainer, 'Fresas C.C 1/2')
 }
 
 function genFormGelatina() {
-	const html = `
+	const section = document.createElement('section')
+	section.classList.add('section-sp')
+
+	const html = `	
+	<h3 class='prod-l'></h3>
+	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 	<p class="specification__prod-name">Gelatina C.D</p>
 	<div class="specification__container">
@@ -1179,13 +1294,27 @@ function genFormGelatina() {
 	</div>
 </form>
   `
+	section.innerHTML = html
 
-	gelatinaContainer.insertAdjacentHTML('beforeend', html)
+	const form = section.querySelector('form')
+	const arrow = section.querySelector('.arrow-down-sp')
+	arrow.addEventListener('click', (e) => {
+		e.preventDefault()
+		arrow.classList.toggle('active')
+		form.classList.toggle('active')
+	})
+
+	gelatinaContainer.appendChild(section)
 	updateCountsProd(gelatinaContainer, 'Gelatina C.D')
 }
 
 function genFormGelatinaMed() {
-	const html = `
+	const section = document.createElement('section')
+	section.classList.add('section-sp')
+
+	const html = `	
+	<h3 class='prod-l'></h3>
+	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 	<p class="specification__prod-name">Gelatina C.D 1/2</p>
 	<div class="specification__container">
@@ -1259,13 +1388,27 @@ function genFormGelatinaMed() {
 	</div>
 </form>
   `
+	section.innerHTML = html
 
-	gelatinaMedContainer.insertAdjacentHTML('beforeend', html)
+	const form = section.querySelector('form')
+	const arrow = section.querySelector('.arrow-down-sp')
+	arrow.addEventListener('click', (e) => {
+		e.preventDefault()
+		arrow.classList.toggle('active')
+		form.classList.toggle('active')
+	})
+
+	gelatinaMedContainer.appendChild(section)
 	updateCountsProd(gelatinaMedContainer, 'Gelatina C.D 1/2')
 }
 
 function genFormEnsalada() {
-	const html = `
+	const section = document.createElement('section')
+	section.classList.add('section-sp')
+
+	const html = `	
+	<h3 class='prod-l'></h3>
+	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 	<p class="specification__prod-name">Ensalada D.M</p>
 	<div class="specification__container">
@@ -1349,13 +1492,27 @@ function genFormEnsalada() {
 	</div>
 </form>
   `
+	section.innerHTML = html
 
-	manzanaContainer.insertAdjacentHTML('beforeend', html)
+	const form = section.querySelector('form')
+	const arrow = section.querySelector('.arrow-down-sp')
+	arrow.addEventListener('click', (e) => {
+		e.preventDefault()
+		arrow.classList.toggle('active')
+		form.classList.toggle('active')
+	})
+
+	manzanaContainer.appendChild(section)
 	updateCountsProd(manzanaContainer, 'Ensalada D.M')
 }
 
 function genFormEnsaladaMed() {
-	const html = `
+	const section = document.createElement('section')
+	section.classList.add('section-sp')
+
+	const html = `	
+	<h3 class='prod-l'></h3>
+	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 	<p class="specification__prod-name">Ensalada D.M 1/2</p>
 	<div class="specification__container">
@@ -1440,17 +1597,32 @@ function genFormEnsaladaMed() {
 	</div>
 </form>
   `
+	section.innerHTML = html
 
-	manzanaMedContainer.insertAdjacentHTML('beforeend', html)
+	const form = section.querySelector('form')
+	const arrow = section.querySelector('.arrow-down-sp')
+	arrow.addEventListener('click', (e) => {
+		e.preventDefault()
+		arrow.classList.toggle('active')
+		form.classList.toggle('active')
+	})
+
+	manzanaMedContainer.appendChild(section)
 	updateCountsProd(manzanaMedContainer, 'Ensalada D.M 1/2')
 }
 
 function genFormGomiboing() {
-	const html = `
+	const section = document.createElement('section')
+	section.classList.add('section-sp')
+
+	const html = `	
+	<h3 class='prod-l'></h3>
+	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 				<div class="specification__select">
 					<p class="specification__prod-name">Gomiboing</p>
 					<select>
+						<option value="" disabled>Seleccionar</option>
 						<option value="mango" selected>Mango</option>
 						<option value="uva">Uva</option>
 						<option value="guayaba">Guayaba</option>
@@ -1546,19 +1718,33 @@ function genFormGomiboing() {
 				</div>
 			</form>
   `
+	section.innerHTML = html
 
-	gomiboingContainer.insertAdjacentHTML('beforeend', html)
+	const form = section.querySelector('form')
+	const arrow = section.querySelector('.arrow-down-sp')
+	arrow.addEventListener('click', (e) => {
+		e.preventDefault()
+		arrow.classList.toggle('active')
+		form.classList.toggle('active')
+	})
+
+	gomiboingContainer.appendChild(section)
 	updateCountsProd(gomiboingContainer, 'Gomiboing')
 }
 
 function genFormAguaFresca() {
-	const html = `
+	const section = document.createElement('section')
+	section.classList.add('section-sp')
+
+	const html = `	
+	<h3 class='prod-l'></h3>
+	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 				<div class="specification__select">
 					<p class="specification__prod-name">Agua fresca 1L</p>
 					<select>
-						<option value=""selected disabled>Seleccionar</option>
-						<option value="naranja" >Naranja</option>
+						<option value="" disabled>Seleccionar</option>
+						<option value="naranja" selected >Naranja</option>
 						<option value="fresa">Fresa</option>
 						<option value="horchata">Horchata</option>
 						<option value="pepino con limon">Pepino con limón</option>
@@ -1586,19 +1772,33 @@ function genFormAguaFresca() {
 				</div>
 			</form>
   `
+	section.innerHTML = html
 
-	aguaFrescaContainer.insertAdjacentHTML('beforeend', html)
+	const form = section.querySelector('form')
+	const arrow = section.querySelector('.arrow-down-sp')
+	arrow.addEventListener('click', (e) => {
+		e.preventDefault()
+		arrow.classList.toggle('active')
+		form.classList.toggle('active')
+	})
+
+	aguaFrescaContainer.appendChild(section)
 	updateCountsProd(aguaFrescaContainer, 'Agua F.1L')
 }
 
 function genFormAguaFrescaMed() {
-	const html = `
+	const section = document.createElement('section')
+	section.classList.add('section-sp')
+
+	const html = `	
+	<h3 class='prod-l'></h3>
+	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 				<div class="specification__select">
 					<p class="specification__prod-name">Agua fresca 1/2 L</p>
 					<select>
-						<option value=""selected disabled>Seleccionar</option>
-						<option value="naranja" >Naranja</option>
+						<option value="" disabled>Seleccionar</option>
+						<option value="naranja" selected >Naranja</option>
 						<option value="fresa">Fresa</option>
 						<option value="horchata">Horchata</option>
 						<option value="pepino con limon">Pepino con limón</option>
@@ -1626,8 +1826,17 @@ function genFormAguaFrescaMed() {
 				</div>
 			</form>
   `
+	section.innerHTML = html
 
-	aguaFrescaMedContainer.insertAdjacentHTML('beforeend', html)
+	const form = section.querySelector('form')
+	const arrow = section.querySelector('.arrow-down-sp')
+	arrow.addEventListener('click', (e) => {
+		e.preventDefault()
+		arrow.classList.toggle('active')
+		form.classList.toggle('active')
+	})
+
+	aguaFrescaMedContainer.appendChild(section)
 	updateCountsProd(aguaFrescaMedContainer, 'Agua F.1/2')
 }
 
@@ -1657,9 +1866,10 @@ if (location.pathname.endsWith('/order.html')) {
 					const product = document.querySelector('.product[data-name="Esquite ch"]')
 					const idProduct = parseInt(product.dataset.id)
 					removeDetails(product, idProduct)
+					const section = event.target.closest('.section-sp')
 					const form = event.target.closest('form')
 					const formId = form.dataset.formId
-					form.remove()
+					section.remove()
 					removeDetailsById(formId, 'Esquite ch')
 					showAlert('Producto eliminado', 'exit')
 				}
@@ -1690,9 +1900,10 @@ if (location.pathname.endsWith('/order.html')) {
 					const product = document.querySelector('.product[data-name="Esquite 1/2"]')
 					const idProduct = parseInt(product.dataset.id)
 					removeDetails(product, idProduct)
+					const section = event.target.closest('.section-sp')
 					const form = event.target.closest('form')
 					const formId = form.dataset.formId
-					form.remove()
+					section.remove()
 					removeDetailsById(formId, 'Esquite 1/2')
 					showAlert('Producto eliminado', 'exit')
 				}
@@ -1723,9 +1934,10 @@ if (location.pathname.endsWith('/order.html')) {
 					const product = document.querySelector('.product[data-name="Doriesquite"]')
 					const idProduct = parseInt(product.dataset.id)
 					removeDetails(product, idProduct)
+					const section = event.target.closest('.section-sp')
 					const form = event.target.closest('form')
 					const formId = form.dataset.formId
-					form.remove()
+					section.remove()
 					removeDetailsById(formId, 'Doriesquite')
 					showAlert('Producto eliminado', 'exit')
 				}
@@ -1756,9 +1968,10 @@ if (location.pathname.endsWith('/order.html')) {
 					const product = document.querySelector('.product[data-name="Doriloco"]')
 					const idProduct = parseInt(product.dataset.id)
 					removeDetails(product, idProduct)
+					const section = event.target.closest('.section-sp')
 					const form = event.target.closest('form')
 					const formId = form.dataset.formId
-					form.remove()
+					section.remove()
 					removeDetailsById(formId, 'Doriloco')
 					showAlert('Producto eliminado', 'exit')
 				}
@@ -1789,9 +2002,10 @@ if (location.pathname.endsWith('/order.html')) {
 					const product = document.querySelector('.product[data-name="Tostiloco"]')
 					const idProduct = parseInt(product.dataset.id)
 					removeDetails(product, idProduct)
+					const section = event.target.closest('.section-sp')
 					const form = event.target.closest('form')
 					const formId = form.dataset.formId
-					form.remove()
+					section.remove()
 					removeDetailsById(formId, 'Tostiloco')
 					showAlert('Producto eliminado', 'exit')
 				}
@@ -1822,9 +2036,10 @@ if (location.pathname.endsWith('/order.html')) {
 					const product = document.querySelector('.product[data-name="Fresas C.C"]')
 					const idProduct = parseInt(product.dataset.id)
 					removeDetails(product, idProduct)
+					const section = event.target.closest('.section-sp')
 					const form = event.target.closest('form')
 					const formId = form.dataset.formId
-					form.remove()
+					section.remove()
 					removeDetailsById(formId, 'Fresas C.C')
 					showAlert('Producto eliminado', 'exit')
 				}
@@ -1855,9 +2070,10 @@ if (location.pathname.endsWith('/order.html')) {
 					const product = document.querySelector('.product[data-name="Fresas C.C 1/2"]')
 					const idProduct = parseInt(product.dataset.id)
 					removeDetails(product, idProduct)
+					const section = event.target.closest('.section-sp')
 					const form = event.target.closest('form')
 					const formId = form.dataset.formId
-					form.remove()
+					section.remove()
 					removeDetailsById(formId, 'Fresas C.C 1/2')
 					showAlert('Producto eliminado', 'exit')
 				}
@@ -1888,9 +2104,10 @@ if (location.pathname.endsWith('/order.html')) {
 					const product = document.querySelector('.product[data-name="Gelatina C.D"]')
 					const idProduct = parseInt(product.dataset.id)
 					removeDetails(product, idProduct)
+					const section = event.target.closest('.section-sp')
 					const form = event.target.closest('form')
 					const formId = form.dataset.formId
-					form.remove()
+					section.remove()
 					removeDetailsById(formId, 'Gelatina C.D')
 					showAlert('Producto eliminado', 'exit')
 				}
@@ -1921,9 +2138,10 @@ if (location.pathname.endsWith('/order.html')) {
 					const product = document.querySelector('.product[data-name="Gelatina C.D 1/2"]')
 					const idProduct = parseInt(product.dataset.id)
 					removeDetails(product, idProduct)
+					const section = event.target.closest('.section-sp')
 					const form = event.target.closest('form')
 					const formId = form.dataset.formId
-					form.remove()
+					section.remove()
 					removeDetailsById(formId, 'Gelatina C.D 1/2')
 					showAlert('Producto eliminado', 'exit')
 				}
@@ -1954,9 +2172,10 @@ if (location.pathname.endsWith('/order.html')) {
 					const product = document.querySelector('.product[data-name="Ensalada D.M"]')
 					const idProduct = parseInt(product.dataset.id)
 					removeDetails(product, idProduct)
+					const section = event.target.closest('.section-sp')
 					const form = event.target.closest('form')
 					const formId = form.dataset.formId
-					form.remove()
+					section.remove()
 					removeDetailsById(formId, 'Ensalada D.M')
 					showAlert('Producto eliminado', 'exit')
 				}
@@ -1987,9 +2206,10 @@ if (location.pathname.endsWith('/order.html')) {
 					const product = document.querySelector('.product[data-name="Ensalada D.M 1/2"]')
 					const idProduct = parseInt(product.dataset.id)
 					removeDetails(product, idProduct)
+					const section = event.target.closest('.section-sp')
 					const form = event.target.closest('form')
 					const formId = form.dataset.formId
-					form.remove()
+					section.remove()
 					removeDetailsById(formId, 'Ensalada D.M 1/2')
 					showAlert('Producto eliminado', 'exit')
 				}
@@ -2020,10 +2240,11 @@ if (location.pathname.endsWith('/order.html')) {
 					const product = document.querySelector('.product[data-name="Gomiboing"]')
 					const idProduct = parseInt(product.dataset.id)
 					removeDetails(product, idProduct)
+					const section = event.target.closest('.section-sp')
 					const form = event.target.closest('form')
 					const formId = form.dataset.formId
-					form.remove()
-					removeDetailsById(formId, 'GomiBoing')
+					section.remove()
+					removeDetailsById(formId, 'Gomiboing')
 					showAlert('Producto eliminado', 'exit')
 				}
 			})
@@ -2053,9 +2274,10 @@ if (location.pathname.endsWith('/order.html')) {
 					const product = document.querySelector('.product[data-name="Agua F.1L"]')
 					const idProduct = parseInt(product.dataset.id)
 					removeDetails(product, idProduct)
+					const section = event.target.closest('.section-sp')
 					const form = event.target.closest('form')
 					const formId = form.dataset.formId
-					form.remove()
+					section.remove()
 					removeDetailsById(formId, 'Agua F.1L')
 					showAlert('Producto eliminado', 'exit')
 				}
@@ -2086,9 +2308,10 @@ if (location.pathname.endsWith('/order.html')) {
 					const product = document.querySelector('.product[data-name="Agua F.1/2"]')
 					const idProduct = parseInt(product.dataset.id)
 					removeDetails(product, idProduct)
+					const section = event.target.closest('.section-sp')
 					const form = event.target.closest('form')
 					const formId = form.dataset.formId
-					form.remove()
+					section.remove()
 					removeDetailsById(formId, 'Agua F.1/2')
 					showAlert('Producto eliminado', 'exit')
 				}
@@ -2152,6 +2375,8 @@ function updateCountsProd(container, nameProd) {
 	forms.forEach((form, index) => {
 		const prodName = form.querySelector('.specification__prod-name')
 		prodName.textContent = `${index + 1} ${nameProd}`
+		const prodLabel = form.parentElement.querySelector('.prod-l')
+		prodLabel.textContent = prodName.textContent
 	})
 }
 
@@ -2200,6 +2425,7 @@ function resetDetallesContainer() {
 	dorilocoContainer.textContent = ''
 	tostilocoContainer.textContent = ''
 	fresasContainer.textContent = ''
+	fresasMedContainer.textContent = ''
 	gelatinaContainer.textContent = ''
 	gelatinaMedContainer.textContent = ''
 	manzanaContainer.textContent = ''
@@ -2533,30 +2759,32 @@ export function showProductsHtml() {
 }
 
 //TODO Created indexed Db
-
-const indexedDB = window.indexedDB
-
-export const request = indexedDB.open('customerOrders', 1)
-
 let db
-request.onsuccess = () => {
-	db = request.result
-}
 
-request.onupgradeneeded = () => {
-	db = request.result
+if (location.pathname.endsWith('/order.html')) {
+	const indexedDB = window.indexedDB
 
-	const objectStore = db.createObjectStore('orders', {
-		autoIncrement: true,
-	})
+	const request = indexedDB.open('customerOrders', 1)
 
-	// Definir los índices
-	objectStore.createIndex('date', 'date', { unique: false })
-	objectStore.createIndex('customer', 'customer', { unique: false })
-}
+	request.onsuccess = () => {
+		db = request.result
+	}
 
-request.onerror = (err) => {
-	showAlert(`Ocurrio un error en la base de datos ${err}`, 'error-fixed')
+	request.onupgradeneeded = () => {
+		db = request.result
+
+		const objectStore = db.createObjectStore('orders', {
+			autoIncrement: true,
+		})
+
+		// Definir los índices
+		objectStore.createIndex('date', 'date', { unique: false })
+		objectStore.createIndex('customer', 'customer', { unique: false })
+	}
+
+	request.onerror = (err) => {
+		showAlert(`Ocurrio un error en la base de datos ${err}`, 'error-fixed')
+	}
 }
 
 function addOrder(order) {
@@ -2705,12 +2933,10 @@ function closeModal() {
 const URLPlugin = 'http://localhost:8000'
 if (location.pathname.endsWith('/order.html')) {
 	sinTicketBtn.addEventListener('click', function () {
-		// Acciones para orden sin ticket
-		fecha
-		order.date = `${dia} de ${mes} de ${anio} ${horas}:${minutos}`
+		const fechaActual = obtenerFechaActual()
+		order.date = `${fechaActual.dia} de ${fechaActual.mes} de ${fechaActual.anio} ${fechaActual.horas}:${fechaActual.minutos}`
 		order.products = products
 		order.total = totalGlobal
-		order.id = Date.now()
 		addOrder(order)
 	})
 
@@ -2731,8 +2957,8 @@ if (location.pathname.endsWith('/order.html')) {
 			return alert('Por favor escribe la MAC de la impresora')
 		}
 
-		fecha
-		order.date = `${dia} de ${mes} de ${anio} ${horas}:${minutos}`
+		const fechaActual = obtenerFechaActual()
+		order.date = `${fechaActual.dia} de ${fechaActual.mes} de ${fechaActual.anio} ${fechaActual.horas}:${fechaActual.minutos}`
 		order.products = products
 		order.total = totalGlobal
 		imprimirTicket(direccionMacDeLaImpresora, licencia)
@@ -2948,7 +3174,7 @@ export function createOrder() {
 		}
 
 		Swal.fire({
-			title: '"Para eliminar la orden, por favor confirma tu elección."',
+			title: 'Para eliminar la orden, por favor confirma tu elección.',
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonText: 'Eliminar orden',
@@ -2961,4 +3187,391 @@ export function createOrder() {
 			}
 		})
 	})
+}
+
+// TODO LIST ORDERS
+
+if (location.pathname.endsWith('/order.html')) {
+	btnShowOrder.addEventListener('click', (e) => {
+		e.preventDefault()
+		sectionOder.classList.add('order-visible')
+		tomarPedido.classList.add('pedido-desabilitado')
+		readData()
+		disabledBtn()
+	})
+
+	btnRegresar.addEventListener('click', (e) => {
+		e.preventDefault()
+		sectionOder.classList.remove('order-visible')
+		tomarPedido.classList.remove('pedido-desabilitado')
+	})
+
+	btnDel.addEventListener('click', function () {
+		Swal.fire({
+			title: 'Advertencia!',
+			html:
+				'Por favor, tenga en cuenta que al eliminar las órdenes, <strong style="color:#C62828">se borrarán los registros de ventas totales</strong>. Le recomendamos que descargue y guarde el informe de ventas antes de proceder con la eliminación',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonText: 'Entiendo, deseo continuar',
+			cancelButtonText: 'Cancelar',
+		}).then((result) => {
+			if (result.isConfirmed) {
+				document.getElementById('passwordModal').style.display = 'block'
+
+				const closeBtn = document.getElementsByClassName('close')[0]
+				addEventListener('click', function (event) {
+					if (event.target === modal) {
+						modal.style.display = 'none'
+					}
+				})
+				const modal = document.getElementById('passwordModal')
+
+				closeBtn.addEventListener('click', function () {
+					modal.style.display = 'none'
+				})
+
+				// Obtener la contraseña ingresada al hacer clic en el botón de enviar
+				document.getElementById('submitBtn').addEventListener('click', function () {
+					const input = document.getElementById('passwordInput')
+					const password = document.getElementById('passwordInput').value
+					if (password === 'tatis') {
+						Swal.fire({
+							icon: 'success',
+							title: '¡Las órdenes han sido borradas del sistema!',
+							showConfirmButton: false,
+							timer: 1500,
+						})
+
+						modal.style.display = 'none'
+
+						const request = indexedDB.deleteDatabase('customerOrders')
+						setTimeout(() => {
+							location.reload()
+						}, 1510)
+
+						request.onerror = (event) => {
+							alert('Error al eliminar la base de datos:', event.target.error)
+						}
+					} else {
+						const alert = document.createElement('P')
+						alert.classList.add('error-modal')
+						alert.textContent = 'Contraseña incorrecta'
+						input.after(alert)
+						setTimeout(() => {
+							alert.remove()
+						}, 2000)
+					}
+				})
+			}
+		})
+	})
+}
+
+function readData() {
+	const transaction = db.transaction(['orders'], 'readonly')
+	const objectStore = transaction.objectStore('orders')
+	const request = objectStore.openCursor()
+	const fragment = document.createDocumentFragment()
+
+	request.onsuccess = (e) => {
+		const cursor = e.target.result
+		if (cursor) {
+			const wrapperOrder = document.createElement('SECTION')
+			const arrowIcon = document.createElement('A')
+			const img = document.createElement('IMG')
+			const order = document.createElement('DIV')
+			const date = document.createElement('P')
+			const customerLabel = document.createElement('P')
+			const customer = document.createElement('P')
+			const table = document.createElement('TABLE')
+			const thead = document.createElement('THEAD')
+			const tbody = document.createElement('TBODY')
+			const tfoot = document.createElement('TFOOT')
+			const infoTitle = document.createElement('P')
+			const infoDescription = document.createElement('DIV')
+			const payCustomer = document.createElement('P')
+			const moneyExchanges = document.createElement('P')
+
+			wrapperOrder.classList.add('wrapper-order')
+			wrapperOrder.dataset.customer = cursor.value.customer
+			arrowIcon.classList.add('arrow-down-order')
+			arrowIcon.addEventListener('click', accordeon)
+			img.setAttribute('src', '../../assets/icons/arrow-down.svg')
+			img.setAttribute('alt', 'arrow down')
+			order.classList.add('order')
+			date.classList.add('order__date')
+
+			date.textContent = cursor.value.date
+
+			customerLabel.classList.add('order__customer-label')
+			customerLabel.textContent = 'Cliente:'
+			customer.classList.add('order__customer')
+			customer.textContent = cursor.value.customer
+
+			let productos = []
+			cursor.value.products.forEach((prod) => {
+				productos.push(prod)
+				const tr = document.createElement('TR')
+				const tdProd = document.createElement('TD')
+				const tdPu = document.createElement('TD')
+				const tdQuant = document.createElement('TD')
+				const tdPt = document.createElement('TD')
+
+				tdProd.textContent = prod.name
+				tdPu.textContent = `$${prod.priceUnit}`
+				tdQuant.textContent = prod.quantity
+				tdPt.textContent = `$${prod.price}`
+
+				tr.append(tdProd, tdPu, tdQuant, tdPt)
+				tbody.append(tr)
+			})
+
+			const tdTfoot = document.createElement('TD')
+			tdTfoot.setAttribute('colspan', '4')
+			tdTfoot.textContent = `Total: $${cursor.value.total}`
+
+			infoTitle.classList.add('order__info-title')
+			infoTitle.textContent = 'Información adicional'
+			infoDescription.classList.add('order__info-description')
+			infoDescription.textContent = cursor.value.adicionalInfo
+
+			payCustomer.textContent = `Pago del cliente: $${cursor.value.receivedBill}`
+			moneyExchanges.textContent = `Cambio: $${cursor.value.moneyChange}`
+
+			arrowIcon.append(img)
+			thead.innerHTML = `
+		  <tr>
+			<th>PROD</th>
+			<th>PU</th>
+			<th>CAN</th>
+			<th>PT</th>
+		  </tr>
+				  `
+			const btnTicket = document.createElement('DIV')
+			btnTicket.classList.add('btn', 'btn-primary', 'ticket-order')
+			btnTicket.textContent = 'Ticket'
+
+			const ticketModal = document.createElement('DIV')
+			ticketModal.classList.add('modal')
+			const modalContent = document.createElement('DIV')
+			modalContent.classList.add('modal-content', 'modal-content-ticket')
+
+			const h2 = document.createElement('H2')
+			h2.textContent = 'Imprimir ticket'
+			const label = document.createElement('LABEL')
+			label.textContent = 'Dirección MAC:'
+			const inputMac = document.createElement('INPUT')
+			inputMac.setAttribute('type', 'text')
+			inputMac.dataset.idLicencia = ''
+			inputMac.classList.add('input-mac')
+			inputMac.setAttribute('placeholder', 'Ejemplo: 00:11:22:33:44:55')
+			inputMac.setAttribute('value', '66:32:ED:C8:E2:59')
+			inputMac.setAttribute('disabled', 'true')
+			const div = document.createElement('DIV')
+			div.classList.add('control')
+			div.setAttribute('hidden', 'true')
+			const inputLicencia = document.createElement('INPUT')
+			inputLicencia.dataset.idLicencia = ''
+			inputLicencia.classList.add('input')
+			inputLicencia.setAttribute('placeholder', 'Licencia si es que cuentas con ella')
+			div.append(inputLicencia)
+			const printTicket = document.createElement('BUTTON')
+			printTicket.classList.add('btn', 'btn-primary', 'print-ticket-btn')
+			printTicket.textContent = 'Imprimir ticket'
+			const cancelTicket = document.createElement('BUTTON')
+			cancelTicket.classList.add('btn', 'btn-danger', 'print-cancel-btn')
+			cancelTicket.textContent = 'Cancelar'
+
+			modalContent.append(h2, label, inputMac, div, printTicket, cancelTicket)
+			ticketModal.append(modalContent)
+
+			tfoot.append(tdTfoot)
+			table.append(thead, tbody, tfoot)
+			order.append(
+				date,
+				customerLabel,
+				customer,
+				table,
+				infoTitle,
+				infoDescription,
+				payCustomer,
+				moneyExchanges,
+				btnTicket,
+				ticketModal
+			)
+
+			btnTicket.addEventListener('click', () => {
+				ticketModal.style.display = 'block'
+			})
+
+			const orderData = {
+				date: cursor.value.date,
+				customer: cursor.value.customer,
+				products: productos,
+				adicionalInfo: cursor.value.adicionalInfo,
+				total: cursor.value.total,
+				receivedBill: cursor.value.receivedBill,
+				moneyChange: cursor.value.moneyChange,
+			}
+
+			printTicket.addEventListener('click', () => {
+				const direccionMacDeLaImpresora = inputMac.value
+				const licencia = inputLicencia.value
+				ticketModal.style.display = 'none'
+				imprimirTicketOrder(direccionMacDeLaImpresora, licencia, orderData)
+			})
+			cancelTicket.addEventListener('click', () => {
+				ticketModal.style.display = 'none'
+			})
+
+			wrapperOrder.append(arrowIcon, order)
+			fragment.append(wrapperOrder)
+
+			cursor.continue() // Avanzar al siguiente registro
+		} else {
+			ordersContainer.textContent = ''
+			ordersContainer.append(fragment)
+			disabledBtn()
+		}
+	}
+}
+
+function disabledBtn() {
+	if (ordersContainer.textContent === '') {
+		btnDel.setAttribute('disabled', true)
+	}
+
+	if (ordersContainer.textContent !== '') {
+		btnDel.removeAttribute('disabled')
+	}
+}
+
+const imprimirTicketOrder = async (macImpresora, licencia, order) => {
+	const conector = new ConectorEscposAndroid(licencia, URLPlugin)
+
+	conector
+		.Iniciar()
+		.EstablecerEnfatizado(true)
+		.EstablecerTamañoFuente(2, 2)
+		.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_CENTRO)
+		.EscribirTexto('LA ESQUITERIA\n')
+		.EstablecerTamañoFuente(1, 1)
+		.EstablecerEnfatizado(false)
+
+	conector.EscribirTexto(order.date + '\n').Feed(1)
+
+	if (order.customer !== 'Anonimo') {
+		conector.EscribirTexto('Cliente: ' + order.customer.toUpperCase() + '\n').Feed(1)
+	}
+
+	const maxNombreLength = order.products.reduce((max, producto) => {
+		return producto.name.length > max ? producto.name.length : max
+	}, 0)
+
+	const maxPuLength = order.products.reduce((max, producto) => {
+		return producto.priceUnit.toString().length > max ? producto.priceUnit.toString().length : max
+	}, 0)
+
+	const maxCanLength = order.products.reduce((max, producto) => {
+		return producto.quantity.toString().length > max ? producto.quantity.toString().length : max
+	}, 0)
+
+	const maxPtLength = order.products.reduce((max, producto) => {
+		return producto.price.toString().length > max ? producto.price.toString().length : max
+	}, 0)
+
+	const encabezado =
+		'PROD'.padEnd(maxNombreLength, ' ') +
+		'  P.U'.padEnd(maxPuLength, ' ') +
+		'  CAN'.padEnd(maxCanLength, ' ') +
+		' SUBTOTAL'.padEnd(maxPtLength, ' ')
+	conector.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_IZQUIERDA).EscribirTexto(encabezado + '\n')
+
+	order.products.forEach((producto) => {
+		const nombreProducto = producto.name.padEnd(maxNombreLength, ' ')
+		const pu = producto.priceUnit.toString().padEnd(maxPuLength, ' ')
+		const can = producto.quantity.toString().padEnd(maxCanLength, ' ')
+		const pt = producto.price.toString().padEnd(maxPtLength, ' ')
+		const lineaProducto = `${nombreProducto}  $${pu}   ${can}   $${pt}`
+		conector.EscribirTexto(lineaProducto + '\n')
+	})
+
+	const formattedTotal = order.total.toLocaleString(undefined, {
+		minimumFractionDigits: 2,
+		maximumFractionDigits: 2,
+	})
+
+	const formattedReceived = order.receivedBill.toLocaleString(undefined, {
+		minimumFractionDigits: 2,
+		maximumFractionDigits: 2,
+	})
+
+	const formattedMoneyChange = order.moneyChange.toLocaleString(undefined, {
+		minimumFractionDigits: 2,
+		maximumFractionDigits: 2,
+	})
+
+	conector
+		.Feed(1)
+		.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_DERECHA)
+		.EscribirTexto('Total: ' + `$${formattedTotal}` + '\n')
+		.EscribirTexto('P.R: ' + `$${formattedReceived}` + '\n')
+		.EscribirTexto('Cambio: ' + `$${formattedMoneyChange}` + '\n')
+		.Feed(1)
+
+	if (order.adicionalInfo !== 'Sin detalles') {
+		conector
+			.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_CENTRO)
+			.EscribirTexto('Detalles de la orden:' + '\n')
+			.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_IZQUIERDA)
+			.EscribirTexto(order.adicionalInfo)
+	}
+
+	conector
+		.Feed(1)
+		.EstablecerAlineacion(ConectorEscposAndroid.ALINEACION_CENTRO)
+		.EscribirTexto('Gracias por su preferencia!')
+		.Feed(2)
+		.Corte(1)
+		.Pulso(48, 60, 120)
+
+	try {
+		const respuesta = await conector.imprimirEn(macImpresora)
+		if (respuesta === true) {
+			showAlert('Ticket exitoso', 'exit')
+		} else {
+			alert('Error: ' + respuesta)
+		}
+	} catch (e) {
+		alert('Error imprimiendo: ' + e.message)
+	}
+}
+
+function accordeon(e) {
+	e.preventDefault()
+
+	const element = e.target
+	const isActive = element.classList.contains('active')
+	const offset = -240
+
+	const order = element.nextElementSibling
+	order.classList.toggle('order-active')
+
+	const isMobile = window.matchMedia('(max-width: 959px)').matches
+
+	if (!isActive && isMobile) {
+		order.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start',
+		})
+
+		const elementOffset = window.pageYOffset - offset
+		window.scrollTo({
+			top: elementOffset,
+			behavior: 'smooth',
+		})
+	}
+
+	element.classList.toggle('active')
 }

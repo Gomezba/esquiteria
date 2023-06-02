@@ -1,4 +1,4 @@
-import { dia, mes, anio, fecha } from '../functions/date.js'
+import { obtenerFechaActual } from '../functions/date.js'
 
 if (location.pathname.endsWith('/products-sold.html')) {
 	const btnPdf = document.getElementById('pdf')
@@ -119,9 +119,9 @@ if (location.pathname.endsWith('/products-sold.html')) {
 		doc.setFontSize(24)
 		doc.text('REPORTE DE VENTAS', 15, 20) // Agregar título
 
-		fecha
+		const fechaActual = obtenerFechaActual()
 
-		const fechaDescarga = `${dia} de ${mes} del ${anio}` // Obtener la fecha actual
+		const fechaDescarga = `${fechaActual.dia} de ${fechaActual.mes} del ${fechaActual.anio}` // Obtener la fecha actual
 
 		doc.setFontSize(24)
 		doc.text(fechaDescarga, 117, 20) // Agregar fecha
@@ -152,7 +152,7 @@ if (location.pathname.endsWith('/products-sold.html')) {
 		})
 
 		// Generar el nombre del archivo con la fecha
-		const nombreArchivo = `Venta-${dia}-${mes}-${anio}.pdf`
+		const nombreArchivo = `Venta-${fechaActual.dia}-${fechaActual.mes}-${fechaActual.anio}.pdf`
 
 		doc.save(nombreArchivo)
 	}

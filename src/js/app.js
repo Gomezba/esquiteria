@@ -8,7 +8,6 @@ import {
 	listenDetailsCustomer,
 } from './order/order.js'
 
-import {} from './list-orders/list-orders.js'
 import {} from './sold-products/sold-products.js'
 
 if ('serviceWorker' in navigator) {

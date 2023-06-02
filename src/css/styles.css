@@ -113,6 +113,7 @@ body {
 	font-family: var(--f-family);
 	font-weight: 400;
 	font-size: var(--fs-base);
+	max-width: 1440px;
 }
 
 .header {
@@ -125,10 +126,9 @@ body {
 
 .main-nav {
 	display: flex;
-	padding: 0 min(1em, 10%);
+	padding: 0.5em min(1em, 10%);
 	justify-content: space-between;
 	background-color: var(--almost-dark-gray);
-	margin-top: 1em;
 }
 
 .figure {
@@ -159,7 +159,7 @@ body {
 	position: fixed;
 	background-color: var(--light-gray);
 	width: 91%;
-	top: 75px;
+	top: 63px;
 	box-shadow: 0 0 15px 2px #fff;
 	border-radius: var(--br);
 	transform: translateX(110%);
@@ -210,13 +210,6 @@ body {
 }
 .menu__link--cyan:nth-child(1)::after {
 	background-color: var(--sky-blue);
-}
-
-.menu__link--green {
-	filter: drop-shadow(2px 2px 5px var(--dark-green));
-}
-.menu__link--green:nth-child(1)::after {
-	background-color: var(--dark-green);
 }
 
 /* Styles menu responsive */
@@ -348,15 +341,19 @@ tfoot td {
 	background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal-content {
+.modal-content-pedido {
 	background-color: #fefefe;
 	margin: 20% auto;
 	padding: 20px;
-	padding-bottom: 50px;
 	border: 1px solid #888;
 	width: 300px;
 	text-align: center;
 }
+
+.modal-content-pedido--heigth {
+	padding-bottom: 3rem;
+}
+
 .order-exit {
 	background-color: #5bbd34;
 	position: fixed;

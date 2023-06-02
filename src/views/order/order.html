@@ -5,6 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Esquiteria</title>
+		<meta name="theme-color" content="#191d21" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -30,16 +31,8 @@
 					</li>
 					<li class="menu__item">
 						<a
-							href="../../views/orders-list/orders-list.html"
-							class="link menu__link menu__link--cyan"
-							title="Ir a lista de ordenes"
-							>Lista de ordenes</a
-						>
-					</li>
-					<li class="menu__item">
-						<a
 							href="../../views/products-sold/products-sold.html"
-							class="link menu__link menu__link--green"
+							class="link menu__link menu__link--cyan"
 							title="Ir a historial de productos"
 							>Ventas del día</a
 						>
@@ -58,203 +51,226 @@
 			</nav>
 		</header>
 		<main class="container main">
-			<h2 class="title">Tomar Orden</h2>
-			<section class="products-container">
-				<section class="section section-botanas">
-					<h3 class="subtitle">Botanas</h3>
-					<a data-arrow="botanas" class="arrow-down"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
-					<div id="botanas-container" class="desplegable-container" data-category="botanas"></div>
+			<section id="tomar-pedido">
+				<a href="#" id="show-order-list" class="go-order btn">Ver ordenes</a>
+				<section class="products-container">
+					<section class="section section-botanas">
+						<h3 class="subtitle">Botanas</h3>
+						<a data-arrow="botanas" class="arrow-down"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
+						<div id="botanas-container" class="desplegable-container" data-category="botanas"></div>
+					</section>
+
+					<section class="section section-desserts">
+						<h3 class="subtitle">Postres</h3>
+						<a data-arrow="desserts" class="arrow-down"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
+						<div id="desserts-container" class="desplegable-container" data-category="postres"></div>
+					</section>
+
+					<section class="section section-drinks">
+						<h3 class="subtitle">Bebidas</h3>
+						<a data-arrow="drinks" class="arrow-down"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
+						<div id="drinks-container" class="desplegable-container" data-category="bebidas"></div>
+					</section>
+
+					<section class="section section-others">
+						<h3 class="subtitle">Otros</h3>
+						<a data-arrow="others" class="arrow-down"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
+						<div id="others-container" class="desplegable-container" data-category="otros"></div>
+					</section>
+
+					<section class="section section-customized">
+						<h3 class="subtitle">Personalizado</h3>
+						<a data-arrow="customized" class="arrow-down">
+							<img src="../../assets/icons/arrow-down.svg" alt="arrow down"
+						/></a>
+						<div id="customized-container" class="desplegable-container" data-category="customized">
+							<form id="form-customized" class="customized-options">
+								<div>
+									<label for="product-name">Nombre del producto</label>
+									<input type="text" id="product-name" />
+								</div>
+								<div>
+									<label for="product-price">Precio del producto</label>
+									<input type="number" id="product-price" step="0.01" />
+								</div>
+								<div>
+									<label for="quant-prod">Cantidad de producto</label>
+									<select id="quant-prod" class="select-quantity">
+										<option value="1" selected>1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+									</select>
+								</div>
+								<div class="personalized-total-label">Total: $<span id="customized-total" class="customized-total"></span></div>
+								<button id="btn-calc" class="btn btn-primary btn-calc" type="button">Calcular</button>
+								<div>
+									<button id="add-customized" type="submit" class="btn btn-save" disabled>Agregar</button>
+									<button id="cancel-customized" type="button" class="btn btn-cancel">Cancelar</button>
+								</div>
+							</form>
+						</div>
+					</section>
+
+					<section class="section section-specification">
+						<h3 class="subtitle">Especificación</h3>
+						<a data-arrow="specification" class="arrow-down">
+							<img src="../../assets/icons/arrow-down.svg" alt="arrow down"
+						/></a>
+						<div
+							id="specification-container"
+							class="desplegable-container desplegable-container-specification"
+							data-category="specification"
+						>
+							<section>
+								<div class="specification specification--esquites" id="specification-esquites"></div>
+							</section>
+							<section>
+								<div class="specification specification--esquites-med" id="specification-esquites-med"></div>
+							</section>
+
+							<section>
+								<div class="specification specification--dorito" id="specification-doriesquite"></div>
+							</section>
+							<section>
+								<div class="specification specification--doriloco" id="specification-doriloco"></div>
+							</section>
+							<section>
+								<div class="specification specification--tostiloco" id="specification-tostiloco"></div>
+							</section>
+							<section>
+								<div class="specification specification--fresas" id="specification-fresas"></div>
+							</section>
+							<section>
+								<div class="specification specification--fresas-med" id="specification-fresas-med"></div>
+							</section>
+							<section>
+								<div class="specification specification--gelatina" id="specification-gelatina"></div>
+							</section>
+							<section>
+								<div class="specification specification--gelatina-med" id="specification-gelatina-med"></div>
+							</section>
+							<section>
+								<div class="specification specification--man" id="specification-manzana"></div>
+							</section>
+							<section>
+								<div class="specification specification--man-med" id="specification-manzana-med"></div>
+							</section>
+							<section>
+								<div class="specification specification--gomiboing" id="specification-gomiboing"></div>
+							</section>
+							<section>
+								<div class="specification specification--agua" id="specification-agua-fresca"></div>
+							</section>
+							<section>
+								<div class="specification specification--agua-med" id="specification-agua-fresca-med"></div>
+							</section>
+						</div>
+					</section>
+				</section>
+				<section class="order-specification-section">
+					<h3 class="subtitle subtitle-details">Detalles de orden</h3>
+					<label class="label-customer" for="customer-name">Nombre cliente (Opcional)</label>
+					<input id="customer-name" class="client-name" type="text" />
+					<label class="label-details" for="details">Información adicional (Opcional)</label>
+					<textarea
+						class="details-area"
+						title="Especificación de orden"
+						id="details"
+						cols="30"
+						rows="10"
+						placeholder="Ejemplo: Esquite sin mayonesa"
+					></textarea>
 				</section>
 
-				<section class="section section-desserts">
-					<h3 class="subtitle">Postres</h3>
-					<a data-arrow="desserts" class="arrow-down"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
-					<div id="desserts-container" class="desplegable-container" data-category="postres"></div>
-				</section>
-
-				<section class="section section-drinks">
-					<h3 class="subtitle">Bebidas</h3>
-					<a data-arrow="drinks" class="arrow-down"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
-					<div id="drinks-container" class="desplegable-container" data-category="bebidas"></div>
-				</section>
-
-				<section class="section section-others">
-					<h3 class="subtitle">Otros</h3>
-					<a data-arrow="others" class="arrow-down"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
-					<div id="others-container" class="desplegable-container" data-category="otros"></div>
-				</section>
-
-				<section class="section section-customized">
-					<h3 class="subtitle">Personalizado</h3>
-					<a data-arrow="customized" class="arrow-down"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
-					<div id="customized-container" class="desplegable-container" data-category="customized">
-						<form id="form-customized" class="customized-options">
+				<section class="section-details">
+					<table class="table-order">
+						<thead>
+							<tr>
+								<th>PROD</th>
+								<th>PU</th>
+								<th>CAN</th>
+								<th>PT</th>
+								<th>OPC</th>
+							</tr>
+						</thead>
+						<tbody id="products-table"></tbody>
+						<tfoot>
+							<tr>
+								<td colspan="4">Total: $<span id="total-order">0</span></td>
+							</tr>
+						</tfoot>
+					</table>
+					<div class="options-order">
+						<div class="received-bill-container">
 							<div>
-								<label for="product-name">Nombre del producto</label>
-								<input type="text" id="product-name" />
+								<label class="label-money" for="money">Recibo: $</label>
+								<input id="money" class="input-received-bill" type="number" step="0.01" disabled />
 							</div>
-							<div>
-								<label for="product-price">Precio del producto</label>
-								<input type="number" id="product-price" step="0.01" />
-							</div>
-							<div>
-								<label for="quant-prod">Cantidad de producto</label>
-								<select id="quant-prod" class="select-quantity">
-									<option value="1" selected>1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-								</select>
-							</div>
-							<div class="personalized-total-label">Total: $<span id="customized-total" class="customized-total"></span></div>
-							<button id="btn-calc" class="btn btn-primary btn-calc" type="button">Calcular</button>
-							<div>
-								<button id="add-customized" type="submit" class="btn btn-save" disabled>Agregar</button>
-								<button id="cancel-customized" type="button" class="btn btn-cancel">Cancelar</button>
-							</div>
-						</form>
-					</div>
-				</section>
+						</div>
+						<span class="money-exchanges">Cambio: $<span id="money-exchanges"></span></span>
 
-				<section class="section section-specification">
-					<h3 class="subtitle">Especificación</h3>
-					<a data-arrow="specification" class="arrow-down">
-						<img src="../../assets/icons/arrow-down.svg" alt="arrow down"
-					/></a>
-					<div
-						id="specification-container"
-						class="desplegable-container desplegable-container-specification"
-						data-category="specification"
-					>
-						<section>
-							<div class="specification" id="specification-esquites"></div>
-						</section>
-						<section>
-							<div class="specification" id="specification-esquites-med"></div>
-						</section>
-
-						<section>
-							<div class="specification" id="specification-doriesquite"></div>
-						</section>
-						<section>
-							<div class="specification" id="specification-doriloco"></div>
-						</section>
-						<section>
-							<div class="specification" id="specification-tostiloco"></div>
-						</section>
-						<section>
-							<div class="specification" id="specification-fresas"></div>
-						</section>
-						<section>
-							<div class="specification" id="specification-fresas-med"></div>
-						</section>
-						<section>
-							<div class="specification" id="specification-gelatina"></div>
-						</section>
-						<section>
-							<div class="specification" id="specification-gelatina-med"></div>
-						</section>
-						<section>
-							<div class="specification" id="specification-manzana"></div>
-						</section>
-						<section>
-							<div class="specification" id="specification-manzana-med"></div>
-						</section>
-						<section>
-							<div class="specification" id="specification-gomiboing"></div>
-						</section>
-						<section>
-							<div class="specification" id="specification-agua-fresca"></div>
-						</section>
-						<section>
-							<div class="specification" id="specification-agua-fresca-med"></div>
-						</section>
-					</div>
-				</section>
-			</section>
-			<section class="order-specification-section">
-				<h3 class="subtitle subtitle-details">Detalles de orden</h3>
-				<label class="label-customer" for="customer-name">Nombre cliente (Opcional)</label>
-				<input id="customer-name" class="client-name" type="text" />
-				<label class="label-details" for="details">Información adicional (Opcional)</label>
-				<textarea
-					class="details-area"
-					title="Especificación de orden"
-					id="details"
-					cols="30"
-					rows="10"
-					placeholder="Ejemplo: Esquite sin mayonesa"
-				></textarea>
-			</section>
-
-			<section class="section-details">
-				<table class="table-order">
-					<thead>
-						<tr>
-							<th>PROD</th>
-							<th>PU</th>
-							<th>CAN</th>
-							<th>PT</th>
-							<th>OPC</th>
-						</tr>
-					</thead>
-					<tbody id="products-table"></tbody>
-					<tfoot>
-						<tr>
-							<td colspan="4">Total: $<span id="total-order">0</span></td>
-						</tr>
-					</tfoot>
-				</table>
-				<div class="options-order">
-					<div class="received-bill-container">
-						<div>
-							<label class="label-money" for="money">Recibo: $</label>
-							<input id="money" class="input-received-bill" type="number" step="0.01" disabled />
+						<div class="confirm-cancel-order">
+							<button type="button" id="confirm" class="btn btn-primary btn-confirm" disabled>Confirmar</button>
+							<button type="button" id="cancel" class="btn btn-cancel">Cancelar</button>
 						</div>
 					</div>
-					<span class="money-exchanges">Cambio: $<span id="money-exchanges"></span></span>
+				</section>
 
-					<div class="confirm-cancel-order">
-						<button type="button" id="confirm" class="btn btn-primary btn-confirm" disabled>Confirmar</button>
-						<button type="button" id="cancel" class="btn btn-cancel">Cancelar</button>
+				<div id="modal" class="modal">
+					<div class="modal-content-pedido">
+						<h2>¿Qué desea hacer?</h2>
+						<button id="sinTicketBtn" class="btn btn-primary buttons-modal">Orden sin ticket</button>
+						<button id="conTicketBtn" class="btn btn-save buttons-modal">Orden con ticket</button>
+						<button id="cancelarBtn" class="btn btn-danger buttons-modal">Cancelar</button>
+					</div>
+				</div>
+
+				<div id="ticketModal" class="modal">
+					<div class="modal-content-pedido modal-content-pedido--heigth">
+						<h2>Imprimir ticket</h2>
+						<label for="macInput">Dirección MAC:</label>
+						<input
+							type="text"
+							id="macInput"
+							class="input-mac"
+							placeholder="Ejemplo: 00:11:22:33:44:55"
+							value="66:32:ED:C8:E2:59"
+							disabled
+						/>
+						<div class="control" hidden>
+							<input id="licencia" class="input" type="text" placeholder="Licencia si es que cuentas con ella" />
+						</div>
+						<button id="imprimirTicketBtn" class="btn btn-primary print-ticket-btn">Imprimir ticket</button>
+						<button id="cancelarImpresionBtn" class="btn btn-danger print-cancel-btn">Cancelar</button>
 					</div>
 				</div>
 			</section>
-
-			<div id="modal" class="modal">
-				<div class="modal-content">
-					<h2>¿Qué desea hacer?</h2>
-					<button id="sinTicketBtn" class="btn btn-primary buttons-modal">Orden sin ticket</button>
-					<button id="conTicketBtn" class="btn btn-save buttons-modal">Orden con ticket</button>
-					<button id="cancelarBtn" class="btn btn-danger buttons-modal">Cancelar</button>
+			<section id="section-order" class="view-list-order">
+				<div class="container-regresar">
+					<button id="regresar" class="btn regresar" title="regresar a tomar order">Regresar</button>
+					<button id="orders-deleted" class="btn btn-del-order" title="Elimina todas las ordenes registradas">
+						Eliminar ordenes
+					</button>
 				</div>
-			</div>
+				<h2 class="title">Lista de ordenes</h2>
 
-			<div id="ticketModal" class="modal">
-				<div class="modal-content">
-					<h2>Imprimir ticket</h2>
-					<label for="macInput">Dirección MAC:</label>
-					<input
-						type="text"
-						id="macInput"
-						class="input-mac"
-						placeholder="Ejemplo: 00:11:22:33:44:55"
-						value="66:32:ED:C8:E2:59"
-						disabled
-					/>
-					<div class="control" hidden>
-						<input id="licencia" class="input" type="text" placeholder="Licencia si es que cuentas con ella" />
+				<div id="passwordModal" class="modal">
+					<div class="modal-content">
+						<span class="close">&times;</span>
+						<h2>Contraseña de eliminación</h2>
+						<input title="Ingresa contraseña" class="passwordInput" type="text" id="passwordInput" />
+						<button class="submitBtn" id="submitBtn">Enviar</button>
 					</div>
-					<button id="imprimirTicketBtn" class="btn btn-primary print-ticket-btn">Imprimir ticket</button>
-					<button id="cancelarImpresionBtn" class="btn btn-danger print-cancel-btn">Cancelar</button>
 				</div>
-			</div>
+				<section id="orders-container" class="container-orders"></section>
+			</section>
 		</main>
 		<script src="../../js/app.js" type="module"></script>
 		<script src="../../js/tickets/ConectorEscposAndroid.js" type="module"></script>
