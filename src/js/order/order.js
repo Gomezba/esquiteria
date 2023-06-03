@@ -106,22 +106,22 @@ function showProducts() {
 		if (btnRemove.id === 'Tostiloco') {
 			btnRemove.addEventListener('click', removeUltimateFormTostiloco)
 		}
-		if (btnRemove.id === 'Fresas C.C') {
+		if (btnRemove.id === 'Fres.C.C') {
 			btnRemove.addEventListener('click', removeUltimateFormFresas)
 		}
-		if (btnRemove.id === 'Fresas C.C 1/2') {
+		if (btnRemove.id === 'Fres.C.C 1/2') {
 			btnRemove.addEventListener('click', removeUltimateFormFresasMed)
 		}
-		if (btnRemove.id === 'Gelatina C.D') {
+		if (btnRemove.id === 'Gel.C.D') {
 			btnRemove.addEventListener('click', removeUltimateFormGelatina)
 		}
-		if (btnRemove.id === 'Gelatina C.D 1/2') {
+		if (btnRemove.id === 'Gel.C.D 1/2') {
 			btnRemove.addEventListener('click', removeUltimateFormGelatinaMed)
 		}
-		if (btnRemove.id === 'Ensalada D.M') {
+		if (btnRemove.id === 'Ens.D.M') {
 			btnRemove.addEventListener('click', removeUltimateFormEnsalada)
 		}
-		if (btnRemove.id === 'Ensalada D.M 1/2') {
+		if (btnRemove.id === 'Ens.D.M 1/2') {
 			btnRemove.addEventListener('click', removeUltimateFormEnsaladaMed)
 		}
 		if (btnRemove.id === 'Gomiboing') {
@@ -156,23 +156,23 @@ function showProducts() {
 		if (btnAdd.id === 'Tostiloco') {
 			btnAdd.addEventListener('click', genFormTostiloco)
 		}
-		if (btnAdd.id === 'Fresas C.C') {
+		if (btnAdd.id === 'Fres.C.C') {
 			btnAdd.addEventListener('click', genFormFresas)
 		}
-		if (btnAdd.id === 'Fresas C.C 1/2') {
+		if (btnAdd.id === 'Fres.C.C 1/2') {
 			btnAdd.addEventListener('click', genFormFresasMed)
 		}
-		if (btnAdd.id === 'Gelatina C.D') {
+		if (btnAdd.id === 'Gel.C.D') {
 			btnAdd.addEventListener('click', genFormGelatina)
 		}
-		if (btnAdd.id === 'Gelatina C.D 1/2') {
+		if (btnAdd.id === 'Gel.C.D 1/2') {
 			btnAdd.addEventListener('click', genFormGelatinaMed)
 		}
 
-		if (btnAdd.id === 'Ensalada D.M') {
+		if (btnAdd.id === 'Ens.D.M') {
 			btnAdd.addEventListener('click', genFormEnsalada)
 		}
-		if (btnAdd.id === 'Ensalada D.M 1/2') {
+		if (btnAdd.id === 'Ens.D.M 1/2') {
 			btnAdd.addEventListener('click', genFormEnsaladaMed)
 		}
 		if (btnAdd.id === 'Gomiboing') {
@@ -1032,7 +1032,7 @@ function genFormFresas() {
 	<h3 class='prod-l'></h3>
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
-	<p class="specification__prod-name">Fresas C.C</p>
+	<p class="specification__prod-name">Fres.C.C</p>
 	<div class="specification__container">
 		<div>
 			<label class="specification__label"> Chantilly</label>
@@ -1116,7 +1116,7 @@ function genFormFresas() {
 	})
 
 	fresasContainer.appendChild(section)
-	updateCountsProd(fresasContainer, 'Fresas C.C')
+	updateCountsProd(fresasContainer, 'Fres.C.C')
 }
 
 function genFormFresasMed() {
@@ -1127,7 +1127,7 @@ function genFormFresasMed() {
 	<h3 class='prod-l'></h3>
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
-	<p class="specification__prod-name">Fresas C.C 1/2</p>
+	<p class="specification__prod-name">Fres.C.C 1/2</p>
 	<div class="specification__container">
 		<div>
 			<label class="specification__label"> Chantilly</label>
@@ -1210,7 +1210,7 @@ function genFormFresasMed() {
 	})
 
 	fresasMedContainer.appendChild(section)
-	updateCountsProd(fresasMedContainer, 'Fresas C.C 1/2')
+	updateCountsProd(fresasMedContainer, 'Fres.C.C 1/2')
 }
 
 function genFormGelatina() {
@@ -1221,7 +1221,7 @@ function genFormGelatina() {
 	<h3 class='prod-l'></h3>
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
-	<p class="specification__prod-name">Gelatina C.D</p>
+	<p class="specification__prod-name">Gel.C.D</p>
 	<div class="specification__container">
 		<div>
 			<label class="specification__label"> Chantilly</label>
@@ -1305,7 +1305,7 @@ function genFormGelatina() {
 	})
 
 	gelatinaContainer.appendChild(section)
-	updateCountsProd(gelatinaContainer, 'Gelatina C.D')
+	updateCountsProd(gelatinaContainer, 'Gel.C.D')
 }
 
 function genFormGelatinaMed() {
@@ -1316,7 +1316,7 @@ function genFormGelatinaMed() {
 	<h3 class='prod-l'></h3>
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
-	<p class="specification__prod-name">Gelatina C.D 1/2</p>
+	<p class="specification__prod-name">Gel.C.D 1/2</p>
 	<div class="specification__container">
 		<div>
 			<label class="specification__label"> Chantilly</label>
@@ -1399,7 +1399,7 @@ function genFormGelatinaMed() {
 	})
 
 	gelatinaMedContainer.appendChild(section)
-	updateCountsProd(gelatinaMedContainer, 'Gelatina C.D 1/2')
+	updateCountsProd(gelatinaMedContainer, 'Gel.C.D 1/2')
 }
 
 function genFormEnsalada() {
@@ -1410,7 +1410,7 @@ function genFormEnsalada() {
 	<h3 class='prod-l'></h3>
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
-	<p class="specification__prod-name">Ensalada D.M</p>
+	<p class="specification__prod-name">Ens.D.M</p>
 	<div class="specification__container">
 		<div>
 			<label class="specification__label"> Chantilly</label>
@@ -1503,7 +1503,7 @@ function genFormEnsalada() {
 	})
 
 	manzanaContainer.appendChild(section)
-	updateCountsProd(manzanaContainer, 'Ensalada D.M')
+	updateCountsProd(manzanaContainer, 'Ens.D.M')
 }
 
 function genFormEnsaladaMed() {
@@ -1514,7 +1514,7 @@ function genFormEnsaladaMed() {
 	<h3 class='prod-l'></h3>
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
-	<p class="specification__prod-name">Ensalada D.M 1/2</p>
+	<p class="specification__prod-name">Ens.D.M 1/2</p>
 	<div class="specification__container">
 		<div>
 			<label class="specification__label"> Chantilly</label>
@@ -1608,7 +1608,7 @@ function genFormEnsaladaMed() {
 	})
 
 	manzanaMedContainer.appendChild(section)
-	updateCountsProd(manzanaMedContainer, 'Ensalada D.M 1/2')
+	updateCountsProd(manzanaMedContainer, 'Ens.D.M 1/2')
 }
 
 function genFormGomiboing() {
@@ -2015,7 +2015,7 @@ if (location.pathname.endsWith('/order.html')) {
 
 	fresasContainer.addEventListener('click', function (event) {
 		if (event.target.classList.contains('btn-primary')) {
-			const product = document.querySelector('.product[data-name="Fresas C.C"]')
+			const product = document.querySelector('.product[data-name="Fres.C.C"]')
 			const productName = product.dataset.name
 			const btnDelete = event.target.nextElementSibling
 			btnDelete.removeAttribute('disabled')
@@ -2033,14 +2033,14 @@ if (location.pathname.endsWith('/order.html')) {
 				cancelButtonText: 'Cancelar',
 			}).then((result) => {
 				if (result.isConfirmed) {
-					const product = document.querySelector('.product[data-name="Fresas C.C"]')
+					const product = document.querySelector('.product[data-name="Fres.C.C"]')
 					const idProduct = parseInt(product.dataset.id)
 					removeDetails(product, idProduct)
 					const section = event.target.closest('.section-sp')
 					const form = event.target.closest('form')
 					const formId = form.dataset.formId
 					section.remove()
-					removeDetailsById(formId, 'Fresas C.C')
+					removeDetailsById(formId, 'Fres.C.C')
 					showAlert('Producto eliminado', 'exit')
 				}
 			})
@@ -2049,7 +2049,7 @@ if (location.pathname.endsWith('/order.html')) {
 
 	fresasMedContainer.addEventListener('click', function (event) {
 		if (event.target.classList.contains('btn-primary')) {
-			const product = document.querySelector('.product[data-name="Fresas C.C 1/2"]')
+			const product = document.querySelector('.product[data-name="Fres.C.C 1/2"]')
 			const productName = product.dataset.name
 			const btnDelete = event.target.nextElementSibling
 			btnDelete.removeAttribute('disabled')
@@ -2067,14 +2067,14 @@ if (location.pathname.endsWith('/order.html')) {
 				cancelButtonText: 'Cancelar',
 			}).then((result) => {
 				if (result.isConfirmed) {
-					const product = document.querySelector('.product[data-name="Fresas C.C 1/2"]')
+					const product = document.querySelector('.product[data-name="Fres.C.C 1/2"]')
 					const idProduct = parseInt(product.dataset.id)
 					removeDetails(product, idProduct)
 					const section = event.target.closest('.section-sp')
 					const form = event.target.closest('form')
 					const formId = form.dataset.formId
 					section.remove()
-					removeDetailsById(formId, 'Fresas C.C 1/2')
+					removeDetailsById(formId, 'Fres.C.C 1/2')
 					showAlert('Producto eliminado', 'exit')
 				}
 			})
@@ -2083,7 +2083,7 @@ if (location.pathname.endsWith('/order.html')) {
 
 	gelatinaContainer.addEventListener('click', function (event) {
 		if (event.target.classList.contains('btn-primary')) {
-			const product = document.querySelector('.product[data-name="Gelatina C.D"]')
+			const product = document.querySelector('.product[data-name="Gel.C.D"]')
 			const productName = product.dataset.name
 			const btnDelete = event.target.nextElementSibling
 			btnDelete.removeAttribute('disabled')
@@ -2101,14 +2101,14 @@ if (location.pathname.endsWith('/order.html')) {
 				cancelButtonText: 'Cancelar',
 			}).then((result) => {
 				if (result.isConfirmed) {
-					const product = document.querySelector('.product[data-name="Gelatina C.D"]')
+					const product = document.querySelector('.product[data-name="Gel.C.D"]')
 					const idProduct = parseInt(product.dataset.id)
 					removeDetails(product, idProduct)
 					const section = event.target.closest('.section-sp')
 					const form = event.target.closest('form')
 					const formId = form.dataset.formId
 					section.remove()
-					removeDetailsById(formId, 'Gelatina C.D')
+					removeDetailsById(formId, 'Gel.C.D')
 					showAlert('Producto eliminado', 'exit')
 				}
 			})
@@ -2117,7 +2117,7 @@ if (location.pathname.endsWith('/order.html')) {
 
 	gelatinaMedContainer.addEventListener('click', function (event) {
 		if (event.target.classList.contains('btn-primary')) {
-			const product = document.querySelector('.product[data-name="Gelatina C.D 1/2"]')
+			const product = document.querySelector('.product[data-name="Gel.C.D 1/2"]')
 			const productName = product.dataset.name
 			const btnDelete = event.target.nextElementSibling
 			btnDelete.removeAttribute('disabled')
@@ -2135,14 +2135,14 @@ if (location.pathname.endsWith('/order.html')) {
 				cancelButtonText: 'Cancelar',
 			}).then((result) => {
 				if (result.isConfirmed) {
-					const product = document.querySelector('.product[data-name="Gelatina C.D 1/2"]')
+					const product = document.querySelector('.product[data-name="Gel.C.D 1/2"]')
 					const idProduct = parseInt(product.dataset.id)
 					removeDetails(product, idProduct)
 					const section = event.target.closest('.section-sp')
 					const form = event.target.closest('form')
 					const formId = form.dataset.formId
 					section.remove()
-					removeDetailsById(formId, 'Gelatina C.D 1/2')
+					removeDetailsById(formId, 'Gel.C.D 1/2')
 					showAlert('Producto eliminado', 'exit')
 				}
 			})
@@ -2151,7 +2151,7 @@ if (location.pathname.endsWith('/order.html')) {
 
 	manzanaContainer.addEventListener('click', function (event) {
 		if (event.target.classList.contains('btn-primary')) {
-			const product = document.querySelector('.product[data-name="Ensalada D.M"]')
+			const product = document.querySelector('.product[data-name="Ens.D.M"]')
 			const productName = product.dataset.name
 			const btnDelete = event.target.nextElementSibling
 			btnDelete.removeAttribute('disabled')
@@ -2169,14 +2169,14 @@ if (location.pathname.endsWith('/order.html')) {
 				cancelButtonText: 'Cancelar',
 			}).then((result) => {
 				if (result.isConfirmed) {
-					const product = document.querySelector('.product[data-name="Ensalada D.M"]')
+					const product = document.querySelector('.product[data-name="Ens.D.M"]')
 					const idProduct = parseInt(product.dataset.id)
 					removeDetails(product, idProduct)
 					const section = event.target.closest('.section-sp')
 					const form = event.target.closest('form')
 					const formId = form.dataset.formId
 					section.remove()
-					removeDetailsById(formId, 'Ensalada D.M')
+					removeDetailsById(formId, 'Ens.D.M')
 					showAlert('Producto eliminado', 'exit')
 				}
 			})
@@ -2185,7 +2185,7 @@ if (location.pathname.endsWith('/order.html')) {
 
 	manzanaMedContainer.addEventListener('click', function (event) {
 		if (event.target.classList.contains('btn-primary')) {
-			const product = document.querySelector('.product[data-name="Ensalada D.M 1/2"]')
+			const product = document.querySelector('.product[data-name="Ens.D.M 1/2"]')
 			const productName = product.dataset.name
 			const btnDelete = event.target.nextElementSibling
 			btnDelete.removeAttribute('disabled')
@@ -2203,14 +2203,14 @@ if (location.pathname.endsWith('/order.html')) {
 				cancelButtonText: 'Cancelar',
 			}).then((result) => {
 				if (result.isConfirmed) {
-					const product = document.querySelector('.product[data-name="Ensalada D.M 1/2"]')
+					const product = document.querySelector('.product[data-name="Ens.D.M 1/2"]')
 					const idProduct = parseInt(product.dataset.id)
 					removeDetails(product, idProduct)
 					const section = event.target.closest('.section-sp')
 					const form = event.target.closest('form')
 					const formId = form.dataset.formId
 					section.remove()
-					removeDetailsById(formId, 'Ensalada D.M 1/2')
+					removeDetailsById(formId, 'Ens.D.M 1/2')
 					showAlert('Producto eliminado', 'exit')
 				}
 			})
@@ -2338,22 +2338,22 @@ function removeDetailsById(id, prod) {
 		if (prod === 'Tostiloco') {
 			updateCountsProd(tostilocoContainer, prod)
 		}
-		if (prod === 'Fresas C.C') {
+		if (prod === 'Fres.C.C') {
 			updateCountsProd(fresasContainer, prod)
 		}
-		if (prod === 'Fresas C.C 1/2') {
+		if (prod === 'Fres.C.C 1/2') {
 			updateCountsProd(fresasMedContainer, prod)
 		}
-		if (prod === 'Gelatina C.D') {
+		if (prod === 'Gel.C.D') {
 			updateCountsProd(gelatinaContainer, prod)
 		}
-		if (prod === 'Gelatina C.D 1/2') {
+		if (prod === 'Gel.C.D 1/2') {
 			updateCountsProd(gelatinaMedContainer, prod)
 		}
-		if (prod === 'Ensalada D.M') {
+		if (prod === 'Ens.D.M') {
 			updateCountsProd(manzanaContainer, prod)
 		}
-		if (prod === 'Ensalada D.M 1/2') {
+		if (prod === 'Ens.D.M 1/2') {
 			updateCountsProd(manzanaMedContainer, prod)
 		}
 		if (prod === 'Gomiboing') {
@@ -2564,33 +2564,33 @@ function deleteProductOrder(e) {
 						addDetailsArea()
 						tostilocoContainer.textContent = ''
 					}
-					if (prod.name === 'Fresas C.C') {
-						detalles = detalles.filter((det) => det.name !== 'Fresas C.C')
+					if (prod.name === 'Fres.C.C') {
+						detalles = detalles.filter((det) => det.name !== 'Fres.C.C')
 						addDetailsArea()
 						fresasContainer.textContent = ''
 					}
-					if (prod.name === 'Fresas C.C 1/2') {
-						detalles = detalles.filter((det) => det.name !== 'Fresas C.C 1/2')
+					if (prod.name === 'Fres.C.C 1/2') {
+						detalles = detalles.filter((det) => det.name !== 'Fres.C.C 1/2')
 						addDetailsArea()
 						fresasMedContainer.textContent = ''
 					}
-					if (prod.name === 'Gelatina C.D') {
-						detalles = detalles.filter((det) => det.name !== 'Gelatina C.D')
+					if (prod.name === 'Gel.C.D') {
+						detalles = detalles.filter((det) => det.name !== 'Gel.C.D')
 						addDetailsArea()
 						gelatinaContainer.textContent = ''
 					}
-					if (prod.name === 'Gelatina C.D 1/2') {
-						detalles = detalles.filter((det) => det.name !== 'Gelatina C.D 1/2')
+					if (prod.name === 'Gel.C.D 1/2') {
+						detalles = detalles.filter((det) => det.name !== 'Gel.C.D 1/2')
 						addDetailsArea()
 						gelatinaMedContainer.textContent = ''
 					}
-					if (prod.name === 'Ensalada D.M') {
-						detalles = detalles.filter((det) => det.name !== 'Ensalada D.M')
+					if (prod.name === 'Ens.D.M') {
+						detalles = detalles.filter((det) => det.name !== 'Ens.D.M')
 						addDetailsArea()
 						manzanaContainer.textContent = ''
 					}
-					if (prod.name === 'Ensalada D.M  1/2') {
-						detalles = detalles.filter((det) => det.name !== 'Ensalada D.M 1/2')
+					if (prod.name === 'Ens.D.M 1/2') {
+						detalles = detalles.filter((det) => det.name !== 'Ens.D.M 1/2')
 						addDetailsArea()
 						manzanaMedContainer.textContent = ''
 					}
