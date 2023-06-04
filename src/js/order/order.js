@@ -262,7 +262,7 @@ function removeUltimateFormEsquites() {
 	}
 }
 function removeUltimateFormEsquitesMed() {
-	const sections = esquitesMedContainer.getElementsByClassName('section-sp|')
+	const sections = esquitesMedContainer.getElementsByClassName('section-sp')
 
 	if (sections.length > 0) {
 		let lastSection = sections[sections.length - 1]
