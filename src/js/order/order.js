@@ -59,6 +59,10 @@ const cancelarImpresionBtn = document.getElementById('cancelarImpresionBtn')
 const licenciaa = document.getElementById('licencia')
 const impresora = document.getElementById('macInput')
 
+const btnEgresos = document.getElementById('egresos')
+const btnCancelEgreso = document.getElementById('cancel-egreso')
+const viewEgresos = document.getElementById('view-egresos')
+
 const tomarPedido = document.getElementById('tomar-pedido')
 const btnShowOrder = document.getElementById('show-order-list')
 const btnRegresar = document.getElementById('regresar')
@@ -2856,7 +2860,7 @@ function disabledReceived() {
 	}
 }
 
-function showAlert(msg, type) {
+export function showAlert(msg, type) {
 	const alert = document.createElement('DIV')
 	alert.textContent = msg
 	if (type === 'error-fixed') {
@@ -3192,6 +3196,18 @@ export function createOrder() {
 // TODO LIST ORDERS
 
 if (location.pathname.endsWith('/order.html')) {
+	btnEgresos.addEventListener('click', (e) => {
+		e.preventDefault()
+		viewEgresos.classList.add('active')
+		tomarPedido.classList.add('pedido-desabilitado')
+	})
+
+	btnCancelEgreso.addEventListener('click', (e) => {
+		e.preventDefault()
+		viewEgresos.classList.remove('active')
+		tomarPedido.classList.remove('pedido-desabilitado')
+	})
+
 	btnShowOrder.addEventListener('click', (e) => {
 		e.preventDefault()
 		sectionOder.classList.add('order-visible')
@@ -3210,7 +3226,7 @@ if (location.pathname.endsWith('/order.html')) {
 		Swal.fire({
 			title: 'Advertencia!',
 			html:
-				'Por favor, tenga en cuenta que al eliminar las órdenes, <strong style="color:#C62828">se borrarán los registros de ventas totales</strong>. Le recomendamos que descargue y guarde el informe de ventas antes de proceder con la eliminación',
+				'Por favor, tenga en cuenta que al eliminar las órdenes, <strong style="color:#C62828">se borrarán los registros de ventas totales, así como los egresos acumulados</strong>. Le recomendamos que descargue y guarde el informe de ventas antes de proceder con la eliminación.',
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonText: 'Entiendo, deseo continuar',
@@ -3243,9 +3259,12 @@ if (location.pathname.endsWith('/order.html')) {
 							timer: 1500,
 						})
 
+						localStorage.removeItem('egresos')
+
 						modal.style.display = 'none'
 
 						const request = indexedDB.deleteDatabase('customerOrders')
+
 						setTimeout(() => {
 							location.reload()
 						}, 1510)

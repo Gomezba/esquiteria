@@ -61,7 +61,10 @@
 				/>
 			</svg>
 
-			<table>
+			<table id="table-products" class="table-products">
+				<caption>
+					Venta de productos
+				</caption>
 				<thead>
 					<tr>
 						<th>PROD</th>
@@ -73,7 +76,25 @@
 				<tbody id="tbody"></tbody>
 				<tfoot>
 					<tr>
-						<td colspan="4">Total: <span id="total"></span></td>
+						<td colspan="4">Total: $<span id="total"></span></td>
+					</tr>
+				</tfoot>
+			</table>
+
+			<table id="table-egresos">
+				<caption>
+					Egresos
+				</caption>
+				<thead>
+					<tr>
+						<th>Egreso</th>
+						<th>Cantidad</th>
+					</tr>
+				</thead>
+				<tbody id="egresos-container-total"></tbody>
+				<tfoot>
+					<tr>
+						<td colspan="2">Total: $<span id="total-egresos"></span></td>
 					</tr>
 				</tfoot>
 			</table>

@@ -92,7 +92,6 @@ class Product {
 
 	deletedProductObj(id) {
 		this.products = this.products.filter((prod) => prod.id != id)
-		console.log('estoy dentro')
 	}
 }
 

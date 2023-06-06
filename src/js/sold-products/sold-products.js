@@ -3,6 +3,7 @@ import { obtenerFechaActual } from '../functions/date.js'
 if (location.pathname.endsWith('/products-sold.html')) {
 	const btnPdf = document.getElementById('pdf')
 	const tbody = document.getElementById('tbody')
+
 	function loadTableData() {
 		const request = indexedDB.open('customerOrders', 1)
 
@@ -77,7 +78,7 @@ if (location.pathname.endsWith('/products-sold.html')) {
 					minimumFractionDigits: 2,
 					maximumFractionDigits: 2,
 				})
-				totalSpan.textContent = `$${formattedTotal}`
+				totalSpan.textContent = `${formattedTotal}`
 			}
 
 			request.onerror = (event) => {
@@ -91,16 +92,53 @@ if (location.pathname.endsWith('/products-sold.html')) {
 		}
 	}
 
+	const egresosObjetos = JSON.parse(localStorage.getItem('egresos')) ?? []
+
+	function showEgresos() {
+		if (egresosObjetos) {
+			const fragment = document.createDocumentFragment()
+			let totalEgresos = 0
+
+			egresosObjetos.forEach((egreso) => {
+				const { name, cantidad } = egreso
+				const tr = document.createElement('tr')
+				const tdName = document.createElement('td')
+				tdName.textContent = name
+				const tdCantidad = document.createElement('td')
+				tdCantidad.textContent = `$${cantidad}`
+
+				tr.append(tdName, tdCantidad)
+				fragment.append(tr)
+
+				totalEgresos += parseFloat(cantidad) // Sumar al total acumulado
+			})
+
+			// Actualizar el total en el <tfoot>
+
+			const totalEgresosElement = document.getElementById('total-egresos')
+
+			const formattedTotal = totalEgresos.toLocaleString(undefined, {
+				minimumFractionDigits: 2,
+				maximumFractionDigits: 2,
+			})
+			totalEgresosElement.textContent = `${formattedTotal}`
+			const egresosContainer = document.getElementById('egresos-container-total')
+
+			egresosContainer.textContent = ''
+			egresosContainer.append(fragment)
+		}
+	}
+
 	btnPdf.addEventListener('click', generatePDF)
 
 	function generatePDF() {
 		const doc = new jsPDF()
 
-		const tableData = []
-		const table = document.querySelector('table')
-		const rows = table.querySelectorAll('tbody tr')
+		const tableData1 = []
+		const table1 = document.getElementById('table-products')
+		const rows1 = table1.querySelectorAll('tbody tr')
 
-		rows.forEach((row) => {
+		rows1.forEach((row) => {
 			const rowData = []
 			const cells = row.querySelectorAll('td')
 
@@ -108,54 +146,103 @@ if (location.pathname.endsWith('/products-sold.html')) {
 				rowData.push(cell.textContent)
 			})
 
-			tableData.push(rowData)
+			tableData1.push(rowData)
 		})
 
-		// Configurar el tamaño de fuente en 24px
+		const tableData2 = []
+		const table2 = document.getElementById('table-egresos')
+		const rows2 = table2.querySelectorAll('tbody tr')
+
+		rows2.forEach((row) => {
+			const rowData = []
+			const cells = row.querySelectorAll('td')
+
+			cells.forEach((cell) => {
+				rowData.push(cell.textContent)
+			})
+
+			tableData2.push(rowData)
+		})
+
 		const styles = {
 			fontSize: 24,
 		}
 
-		doc.setFontSize(24)
-		doc.text('REPORTE DE VENTAS', 15, 20) // Agregar título
-
 		const fechaActual = obtenerFechaActual()
-
-		const fechaDescarga = `${fechaActual.dia} de ${fechaActual.mes} del ${fechaActual.anio}` // Obtener la fecha actual
+		const fechaDescarga = `${fechaActual.dia} de ${fechaActual.mes} del ${fechaActual.anio}`
 
 		doc.setFontSize(24)
-		doc.text(fechaDescarga, 117, 20) // Agregar fecha
+		doc.text('REPORTE DE VENTAS', 15, 20)
+		doc.setFontSize(24)
+		doc.text(fechaDescarga, 117, 20)
 
 		doc.autoTable({
-			head: [['PRODUCTO', 'PU', 'CAN', 'TOTAL']],
-			body: tableData,
+			head: [['PRODUCTO', 'PU', 'CAN', 'SUBTOTAL']],
+			body: tableData1,
 			startY: 30,
 			columnStyles: {
-				3: { halign: 'right' }, // Ajustar el ancho de la columna
+				3: { halign: 'right' },
 			},
-			// margin: { top: 20 },
-			styles: styles, // Aplicar estilos de fuente
+			styles,
 		})
 
-		// Obtener el precio global del elemento span
 		const precioGlobalSpan = document.getElementById('total')
-		const precioGlobal = precioGlobalSpan.textContent
+		const precioGlobalProductos = parseFloat(precioGlobalSpan.textContent.trim().replace(',', ''))
 
-		// Agregar fila con el precio global
-		const totalRow = [['Total', '', precioGlobal]]
+		const totalRow1 = [['Total productos', '', '', `$${precioGlobalProductos}`]]
 		doc.autoTable({
-			body: totalRow,
+			body: totalRow1,
 			startY: doc.lastAutoTable.finalY + 10,
 			showHead: 'never',
-			columnStyles: { 2: { halign: 'right', cellWidth: 'auto' } },
-			styles: styles,
+			columnStyles: { 3: { halign: 'right', cellWidth: 'auto' } },
+			styles,
 		})
 
-		// Generar el nombre del archivo con la fecha
+		doc.autoTable({
+			head: [['EGRESO', 'CANTIDAD']],
+			body: tableData2,
+			startY: doc.lastAutoTable.finalY + 10,
+			columnStyles: {
+				3: { halign: 'right' }, // Ajustar el índice de la columna según los datos en tableData2
+			},
+			styles,
+		})
+
+		const precioGlobalSpanEgresos = document.getElementById('total-egresos')
+		const precioGlobalEgresos = parseFloat(precioGlobalSpanEgresos.textContent.trim().replace(',', ''))
+
+		const totalRow2 = [['Total egresos', `$${precioGlobalEgresos}`]]
+		doc.autoTable({
+			body: totalRow2,
+			startY: doc.lastAutoTable.finalY + 10,
+			showHead: 'never',
+			columnStyles: { 1: { halign: 'right', cellWidth: 'auto' } },
+			styles,
+		})
+
+		const gananciaFinal = parseFloat(precioGlobalProductos) - parseFloat(precioGlobalEgresos)
+
+		console.log(precioGlobalProductos)
+		console.log(precioGlobalEgresos)
+
+		const gananciaRow = [
+			['GANANCIA', '', '', `$${gananciaFinal.toLocaleString(undefined, { minimumFractionDigits: 2 })}`],
+		]
+		// const gananciaRow = [['Ganancia', '', '', `$${gananciaFinal.toFixed(2)}`]]
+		doc.autoTable({
+			body: gananciaRow,
+			startY: doc.lastAutoTable.finalY + 10,
+			showHead: 'never',
+			columnStyles: { 3: { halign: 'right', cellWidth: 'auto' } },
+			styles: { fontSize: 44 },
+		})
 		const nombreArchivo = `Venta-${fechaActual.dia}-${fechaActual.mes}-${fechaActual.anio}.pdf`
 
 		doc.save(nombreArchivo)
 	}
 
-	document.addEventListener('DOMContentLoaded', loadTableData)
+	document.addEventListener('DOMContentLoaded', () => {
+		loadTableData()
+		showEgresos()
+	})
 }
