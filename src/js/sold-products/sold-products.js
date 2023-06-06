@@ -74,11 +74,7 @@ if (location.pathname.endsWith('/products-sold.html')) {
 
 				const totalSpan = document.getElementById('total')
 
-				const formattedTotal = precioGlobal.toLocaleString(undefined, {
-					minimumFractionDigits: 2,
-					maximumFractionDigits: 2,
-				})
-				totalSpan.textContent = `${formattedTotal}`
+				totalSpan.textContent = `${precioGlobal}`
 			}
 
 			request.onerror = (event) => {
@@ -113,15 +109,9 @@ if (location.pathname.endsWith('/products-sold.html')) {
 				totalEgresos += parseFloat(cantidad) // Sumar al total acumulado
 			})
 
-			// Actualizar el total en el <tfoot>
-
 			const totalEgresosElement = document.getElementById('total-egresos')
 
-			const formattedTotal = totalEgresos.toLocaleString(undefined, {
-				minimumFractionDigits: 2,
-				maximumFractionDigits: 2,
-			})
-			totalEgresosElement.textContent = `${formattedTotal}`
+			totalEgresosElement.textContent = `${totalEgresos}`
 			const egresosContainer = document.getElementById('egresos-container-total')
 
 			egresosContainer.textContent = ''
@@ -187,9 +177,11 @@ if (location.pathname.endsWith('/products-sold.html')) {
 		})
 
 		const precioGlobalSpan = document.getElementById('total')
-		const precioGlobalProductos = parseFloat(precioGlobalSpan.textContent.trim().replace(',', ''))
+		const precioGlobalProductos = precioGlobalSpan.textContent.trim().replace(',', '')
 
-		const totalRow1 = [['Total productos', '', '', `$${precioGlobalProductos}`]]
+		const totalRow1 = [
+			['Total productos', '', '', `$${precioGlobalProductos.toLocaleString(undefined, { minimumFractionDigits: 2 })}`],
+		]
 		doc.autoTable({
 			body: totalRow1,
 			startY: doc.lastAutoTable.finalY + 10,
@@ -209,9 +201,11 @@ if (location.pathname.endsWith('/products-sold.html')) {
 		})
 
 		const precioGlobalSpanEgresos = document.getElementById('total-egresos')
-		const precioGlobalEgresos = parseFloat(precioGlobalSpanEgresos.textContent.trim().replace(',', ''))
+		const precioGlobalEgresos = precioGlobalSpanEgresos.textContent.trim().replace(',', '')
 
-		const totalRow2 = [['Total egresos', `$${precioGlobalEgresos}`]]
+		const totalRow2 = [
+			['Total egresos', `$${precioGlobalEgresos.toLocaleString(undefined, { minimumFractionDigits: 2 })}`],
+		]
 		doc.autoTable({
 			body: totalRow2,
 			startY: doc.lastAutoTable.finalY + 10,
@@ -220,7 +214,7 @@ if (location.pathname.endsWith('/products-sold.html')) {
 			styles,
 		})
 
-		const gananciaFinal = parseFloat(precioGlobalProductos) - parseFloat(precioGlobalEgresos)
+		const gananciaFinal = precioGlobalProductos - precioGlobalEgresos
 
 		console.log(precioGlobalProductos)
 		console.log(precioGlobalEgresos)
