@@ -107,6 +107,10 @@
 	overflow-y: scroll;
 }
 
+.egresos-container tbody td {
+	padding: 0 0.3rem;
+}
+
 .opt-egreso {
 	margin: 1.2rem 0;
 }
@@ -532,7 +536,8 @@
 
 .specification__container {
 	display: flex;
-	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-between;
 	gap: var(--gap-sm);
 	margin-bottom: 1.5em;
 	padding: 0 1em;
@@ -546,11 +551,19 @@
 }
 
 .specification__container select {
-	width: 170px;
+	width: 130px;
 	border-radius: 1rem;
 	background-color: #18445e;
 	color: #ebe8e3be;
 	border: 1px solid rgba(255, 255, 255, 0.514);
+}
+
+.specification__container div:last-child {
+	width: 100%;
+}
+
+.container-prev-detalle {
+	width: 100%;
 }
 
 .specification__container input {
@@ -776,6 +789,8 @@
 	height: 100px;
 	overflow-y: scroll;
 	white-space: pre-line;
+	text-align: left;
+	font-size: 0.968rem;
 }
 
 /* password */
