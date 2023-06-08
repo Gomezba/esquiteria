@@ -216,9 +216,6 @@ if (location.pathname.endsWith('/products-sold.html')) {
 
 		const gananciaFinal = precioGlobalProductos - precioGlobalEgresos
 
-		console.log(precioGlobalProductos)
-		console.log(precioGlobalEgresos)
-
 		const gananciaRow = [
 			['GANANCIA', '', '', `$${gananciaFinal.toLocaleString(undefined, { minimumFractionDigits: 2 })}`],
 		]
