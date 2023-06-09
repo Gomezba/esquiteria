@@ -64,6 +64,18 @@ btnAddEgreso.addEventListener('click', (e) => {
 	}
 
 	if (btnAddEgreso.dataset.type === 'edit') {
+		const moneyRegex = /^(?!0[0-9])[0-9]*(\.[0-9]+)?$/
+
+		if (egr === '' || cant === '') {
+			showAlert('Todos los campos son obligatorios', 'error-fixed')
+			return
+		}
+
+		if (isNaN(cant) || !moneyRegex.test(cant) || cant <= 0.99) {
+			showAlert('Precio incorrecto', 'error-fixed')
+			return
+		}
+
 		editEgreso(egr, cant)
 		btnAddEgreso.dataset.type = 'add'
 		btnAddEgreso.textContent = 'Agregar'
