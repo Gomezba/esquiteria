@@ -1,0 +1,31 @@
+.ganancia {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--gap-sm);
+	background-color: #1a242e;
+	padding: 2em 0;
+}
+
+.ganancia h2 {
+	margin: 0;
+	color: rgb(26, 100, 134);
+}
+
+.ganancia p {
+	margin: 0;
+}
+
+.ganancia__products,
+.ganancia__egresos,
+.ganancia__total {
+	color: #ffffff9c;
+}
+
+.ganancia__products span,
+.ganancia__egresos span,
+.ganancia__total span {
+	color: #ffffffb4;
+	font-size: 1.1rem;
+	font-weight: var(--fw-semi-bold);
+}

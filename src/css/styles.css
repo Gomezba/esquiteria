@@ -215,6 +215,13 @@ body {
 	background-color: var(--sky-blue);
 }
 
+.menu__link--green {
+	filter: drop-shadow(2px 2px 5px var(--dark-green));
+}
+.menu__link--green:nth-child(1)::after {
+	background-color: var(--dark-green);
+}
+
 /* Styles menu responsive */
 
 @media (min-width: 640px) {
@@ -298,6 +305,7 @@ thead th {
 	margin-right: 1.5em;
 	background-color: #27649ca8;
 	color: #ffffff9d;
+	padding: 0.2em;
 }
 
 thead th:nth-child(2),
@@ -321,6 +329,7 @@ tbody tr:nth-child(even) {
 
 tbody td {
 	text-align: center;
+	padding: 0.2em;
 }
 
 tbody tr td:nth-child(2) {

@@ -3,6 +3,7 @@ import { obtenerFechaActual } from '../functions/date.js'
 if (location.pathname.endsWith('/products-sold.html')) {
 	const btnPdf = document.getElementById('pdf')
 	const tbody = document.getElementById('tbody')
+	const btnGuardarGanancia = document.getElementById('guardar-ganancia')
 
 	function loadTableData() {
 		const request = indexedDB.open('customerOrders', 1)
@@ -75,6 +76,7 @@ if (location.pathname.endsWith('/products-sold.html')) {
 				const totalSpan = document.getElementById('total')
 
 				totalSpan.textContent = `${precioGlobal}`
+				showSubtotal()
 			}
 
 			request.onerror = (event) => {
@@ -97,10 +99,10 @@ if (location.pathname.endsWith('/products-sold.html')) {
 
 			egresosObjetos.forEach((egreso) => {
 				const { name, cantidad } = egreso
-				const tr = document.createElement('tr')
-				const tdName = document.createElement('td')
+				const tr = document.createElement('TR')
+				const tdName = document.createElement('TD')
 				tdName.textContent = name
-				const tdCantidad = document.createElement('td')
+				const tdCantidad = document.createElement('TD')
 				tdCantidad.textContent = `$${cantidad}`
 
 				tr.append(tdName, tdCantidad)
@@ -116,6 +118,7 @@ if (location.pathname.endsWith('/products-sold.html')) {
 
 			egresosContainer.textContent = ''
 			egresosContainer.append(fragment)
+			showSubtotal()
 		}
 	}
 
@@ -127,6 +130,7 @@ if (location.pathname.endsWith('/products-sold.html')) {
 		const tableData1 = []
 		const table1 = document.getElementById('table-products')
 		const rows1 = table1.querySelectorAll('tbody tr')
+		const caption1 = (table1.querySelector('caption').textContent = 'Lista de venta de productos')
 
 		rows1.forEach((row) => {
 			const rowData = []
@@ -142,6 +146,7 @@ if (location.pathname.endsWith('/products-sold.html')) {
 		const tableData2 = []
 		const table2 = document.getElementById('table-egresos')
 		const rows2 = table2.querySelectorAll('tbody tr')
+		const caption2 = (table2.querySelector('caption').textContent = 'Lista de egresos')
 
 		rows2.forEach((row) => {
 			const rowData = []
@@ -166,10 +171,13 @@ if (location.pathname.endsWith('/products-sold.html')) {
 		doc.setFontSize(24)
 		doc.text(fechaDescarga, 117, 20)
 
+		doc.setFontSize(24)
+		doc.text(caption1, 50, 38)
+
 		doc.autoTable({
-			head: [['PRODUCTO', 'PU', 'CAN', 'SUBTOTAL']],
+			head: [['PRODUCTO', 'PU', 'CAN', '             SUBTOTAL']],
 			body: tableData1,
-			startY: 30,
+			startY: 40,
 			columnStyles: {
 				3: { halign: 'right' },
 			},
@@ -177,11 +185,9 @@ if (location.pathname.endsWith('/products-sold.html')) {
 		})
 
 		const precioGlobalSpan = document.getElementById('total')
-		const precioGlobalProductos = precioGlobalSpan.textContent.trim().replace(',', '')
+		const precioGlobalProductos = precioGlobalSpan.textContent
 
-		const totalRow1 = [
-			['Total productos', '', '', `$${precioGlobalProductos.toLocaleString(undefined, { minimumFractionDigits: 2 })}`],
-		]
+		const totalRow1 = [['Total productos', '', '', `$${precioGlobalProductos}`]]
 		doc.autoTable({
 			body: totalRow1,
 			startY: doc.lastAutoTable.finalY + 10,
@@ -190,22 +196,23 @@ if (location.pathname.endsWith('/products-sold.html')) {
 			styles,
 		})
 
+		doc.setFontSize(24)
+		doc.text(caption2, 70, doc.lastAutoTable.finalY + 15)
+
 		doc.autoTable({
-			head: [['EGRESO', 'CANTIDAD']],
+			head: [['EGRESO', '                                       CANTIDAD']],
 			body: tableData2,
-			startY: doc.lastAutoTable.finalY + 10,
+			startY: doc.lastAutoTable.finalY + 17,
 			columnStyles: {
-				3: { halign: 'right' }, // Ajustar el índice de la columna según los datos en tableData2
+				1: { halign: 'right' }, // Ajustar el índice de la columna según los datos en tableData2
 			},
 			styles,
 		})
 
 		const precioGlobalSpanEgresos = document.getElementById('total-egresos')
-		const precioGlobalEgresos = precioGlobalSpanEgresos.textContent.trim().replace(',', '')
+		const precioGlobalEgresos = precioGlobalSpanEgresos.textContent
 
-		const totalRow2 = [
-			['Total egresos', `$${precioGlobalEgresos.toLocaleString(undefined, { minimumFractionDigits: 2 })}`],
-		]
+		const totalRow2 = [['Total egresos', `$${precioGlobalEgresos}`]]
 		doc.autoTable({
 			body: totalRow2,
 			startY: doc.lastAutoTable.finalY + 10,
@@ -214,23 +221,71 @@ if (location.pathname.endsWith('/products-sold.html')) {
 			styles,
 		})
 
-		const gananciaFinal = precioGlobalProductos - precioGlobalEgresos
+		const precioInversion = `Total Productos: $${parseFloat(precioGlobalProductos).toLocaleString(undefined, {
+			minimumFractionDigits: 2,
+		})}`
+		doc.setFontSize(30)
+		doc.text(precioInversion, 40, doc.lastAutoTable.finalY + 20, { align: 'right' })
 
-		const gananciaRow = [
-			['GANANCIA', '', '', `$${gananciaFinal.toLocaleString(undefined, { minimumFractionDigits: 2 })}`],
-		]
-		// const gananciaRow = [['Ganancia', '', '', `$${gananciaFinal.toFixed(2)}`]]
-		doc.autoTable({
-			body: gananciaRow,
-			startY: doc.lastAutoTable.finalY + 10,
-			showHead: 'never',
-			columnStyles: { 3: { halign: 'right', cellWidth: 'auto' } },
-			styles: { fontSize: 44 },
-		})
+		const subGanancias = `Total Egresos: $${parseFloat(precioGlobalEgresos).toLocaleString(undefined, {
+			minimumFractionDigits: 2,
+		})}`
+		doc.setFontSize(30)
+		doc.text(subGanancias, 40, doc.lastAutoTable.finalY + 35, { align: 'right' })
+
+		const gananciaFinal = parseFloat(precioGlobalProductos - parseFloat(precioGlobalEgresos))
+		const gananciaTexto = `GANANCIA DE DÍA: $${gananciaFinal.toLocaleString(undefined, {
+			minimumFractionDigits: 2,
+		})}`
+		doc.setFontSize(38)
+		doc.text(gananciaTexto, 10, doc.lastAutoTable.finalY + 55, { align: 'right' })
+
 		const nombreArchivo = `Venta-${fechaActual.dia}-${fechaActual.mes}-${fechaActual.anio}.pdf`
 
 		doc.save(nombreArchivo)
 	}
+
+	function showSubtotal() {
+		const totalProductos = Number(document.getElementById('total').textContent)
+		const totalEgresos = Number(document.getElementById('total-egresos').textContent)
+		document.getElementById('sb-prod').textContent = `${totalProductos.toLocaleString(undefined, {
+			minimumFractionDigits: 2,
+		})}`
+		document.getElementById('sb-eg').textContent = `${totalEgresos.toLocaleString(undefined, {
+			minimumFractionDigits: 2,
+		})}`
+
+		const totalGananciaGlobal = totalProductos - totalEgresos
+
+		document.getElementById('total-ganancia').textContent = totalGananciaGlobal
+	}
+
+	btnGuardarGanancia.addEventListener('click', (e) => {
+		e.preventDefault()
+		const fechaActual = obtenerFechaActual()
+		const fecha = `${fechaActual.dia} de ${fechaActual.mes} del ${fechaActual.anio}`
+
+		const totalGanancia = document.getElementById('total-ganancia').textContent
+
+		const ganancia = {
+			id: Date.now(),
+			date: fecha,
+			total: totalGanancia,
+		}
+
+		const ganancias = JSON.parse(localStorage.getItem('ganancias')) ?? []
+		localStorage.setItem('ganancias', JSON.stringify([...ganancias, ganancia]))
+		Swal.fire({
+			icon: 'success',
+			title: '¡Ganancia Guardada!',
+			showConfirmButton: false,
+			timer: 1500,
+		})
+
+		setTimeout(() => {
+			window.location.href = '../../views/ganancias/ganancias.html'
+		}, 1501)
+	})
 
 	document.addEventListener('DOMContentLoaded', () => {
 		loadTableData()

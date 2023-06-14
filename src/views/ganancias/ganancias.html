@@ -13,11 +13,12 @@
 		<link rel="stylesheet" href="../../css/styles.css" />
 		<link rel="stylesheet" href="../../css/components.css" />
 		<link rel="stylesheet" href="../../css/sold-products.css" />
+		<link rel="stylesheet" href="../../css/ganancias.css" />
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
 	</head>
-	<body>
+	<body id="body">
 		<header class="header">
 			<nav class="main-nav">
 				<figure class="figure">
@@ -61,63 +62,87 @@
 			</nav>
 		</header>
 		<main class="container main">
-			<h2 class="title">Venta total</h2>
+			<h2 class="title">Ganancias</h2>
+			<div class="container-buttons">
+				<svg height="48" viewBox="0 96 960 960" width="48" id="descargar-pdf">
+					<path
+						fill="#c3423f"
+						d="M331 625h37v-83h48q15.725 0 26.362-10.638Q453 520.725 453 505v-48q0-15.725-10.638-26.362Q431.725 420 416 420h-85v205Zm37-120v-48h48v48h-48Zm129 120h84q15 0 26-10.638 11-10.637 11-26.362V457q0-15.725-11-26.362Q596 420 581 420h-84v205Zm37-37V457h47v131h-47Zm133 37h37v-83h50v-37h-50v-48h50v-37h-87v205ZM260 856q-24 0-42-18t-18-42V236q0-24 18-42t42-18h560q24 0 42 18t18 42v560q0 24-18 42t-42 18H260Zm0-60h560V236H260v560ZM140 976q-24 0-42-18t-18-42V296h60v620h620v60H140Zm120-740v560-560Z"
+					/>
+				</svg>
+				<button id="delete-ganancias-gastos" type="button" class="btn btn-danger">Eliminar datos</button>
+			</div>
 
-			<svg height="48" viewBox="0 96 960 960" width="48" id="pdf">
-				<path
-					fill="#c3423f"
-					d="M331 625h37v-83h48q15.725 0 26.362-10.638Q453 520.725 453 505v-48q0-15.725-10.638-26.362Q431.725 420 416 420h-85v205Zm37-120v-48h48v48h-48Zm129 120h84q15 0 26-10.638 11-10.637 11-26.362V457q0-15.725-11-26.362Q596 420 581 420h-84v205Zm37-37V457h47v131h-47Zm133 37h37v-83h50v-37h-50v-48h50v-37h-87v205ZM260 856q-24 0-42-18t-18-42V236q0-24 18-42t42-18h560q24 0 42 18t18 42v560q0 24-18 42t-42 18H260Zm0-60h560V236H260v560ZM140 976q-24 0-42-18t-18-42V296h60v620h620v60H140Zm120-740v560-560Z"
-				/>
-			</svg>
+			<form action="#" id="form-expense" class="form expense">
+				<h3 class="title">Agregar gasto de inversión</h3>
+				<div class="form__field">
+					<label for="expense" class="form__expense-label">Gasto:</label>
+					<input id="expense" type="text" placeholder="Ingresa nombre del gasto" class="input form__input-expense" />
+				</div>
+				<div class="form__field">
+					<label for="quantity" class="form__expense-label">Precio:</label>
+					<input
+						id="quantity"
+						type="number"
+						placeholder="Ingresa cantidad en $"
+						class="input form__input-quantity"
+						step="0.01"
+					/>
+				</div>
+				<div>
+					<button id="btn-expense" class="btn btn-primary" type="submit" data-btntype="add">Agregar</button>
+					<button id="btn-cancel" class="btn btn-cancel" type="button" hidden>Cancelar edición</button>
+				</div>
+			</form>
 
-			<table id="table-products" class="table-products">
+			<table id="table-inversion" class="table-products">
 				<caption>
-					Venta de productos
+					Lista de gastos de inversión
 				</caption>
 				<thead>
 					<tr>
-						<th>PROD</th>
-						<th>PU</th>
-						<th>CAN</th>
-						<th>PT</th>
+						<th>GASTO DE INVERSIÓN</th>
+						<th>PRECIO</th>
+						<th>OPC</th>
 					</tr>
 				</thead>
-				<tbody id="tbody"></tbody>
+				<tbody id="expense-list"></tbody>
 				<tfoot>
 					<tr>
-						<td colspan="4">Total: $<span id="total"></span></td>
+						<td colspan="3">Total: $<span id="expense-total"></span></td>
 					</tr>
 				</tfoot>
 			</table>
 
-			<table id="table-egresos">
+			<table id="table-ganancias">
 				<caption>
-					Egresos
+					Ganancias
 				</caption>
 				<thead>
 					<tr>
-						<th>EGRESO</th>
-						<th>CANTIDAD</th>
+						<th>DÍA DE GANANCIA</th>
+						<th>GANANCIA</th>
+						<th>OPC</th>
 					</tr>
 				</thead>
-				<tbody id="egresos-container-total"></tbody>
+				<tbody id="ganancias-container-total"></tbody>
 				<tfoot>
 					<tr>
-						<td colspan="2">Total: $<span id="total-egresos"></span></td>
+						<td colspan="3">Total: $<span id="total-ganancias-globales"></span></td>
 					</tr>
 				</tfoot>
 			</table>
 
 			<section class="ganancia">
-				<h2>Ganancia</h2>
-				<p class="ganancia__products">Total Productos <span>$</span><span id="sb-prod"></span></p>
-				<p class="ganancia__egresos">Total Egresos <span>$</span><span id="sb-eg"></span></p>
-				<span class="ganancia__total"><strong>GANANCIA </strong><span>$</span><span id="total-ganancia"></span> </span>
-				<div>
-					<button id="guardar-ganancia" class="btn btn-primary">Guardar Ganancia</button>
-				</div>
+				<h2>Ganancia Neta</h2>
+				<p class="ganancia__products">Total Inversión <span>$</span><span id="sb-inversion"></span></p>
+				<p class="ganancia__egresos">Total ganancias <span>$</span><span id="sb-ganancias"></span></p>
+				<span class="ganancia__total"
+					><strong>GANANCIA NETA </strong><span>$</span><span id="total-ganancias"></span>
+				</span>
 			</section>
 		</main>
 		<script src="../../js/app.js" type="module"></script>
+		<script src="../../js/ganancias/ganancias.js" type="module"></script>
 	</body>
 </html>
