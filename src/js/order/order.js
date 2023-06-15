@@ -2879,14 +2879,6 @@ export function showAlert(msg, type) {
 		}, 5000)
 	}
 
-	if (type === 'error-customized') {
-		alert.classList.add('error-product')
-		customizedContainer.prepend(alert)
-		setTimeout(() => {
-			alert.remove()
-		}, 1300)
-	}
-
 	if (type === 'exit-customized') {
 		alert.classList.add('order-exit')
 		customizedContainer.prepend(alert)
@@ -2996,11 +2988,11 @@ if (location.pathname.endsWith('/order.html')) {
 		const moneyRegex = /^(?!0[0-9])[0-9]*(\.[0-9]+)?$/
 
 		if (productName === '' || productPrice == '') {
-			showAlert('Ambos campos son obligatorios', 'error-customized')
+			showAlert('Ambos campos son obligatorios', 'error-fixed')
 			return
 		}
 		if (isNaN(productPrice) || !moneyRegex.test(productPrice) || productPrice <= 0.99) {
-			showAlert('Precio incorrecto', 'error-customized')
+			showAlert('Precio incorrecto', 'error-fixed')
 			return
 		}
 
@@ -3024,7 +3016,7 @@ if (location.pathname.endsWith('/order.html')) {
 
 		productsStorage.forEach((prod) => {
 			if (prod.name === productName) {
-				showAlert('Nombre de producto existente en el sistema', 'error-customized')
+				showAlert('Nombre de producto existente en el sistema', 'error-fixed')
 				addCustomized.setAttribute('disabled', 'true')
 			}
 		})
@@ -3051,7 +3043,7 @@ if (location.pathname.endsWith('/order.html')) {
 		totalPrice()
 		customizedTotal.textContent = ''
 		formCustomized.reset()
-		showAlert('Producto agregado', 'exit-customized')
+		showAlert('Producto agregado', 'exit')
 		addCustomized.setAttribute('disabled', 'true')
 		customerPay.removeAttribute('disabled')
 		customerPay.value = ''
