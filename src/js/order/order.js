@@ -2553,72 +2553,73 @@ function deleteProductOrder(e) {
 					if (prod.name === 'Esquite ch') {
 						detalles = detalles.filter((det) => det.name !== 'Esquite ch')
 						addDetailsArea()
-						esquitesContainer.textContent = ''
+						cleanContainer(esquitesContainer)
 					}
 					if (prod.name === 'Esquite 1/2') {
 						detalles = detalles.filter((det) => det.name !== 'Esquite 1/2')
 						addDetailsArea()
-						esquitesMedContainer.textContent = ''
+						cleanContainer(esquitesMedContainer)
 					}
 					if (prod.name === 'Doriesquite') {
 						detalles = detalles.filter((det) => det.name !== 'Doriesquite')
 						addDetailsArea()
-						doriesquiteContainer.textContent = ''
+						cleanContainer(doriesquiteContainer)
 					}
+
 					if (prod.name === 'Doriloco') {
 						detalles = detalles.filter((det) => det.name !== 'Doriloco')
 						addDetailsArea()
-						dorilocoContainer.textContent = ''
+						cleanContainer(dorilocoContainer)
 					}
 					if (prod.name === 'Tostiloco') {
 						detalles = detalles.filter((det) => det.name !== 'Tostiloco')
 						addDetailsArea()
-						tostilocoContainer.textContent = ''
+						cleanContainer(tostilocoContainer)
 					}
 					if (prod.name === 'Fres.C.C') {
 						detalles = detalles.filter((det) => det.name !== 'Fres.C.C')
 						addDetailsArea()
-						fresasContainer.textContent = ''
+						cleanContainer(fresasContainer)
 					}
 					if (prod.name === 'Fres.C.C 1/2') {
 						detalles = detalles.filter((det) => det.name !== 'Fres.C.C 1/2')
 						addDetailsArea()
-						fresasMedContainer.textContent = ''
+						cleanContainer(fresasMedContainer)
 					}
 					if (prod.name === 'Gel.C.D') {
 						detalles = detalles.filter((det) => det.name !== 'Gel.C.D')
 						addDetailsArea()
-						gelatinaContainer.textContent = ''
+						cleanContainer(gelatinaContainer)
 					}
 					if (prod.name === 'Gel.C.D 1/2') {
 						detalles = detalles.filter((det) => det.name !== 'Gel.C.D 1/2')
 						addDetailsArea()
-						gelatinaMedContainer.textContent = ''
+						cleanContainer(gelatinaMedContainer)
 					}
 					if (prod.name === 'Ens.D.M') {
 						detalles = detalles.filter((det) => det.name !== 'Ens.D.M')
 						addDetailsArea()
-						manzanaContainer.textContent = ''
+						cleanContainer(manzanaContainer)
 					}
 					if (prod.name === 'Ens.D.M 1/2') {
 						detalles = detalles.filter((det) => det.name !== 'Ens.D.M 1/2')
 						addDetailsArea()
-						manzanaMedContainer.textContent = ''
+						cleanContainer(manzanaMedContainer)
 					}
 					if (prod.name === 'Gomiboing') {
 						detalles = detalles.filter((det) => det.name !== 'Gomiboing')
 						addDetailsArea()
-						gomiboingContainer.textContent = ''
+						cleanContainer(gomiboingContainer)
 					}
 					if (prod.name === 'Agua F.1L') {
 						detalles = detalles.filter((det) => det.name !== 'Agua F.1L')
 						addDetailsArea()
-						aguaFrescaContainer.textContent = ''
+						cleanContainer(aguaFrescaContainer)
 					}
 					if (prod.name === 'Agua F.1/2') {
 						detalles = detalles.filter((det) => det.name !== 'Agua F.1/2')
 						addDetailsArea()
-						aguaFrescaMedContainer.textContent = ''
+						cleanContainer(aguaFrescaMedContainer)
 					}
 					products = products.filter((prod) => prod.id !== idProduct)
 					const element = document.querySelector(`[id="${prod.id}"]`)
@@ -2915,7 +2916,7 @@ export function showAlert(msg, type) {
 function volverNormalidad() {
 	resetOrder()
 	products = []
-	productsTableContainer.textContent = ''
+	cleanContainer(productsTableContainer)
 	orderDetails.value = ''
 	customerInput.value = ''
 	totalOrder.textContent = '0'
