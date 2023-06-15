@@ -234,11 +234,11 @@ if (location.pathname.endsWith('/products-sold.html')) {
 		doc.text(subGanancias, 40, doc.lastAutoTable.finalY + 35, { align: 'right' })
 
 		const gananciaFinal = parseFloat(precioGlobalProductos - parseFloat(precioGlobalEgresos))
-		const gananciaTexto = `GANANCIA DE DÍA: $${gananciaFinal.toLocaleString(undefined, {
+		const gananciaTexto = `VENTA DEL DÍA: $${gananciaFinal.toLocaleString(undefined, {
 			minimumFractionDigits: 2,
 		})}`
 		doc.setFontSize(38)
-		doc.text(gananciaTexto, 10, doc.lastAutoTable.finalY + 55, { align: 'right' })
+		doc.text(gananciaTexto, 26, doc.lastAutoTable.finalY + 55, { align: 'right' })
 
 		const nombreArchivo = `Venta-${fechaActual.dia}-${fechaActual.mes}-${fechaActual.anio}.pdf`
 
@@ -262,10 +262,22 @@ if (location.pathname.endsWith('/products-sold.html')) {
 
 	btnGuardarGanancia.addEventListener('click', (e) => {
 		e.preventDefault()
+
+		const totalProductos = Number(document.getElementById('total').textContent)
+		const totalEgresos = Number(document.getElementById('total-egresos').textContent)
+
+		if (totalProductos === 0 && totalEgresos === 0) {
+			Swal.fire({
+				title: 'Error',
+				text: 'No hay ventas existentes para registrar',
+				icon: 'error',
+				confirmButtonText: 'Aceptar',
+			})
+			return
+		}
+		const totalGanancia = document.getElementById('total-ganancia').textContent
 		const fechaActual = obtenerFechaActual()
 		const fecha = `${fechaActual.dia} de ${fechaActual.mes} del ${fechaActual.anio}`
-
-		const totalGanancia = document.getElementById('total-ganancia').textContent
 
 		const ganancia = {
 			id: Date.now(),

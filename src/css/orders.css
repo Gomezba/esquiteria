@@ -629,7 +629,7 @@
 	gap: var(--gap-sm);
 	align-items: baseline;
 	position: sticky;
-	top: 50px;
+	top: 65px;
 	background-color: #191d21;
 	z-index: 10;
 	padding: 0 0 var(--gap-sm);

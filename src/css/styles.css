@@ -215,6 +215,20 @@ body {
 	background-color: var(--sky-blue);
 }
 
+.menu__link--orange {
+	filter: drop-shadow(2px 2px 5px var(--dark-orange));
+}
+.menu__link--orange:nth-child(1)::after {
+	background-color: var(--dark-orange);
+}
+
+.menu__link--purple {
+	filter: drop-shadow(2px 2px 5px var(--color-pink));
+}
+.menu__link--purple:nth-child(1)::after {
+	background-color: var(--color-pink);
+}
+
 .menu__link--green {
 	filter: drop-shadow(2px 2px 5px var(--dark-green));
 }
