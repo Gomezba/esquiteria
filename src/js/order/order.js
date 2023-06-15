@@ -2792,6 +2792,7 @@ if (location.pathname.endsWith('/order.html')) {
 		// Definir los índices
 		objectStore.createIndex('date', 'date', { unique: false })
 		objectStore.createIndex('customer', 'customer', { unique: false })
+		objectStore.createIndex('id', 'id', { unique: true })
 	}
 
 	request.onerror = (err) => {
@@ -2938,10 +2939,12 @@ const URLPlugin = 'http://localhost:8000'
 if (location.pathname.endsWith('/order.html')) {
 	sinTicketBtn.addEventListener('click', function () {
 		const fechaActual = obtenerFechaActual()
+		order.id = Date.now()
 		order.date = `${fechaActual.dia} de ${fechaActual.mes} de ${fechaActual.anio} ${fechaActual.horas}:${fechaActual.minutos}`
 		order.products = products
 		order.total = totalGlobal
 		addOrder(order)
+		console.log(order)
 	})
 
 	cancelarBtn.addEventListener('click', function () {
@@ -2962,6 +2965,7 @@ if (location.pathname.endsWith('/order.html')) {
 		}
 
 		const fechaActual = obtenerFechaActual()
+		order.id = Date.now()
 		order.date = `${fechaActual.dia} de ${fechaActual.mes} de ${fechaActual.anio} ${fechaActual.horas}:${fechaActual.minutos}`
 		order.products = products
 		order.total = totalGlobal
