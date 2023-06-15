@@ -4,6 +4,7 @@ if (location.pathname.endsWith('/products-sold.html')) {
 	const btnPdf = document.getElementById('pdf')
 	const tbody = document.getElementById('tbody')
 	const btnGuardarGanancia = document.getElementById('guardar-ganancia')
+	const btnDel = document.getElementById('orders-deleted')
 
 	function loadTableData() {
 		const request = indexedDB.open('customerOrders', 1)
@@ -298,6 +299,80 @@ if (location.pathname.endsWith('/products-sold.html')) {
 			window.location.href = '../../views/ganancias/ganancias.html'
 		}, 1501)
 	})
+
+	btnDel.addEventListener('click', function () {
+		Swal.fire({
+			title: 'Advertencia!',
+			html:
+				'Por favor, tenga en cuenta que al eliminar las órdenes, <strong style="color:#C62828">se borrarán los registros de ventas totales, así como los egresos acumulados</strong>. Le recomendamos que descargue y guarde el informe de ventas antes de proceder con la eliminación.',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonText: 'Entiendo, deseo continuar',
+			cancelButtonText: 'Cancelar',
+		}).then((result) => {
+			if (result.isConfirmed) {
+				document.getElementById('passwordModal').style.display = 'block'
+
+				const closeBtn = document.getElementsByClassName('close')[0]
+				addEventListener('click', function (event) {
+					if (event.target === modal) {
+						modal.style.display = 'none'
+					}
+				})
+				const modal = document.getElementById('passwordModal')
+
+				closeBtn.addEventListener('click', function () {
+					modal.style.display = 'none'
+				})
+
+				// Obtener la contraseña ingresada al hacer clic en el botón de enviar
+				document.getElementById('submitBtn').addEventListener('click', function () {
+					const input = document.getElementById('passwordInput')
+					const password = document.getElementById('passwordInput').value
+					if (password === 'tatis') {
+						Swal.fire({
+							icon: 'success',
+							title: '¡La venta ha sido eliminada!',
+							showConfirmButton: false,
+							timer: 1500,
+						})
+
+						localStorage.removeItem('egresos')
+
+						modal.style.display = 'none'
+
+						const respuesta = indexedDB.deleteDatabase('customerOrders')
+
+						setTimeout(() => {
+							location.reload()
+						}, 1510)
+
+						respuesta.onerror = (event) => {
+							alert('Error al eliminar la base de datos:', event.target.error)
+						}
+					} else {
+						const alert = document.createElement('P')
+						alert.classList.add('error-modal')
+						alert.textContent = 'Contraseña incorrecta'
+						input.after(alert)
+						setTimeout(() => {
+							alert.remove()
+						}, 2000)
+					}
+				})
+			}
+		})
+	})
+
+	function disabledBtn() {
+		if (ordersContainer.textContent === '') {
+			btnDel.setAttribute('disabled', true)
+		}
+
+		if (ordersContainer.textContent !== '') {
+			btnDel.removeAttribute('disabled')
+		}
+	}
 
 	document.addEventListener('DOMContentLoaded', () => {
 		loadTableData()

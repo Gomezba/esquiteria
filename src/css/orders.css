@@ -627,13 +627,11 @@
 .container-regresar {
 	display: flex;
 	gap: var(--gap-sm);
-	align-items: baseline;
 	position: sticky;
-	top: 65px;
+	top: 63px;
 	background-color: #191d21;
 	z-index: 10;
 	padding: 0 0 var(--gap-sm);
-	justify-content: center;
 }
 
 .regresar {
@@ -669,16 +667,6 @@
 
 .pedido-desabilitado {
 	display: none;
-}
-
-.btn-del-order {
-	background-color: var(--dark-red);
-	font-size: 15.5px;
-	color: #d2deda;
-}
-
-.btn-del-order[disabled] {
-	background-color: var(--color-disabled);
 }
 
 .container-orders {
@@ -858,8 +846,10 @@
 	cursor: pointer;
 }
 
-.ticket-order {
+.ticket-order,
+.eliminar-orden {
 	width: max-content;
+	user-select: none;
 }
 
 .container-btns-order {

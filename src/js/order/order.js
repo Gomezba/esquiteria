@@ -66,7 +66,7 @@ const viewEgresos = document.getElementById('view-egresos')
 const tomarPedido = document.getElementById('tomar-pedido')
 const btnShowOrder = document.getElementById('show-order-list')
 const btnRegresar = document.getElementById('regresar')
-const btnDel = document.getElementById('orders-deleted')
+
 const sectionOder = document.getElementById('section-order')
 const ordersContainer = document.getElementById('orders-container')
 
@@ -2773,7 +2773,7 @@ export function showProductsHtml() {
 //TODO Created indexed Db
 let db
 
-if (location.pathname.endsWith('/order.html')) {
+if (location.pathname.endsWith('/order.html') || location.pathname.endsWith('/products-sold.html')) {
 	const indexedDB = window.indexedDB
 
 	const request = indexedDB.open('customerOrders', 1)
@@ -2945,7 +2945,6 @@ if (location.pathname.endsWith('/order.html')) {
 		order.products = products
 		order.total = totalGlobal
 		addOrder(order)
-		console.log(order)
 	})
 
 	cancelarBtn.addEventListener('click', function () {
@@ -3218,77 +3217,12 @@ if (location.pathname.endsWith('/order.html')) {
 		sectionOder.classList.add('order-visible')
 		tomarPedido.classList.add('pedido-desabilitado')
 		readData()
-		disabledBtn()
 	})
 
 	btnRegresar.addEventListener('click', (e) => {
 		e.preventDefault()
 		sectionOder.classList.remove('order-visible')
 		tomarPedido.classList.remove('pedido-desabilitado')
-	})
-
-	btnDel.addEventListener('click', function () {
-		Swal.fire({
-			title: 'Advertencia!',
-			html:
-				'Por favor, tenga en cuenta que al eliminar las órdenes, <strong style="color:#C62828">se borrarán los registros de ventas totales, así como los egresos acumulados</strong>. Le recomendamos que descargue y guarde el informe de ventas antes de proceder con la eliminación.',
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonText: 'Entiendo, deseo continuar',
-			cancelButtonText: 'Cancelar',
-		}).then((result) => {
-			if (result.isConfirmed) {
-				document.getElementById('passwordModal').style.display = 'block'
-
-				const closeBtn = document.getElementsByClassName('close')[0]
-				addEventListener('click', function (event) {
-					if (event.target === modal) {
-						modal.style.display = 'none'
-					}
-				})
-				const modal = document.getElementById('passwordModal')
-
-				closeBtn.addEventListener('click', function () {
-					modal.style.display = 'none'
-				})
-
-				// Obtener la contraseña ingresada al hacer clic en el botón de enviar
-				document.getElementById('submitBtn').addEventListener('click', function () {
-					const input = document.getElementById('passwordInput')
-					const password = document.getElementById('passwordInput').value
-					if (password === 'tatis') {
-						Swal.fire({
-							icon: 'success',
-							title: '¡Las órdenes han sido borradas del sistema!',
-							showConfirmButton: false,
-							timer: 1500,
-						})
-
-						localStorage.removeItem('egresos')
-
-						modal.style.display = 'none'
-
-						const request = indexedDB.deleteDatabase('customerOrders')
-
-						setTimeout(() => {
-							location.reload()
-						}, 1510)
-
-						request.onerror = (event) => {
-							alert('Error al eliminar la base de datos:', event.target.error)
-						}
-					} else {
-						const alert = document.createElement('P')
-						alert.classList.add('error-modal')
-						alert.textContent = 'Contraseña incorrecta'
-						input.after(alert)
-						setTimeout(() => {
-							alert.remove()
-						}, 2000)
-					}
-				})
-			}
-		})
 	})
 }
 
@@ -3382,8 +3316,10 @@ function readData() {
 			btnTicket.textContent = 'Ticket'
 
 			const btnDelete = document.createElement('DIV')
-			btnDelete.classList.add('btn', 'btn-cancel')
+			btnDelete.classList.add('btn', 'btn-cancel', 'eliminar-orden')
 			btnDelete.textContent = 'Eliminar'
+			const orderId = cursor.value.id
+			assignDeleteEvent(btnDelete, orderId)
 
 			containerBtns.append(btnTicket, btnDelete)
 
@@ -3440,10 +3376,6 @@ function readData() {
 				ticketModal.style.display = 'block'
 			})
 
-			btnDelete.addEventListener('click', () => {
-				eliminarOrdenCreada(cursor.value.id)
-			})
-
 			const orderData = {
 				date: cursor.value.date,
 				customer: cursor.value.customer,
@@ -3470,20 +3402,20 @@ function readData() {
 			cursor.continue() // Avanzar al siguiente registro
 		} else {
 			ordersContainer.append(fragment)
-			disabledBtn()
 		}
+	}
+
+	const assignDeleteEvent = (button, orderId) => {
+		button.addEventListener('click', () => {
+			eliminarOrdenCreada(orderId)
+		})
 	}
 }
 
 function eliminarOrdenCreada(id) {
-	console.log(id)
-
 	const password = prompt('Ingresa la contraseña')
 
 	if (password === 'tatis') {
-		// 	const transaction = db.transaction(['orders'], 'readonly')
-		// const objectStore = transaction.objectStore('orders')
-
 		const transaction = db.transaction(['orders'], 'readwrite')
 		const objectStore = transaction.objectStore('orders')
 		objectStore.delete(id)
@@ -3504,16 +3436,6 @@ function eliminarOrdenCreada(id) {
 		}
 	} else {
 		alert('Contraseña incorrecta. Acceso denegado.')
-	}
-}
-
-function disabledBtn() {
-	if (ordersContainer.textContent === '') {
-		btnDel.setAttribute('disabled', true)
-	}
-
-	if (ordersContainer.textContent !== '') {
-		btnDel.removeAttribute('disabled')
 	}
 }
 

@@ -1,3 +1,20 @@
+.container-pdg-ventas {
+	display: flex;
+	justify-content: center;
+	gap: var(--gap-sm);
+	margin-bottom: 1rem;
+}
+
+.btn-del-order {
+	background-color: var(--dark-red);
+	font-size: 15.5px;
+	color: #d2deda;
+}
+
+.btn-del-order[disabled] {
+	background-color: var(--color-disabled);
+}
+
 .ganancia {
 	display: flex;
 	flex-direction: column;
@@ -28,4 +45,70 @@
 	color: #ffffffb4;
 	font-size: 1.1rem;
 	font-weight: var(--fw-semi-bold);
+}
+
+/* modal password */
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+	z-index: 10;
+}
+
+.modal-content {
+	position: relative;
+	background-color: #fefefe;
+	top: 10%;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 300px;
+	text-align: center;
+	height: 260px;
+}
+
+.modal-content-ticket {
+	height: 340px;
+	color: black;
+}
+
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.passwordInput {
+	position: absolute;
+	left: 1em;
+	top: 7.8rem;
+	width: 90%;
+	text-align: center;
+	margin-bottom: 10px;
+	padding: 5px;
+	border: 2px solid rgb(243, 49, 49);
+}
+
+.submitBtn {
+	background-color: #4caf50;
+	margin-top: 50px;
+	color: white;
+	padding: 8px 12px;
+	border: none;
+	cursor: pointer;
 }
