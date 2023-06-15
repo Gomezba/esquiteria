@@ -2440,7 +2440,7 @@ function resetDetallesContainer() {
 	cleanContainer(aguaFrescaContainer)
 	cleanContainer(aguaFrescaMedContainer)
 }
-function cleanContainer(container) {
+export function cleanContainer(container) {
 	while (container.firstChild) {
 		container.removeChild(container.firstChild)
 	}

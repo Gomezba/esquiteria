@@ -1,4 +1,4 @@
-import { showAlert } from '../order/order.js'
+import { showAlert, cleanContainer } from '../order/order.js'
 
 const formEgresos = document.getElementById('form-egresos')
 const egresosContainer = document.getElementById('egresos-container')
@@ -86,6 +86,8 @@ btnAddEgreso.addEventListener('click', (e) => {
 
 function showEgresos() {
 	if (egresosObjetos) {
+		cleanContainer(egresosContainer)
+
 		const fragment = document.createDocumentFragment()
 		egresosObjetos.forEach((egreso) => {
 			const { name, cantidad, id } = egreso
@@ -147,7 +149,6 @@ function showEgresos() {
 			fragment.append(tr)
 		})
 
-		egresosContainer.textContent = ''
 		egresosContainer.append(fragment)
 	}
 }
