@@ -2420,23 +2420,30 @@ function removeDetails(product, idProduct) {
 }
 
 // TODO FUNCION PARA VOLVER A LA NORMALIDAD DE DETALLES
+
 function resetDetallesContainer() {
 	detalles = []
 	orderDetails.textContent = ''
-	esquitesContainer.textContent = ''
-	esquitesMedContainer.textContent = ''
-	doriesquiteContainer.textContent = ''
-	dorilocoContainer.textContent = ''
-	tostilocoContainer.textContent = ''
-	fresasContainer.textContent = ''
-	fresasMedContainer.textContent = ''
-	gelatinaContainer.textContent = ''
-	gelatinaMedContainer.textContent = ''
-	manzanaContainer.textContent = ''
-	manzanaMedContainer.textContent = ''
-	gomiboingContainer.textContent = ''
-	aguaFrescaContainer.textContent = ''
-	aguaFrescaMedContainer.textContent = ''
+
+	cleanContainer(esquitesContainer)
+	cleanContainer(esquitesMedContainer)
+	cleanContainer(doriesquiteContainer)
+	cleanContainer(dorilocoContainer)
+	cleanContainer(tostilocoContainer)
+	cleanContainer(fresasContainer)
+	cleanContainer(fresasMedContainer)
+	cleanContainer(gelatinaContainer)
+	cleanContainer(gelatinaMedContainer)
+	cleanContainer(manzanaContainer)
+	cleanContainer(manzanaMedContainer)
+	cleanContainer(gomiboingContainer)
+	cleanContainer(aguaFrescaContainer)
+	cleanContainer(aguaFrescaMedContainer)
+}
+function cleanContainer(container) {
+	while (container.firstChild) {
+		container.removeChild(container.firstChild)
+	}
 }
 
 function addProduct(e) {
