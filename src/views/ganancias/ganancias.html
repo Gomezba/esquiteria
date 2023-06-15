@@ -89,6 +89,25 @@
 				<button id="delete-ganancias-gastos" type="button" class="btn btn-danger">Eliminar datos</button>
 			</div>
 
+			<table id="table-ganancias">
+				<caption>
+					Ganancias
+				</caption>
+				<thead>
+					<tr>
+						<th>DÍA DE GANANCIA</th>
+						<th>GANANCIA</th>
+						<th>OPC</th>
+					</tr>
+				</thead>
+				<tbody id="ganancias-container-total"></tbody>
+				<tfoot>
+					<tr>
+						<td colspan="3">Total: $<span id="total-ganancias-globales">0</span></td>
+					</tr>
+				</tfoot>
+			</table>
+
 			<table id="table-inversion" class="table-inversion">
 				<caption>
 					Lista de gastos de inversión
@@ -108,29 +127,31 @@
 				</tfoot>
 			</table>
 
-			<table id="table-ganancias">
+			<table id="table-empleados" class="table-inversion">
 				<caption>
-					Ganancias
+					Lista de pago de empleados
 				</caption>
 				<thead>
 					<tr>
-						<th>DÍA DE GANANCIA</th>
-						<th>GANANCIA</th>
+						<th>F.PAGO</th>
+						<th>EMPLEADO</th>
+						<th>PAGO</th>
 						<th>OPC</th>
 					</tr>
 				</thead>
-				<tbody id="ganancias-container-total"></tbody>
+				<tbody id="empleados-list"></tbody>
 				<tfoot>
 					<tr>
-						<td colspan="3">Total: $<span id="total-ganancias-globales"></span></td>
+						<td colspan="4">Total: $<span id="pago-total">0</span></td>
 					</tr>
 				</tfoot>
 			</table>
 
 			<section class="ganancia">
 				<h2>Ganancia Neta</h2>
+				<p class="ganancia__egresos">Total Ganancias <span>$</span><span id="sb-ganancias"></span></p>
 				<p class="ganancia__products">Total Inversión <span>$</span><span id="sb-inversion"></span></p>
-				<p class="ganancia__egresos">Total ganancias <span>$</span><span id="sb-ganancias"></span></p>
+				<p class="ganancia__products">Pago Empleados <span>$</span><span id="sb-empleados"></span></p>
 				<span class="ganancia__total"
 					><strong>GANANCIA NETA </strong><span>$</span><span id="total-ganancias"></span>
 				</span>

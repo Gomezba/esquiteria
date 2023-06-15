@@ -41,7 +41,7 @@ class Ui {
 		const fragment = document.createDocumentFragment()
 		expense.forEach((exp) => {
 			const { expense, quantity, id } = exp
-			const tdExpense = document.createElement('TR')
+			const trExpense = document.createElement('TR')
 			const expenseHtml = document.createElement('TD')
 			const quantityHtml = document.createElement('TD')
 			const optionsHtml = document.createElement('TD')
@@ -50,7 +50,7 @@ class Ui {
 			const iconUpdateImg = document.createElement('SVG')
 			const iconDeleteImg = document.createElement('SVG')
 
-			tdExpense.dataset.idexpense = id
+			trExpense.dataset.idexpense = id
 			expenseHtml.textContent = expense
 			quantityHtml.textContent = `$${quantity}`
 
@@ -103,8 +103,8 @@ class Ui {
 
 			optionsHtml.classList.add('table-expense__options')
 			optionsHtml.append(iconUpdate, iconDelete)
-			tdExpense.append(expenseHtml, quantityHtml, optionsHtml)
-			fragment.append(tdExpense)
+			trExpense.append(expenseHtml, quantityHtml, optionsHtml)
+			fragment.append(trExpense)
 		})
 		expenseList.append(fragment)
 	}

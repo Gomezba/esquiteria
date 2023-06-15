@@ -259,14 +259,13 @@ body {
 
 	.menu__item {
 		padding: var(--pd-sm);
-		text-transform: uppercase;
 		text-align: center;
 		border-bottom: none;
 		filter: drop-shadow(0px 0px 60px white);
 	}
 
 	.menu__link {
-		font-size: var(--fs-md);
+		font-size: var(--fs-sm);
 		color: #bdbaba;
 		font-weight: var(--fw-bold);
 	}
@@ -295,6 +294,12 @@ body {
 	padding-bottom: 4em;
 }
 
+@media (min-width: 640px) {
+	main {
+		margin-top: 40px;
+	}
+}
+
 .img-principal {
 	margin: 30vh auto 0;
 	transform: translateY(-50%);
@@ -309,6 +314,12 @@ table {
 	color: #ffffffcb;
 	border-radius: var(--br);
 	overflow: hidden;
+}
+
+table caption {
+	text-transform: uppercase;
+	font-weight: var(--fw-bold);
+	color: var(--light-blue);
 }
 
 thead {
