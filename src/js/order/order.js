@@ -3296,6 +3296,8 @@ function readData() {
 	request.onsuccess = (e) => {
 		const cursor = e.target.result
 		if (cursor) {
+			cleanContainer(ordersContainer)
+
 			const wrapperOrder = document.createElement('SECTION')
 			const arrowIcon = document.createElement('A')
 			const img = document.createElement('IMG')
@@ -3449,7 +3451,6 @@ function readData() {
 
 			cursor.continue() // Avanzar al siguiente registro
 		} else {
-			ordersContainer.textContent = ''
 			ordersContainer.append(fragment)
 			disabledBtn()
 		}
