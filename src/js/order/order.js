@@ -2786,6 +2786,7 @@ if (location.pathname.endsWith('/order.html')) {
 		db = request.result
 
 		const objectStore = db.createObjectStore('orders', {
+			keyPath: 'id',
 			autoIncrement: true,
 		})
 
@@ -3373,9 +3374,18 @@ function readData() {
 			<th>PT</th>
 		  </tr>
 				  `
+
+			const containerBtns = document.createElement('DIV')
+			containerBtns.classList.add('container-btns-order')
 			const btnTicket = document.createElement('DIV')
 			btnTicket.classList.add('btn', 'btn-primary', 'ticket-order')
 			btnTicket.textContent = 'Ticket'
+
+			const btnDelete = document.createElement('DIV')
+			btnDelete.classList.add('btn', 'btn-cancel')
+			btnDelete.textContent = 'Eliminar'
+
+			containerBtns.append(btnTicket, btnDelete)
 
 			const ticketModal = document.createElement('DIV')
 			ticketModal.classList.add('modal')
@@ -3422,12 +3432,16 @@ function readData() {
 				infoDescription,
 				payCustomer,
 				moneyExchanges,
-				btnTicket,
+				containerBtns,
 				ticketModal
 			)
 
 			btnTicket.addEventListener('click', () => {
 				ticketModal.style.display = 'block'
+			})
+
+			btnDelete.addEventListener('click', () => {
+				eliminarOrdenCreada(cursor.value.id)
 			})
 
 			const orderData = {
@@ -3458,6 +3472,38 @@ function readData() {
 			ordersContainer.append(fragment)
 			disabledBtn()
 		}
+	}
+}
+
+function eliminarOrdenCreada(id) {
+	console.log(id)
+
+	const password = prompt('Ingresa la contraseña')
+
+	if (password === 'tatis') {
+		// 	const transaction = db.transaction(['orders'], 'readonly')
+		// const objectStore = transaction.objectStore('orders')
+
+		const transaction = db.transaction(['orders'], 'readwrite')
+		const objectStore = transaction.objectStore('orders')
+		objectStore.delete(id)
+
+		transaction.oncomplete = () => {
+			Swal.fire({
+				icon: 'success',
+				title: '¡Orden eliminada!',
+				showConfirmButton: false,
+				timer: 600,
+			})
+			ordersContainer.innerHTML = ''
+			readData()
+		}
+
+		transaction.onerror = () => {
+			alert('Ocurrio un error en la eliminación.')
+		}
+	} else {
+		alert('Contraseña incorrecta. Acceso denegado.')
 	}
 }
 
