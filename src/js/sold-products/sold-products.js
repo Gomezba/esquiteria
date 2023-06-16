@@ -5,6 +5,7 @@ if (location.pathname.endsWith('/products-sold.html')) {
 	const tbody = document.getElementById('tbody')
 	const btnGuardarGanancia = document.getElementById('guardar-ganancia')
 	const btnDel = document.getElementById('orders-deleted')
+	const ventaProd = document.getElementById('tbody')
 
 	function loadTableData() {
 		const request = indexedDB.open('customerOrders', 1)
@@ -78,6 +79,7 @@ if (location.pathname.endsWith('/products-sold.html')) {
 
 				totalSpan.textContent = `${precioGlobal}`
 				showSubtotal()
+				disabledBtn()
 			}
 
 			request.onerror = (event) => {
@@ -191,10 +193,10 @@ if (location.pathname.endsWith('/products-sold.html')) {
 		const totalRow1 = [['Total productos', '', '', `$${precioGlobalProductos}`]]
 		doc.autoTable({
 			body: totalRow1,
-			startY: doc.lastAutoTable.finalY + 10,
+			startY: doc.lastAutoTable.finalY,
 			showHead: 'never',
 			columnStyles: { 3: { halign: 'right', cellWidth: 'auto' } },
-			styles,
+			styles: { fontSize: 24, fontStyle: 'bold' },
 		})
 
 		doc.setFontSize(24)
@@ -216,32 +218,60 @@ if (location.pathname.endsWith('/products-sold.html')) {
 		const totalRow2 = [['Total egresos', `$${precioGlobalEgresos}`]]
 		doc.autoTable({
 			body: totalRow2,
-			startY: doc.lastAutoTable.finalY + 10,
+			startY: doc.lastAutoTable.finalY,
 			showHead: 'never',
 			columnStyles: { 1: { halign: 'right', cellWidth: 'auto' } },
-			styles,
+			styles: { fontSize: 24, fontStyle: 'bold' },
 		})
 
-		const precioInversion = `Total Productos: $${parseFloat(precioGlobalProductos).toLocaleString(undefined, {
+		const precioInversion = `$${parseFloat(precioGlobalProductos).toLocaleString(undefined, {
 			minimumFractionDigits: 2,
 		})}`
-		doc.setFontSize(30)
-		doc.text(precioInversion, 40, doc.lastAutoTable.finalY + 20, { align: 'right' })
 
-		const subGanancias = `Total Egresos: $${parseFloat(precioGlobalEgresos).toLocaleString(undefined, {
+		const subGanancias = `$${parseFloat(precioGlobalEgresos).toLocaleString(undefined, {
 			minimumFractionDigits: 2,
 		})}`
-		doc.setFontSize(30)
-		doc.text(subGanancias, 40, doc.lastAutoTable.finalY + 35, { align: 'right' })
 
 		const gananciaFinal = parseFloat(precioGlobalProductos - parseFloat(precioGlobalEgresos))
-		const gananciaTexto = `VENTA DEL DÍA: $${gananciaFinal.toLocaleString(undefined, {
+		const gananciaTexto = `$${gananciaFinal.toLocaleString(undefined, {
 			minimumFractionDigits: 2,
 		})}`
-		doc.setFontSize(38)
-		doc.text(gananciaTexto, 26, doc.lastAutoTable.finalY + 55, { align: 'right' })
 
 		const nombreArchivo = `Venta-${fechaActual.dia}-${fechaActual.mes}-${fechaActual.anio}.pdf`
+
+		const tableData = [
+			['Concepto', 'Monto'],
+			['Total Productos', precioInversion],
+			['Total Egresos', subGanancias],
+			[
+				{ content: 'VENTA NETA', styles: { fontStyle: 'bold' } },
+				{ content: gananciaTexto, styles: { fontStyle: 'bold' } },
+			],
+		]
+		const startY = doc.lastAutoTable ? doc.lastAutoTable.finalY + 30 : 20
+
+		// Agregar título de la tabla
+		const title = 'Monto Ventas y Egresos'
+		const titleFontSize = 25
+		const titleHeight = 10
+		const titleWidth = (doc.getStringUnitWidth(title) * titleFontSize) / doc.internal.scaleFactor
+
+		doc.setFontSize(titleFontSize)
+		doc.setFont('helvetica', 'bold') // Establecer el estilo de fuente en negritas
+		doc.text(title, (doc.internal.pageSize.width - titleWidth) / 2, startY - titleHeight)
+
+		const table = doc.autoTable({
+			head: tableData.slice(0, 1),
+			body: tableData.slice(1),
+			startY: startY,
+			theme: 'striped',
+			styles: { fontSize: 24 },
+			columnStyles: {
+				0: { cellWidth: 'auto' },
+				1: { cellWidth: 'wrap' },
+			},
+			headStyles: { fillColor: [41, 128, 186] }, // Cambiar el color del encabezado a azul (RGB: 0, 123, 255)
+		})
 
 		doc.save(nombreArchivo)
 	}
@@ -365,11 +395,11 @@ if (location.pathname.endsWith('/products-sold.html')) {
 	})
 
 	function disabledBtn() {
-		if (ordersContainer.textContent === '') {
+		if (ventaProd.textContent === '') {
 			btnDel.setAttribute('disabled', true)
 		}
 
-		if (ordersContainer.textContent !== '') {
+		if (ventaProd.textContent !== '') {
 			btnDel.removeAttribute('disabled')
 		}
 	}

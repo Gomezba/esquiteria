@@ -15,187 +15,11 @@ const pagoTotalHtml = document.getElementById('pago-total')
 
 botonDescargar.addEventListener('click', generatePDF)
 
-// function generatePDF() {
-// 	const doc = new jsPDF()
-
-// 	const tableData1 = []
-// 	const table1 = document.getElementById('table-inversion')
-// 	const rows1 = table1.querySelectorAll('tbody tr')
-// 	const caption1 = table1.querySelector('caption').textContent
-
-// 	rows1.forEach((row) => {
-// 		const rowData = []
-// 		const cells = row.querySelectorAll('td')
-
-// 		cells.forEach((cell) => {
-// 			rowData.push(cell.textContent)
-// 		})
-
-// 		tableData1.push(rowData)
-// 	})
-
-// 	const tableData2 = []
-// 	const table2 = document.getElementById('table-ganancias')
-// 	const rows2 = table2.querySelectorAll('tbody tr')
-// 	const caption2 = table2.querySelector('caption').textContent
-
-// 	rows2.forEach((row) => {
-// 		const rowData = []
-// 		const cells = row.querySelectorAll('td')
-
-// 		cells.forEach((cell) => {
-// 			rowData.push(cell.textContent)
-// 		})
-
-// 		tableData2.push(rowData)
-// 	})
-
-// 	const tableData3 = []
-// 	const table3 = document.getElementById('table-empleados')
-// 	const rows3 = table3.querySelectorAll('tbody tr')
-// 	const caption3 = table3.querySelector('caption').textContent
-
-// 	rows3.forEach((row) => {
-// 		const rowData = []
-// 		const cells = row.querySelectorAll('td')
-
-// 		cells.forEach((cell) => {
-// 			rowData.push(cell.textContent)
-// 		})
-
-// 		tableData3.push(rowData)
-// 	})
-
-// 	const styles = {
-// 		fontSize: 24,
-// 	}
-
-// 	const fechaActual = obtenerFechaActual()
-// 	const fechaDescarga = `${fechaActual.dia} de ${fechaActual.mes} del ${fechaActual.anio}`
-
-// 	doc.setFontSize(24)
-// 	doc.text('GANANCIAS GLOBALES', 15, 20)
-// 	doc.setFontSize(24)
-// 	doc.text(fechaDescarga, 15, 30)
-
-// 	// Agregar caption arriba de la primera tabla y alinear a la izquierda
-// 	doc.setFontSize(24)
-// 	doc.text(caption1, -40, 38)
-
-// 	doc.autoTable({
-// 		head: [['GASTO DE INVERSIÓN', '                   PRECIO']],
-// 		body: tableData1,
-// 		startY: 50, // Incrementar el valor para dejar espacio debajo del caption
-// 		columnStyles: {
-// 			1: { halign: 'right' },
-// 		},
-// 		styles,
-// 	})
-
-// 	const precioGlobalSpan = document.getElementById('expense-total')
-// 	const precioGlobalInversion = precioGlobalSpan.textContent
-
-// 	const totalRow1 = [['Total inversión:', '', '', `$${precioGlobalInversion}`]]
-// 	doc.autoTable({
-// 		body: totalRow1,
-// 		startY: doc.lastAutoTable.finalY + 10,
-// 		showHead: 'never',
-// 		columnStyles: {
-// 			3: { halign: 'right' },
-// 		},
-// 		styles,
-// 	})
-
-// 	doc.setFontSize(24)
-// 	doc.text(caption2, -10, doc.lastAutoTable.finalY + 18)
-
-// 	doc.autoTable({
-// 		head: [['DÍA DE GANANCIA', '                     GANANCIA']],
-// 		body: tableData2,
-// 		startY: doc.lastAutoTable.finalY + 30, // Incrementar el valor para dejar espacio debajo del caption
-// 		columnStyles: {
-// 			1: { halign: 'right' },
-// 		},
-// 		styles,
-// 	})
-
-// 	const precioGlobalSpanGanancias = document.getElementById('total-ganancias-globales')
-// 	const precioGlobalGanancias = precioGlobalSpanGanancias.textContent
-
-// 	const totalRow2 = [['Total ganancias:', '', '', `$${precioGlobalGanancias}`]]
-// 	doc.autoTable({
-// 		body: totalRow2,
-// 		startY: doc.lastAutoTable.finalY + 10,
-// 		showHead: 'never',
-// 		columnStyles: {
-// 			3: { halign: 'right' },
-// 		},
-// 		styles,
-// 	})
-
-// 	//
-// 	// Agregar caption arriba de la primera tabla y alinear a la izquierda
-// 	doc.setFontSize(24)
-// 	doc.text(caption3, -40, 38)
-
-// 	doc.autoTable({
-// 		head: [['FECHA PAGO', 'EMPLEADO', '                   PAGO']],
-// 		body: tableData3,
-// 		startY: 50, // Incrementar el valor para dejar espacio debajo del caption
-// 		columnStyles: {
-// 			1: { halign: 'right' },
-// 		},
-// 		styles,
-// 	})
-
-// 	const precioGlobalSpanPagos = document.getElementById('pago-total')
-// 	const precioGlobalPagos = precioGlobalSpanPagos.textContent
-
-// 	const totalRow3 = [['Total pagos de empleados:', '', '', `$${precioGlobalPagos}`]]
-// 	doc.autoTable({
-// 		body: totalRow3,
-// 		startY: doc.lastAutoTable.finalY + 10,
-// 		showHead: 'never',
-// 		columnStyles: {
-// 			3: { halign: 'right' },
-// 		},
-// 		styles,
-// 	})
-
-// 	const subGanancias = `Total Ganancias: $${parseFloat(precioGlobalGanancias).toLocaleString(undefined, {
-// 		minimumFractionDigits: 2,
-// 	})}`
-// 	doc.setFontSize(30)
-// 	doc.text(subGanancias, 40, doc.lastAutoTable.finalY + 35, { align: 'right' })
-
-// 	const precioInversion = `Total Inversión: $${parseFloat(precioGlobalInversion).toLocaleString(undefined, {
-// 		minimumFractionDigits: 2,
-// 	})}`
-// 	doc.setFontSize(30)
-// 	doc.text(precioInversion, 40, doc.lastAutoTable.finalY + 20, { align: 'right' })
-
-// 	const precioEmpleados = `Pago Empleados: $${parseFloat(precioGlobalPagos).toLocaleString(undefined, {
-// 		minimumFractionDigits: 2,
-// 	})}`
-// 	doc.setFontSize(30)
-// 	doc.text(precioEmpleados, 40, doc.lastAutoTable.finalY + 20, { align: 'right' })
-
-// 	const gananciaFinal = parseFloat(precioGlobalGanancias - parseFloat(precioGlobalInversion))
-// 	const gananciaTexto = `GANANCIA NETA: $${gananciaFinal.toLocaleString(undefined, {
-// 		minimumFractionDigits: 2,
-// 	})}`
-// 	doc.setFontSize(38)
-// 	doc.text(gananciaTexto, 20, doc.lastAutoTable.finalY + 55, { align: 'right' })
-
-// 	const nombreArchivo = `GANANCIAS-${fechaActual.dia}-${fechaActual.mes}-${fechaActual.anio}.pdf`
-// 	doc.save(nombreArchivo)
-// }
-
 function generatePDF() {
 	const doc = new jsPDF()
 
 	const tableData1 = []
-	const table1 = document.getElementById('table-inversion')
+	const table1 = document.getElementById('table-ganancias') // Cambio de tabla-inversion a table-ganancias
 	const rows1 = table1.querySelectorAll('tbody tr')
 	const caption1 = table1.querySelector('caption').textContent
 
@@ -211,7 +35,7 @@ function generatePDF() {
 	})
 
 	const tableData2 = []
-	const table2 = document.getElementById('table-ganancias')
+	const table2 = document.getElementById('table-inversion') // Cambio de table-ganancias a table-inversion
 	const rows2 = table2.querySelectorAll('tbody tr')
 	const caption2 = table2.querySelector('caption').textContent
 
@@ -250,45 +74,18 @@ function generatePDF() {
 	const fechaDescarga = `${fechaActual.dia} de ${fechaActual.mes} del ${fechaActual.anio}`
 
 	doc.setFontSize(24)
-	doc.text('GANANCIAS GLOBALES', 15, 20)
+	doc.text('GANANCIA NETA', 15, 20)
 	doc.setFontSize(24)
 	doc.text(fechaDescarga, 15, 30)
 
 	// Agregar caption arriba de la primera tabla y alinear a la izquierda
 	doc.setFontSize(24)
-	doc.text(caption1, -40, 38)
-
-	doc.autoTable({
-		head: [['GASTO DE INVERSIÓN', '                   PRECIO']],
-		body: tableData1,
-		startY: 50, // Incrementar el valor para dejar espacio debajo del caption
-		columnStyles: {
-			1: { halign: 'right' },
-		},
-		styles,
-	})
-
-	const precioGlobalSpan = document.getElementById('expense-total')
-	const precioGlobalInversion = precioGlobalSpan.textContent
-
-	const totalRow1 = [['Total inversión:', '', '', `$${precioGlobalInversion}`]]
-	doc.autoTable({
-		body: totalRow1,
-		startY: doc.lastAutoTable.finalY + 10,
-		showHead: 'never',
-		columnStyles: {
-			3: { halign: 'right' },
-		},
-		styles,
-	})
-
-	doc.setFontSize(24)
-	doc.text(caption2, -10, doc.lastAutoTable.finalY + 18)
+	doc.text(caption1, -10, 38)
 
 	doc.autoTable({
 		head: [['DÍA DE GANANCIA', '                     GANANCIA']],
-		body: tableData2,
-		startY: doc.lastAutoTable.finalY + 30, // Incrementar el valor para dejar espacio debajo del caption
+		body: tableData1,
+		startY: 50, // Incrementar el valor para dejar espacio debajo del caption
 		columnStyles: {
 			1: { halign: 'right' },
 		},
@@ -298,27 +95,54 @@ function generatePDF() {
 	const precioGlobalSpanGanancias = document.getElementById('total-ganancias-globales')
 	const precioGlobalGanancias = precioGlobalSpanGanancias.textContent
 
-	const totalRow2 = [['Total ganancias:', '', '', `$${precioGlobalGanancias}`]]
+	const totalRow1 = [['Total ganancias:', '', '', `$${precioGlobalGanancias}`]]
 	doc.autoTable({
-		body: totalRow2,
-		startY: doc.lastAutoTable.finalY + 10,
+		body: totalRow1,
+		startY: doc.lastAutoTable.finalY,
 		showHead: 'never',
 		columnStyles: {
 			3: { halign: 'right' },
 		},
+		styles: { fontSize: 24, fontStyle: 'bold' },
+	})
+
+	doc.setFontSize(24)
+	doc.text(caption2, -40, doc.lastAutoTable.finalY + 8)
+
+	doc.autoTable({
+		head: [['GASTO DE INVERSIÓN', '                   PRECIO']],
+		body: tableData2,
+		startY: doc.lastAutoTable.finalY + 20, // Incrementar el valor para dejar espacio debajo del caption
+		columnStyles: {
+			1: { halign: 'right' },
+		},
 		styles,
+	})
+
+	const precioGlobalSpan = document.getElementById('expense-total')
+	const precioGlobalInversion = precioGlobalSpan.textContent
+
+	const totalRow2 = [['Total inversión:', '', '', `$${precioGlobalInversion}`]]
+	doc.autoTable({
+		body: totalRow2,
+		startY: doc.lastAutoTable.finalY,
+		showHead: 'never',
+		columnStyles: {
+			3: { halign: 'right' },
+		},
+		styles: { fontSize: 24, fontStyle: 'bold' },
 	})
 
 	// Agregar caption arriba de la tercera tabla y alinear a la izquierda
 	doc.setFontSize(24)
-	doc.text(caption3, -40, doc.lastAutoTable.finalY + 18)
+	doc.text(caption3, -40, doc.lastAutoTable.finalY + 8)
 
 	doc.autoTable({
 		head: [['FECHA PAGO', 'EMPLEADO', '          PAGO']],
 		body: tableData3,
-		startY: doc.lastAutoTable.finalY + 30, // Incrementar el valor para dejar espacio debajo del caption
+		startY: doc.lastAutoTable.finalY + 20, // Incrementar el valor para dejar espacio debajo del caption
 		columnStyles: {
-			1: { halign: 'right' },
+			4: { halign: 'right' },
 		},
 		styles,
 	})
@@ -329,41 +153,70 @@ function generatePDF() {
 	const totalRow3 = [['Total pagos de empleados:', '', '', `$${precioGlobalPagos}`]]
 	doc.autoTable({
 		body: totalRow3,
-		startY: doc.lastAutoTable.finalY + 10,
+		startY: doc.lastAutoTable.finalY,
 		showHead: 'never',
 		columnStyles: {
-			3: { halign: 'right' },
+			1: { halign: 'right' },
 		},
-		styles,
+		styles: { fontSize: 24, fontStyle: 'bold' },
 	})
 
-	const subGanancias = `Total Ganancias: $${parseFloat(precioGlobalGanancias).toLocaleString(undefined, {
+	const subGanancias = `$${parseFloat(precioGlobalGanancias).toLocaleString(undefined, {
 		minimumFractionDigits: 2,
 	})}`
-	doc.setFontSize(30)
-	doc.text(subGanancias, 40, doc.lastAutoTable.finalY + 45, { align: 'right' })
 
-	const precioInversion = `Total Inversión: $${parseFloat(precioGlobalInversion).toLocaleString(undefined, {
+	const precioInversion = `$${parseFloat(precioGlobalInversion).toLocaleString(undefined, {
 		minimumFractionDigits: 2,
 	})}`
-	doc.setFontSize(30)
-	doc.text(precioInversion, 40, doc.lastAutoTable.finalY + 80, { align: 'right' })
 
-	const precioEmpleados = `Pago Empleados: $${parseFloat(precioGlobalPagos).toLocaleString(undefined, {
+	const precioEmpleados = `$${parseFloat(precioGlobalPagos).toLocaleString(undefined, {
 		minimumFractionDigits: 2,
 	})}`
-	doc.setFontSize(30)
-	doc.text(precioEmpleados, 40, doc.lastAutoTable.finalY + 115, { align: 'right' })
 
 	const gananciaFinal =
 		parseFloat(precioGlobalGanancias) - (parseFloat(precioGlobalInversion) + parseFloat(precioGlobalPagos))
-	const gananciaTexto = `GANANCIA NETA: $${gananciaFinal.toLocaleString(undefined, {
+	const gananciaTexto = `$${gananciaFinal.toLocaleString(undefined, {
 		minimumFractionDigits: 2,
 	})}`
-	doc.setFontSize(38)
-	doc.text(gananciaTexto, 20, doc.lastAutoTable.finalY + 155, { align: 'right' })
 
 	const nombreArchivo = `GANANCIAS-${fechaActual.dia}-${fechaActual.mes}-${fechaActual.anio}.pdf`
+
+	// Crear una tabla con los datos
+	const tableData = [
+		['Concepto', 'Monto'],
+		['Total Ganancias', subGanancias],
+		['Total Inversión', precioInversion],
+		['Pago Empleados', precioEmpleados],
+		[
+			{ content: 'Ganancia Neta', styles: { fontStyle: 'bold' } },
+			{ content: gananciaTexto, styles: { fontStyle: 'bold' } },
+		],
+	]
+	const startY = doc.lastAutoTable ? doc.lastAutoTable.finalY + 30 : 20
+
+	// Agregar título de la tabla
+	const title = 'Historial de Montos'
+	const titleFontSize = 25
+	const titleHeight = 10
+	const titleWidth = (doc.getStringUnitWidth(title) * titleFontSize) / doc.internal.scaleFactor
+
+	doc.setFontSize(titleFontSize)
+	doc.setFont('helvetica', 'bold') // Establecer el estilo de fuente en negritas
+	doc.text(title, (doc.internal.pageSize.width - titleWidth) / 2, startY - titleHeight)
+
+	const table = doc.autoTable({
+		head: tableData.slice(0, 1),
+		body: tableData.slice(1),
+		startY: startY,
+		theme: 'striped',
+		styles: { fontSize: 24 },
+		columnStyles: {
+			0: { cellWidth: 'auto' },
+			1: { cellWidth: 'wrap' },
+		},
+		headStyles: { fillColor: [41, 128, 186] }, // Cambiar el color del encabezado a azul (RGB: 0, 123, 255)
+	})
+
 	doc.save(nombreArchivo)
 }
 
@@ -446,7 +299,14 @@ function showGanancias() {
 			const tdDate = document.createElement('TD')
 			tdDate.textContent = date
 			const tdCantidad = document.createElement('TD')
-			tdCantidad.textContent = `$${total}`
+
+			const formatter = new Intl.NumberFormat(undefined, {
+				style: 'currency',
+				currency: 'MXN',
+				minimumFractionDigits: 2,
+			})
+			tdCantidad.textContent = formatter.format(total)
+
 			const tdOpc = document.createElement('TD')
 			const iconDelete = document.createElement('A')
 			const iconDeleteImg = document.createElement('SVG')
@@ -572,9 +432,20 @@ function showSubtotal() {
 	})}`
 
 	const totalGananciaGlobal = totalGanancias - (totalGastos + totalPagos)
-	document.getElementById('total-ganancias').textContent = `${totalGananciaGlobal.toLocaleString(undefined, {
+	const totalGananciaGlobalFormatted = totalGananciaGlobal.toLocaleString(undefined, {
 		minimumFractionDigits: 2,
-	})}`
+	})
+
+	const totalGananciaElement = document.getElementById('total-ganancias')
+	totalGananciaElement.textContent = totalGananciaGlobalFormatted
+
+	const ganTot = document.getElementById('gan-tot')
+
+	if (totalGananciaGlobal <= 0) {
+		ganTot.classList.add('perdida')
+	} else {
+		ganTot.classList.remove('perdida')
+	}
 }
 
 function deleteGanancias(id) {
@@ -628,9 +499,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	btnDeletedGananciasGastos.addEventListener('click', (e) => {
 		e.preventDefault()
-		if (Number(expenseTotalHtml.textContent) > 0 && Number(totalGananciasSpan.textContent) > 0) {
+		if (
+			Number(expenseTotalHtml.textContent) > 0 &&
+			Number(totalGananciasSpan.textContent) > 0 &&
+			Number(pagoTotalHtml.textContent) > 0
+		) {
 			Swal.fire({
-				title: `¿Estás seguro de eliminar la inversión y las ganancias?`,
+				title: `¿Estás seguro de eliminar los registros?`,
 				icon: 'warning',
 				showCancelButton: true,
 				confirmButtonText: 'Eliminar',

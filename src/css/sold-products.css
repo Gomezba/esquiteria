@@ -15,6 +15,20 @@
 	background-color: var(--color-disabled);
 }
 
+tbody tr td:nth-child(3) {
+	color: #ffffffcb;
+}
+
+.table-products tr td:nth-child(4) {
+	color: #04e60498;
+	font-weight: var(--fw-semi-bold);
+}
+
+.table-egresos tr td:nth-child(2) {
+	color: rgb(190, 82, 82);
+	font-weight: var(--fw-semi-bold);
+}
+
 .ganancia {
 	display: flex;
 	flex-direction: column;
@@ -45,6 +59,18 @@
 	color: #ffffffb4;
 	font-size: 1.1rem;
 	font-weight: var(--fw-semi-bold);
+}
+
+.ganancia__products span {
+	color: #04e60498;
+}
+
+.ganancia__egresos span {
+	color: rgb(190, 82, 82);
+}
+
+.ganancia__total span {
+	color: rgb(11, 245, 11);
 }
 
 /* modal password */

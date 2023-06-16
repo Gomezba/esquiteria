@@ -5,6 +5,53 @@
 	margin-bottom: 1.5em;
 }
 
+tbody tr td:nth-child(2) {
+	color: #04e60498;
+}
+
+.table-empleados tr td:nth-child(2) {
+	color: #ffffffcb;
+}
+
+.table-ganancias tr td:nth-child(2) {
+	font-weight: var(--fw-semi-bold);
+}
+
+.table-inversion tr td:nth-child(2),
+.table-empleados tr td:nth-child(3),
+.ganancia__inv span,
+.ganancia__emp span {
+	color: rgb(190, 82, 82);
+	font-weight: var(--fw-semi-bold);
+}
+
+.ganancia__inv,
+.ganancia__sb,
+.ganancia__emp,
+.ganancia__total {
+	color: #ffffff9c;
+}
+
+.ganancia__inv span,
+.ganancia__sb span,
+.ganancia__emp span,
+.ganancia__total span {
+	font-size: 1.1rem;
+	font-weight: var(--fw-semi-bold);
+}
+
+.ganancia__sb span {
+	color: #04e60498;
+}
+
+.ganancia__total span {
+	color: rgb(11, 245, 11);
+}
+
+.ganancia__total.perdida span {
+	color: rgb(245, 11, 11);
+}
+
 /* .table-inversion thead,
 .table-inversion caption {
 	display: block;
@@ -46,3 +93,54 @@
 .table-inversion tbody td:first-child {
 	width: 50%;
 } */
+
+.table-inversion thead,
+.table-inversion caption {
+	display: block;
+	position: sticky;
+}
+
+.table-inversion thead {
+	margin-bottom: 0.5rem;
+}
+
+.table-inversion thead th:first-child {
+	width: 60%;
+}
+
+.table-inversion thead th:nth-child(2) {
+	width: 100%;
+}
+
+.table-inversion thead th:nth-child(3) {
+	width: 100%;
+}
+
+.table-inversion tbody {
+	display: block;
+	max-height: 300px;
+	overflow-y: auto;
+}
+
+@media (max-width: 377px) {
+	.table-inversion tbody {
+		margin-top: 1.4rem;
+	}
+}
+
+.table-inversion tbody td {
+	width: 100%;
+	white-space: nowrap;
+}
+
+.table-inversion tbody td:first-child {
+	width: 60%;
+}
+
+.table-inversion tbody td:nth-child(2) {
+	width: 100%;
+}
+
+.table-inversion tbody td:nth-child(3) {
+	width: 100%;
+}
