@@ -513,6 +513,8 @@ function genFormEsquite() {
 	section.innerHTML = html
 
 	const form = section.querySelector('form')
+	const selects = form.querySelectorAll('select')
+	const button = form.querySelector('.btn-primary')
 	const arrow = section.querySelector('.arrow-down-sp')
 	arrow.addEventListener('click', (e) => {
 		e.preventDefault()
@@ -520,8 +522,16 @@ function genFormEsquite() {
 		form.classList.toggle('active')
 	})
 
+	selects.forEach((select) => {
+		select.addEventListener('change', () => {
+			button.click()
+		})
+	})
+
 	esquitesContainer.appendChild(section)
 	updateCountsProd(esquitesContainer, 'Esquite ch')
+
+	button.click()
 }
 
 function genFormEsquiteMed() {
@@ -599,6 +609,8 @@ function genFormEsquiteMed() {
 	section.innerHTML = html
 
 	const form = section.querySelector('form')
+	const selects = form.querySelectorAll('select')
+	const button = form.querySelector('.btn-primary')
 	const arrow = section.querySelector('.arrow-down-sp')
 	arrow.addEventListener('click', (e) => {
 		e.preventDefault()
@@ -606,8 +618,15 @@ function genFormEsquiteMed() {
 		form.classList.toggle('active')
 	})
 
+	selects.forEach((select) => {
+		select.addEventListener('change', () => {
+			button.click()
+		})
+	})
 	esquitesMedContainer.appendChild(section)
 	updateCountsProd(esquitesMedContainer, 'Esquite 1/2')
+
+	button.click()
 }
 
 function genFormDoriesquite() {
@@ -719,6 +738,8 @@ function genFormDoriesquite() {
 	section.innerHTML = html
 
 	const form = section.querySelector('form')
+	const selects = form.querySelectorAll('select')
+	const button = form.querySelector('.btn-primary')
 	const arrow = section.querySelector('.arrow-down-sp')
 	arrow.addEventListener('click', (e) => {
 		e.preventDefault()
@@ -726,8 +747,15 @@ function genFormDoriesquite() {
 		form.classList.toggle('active')
 	})
 
+	selects.forEach((select) => {
+		select.addEventListener('change', () => {
+			button.click()
+		})
+	})
+
 	doriesquiteContainer.appendChild(section)
 	updateCountsProd(doriesquiteContainer, 'Doriesquite')
+	button.click() // Simulación de clic inicial en el botón
 }
 
 function genFormDoriloco() {
@@ -882,6 +910,8 @@ function genFormDoriloco() {
 	section.innerHTML = html
 
 	const form = section.querySelector('form')
+	const selects = form.querySelectorAll('select')
+	const button = form.querySelector('.btn-primary')
 	const arrow = section.querySelector('.arrow-down-sp')
 	arrow.addEventListener('click', (e) => {
 		e.preventDefault()
@@ -889,8 +919,15 @@ function genFormDoriloco() {
 		form.classList.toggle('active')
 	})
 
+	selects.forEach((select) => {
+		select.addEventListener('change', () => {
+			button.click()
+		})
+	})
+
 	dorilocoContainer.appendChild(section)
 	updateCountsProd(dorilocoContainer, 'Doriloco')
+	button.click()
 }
 
 function genFormTostiloco() {
@@ -1017,6 +1054,8 @@ function genFormTostiloco() {
 	section.innerHTML = html
 
 	const form = section.querySelector('form')
+	const selects = form.querySelectorAll('select')
+	const button = form.querySelector('.btn-primary')
 	const arrow = section.querySelector('.arrow-down-sp')
 	arrow.addEventListener('click', (e) => {
 		e.preventDefault()
@@ -1024,8 +1063,15 @@ function genFormTostiloco() {
 		form.classList.toggle('active')
 	})
 
+	selects.forEach((select) => {
+		select.addEventListener('change', () => {
+			button.click()
+		})
+	})
+
 	tostilocoContainer.appendChild(section)
 	updateCountsProd(tostilocoContainer, 'Tostiloco')
+	button.click()
 }
 
 function genFormFresas() {
@@ -1112,6 +1158,8 @@ function genFormFresas() {
 	section.innerHTML = html
 
 	const form = section.querySelector('form')
+	const selects = form.querySelectorAll('select')
+	const button = form.querySelector('.btn-primary')
 	const arrow = section.querySelector('.arrow-down-sp')
 	arrow.addEventListener('click', (e) => {
 		e.preventDefault()
@@ -1119,8 +1167,15 @@ function genFormFresas() {
 		form.classList.toggle('active')
 	})
 
+	selects.forEach((select) => {
+		select.addEventListener('change', () => {
+			button.click()
+		})
+	})
+
 	fresasContainer.appendChild(section)
 	updateCountsProd(fresasContainer, 'Fres.C.C')
+	button.click()
 }
 
 function genFormFresasMed() {
@@ -1206,6 +1261,8 @@ function genFormFresasMed() {
 	section.innerHTML = html
 
 	const form = section.querySelector('form')
+	const selects = form.querySelectorAll('select')
+	const button = form.querySelector('.btn-primary')
 	const arrow = section.querySelector('.arrow-down-sp')
 	arrow.addEventListener('click', (e) => {
 		e.preventDefault()
@@ -1213,8 +1270,15 @@ function genFormFresasMed() {
 		form.classList.toggle('active')
 	})
 
+	selects.forEach((select) => {
+		select.addEventListener('change', () => {
+			button.click()
+		})
+	})
+
 	fresasMedContainer.appendChild(section)
 	updateCountsProd(fresasMedContainer, 'Fres.C.C 1/2')
+	button.click()
 }
 
 function genFormGelatina() {
@@ -1301,6 +1365,8 @@ function genFormGelatina() {
 	section.innerHTML = html
 
 	const form = section.querySelector('form')
+	const selects = form.querySelectorAll('select')
+	const button = form.querySelector('.btn-primary')
 	const arrow = section.querySelector('.arrow-down-sp')
 	arrow.addEventListener('click', (e) => {
 		e.preventDefault()
@@ -1308,8 +1374,15 @@ function genFormGelatina() {
 		form.classList.toggle('active')
 	})
 
+	selects.forEach((select) => {
+		select.addEventListener('change', () => {
+			button.click()
+		})
+	})
+
 	gelatinaContainer.appendChild(section)
 	updateCountsProd(gelatinaContainer, 'Gel.C.D')
+	button.click()
 }
 
 function genFormGelatinaMed() {
@@ -1395,6 +1468,8 @@ function genFormGelatinaMed() {
 	section.innerHTML = html
 
 	const form = section.querySelector('form')
+	const selects = form.querySelectorAll('select')
+	const button = form.querySelector('.btn-primary')
 	const arrow = section.querySelector('.arrow-down-sp')
 	arrow.addEventListener('click', (e) => {
 		e.preventDefault()
@@ -1402,8 +1477,15 @@ function genFormGelatinaMed() {
 		form.classList.toggle('active')
 	})
 
+	selects.forEach((select) => {
+		select.addEventListener('change', () => {
+			button.click()
+		})
+	})
+
 	gelatinaMedContainer.appendChild(section)
 	updateCountsProd(gelatinaMedContainer, 'Gel.C.D 1/2')
+	button.click()
 }
 
 function genFormEnsalada() {
@@ -1499,6 +1581,8 @@ function genFormEnsalada() {
 	section.innerHTML = html
 
 	const form = section.querySelector('form')
+	const selects = form.querySelectorAll('select')
+	const button = form.querySelector('.btn-primary')
 	const arrow = section.querySelector('.arrow-down-sp')
 	arrow.addEventListener('click', (e) => {
 		e.preventDefault()
@@ -1506,8 +1590,15 @@ function genFormEnsalada() {
 		form.classList.toggle('active')
 	})
 
+	selects.forEach((select) => {
+		select.addEventListener('change', () => {
+			button.click()
+		})
+	})
+
 	manzanaContainer.appendChild(section)
 	updateCountsProd(manzanaContainer, 'Ens.D.M')
+	button.click()
 }
 
 function genFormEnsaladaMed() {
@@ -1604,6 +1695,8 @@ function genFormEnsaladaMed() {
 	section.innerHTML = html
 
 	const form = section.querySelector('form')
+	const selects = form.querySelectorAll('select')
+	const button = form.querySelector('.btn-primary')
 	const arrow = section.querySelector('.arrow-down-sp')
 	arrow.addEventListener('click', (e) => {
 		e.preventDefault()
@@ -1611,8 +1704,15 @@ function genFormEnsaladaMed() {
 		form.classList.toggle('active')
 	})
 
+	selects.forEach((select) => {
+		select.addEventListener('change', () => {
+			button.click()
+		})
+	})
+
 	manzanaMedContainer.appendChild(section)
 	updateCountsProd(manzanaMedContainer, 'Ens.D.M 1/2')
+	button.click()
 }
 
 function genFormGomiboing() {
@@ -1725,6 +1825,8 @@ function genFormGomiboing() {
 	section.innerHTML = html
 
 	const form = section.querySelector('form')
+	const selects = form.querySelectorAll('select')
+	const button = form.querySelector('.btn-primary')
 	const arrow = section.querySelector('.arrow-down-sp')
 	arrow.addEventListener('click', (e) => {
 		e.preventDefault()
@@ -1732,8 +1834,15 @@ function genFormGomiboing() {
 		form.classList.toggle('active')
 	})
 
+	selects.forEach((select) => {
+		select.addEventListener('change', () => {
+			button.click()
+		})
+	})
+
 	gomiboingContainer.appendChild(section)
 	updateCountsProd(gomiboingContainer, 'Gomiboing')
+	button.click()
 }
 
 function genFormAguaFresca() {
@@ -1779,6 +1888,8 @@ function genFormAguaFresca() {
 	section.innerHTML = html
 
 	const form = section.querySelector('form')
+	const selects = form.querySelectorAll('select')
+	const button = form.querySelector('.btn-primary')
 	const arrow = section.querySelector('.arrow-down-sp')
 	arrow.addEventListener('click', (e) => {
 		e.preventDefault()
@@ -1786,8 +1897,15 @@ function genFormAguaFresca() {
 		form.classList.toggle('active')
 	})
 
+	selects.forEach((select) => {
+		select.addEventListener('change', () => {
+			button.click()
+		})
+	})
+
 	aguaFrescaContainer.appendChild(section)
 	updateCountsProd(aguaFrescaContainer, 'Agua F.1L')
+	button.click()
 }
 
 function genFormAguaFrescaMed() {
@@ -1833,6 +1951,8 @@ function genFormAguaFrescaMed() {
 	section.innerHTML = html
 
 	const form = section.querySelector('form')
+	const selects = form.querySelectorAll('select')
+	const button = form.querySelector('.btn-primary')
 	const arrow = section.querySelector('.arrow-down-sp')
 	arrow.addEventListener('click', (e) => {
 		e.preventDefault()
@@ -1840,8 +1960,15 @@ function genFormAguaFrescaMed() {
 		form.classList.toggle('active')
 	})
 
+	selects.forEach((select) => {
+		select.addEventListener('change', () => {
+			button.click()
+		})
+	})
+
 	aguaFrescaMedContainer.appendChild(section)
 	updateCountsProd(aguaFrescaMedContainer, 'Agua F.1/2')
+	button.click()
 }
 
 // TODO ESCUCHADOR DE CONTENEDOR DE DETALLES
@@ -3265,7 +3392,7 @@ function readData() {
 			customerLabel.classList.add('order__customer-label')
 			customerLabel.textContent = 'Cliente:'
 			customer.classList.add('order__customer')
-			customer.textContent = cursor.value.customer
+			customer.textContent = cursor.value.customer.toUpperCase()
 
 			let productos = []
 			cursor.value.products.forEach((prod) => {

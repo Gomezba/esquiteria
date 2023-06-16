@@ -598,6 +598,10 @@
 	gap: var(--gap-sm);
 }
 
+.specification__buttons .btn-primary {
+	display: none;
+}
+
 .specification__buttons button {
 	padding: 0 0.5em;
 }
