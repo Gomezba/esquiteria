@@ -320,7 +320,7 @@ if (location.pathname.endsWith('/products-sold.html')) {
 		localStorage.setItem('ganancias', JSON.stringify([...ganancias, ganancia]))
 		Swal.fire({
 			icon: 'success',
-			title: '¡Ganancia Guardada!',
+			title: '¡Venta Guardada!',
 			showConfirmButton: false,
 			timer: 1500,
 		})

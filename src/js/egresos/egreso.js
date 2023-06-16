@@ -59,7 +59,7 @@ btnAddEgreso.addEventListener('click', (e) => {
 			icon: 'success',
 			title: '¡Egreso agregado!',
 			showConfirmButton: false,
-			timer: 1500,
+			timer: 700,
 		})
 	}
 
@@ -136,7 +136,7 @@ function showEgresos() {
 						icon: 'success',
 						title: '¡Egreso eliminado!',
 						showConfirmButton: false,
-						timer: 1500,
+						timer: 700,
 					})
 				} else {
 					alert('Contraseña incorrecta. Acceso denegado.')
@@ -180,7 +180,7 @@ function editEgreso(nameEgreso, cantidadEgreso) {
 		icon: 'success',
 		title: '¡Egreso modificado!',
 		showConfirmButton: false,
-		timer: 1500,
+		timer: 700,
 	})
 }
 
