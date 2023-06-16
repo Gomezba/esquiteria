@@ -19,7 +19,7 @@
 		<header class="header">
 			<nav class="main-nav">
 				<figure class="figure">
-					<a href="../../../index.html">
+					<a href="#">
 						<img class="logo" src="../../assets/img/Esquiteria 2.png" alt="logo" />
 					</a>
 				</figure>
@@ -238,7 +238,7 @@
 						<div class="received-bill-container">
 							<div>
 								<label class="label-money" for="money">Recibo: $</label>
-								<input id="money" class="input-received-bill" type="number" step="0.01" disabled />
+								<input id="money" class="input-received-bill" name="recibo" type="number" step="0.01" disabled />
 							</div>
 						</div>
 						<span class="money-exchanges">Cambio: $<span id="money-exchanges"></span></span>
@@ -285,27 +285,19 @@
 				</div>
 				<h2 class="title">Lista de ordenes</h2>
 
-				<div id="passwordModal" class="modal">
-					<div class="modal-content">
-						<span class="close">&times;</span>
-						<h2>Contraseña de eliminación</h2>
-						<input title="Ingresa contraseña" class="passwordInput" type="password" id="passwordInput" />
-						<button class="submitBtn" id="submitBtn">Enviar</button>
-					</div>
-				</div>
 				<section id="orders-container" class="container-orders"></section>
 			</section>
 			<section id="view-egresos" class="view-egresos">
 				<button id="cancel-egreso" type="button" class="btn btn-reg-egr">regresar</button>
 
-				<form id="form-egresos" class="form-egresos">
+				<form id="form-egresos" class="form-egresos" autocomplete="on">
 					<div class="form-egresos__field">
 						<label for="egreso">Egreso</label>
-						<input id="egreso" type="text" placeholder="Ingresa nombre de egreso" />
+						<input id="egreso" name="egreso" type="text" placeholder="Ingresa nombre de egreso" />
 					</div>
 					<div class="form-egresos__field">
 						<label for="egreso-cant">Cantidad</label>
-						<input id="egreso-cant" type="number" step="0.01" placeholder="$ Cantidad de egreso" />
+						<input id="egreso-cant" type="number" step="0.01" placeholder="$ Cantidad de egreso" name="cantidadegreso" />
 					</div>
 					<div class="form-egresos__btns">
 						<button id="add-egreso" data-type="add" type="submit" class="btn btn-primary">Agregar</button>
@@ -327,6 +319,16 @@
 				</section>
 			</section>
 		</main>
+
+		<div id="passwordModal" class="modal">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<h2>Contraseña de eliminación</h2>
+				<input title="Ingresa contraseña" class="passwordInput" type="password" id="passwordInput" />
+				<button class="submitBtn" id="submitBtn">Enviar</button>
+			</div>
+		</div>
+
 		<script src="../../js/app.js" type="module"></script>
 		<script src="../../js/egresos/egreso.js" type="module"></script>
 		<script src="../../js/tickets/ConectorEscposAndroid.js" type="module"></script>

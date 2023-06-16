@@ -3235,8 +3235,6 @@ function readData() {
 	request.onsuccess = (e) => {
 		const cursor = e.target.result
 		if (cursor) {
-			cleanContainer(ordersContainer)
-
 			const wrapperOrder = document.createElement('SECTION')
 			const arrowIcon = document.createElement('A')
 			const img = document.createElement('IMG')
@@ -3401,6 +3399,7 @@ function readData() {
 
 			cursor.continue() // Avanzar al siguiente registro
 		} else {
+			cleanContainer(ordersContainer)
 			ordersContainer.append(fragment)
 		}
 	}
@@ -3413,30 +3412,58 @@ function readData() {
 }
 
 function eliminarOrdenCreada(id) {
-	const password = prompt('Ingresa la contraseña')
+	const modal = document.getElementById('passwordModal')
+	const passwordInput = document.getElementById('passwordInput')
+	const submitBtn = document.getElementById('submitBtn')
 
-	if (password === 'tatis') {
-		const transaction = db.transaction(['orders'], 'readwrite')
-		const objectStore = transaction.objectStore('orders')
-		objectStore.delete(id)
+	// Mostrar el modal
+	modal.style.display = 'block'
 
-		transaction.oncomplete = () => {
-			Swal.fire({
-				icon: 'success',
-				title: '¡Orden eliminada!',
-				showConfirmButton: false,
-				timer: 600,
-			})
-			ordersContainer.innerHTML = ''
-			readData()
+	// Función para cerrar el modal al hacer clic en la "X"
+	const closeBtn = modal.querySelector('.close')
+	closeBtn.addEventListener('click', () => {
+		modal.style.display = 'none'
+		passwordInput.value = ''
+	})
+
+	// Función para procesar el envío del formulario del modal
+	submitBtn.addEventListener('click', () => {
+		const password = passwordInput.value
+
+		if (password === 'tatis') {
+			const transaction = db.transaction(['orders'], 'readwrite')
+			const objectStore = transaction.objectStore('orders')
+			objectStore.delete(id)
+
+			transaction.oncomplete = () => {
+				Swal.fire({
+					icon: 'success',
+					title: '¡Orden eliminada!',
+					showConfirmButton: false,
+					timer: 600,
+				})
+				passwordInput.value = ''
+				modal.style.display = 'none'
+				loadOrders() // Cargar los resultados actualizados
+			}
+
+			transaction.onerror = () => {
+				alert('Ocurrió un error en la eliminación.')
+			}
+		} else {
+			const alert = document.createElement('P')
+			alert.classList.add('error-modal')
+			alert.textContent = 'Contraseña incorrecta'
+			passwordInput.after(alert)
+			setTimeout(() => {
+				alert.remove()
+			}, 2000)
 		}
+	})
+}
 
-		transaction.onerror = () => {
-			alert('Ocurrio un error en la eliminación.')
-		}
-	} else {
-		alert('Contraseña incorrecta. Acceso denegado.')
-	}
+function loadOrders() {
+	readData()
 }
 
 const imprimirTicketOrder = async (macImpresora, licencia, order) => {

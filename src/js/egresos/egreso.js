@@ -100,47 +100,67 @@ function showEgresos() {
 			tdOpt.classList.add('opt-egreso')
 			const div = document.createElement('DIV')
 			const btnEdit = document.createElement('BUTTON')
+			btnEdit.type = 'button'
 			btnEdit.classList.add('editar-egreso')
 			btnEdit.textContent = 'Editar'
 
 			btnEdit.addEventListener('click', (e) => {
 				e.preventDefault()
 
-				const password = prompt('Ingresa la contraseña')
-
-				if (password === 'tatis') {
-					const data = {
-						name,
-						cantidad,
-						id,
-					}
-
-					fillInputs(data)
-				} else {
-					alert('Contraseña incorrecta. Acceso denegado.')
+				const data = {
+					name,
+					cantidad,
+					id,
 				}
+
+				fillInputs(data)
 			})
 
 			const btnDel = document.createElement('BUTTON')
+			btnDel.type = 'button'
 			btnDel.classList.add('eliminar-egreso')
 			btnDel.textContent = 'Eliminar'
-			btnDel.dataset.id = id
 
 			btnDel.addEventListener('click', (e) => {
 				e.preventDefault()
-				const password = prompt('Ingresa la contraseña')
+				const passwordModal = document.getElementById('passwordModal')
+				const passwordInput = passwordModal.querySelector('.passwordInput')
+				const submitBtn = passwordModal.querySelector('.submitBtn')
 
-				if (password === 'tatis') {
-					deletedEgreso(id)
-					Swal.fire({
-						icon: 'success',
-						title: '¡Egreso eliminado!',
-						showConfirmButton: false,
-						timer: 700,
-					})
-				} else {
-					alert('Contraseña incorrecta. Acceso denegado.')
-				}
+				passwordModal.style.display = 'block'
+
+				// Función para cerrar el modal al hacer clic en la "X"
+				const closeBtn = passwordModal.querySelector('.close')
+				closeBtn.addEventListener('click', () => {
+					passwordModal.style.display = 'none'
+					passwordInput.value = ''
+				})
+
+				submitBtn.addEventListener('click', () => {
+					const password = passwordInput.value
+
+					if (password === 'tatis') {
+						passwordModal.style.display = 'none'
+						deletedEgreso(id) // Llamar a la función deletedEgreso() con el ID del egreso
+						Swal.fire({
+							icon: 'success',
+							title: '¡Egreso eliminado!',
+							showConfirmButton: false,
+							timer: 700,
+						})
+						setTimeout(() => {
+							passwordInput.value = ''
+						}, 200)
+					} else {
+						const alert = document.createElement('P')
+						alert.classList.add('error-modal')
+						alert.textContent = 'Contraseña incorrecta'
+						passwordInput.after(alert)
+						setTimeout(() => {
+							alert.remove()
+						}, 2000)
+					}
+				})
 			})
 
 			div.append(btnEdit, btnDel)
@@ -188,8 +208,7 @@ function deletedEgreso(id) {
 	const deletedEgr = egresosObjetos.filter((egr) => egr.id !== id)
 	localStorage.setItem('egresos', JSON.stringify(deletedEgr))
 
-	const updatedEgresos = JSON.parse(localStorage.getItem('egresos'))
-	egresosObjetos = updatedEgresos
+	egresosObjetos = JSON.parse(localStorage.getItem('egresos')) ?? []
 
 	btnAddEgreso.dataset.type = 'add'
 	btnAddEgreso.textContent = 'Agregar'
