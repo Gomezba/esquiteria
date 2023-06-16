@@ -165,7 +165,7 @@ const validateForm = (e) => {
 		empleadoUser.addEmpleado(empleadoObj)
 		Swal.fire({
 			icon: 'success',
-			title: '¡Gasto agregado!',
+			title: '¡Pago agregado!',
 			showConfirmButton: false,
 			timer: 700,
 		})
