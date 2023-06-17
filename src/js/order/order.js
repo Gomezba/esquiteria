@@ -889,7 +889,7 @@ function genFormEsquite() {
       </div>
       <div class="specification__buttons">
         <button type="button" class="btn btn-primary">Agregar detalle</button>
-        <button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+        <button type="button" class="btn btn-cancel">Eliminar producto</button>
       </div>
     </form>
 	
@@ -987,7 +987,7 @@ function genFormEsquiteMed() {
       </div>
       <div class="specification__buttons">
         <button type="button" class="btn btn-primary">Agregar detalle</button>
-        <button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+        <button type="button" class="btn btn-cancel">Eliminar producto</button>
       </div>
     </form>
   `
@@ -1118,7 +1118,7 @@ function genFormDoriesquite() {
 	</div>
 	<div class="specification__buttons">
 		<button type="button" class="btn btn-primary">Agregar detalle</button>
-		<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+		<button type="button" class="btn btn-cancel">Eliminar producto</button>
 	</div>
 </form>
   `
@@ -1305,7 +1305,7 @@ function genFormDoriloco() {
 					</div>
 					<div class="specification__buttons">
 						<button type="button" class="btn btn-primary">Agregar detalle</button>
-						<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+						<button type="button" class="btn btn-cancel">Eliminar producto</button>
 					</div>
 				</form>
 
@@ -1466,7 +1466,7 @@ function genFormTostiloco() {
 					</div>
 					<div class="specification__buttons">
 						<button type="button" class="btn btn-primary">Agregar detalle</button>
-						<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+						<button type="button" class="btn btn-cancel">Eliminar producto</button>
 					</div>
 				</form>
   `
@@ -1570,7 +1570,7 @@ function genFormFresas() {
 	</div>
 	<div class="specification__buttons">
 		<button type="button" class="btn btn-primary">Agregar detalle</button>
-		<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+		<button type="button" class="btn btn-cancel">Eliminar producto</button>
 	</div>
 </form>
   `
@@ -1675,7 +1675,7 @@ function genFormFresasMed() {
 	</div>
 	<div class="specification__buttons">
 		<button type="button" class="btn btn-primary">Agregar detalle</button>
-		<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+		<button type="button" class="btn btn-cancel">Eliminar producto</button>
 	</div>
 </form>
   `
@@ -1780,7 +1780,7 @@ function genFormGelatina() {
 	</div>
 	<div class="specification__buttons">
 		<button type="button" class="btn btn-primary">Agregar detalle</button>
-		<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+		<button type="button" class="btn btn-cancel">Eliminar producto</button>
 	</div>
 </form>
   `
@@ -1884,7 +1884,7 @@ function genFormGelatinaMed() {
 	</div>
 	<div class="specification__buttons">
 		<button type="button" class="btn btn-primary">Agregar detalle</button>
-		<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+		<button type="button" class="btn btn-cancel">Eliminar producto</button>
 	</div>
 </form>
   `
@@ -1998,7 +1998,7 @@ function genFormEnsalada() {
 	</div>
 	<div class="specification__buttons">
 		<button type="button" class="btn btn-primary">Agregar detalle</button>
-		<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+		<button type="button" class="btn btn-cancel">Eliminar producto</button>
 	</div>
 </form>
   `
@@ -2113,7 +2113,7 @@ function genFormEnsaladaMed() {
 	</div>
 	<div class="specification__buttons">
 		<button type="button" class="btn btn-primary">Agregar detalle</button>
-		<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+		<button type="button" class="btn btn-cancel">Eliminar producto</button>
 	</div>
 </form>
   `
@@ -2244,7 +2244,7 @@ function genFormGomiboing() {
 				</div>
 				<div class="specification__buttons">
 					<button type="button" class="btn btn-primary">Agregar detalle</button>
-					<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+					<button type="button" class="btn btn-cancel">Eliminar producto</button>
 				</div>
 			</form>
   `
@@ -2308,7 +2308,7 @@ function genFormAguaFresca() {
 				</div>
 				<div class="specification__buttons">
 					<button type="button" class="btn btn-primary">Agregar detalle</button>
-					<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+					<button type="button" class="btn btn-cancel">Eliminar producto</button>
 				</div>
 			</form>
   `
@@ -2372,7 +2372,7 @@ function genFormAguaFrescaMed() {
 				</div>
 				<div class="specification__buttons">
 					<button type="button" class="btn btn-primary">Agregar detalle</button>
-					<button type="button" class="btn btn-cancel" disabled>Eliminar producto</button>
+					<button type="button" class="btn btn-cancel">Eliminar producto</button>
 				</div>
 			</form>
   `
@@ -2471,8 +2471,6 @@ if (location.pathname.endsWith('/order.html')) {
 		if (event.target.classList.contains('btn-primary')) {
 			const product = document.querySelector('.product[data-name="Esquite ch"]')
 			const productName = product.dataset.name
-			const btnDelete = event.target.nextElementSibling
-			btnDelete.removeAttribute('disabled')
 			const form = event.target.closest('form')
 			enviarFormulario(event, form, productName)
 			showAlert('Detalle agregado', 'exit')
@@ -2505,8 +2503,6 @@ if (location.pathname.endsWith('/order.html')) {
 		if (event.target.classList.contains('btn-primary')) {
 			const product = document.querySelector('.product[data-name="Esquite 1/2"]')
 			const productName = product.dataset.name
-			const btnDelete = event.target.nextElementSibling
-			btnDelete.removeAttribute('disabled')
 			const form = event.target.closest('form')
 			enviarFormulario(event, form, productName)
 			showAlert('Detalle agregado', 'exit')
@@ -2539,8 +2535,6 @@ if (location.pathname.endsWith('/order.html')) {
 		if (event.target.classList.contains('btn-primary')) {
 			const product = document.querySelector('.product[data-name="Doriesquite"]')
 			const productName = product.dataset.name
-			const btnDelete = event.target.nextElementSibling
-			btnDelete.removeAttribute('disabled')
 			const form = event.target.closest('form')
 			enviarFormulario(event, form, productName)
 			showAlert('Detalle agregado', 'exit')
@@ -2573,8 +2567,6 @@ if (location.pathname.endsWith('/order.html')) {
 		if (event.target.classList.contains('btn-primary')) {
 			const product = document.querySelector('.product[data-name="Doriloco"]')
 			const productName = product.dataset.name
-			const btnDelete = event.target.nextElementSibling
-			btnDelete.removeAttribute('disabled')
 			const form = event.target.closest('form')
 			enviarFormulario(event, form, productName)
 			showAlert('Detalle agregado', 'exit')
@@ -2607,8 +2599,6 @@ if (location.pathname.endsWith('/order.html')) {
 		if (event.target.classList.contains('btn-primary')) {
 			const product = document.querySelector('.product[data-name="Tostiloco"]')
 			const productName = product.dataset.name
-			const btnDelete = event.target.nextElementSibling
-			btnDelete.removeAttribute('disabled')
 			const form = event.target.closest('form')
 			enviarFormulario(event, form, productName)
 			showAlert('Detalle agregado', 'exit')
@@ -2641,8 +2631,6 @@ if (location.pathname.endsWith('/order.html')) {
 		if (event.target.classList.contains('btn-primary')) {
 			const product = document.querySelector('.product[data-name="Fres.C.C"]')
 			const productName = product.dataset.name
-			const btnDelete = event.target.nextElementSibling
-			btnDelete.removeAttribute('disabled')
 			const form = event.target.closest('form')
 			enviarFormulario(event, form, productName)
 			showAlert('Detalle agregado', 'exit')
@@ -2675,8 +2663,6 @@ if (location.pathname.endsWith('/order.html')) {
 		if (event.target.classList.contains('btn-primary')) {
 			const product = document.querySelector('.product[data-name="Fres.C.C 1/2"]')
 			const productName = product.dataset.name
-			const btnDelete = event.target.nextElementSibling
-			btnDelete.removeAttribute('disabled')
 			const form = event.target.closest('form')
 			enviarFormulario(event, form, productName)
 			showAlert('Detalle agregado', 'exit')
@@ -2709,8 +2695,6 @@ if (location.pathname.endsWith('/order.html')) {
 		if (event.target.classList.contains('btn-primary')) {
 			const product = document.querySelector('.product[data-name="Gel.C.D"]')
 			const productName = product.dataset.name
-			const btnDelete = event.target.nextElementSibling
-			btnDelete.removeAttribute('disabled')
 			const form = event.target.closest('form')
 			enviarFormulario(event, form, productName)
 			showAlert('Detalle agregado', 'exit')
@@ -2743,8 +2727,6 @@ if (location.pathname.endsWith('/order.html')) {
 		if (event.target.classList.contains('btn-primary')) {
 			const product = document.querySelector('.product[data-name="Gel.C.D 1/2"]')
 			const productName = product.dataset.name
-			const btnDelete = event.target.nextElementSibling
-			btnDelete.removeAttribute('disabled')
 			const form = event.target.closest('form')
 			enviarFormulario(event, form, productName)
 			showAlert('Detalle agregado', 'exit')
@@ -2777,8 +2759,6 @@ if (location.pathname.endsWith('/order.html')) {
 		if (event.target.classList.contains('btn-primary')) {
 			const product = document.querySelector('.product[data-name="Ens.D.M"]')
 			const productName = product.dataset.name
-			const btnDelete = event.target.nextElementSibling
-			btnDelete.removeAttribute('disabled')
 			const form = event.target.closest('form')
 			enviarFormulario(event, form, productName)
 			showAlert('Detalle agregado', 'exit')
@@ -2811,8 +2791,6 @@ if (location.pathname.endsWith('/order.html')) {
 		if (event.target.classList.contains('btn-primary')) {
 			const product = document.querySelector('.product[data-name="Ens.D.M 1/2"]')
 			const productName = product.dataset.name
-			const btnDelete = event.target.nextElementSibling
-			btnDelete.removeAttribute('disabled')
 			const form = event.target.closest('form')
 			enviarFormulario(event, form, productName)
 			showAlert('Detalle agregado', 'exit')
@@ -2845,8 +2823,6 @@ if (location.pathname.endsWith('/order.html')) {
 		if (event.target.classList.contains('btn-primary')) {
 			const product = document.querySelector('.product[data-name="Gomiboing"]')
 			const productName = product.dataset.name
-			const btnDelete = event.target.nextElementSibling
-			btnDelete.removeAttribute('disabled')
 			const form = event.target.closest('form')
 			enviarFormulario(event, form, productName)
 			showAlert('Detalle agregado', 'exit')
@@ -2879,8 +2855,6 @@ if (location.pathname.endsWith('/order.html')) {
 		if (event.target.classList.contains('btn-primary')) {
 			const product = document.querySelector('.product[data-name="Agua F.1L"]')
 			const productName = product.dataset.name
-			const btnDelete = event.target.nextElementSibling
-			btnDelete.removeAttribute('disabled')
 			const form = event.target.closest('form')
 			enviarFormulario(event, form, productName)
 			showAlert('Detalle agregado', 'exit')
@@ -2913,8 +2887,6 @@ if (location.pathname.endsWith('/order.html')) {
 		if (event.target.classList.contains('btn-primary')) {
 			const product = document.querySelector('.product[data-name="Agua F.1/2"]')
 			const productName = product.dataset.name
-			const btnDelete = event.target.nextElementSibling
-			btnDelete.removeAttribute('disabled')
 			const form = event.target.closest('form')
 			enviarFormulario(event, form, productName)
 			showAlert('Detalle agregado', 'exit')
