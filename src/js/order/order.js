@@ -906,32 +906,32 @@ function genFormDoriesquite() {
 	const html = `	
 	<h3 class='prod-l'></h3>
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
-	<form class="specification__prod" data-form-id="${Date.now()}" data-frituras="frituras">
+	<form class="specification__prod" data-form-id="${Date.now()}">
 	<div class="specification__select">
 		<p class="specification__prod-name">Doriesquite</p>
-		<select>
-			<option value="" disabled>Seleccionar</option>
-			<option value="nacho" selected>Nacho</option>
-			<option value="flaming">Flaming</option>
-			<option value="incognita">Incognita</option>
-			<option value="sabritas crujientes moradas">Sabritas C. Moradas</option>
-			<option value="chetos flaming">Chetos flaming</option>
-			<option value="tostito">Tostito</option>
-			<option value="chetos naranja">Chetos naranja</option>
-			<option value="sabritas flaming">Sabritas.F</option>
-			<option value="crujitos">Crujitos</option>
-			<option value="rancheritos">Rancheritos</option>
-			<option value="pizzerolas">Pizzerolas</option>
-			<option value="dinamita">Dinamita</option>
-			<option value="fritos">Fritos</option>
-			<option value="rufles">Rufles</option>
-			<option value="sabritas clasicas">Sabritas clásicas</option>
-			<option value="sabritas adobadas">Sabritas.A</option>
-			<option value="colmillos">Colmillo</option>
-			<option value="takis fuego">Takis fuego</option>
-			<option value="takis guacamole">Takis guacamole</option>
-			<option value="takis amarillos">Takis salsa brava</option>
-		</select>
+			<select>
+				<option value="" disabled>Seleccionar</option>
+				<option value="nacho" selected>Nacho</option>
+				<option value="flaming">Flaming</option>
+				<option value="incognita">Incognita</option>
+				<option value="sabritas crujientes moradas">Sabritas C. Moradas</option>
+				<option value="tostito">Tostito</option>
+				<option value="chetos flaming">Chetos flaming</option>
+				<option value="chetos naranja">Chetos naranja</option>
+				<option value="sabritas flaming">Sabritas.F</option>
+				<option value="crujitos">Crujitos</option>
+				<option value="rancheritos">Rancheritos</option>
+				<option value="pizzerolas">Pizzerolas</option>
+				<option value="dinamita">Dinamita</option>
+				<option value="fritos">Fritos</option>
+				<option value="rufles">Rufles</option>
+				<option value="sabritas clasicas">Sabritas clásicas</option>
+				<option value="sabritas adobadas">Sabritas.A</option>
+				<option value="takis fuego">Takis fuego</option>
+				<option value="takis guacamole">Takis guacamole</option>
+				<option value="takis amarillos">Takis salsa brava</option>
+				<option value="colmillos">Colmillo</option>
+			</select>
 
 		<select>
 			<option value="normal" selected>Normal</option>
@@ -1026,6 +1026,21 @@ function genFormDoriesquite() {
 	doriesquiteContainer.appendChild(section)
 	updateCountsProd(doriesquiteContainer, 'Doriesquite')
 	button.click() // Simulación de clic inicial en el botón
+
+	$(selects[0])
+		.select2({
+			templateResult: formatOption,
+			dropdownAutoWidth: true, // Ajusta el ancho del menú desplegable automáticamente
+			minimumResultsForSearch: -1, // Desactiva la búsqueda en el select
+		})
+		.on('select2:open', function () {
+			$('.select2-container--open .select2-results__options').css('max-height', '400px')
+			$('.select2-container--open .select2-dropdown').css('max-width', '250px') // Establecer el ancho máximo del select2
+		})
+		.on('change', function (event) {
+			enviarFormulario(event, selects[0].closest('form'), 'Doriesquite') // Llama a la función enviarFormulario con los parámetros adecuados
+			showAlert('Detalle agregado', 'exit')
+		})
 }
 
 function genFormDoriloco() {
@@ -1039,27 +1054,27 @@ function genFormDoriloco() {
 					<div class="specification__select">
 						<p class="specification__prod-name">Doriloco</p>
 						<select>
-						<option value="" disabled>Seleccionar</option>
-						<option value="nacho" selected>Nacho</option>
-						<option value="flaming">Flaming</option>
-						<option value="incognita">Incognita</option>
-						<option value="sabritas crujientes moradas">Sabritas C. Moradas</option>
-						<option value="tostito">Tostito</option>
-						<option value="chetos flaming">Chetos flaming</option>
-						<option value="chetos naranja">Chetos naranja</option>
-						<option value="sabritas flaming">Sabritas.F</option>
-						<option value="crujitos">Crujitos</option>
-						<option value="rancheritos">Rancheritos</option>
-						<option value="pizzerolas">Pizzerolas</option>
-						<option value="dinamita">Dinamita</option>
-						<option value="fritos">Fritos</option>
-						<option value="rufles">Rufles</option>
-						<option value="sabritas clasicas">Sabritas clásicas</option>
-						<option value="sabritas adobadas">Sabritas.A</option>
-						<option value="takis fuego">Takis fuego</option>
-						<option value="takis guacamole">Takis guacamole</option>
-						<option value="takis amarillos">Takis salsa brava</option>
-						<option value="colmillos">Colmillo</option>
+							<option value="" disabled>Seleccionar</option>
+							<option value="nacho" selected>Nacho</option>
+							<option value="flaming">Flaming</option>
+							<option value="incognita">Incognita</option>
+							<option value="sabritas crujientes moradas">Sabritas C. Moradas</option>
+							<option value="tostito">Tostito</option>
+							<option value="chetos flaming">Chetos flaming</option>
+							<option value="chetos naranja">Chetos naranja</option>
+							<option value="sabritas flaming">Sabritas.F</option>
+							<option value="crujitos">Crujitos</option>
+							<option value="rancheritos">Rancheritos</option>
+							<option value="pizzerolas">Pizzerolas</option>
+							<option value="dinamita">Dinamita</option>
+							<option value="fritos">Fritos</option>
+							<option value="rufles">Rufles</option>
+							<option value="sabritas clasicas">Sabritas clásicas</option>
+							<option value="sabritas adobadas">Sabritas.A</option>
+							<option value="takis fuego">Takis fuego</option>
+							<option value="takis guacamole">Takis guacamole</option>
+							<option value="takis amarillos">Takis salsa brava</option>
+							<option value="colmillos">Colmillo</option>
 						</select>
 					</div>
 
