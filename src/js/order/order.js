@@ -906,7 +906,7 @@ function genFormDoriesquite() {
 	const html = `	
 	<h3 class='prod-l'></h3>
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
-	<form class="specification__prod" data-form-id="${Date.now()}">
+	<form class="specification__prod" data-form-id="${Date.now()}" data-frituras="frituras">
 	<div class="specification__select">
 		<p class="specification__prod-name">Doriesquite</p>
 		<select>
@@ -1044,8 +1044,8 @@ function genFormDoriloco() {
 						<option value="flaming">Flaming</option>
 						<option value="incognita">Incognita</option>
 						<option value="sabritas crujientes moradas">Sabritas C. Moradas</option>
-						<option value="chetos flaming">Chetos flaming</option>
 						<option value="tostito">Tostito</option>
+						<option value="chetos flaming">Chetos flaming</option>
 						<option value="chetos naranja">Chetos naranja</option>
 						<option value="sabritas flaming">Sabritas.F</option>
 						<option value="crujitos">Crujitos</option>
@@ -1056,10 +1056,10 @@ function genFormDoriloco() {
 						<option value="rufles">Rufles</option>
 						<option value="sabritas clasicas">Sabritas clásicas</option>
 						<option value="sabritas adobadas">Sabritas.A</option>
-						<option value="colmillos">Colmillo</option>
 						<option value="takis fuego">Takis fuego</option>
 						<option value="takis guacamole">Takis guacamole</option>
 						<option value="takis amarillos">Takis salsa brava</option>
+						<option value="colmillos">Colmillo</option>
 						</select>
 					</div>
 
@@ -1198,6 +1198,21 @@ function genFormDoriloco() {
 	dorilocoContainer.appendChild(section)
 	updateCountsProd(dorilocoContainer, 'Doriloco')
 	button.click()
+
+	$(selects[0])
+		.select2({
+			templateResult: formatOption,
+			dropdownAutoWidth: true, // Ajusta el ancho del menú desplegable automáticamente
+			minimumResultsForSearch: -1, // Desactiva la búsqueda en el select
+		})
+		.on('select2:open', function () {
+			$('.select2-container--open .select2-results__options').css('max-height', '400px')
+			$('.select2-container--open .select2-dropdown').css('max-width', '250px') // Establecer el ancho máximo del select2
+		})
+		.on('change', function (event) {
+			enviarFormulario(event, selects[0].closest('form'), 'Doriloco') // Llama a la función enviarFormulario con los parámetros adecuados
+			showAlert('Detalle agregado', 'exit')
+		})
 }
 
 function genFormTostiloco() {
@@ -2240,6 +2255,93 @@ function genFormAguaFrescaMed() {
 	updateCountsProd(aguaFrescaMedContainer, 'Agua F.1/2')
 	button.click()
 }
+
+function formatOption(option) {
+	if (!option.id) {
+		return option.text
+	}
+
+	var imageUrl = getImageUrl(option.text)
+	if (!imageUrl) {
+		return option.text
+	}
+
+	var $option = $('<span><img src="' + imageUrl + '" class="img-select" /> ' + option.text + '</span>')
+	return $option
+}
+
+// <option value="" disabled>Seleccionar</option>
+// 						<option value="nacho" selected>Nacho</option>
+// 						<option value="flaming">Flaming</option>
+// 						<option value="incognita">Incognita</option>
+// 						<option value="sabritas crujientes moradas">Sabritas C. Moradas</option>
+// 						<option value="chetos flaming">Chetos flaming</option>
+// 						<option value="tostito">Tostito</option>
+// 						<option value="chetos naranja">Chetos naranja</option>
+// 						<option value="sabritas flaming">Sabritas.F</option>
+// 						<option value="crujitos">Crujitos</option>
+// 						<option value="rancheritos">Rancheritos</option>
+// 						<option value="pizzerolas">Pizzerolas</option>
+// 						<option value="dinamita">Dinamita</option>
+// 						<option value="fritos">Fritos</option>
+// 						<option value="rufles">Rufles</option>
+// 						<option value="sabritas clasicas">Sabritas clásicas</option>
+// 						<option value="sabritas adobadas">Sabritas.A</option>
+// 						<option value="colmillos">Colmillo</option>
+// 						<option value="takis fuego">Takis fuego</option>
+// 						<option value="takis guacamole">Takis guacamole</option>
+// 						<option value="takis amarillos">Takis salsa brava</option>
+
+function getImageUrl(optionText) {
+	// Asigna la URL de la imagen correspondiente a cada opción
+	// Puedes implementar tu propia lógica aquí para asignar las imágenes según el valor de la opción
+	switch (optionText) {
+		case 'Nacho':
+			return '../../assets/frituras-opt/doritos-nacho.webp'
+		case 'Flaming':
+			return '../../assets/frituras-opt/doritos-flaming.webp'
+		case 'Incognita':
+			return '../../assets/frituras-opt/incognita.webp'
+		case 'Sabritas C. Moradas':
+			return '../../assets/frituras-opt/sabritas-crujientes.webp'
+		case 'Chetos flaming':
+			return '../../assets/frituras-opt/chetos-flaming.webp'
+		case 'Tostito':
+			return '../../assets/frituras-opt/tostitos.webp'
+		case 'Chetos naranja':
+			return '../../assets/frituras-opt/chetos-naranja.webp'
+		case 'Sabritas.F':
+			return '../../assets/frituras-opt/sabritas-flaming.webp'
+		case 'Crujitos':
+			return '../../assets/frituras-opt/crujitos.webp'
+		case 'Rancheritos':
+			return '../../assets/frituras-opt/rancheritos.webp'
+		case 'Pizzerolas':
+			return '../../assets/frituras-opt/pizzerolas.webp'
+		case 'Dinamita':
+			return '../../assets/frituras-opt/dinamita.webp'
+		case 'Fritos':
+			return '../../assets/frituras-opt/fritos.webp'
+		case 'Rufles':
+			return '../../assets/frituras-opt/rufles.webp'
+		case 'Sabritas clásicas':
+			return '../../assets/frituras-opt/originales.webp'
+		case 'Sabritas.A':
+			return '../../assets/frituras-opt/sabritas-adobadas.webp'
+		case 'Colmillo':
+			return '../../assets/frituras-opt/colmillos.webp'
+		case 'Takis fuego':
+			return '../../assets/frituras-opt/takis-fuego.webp'
+		case 'Takis guacamole':
+			return '../../assets/frituras-opt/guacamole.webp'
+		case 'Takis salsa brava':
+			return '../../assets/frituras-opt/salsa-brava.webp'
+		default:
+			return null
+	}
+}
+
+//   -------------------------------------------
 
 // TODO ESCUCHADOR DE CONTENEDOR DE DETALLES
 if (location.pathname.endsWith('/order.html')) {
