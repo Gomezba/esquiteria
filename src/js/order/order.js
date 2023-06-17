@@ -82,9 +82,123 @@ function showProducts() {
 		product.dataset.id = id
 		product.dataset.price = price
 		product.dataset.quantity = 1
+		const divImgTitle = document.createElement('DIV')
+		divImgTitle.classList.add('product__img-title')
 		const productTitle = document.createElement('P')
 		productTitle.classList.add('product__title')
 		productTitle.textContent = name
+		const imgProd = document.createElement('IMG')
+		imgProd.alt = 'Imagén producto'
+
+		if (name === 'Esquite ch') {
+			imgProd.src = '../../assets/productos-opt/esquite-ch.webp'
+		}
+		if (name === 'Esquite 1/2') {
+			imgProd.src = '../../assets/productos-opt/esquite-med.webp'
+		}
+		if (name === 'Doriesquite') {
+			imgProd.src = '../../assets/productos-opt/doriesquites.webp'
+		}
+		if (name === 'Doriloco') {
+			imgProd.src = '../../assets/productos-opt/doriloco.webp'
+		}
+		if (name === 'Tostiloco') {
+			imgProd.src = '../../assets/productos-opt/tostiloco.webp'
+		}
+		if (name === 'Fres.C.C') {
+			imgProd.src = '../../assets/productos-opt/fresas-crema.webp'
+		}
+		if (name === 'Fres.C.C 1/2') {
+			imgProd.src = '../../assets/productos-opt/fresas-med.webp'
+		}
+		if (name === 'Gel.C.D') {
+			imgProd.src = '../../assets/productos-opt/gelatina-durazno.webp'
+		}
+		if (name === 'Gel.C.D 1/2') {
+			imgProd.src = '../../assets/productos-opt/gelatina-med.webp'
+		}
+		if (name === 'Ens.D.M') {
+			imgProd.src = '../../assets/productos-opt/ensalada-de-manzana.webp'
+		}
+		if (name === 'Ens.D.M 1/2') {
+			imgProd.src = '../../assets/productos-opt/ensalada-manzana-med.webp'
+		}
+		if (name === 'Gomiboing') {
+			imgProd.src = '../../assets/productos-opt/gomiboing.webp'
+		}
+		if (name === 'Jugo Boing') {
+			imgProd.src = '../../assets/productos-opt/jugo-boing.webp'
+		}
+		if (name === 'Agua F.1L') {
+			imgProd.src = '../../assets/productos-opt/agua-fresca-litro.webp'
+		}
+		if (name === 'Agua F.1/2') {
+			imgProd.src = '../../assets/productos-opt/agua-fresca.webp'
+		}
+		if (name === 'Coca cola') {
+			imgProd.src = '../../assets/productos-opt/cocacola.webp'
+		}
+		if (name === 'Coca mini') {
+			imgProd.src = '../../assets/productos-opt/coca-mini.webp'
+		}
+		if (name === 'A.Nat 500ml') {
+			imgProd.src = '../../assets/productos-opt/agua-natural-med.webp'
+		}
+		if (name === 'A.Nat 1L') {
+			imgProd.src = '../../assets/productos-opt/agua-natural-litro.webp'
+		}
+		if (name === 'Pinada') {
+			imgProd.src = '../../assets/productos-opt/piñada.webp'
+		}
+		if (name === 'Naranjada') {
+			imgProd.src = '../../assets/productos-opt/naranjada.webp'
+		}
+		if (name === 'Limonada') {
+			imgProd.src = '../../assets/productos-opt/limonada.webp'
+		}
+		if (name === 'Bolsa papas') {
+			imgProd.src = '../../assets/productos-opt/papas.webp'
+		}
+		if (name === 'Gomitas') {
+			imgProd.src = '../../assets/productos-opt/gomitas.webp'
+		}
+		if (name === 'Cuch/Ten') {
+			imgProd.src = '../../assets/productos-opt/cuchara-tenedor.webp'
+		}
+		if (name === 'Vaso') {
+			imgProd.src = '../../assets/productos-opt/vaso.webp'
+		}
+
+		if (
+			name !== 'Esquite ch' &&
+			name !== 'Esquite 1/2' &&
+			name !== 'Doriesquite' &&
+			name !== 'Doriloco' &&
+			name !== 'Tostiloco' &&
+			name !== 'Fres.C.C' &&
+			name !== 'Fres.C.C 1/2' &&
+			name !== 'Gel.C.D' &&
+			name !== 'Gel.C.D 1/2' &&
+			name !== 'Ens.D.M' &&
+			name !== 'Ens.D.M 1/2' &&
+			name !== 'Gomiboing' &&
+			name !== 'Jugo Boing' &&
+			name !== 'Agua F.1L' &&
+			name !== 'Agua F.1/2' &&
+			name !== 'Coca cola' &&
+			name !== 'Coca mini' &&
+			name !== 'A.Nat 500ml' &&
+			name !== 'A.Nat 1L' &&
+			name !== 'Pinada' &&
+			name !== 'Naranjada' &&
+			name !== 'Limonada' &&
+			name !== 'Bolsa papas' &&
+			name !== 'Gomitas' &&
+			name !== 'Cuch/Ten' &&
+			name !== 'Vaso'
+		) {
+			imgProd.src = '../../assets/productos-opt/no image.webp'
+		}
 
 		const productOptions = document.createElement('DIV')
 		productOptions.classList.add('product__options')
@@ -205,7 +319,8 @@ function showProducts() {
 		productPrice.dataset.productprice = id
 		productPrice.textContent = price
 
-		product.append(productTitle)
+		divImgTitle.append(imgProd, productTitle)
+		product.append(divImgTitle)
 		productContainBtn.append(btnRemove, btnAdd)
 		productOptions.append(productContainBtn)
 		productContainerQuantity.append(productQuantity)
@@ -710,9 +825,9 @@ function genFormEsquite() {
 	const section = document.createElement('section')
 	section.classList.add('section-sp')
 
-	const html = `
-	
+	const html = `	
 	<h3 class='prod-l'></h3>
+	<img class='img-order' src='../../assets/productos-opt/esquite-ch.webp' alt='imagen producto'>
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
     <form class="specification__prod" data-form-id="${Date.now()}">
       <div class="specification__select">
@@ -810,6 +925,7 @@ function genFormEsquiteMed() {
 
 	const html = `	
 	<h3 class='prod-l'></h3>
+	<img class='img-order' src='../../assets/productos-opt/esquite-med.webp' alt='imagen producto'>
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
     <form class="specification__prod" data-form-id="${Date.now()}">
       <div class="specification__select">
@@ -905,6 +1021,7 @@ function genFormDoriesquite() {
 
 	const html = `	
 	<h3 class='prod-l'></h3>
+	<img class='img-order' src='../../assets/productos-opt/doriesquites.webp' alt='imagen producto'>
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 	<div class="specification__select">
@@ -1049,6 +1166,7 @@ function genFormDoriloco() {
 
 	const html = `	
 	<h3 class='prod-l'></h3>
+	<img class='img-order' src='../../assets/productos-opt/doriloco.webp' alt='imagen producto'>
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 					<div class="specification__select">
@@ -1236,6 +1354,7 @@ function genFormTostiloco() {
 
 	const html = `	
 	<h3 class='prod-l'></h3>
+	<img class='img-order' src='../../assets/productos-opt/tostiloco.webp' alt='imagen producto'>
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 					<p class="specification__prod-name">Tostiloco</p>
@@ -1380,6 +1499,7 @@ function genFormFresas() {
 
 	const html = `	
 	<h3 class='prod-l'></h3>
+	<img class='img-order' src='../../assets/productos-opt/fresas-crema.webp' alt="imagen-producto">
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 	<p class="specification__prod-name">Fres.C.C</p>
@@ -1484,6 +1604,7 @@ function genFormFresasMed() {
 
 	const html = `	
 	<h3 class='prod-l'></h3>
+	<img class='img-order' src='../../assets/productos-opt/fresas-med.webp' alt="imagen-producto">
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 	<p class="specification__prod-name">Fres.C.C 1/2</p>
@@ -1587,6 +1708,7 @@ function genFormGelatina() {
 
 	const html = `	
 	<h3 class='prod-l'></h3>
+	<img class='img-order' src='../../assets/productos-opt/gelatina-durazno.webp' alt="imagen-producto">
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 	<p class="specification__prod-name">Gel.C.D</p>
@@ -1691,6 +1813,7 @@ function genFormGelatinaMed() {
 
 	const html = `	
 	<h3 class='prod-l'></h3>
+	<img class='img-order' src='../../assets/productos-opt/gelatina-med.webp' alt="imagen-producto">
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 	<p class="specification__prod-name">Gel.C.D 1/2</p>
@@ -1794,6 +1917,7 @@ function genFormEnsalada() {
 
 	const html = `	
 	<h3 class='prod-l'></h3>
+	<img class='img-order' src='../../assets/productos-opt/ensalada-de-manzana.webp' alt="imagen-producto">
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 	<p class="specification__prod-name">Ens.D.M</p>
@@ -1907,6 +2031,7 @@ function genFormEnsaladaMed() {
 
 	const html = `	
 	<h3 class='prod-l'></h3>
+	<img class='img-order' src='../../assets/productos-opt/ensalada-manzana-med.webp' alt="imagen-producto">
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 	<p class="specification__prod-name">Ens.D.M 1/2</p>
@@ -2021,6 +2146,7 @@ function genFormGomiboing() {
 
 	const html = `	
 	<h3 class='prod-l'></h3>
+	<img class='img-order' src='../../assets/productos-opt/gomiboing.webp' alt="imagen-producto">
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 				<div class="specification__select">
@@ -2151,6 +2277,7 @@ function genFormAguaFresca() {
 
 	const html = `	
 	<h3 class='prod-l'></h3>
+	<img class='img-order' src='../../assets/productos-opt/agua-fresca.webp' alt="imagen-producto">
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 				<div class="specification__select">
@@ -2214,6 +2341,7 @@ function genFormAguaFrescaMed() {
 
 	const html = `	
 	<h3 class='prod-l'></h3>
+	<img class='img-order' src='../../assets/productos-opt/agua-fresca-litro.webp' alt="imagen-producto">
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 				<div class="specification__select">
@@ -2284,28 +2412,6 @@ function formatOption(option) {
 	var $option = $('<span><img src="' + imageUrl + '" class="img-select" /> ' + option.text + '</span>')
 	return $option
 }
-
-// <option value="" disabled>Seleccionar</option>
-// 						<option value="nacho" selected>Nacho</option>
-// 						<option value="flaming">Flaming</option>
-// 						<option value="incognita">Incognita</option>
-// 						<option value="sabritas crujientes moradas">Sabritas C. Moradas</option>
-// 						<option value="chetos flaming">Chetos flaming</option>
-// 						<option value="tostito">Tostito</option>
-// 						<option value="chetos naranja">Chetos naranja</option>
-// 						<option value="sabritas flaming">Sabritas.F</option>
-// 						<option value="crujitos">Crujitos</option>
-// 						<option value="rancheritos">Rancheritos</option>
-// 						<option value="pizzerolas">Pizzerolas</option>
-// 						<option value="dinamita">Dinamita</option>
-// 						<option value="fritos">Fritos</option>
-// 						<option value="rufles">Rufles</option>
-// 						<option value="sabritas clasicas">Sabritas clásicas</option>
-// 						<option value="sabritas adobadas">Sabritas.A</option>
-// 						<option value="colmillos">Colmillo</option>
-// 						<option value="takis fuego">Takis fuego</option>
-// 						<option value="takis guacamole">Takis guacamole</option>
-// 						<option value="takis amarillos">Takis salsa brava</option>
 
 function getImageUrl(optionText) {
 	// Asigna la URL de la imagen correspondiente a cada opción

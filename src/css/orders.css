@@ -214,7 +214,7 @@
 	background-color: #1a70aa2f;
 	justify-content: end;
 	border-radius: 0;
-	height: 60px;
+	height: 90px;
 }
 
 .arrow-down-sp img {
@@ -263,6 +263,7 @@
 	display: flex;
 	justify-content: center;
 	width: 100%;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.11);
 }
 
 .product:nth-child(even) .product__title {
@@ -271,6 +272,51 @@
 
 .product:not(.product:last-child) {
 	margin-bottom: 1em;
+}
+
+.product__img-title {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.product img {
+	/* border: 1px solid red; */
+	width: 70px;
+	height: 70px;
+}
+img[src='../../assets/productos-opt/esquite-ch.webp'] {
+	width: 45px;
+	height: 90px;
+}
+img[src='../../assets/productos-opt/fresas-crema.webp'] {
+	width: 80px;
+}
+img[src='../../assets/productos-opt/jugo-boing.webp'] {
+	width: 40px;
+	height: 90px;
+}
+img[src='../../assets/productos-opt/agua-natural-med.webp'] {
+	width: 40px;
+	height: 90px;
+}
+img[src='../../assets/productos-opt/agua-natural-litro.webp'] {
+	width: 40px;
+	height: 90px;
+}
+img[src='../../assets/productos-opt/cocacola.webp'] {
+	width: 40px;
+	height: 90px;
+}
+img[src='../../assets/productos-opt/coca-mini.webp'] {
+	width: 40px;
+	height: 80px;
+}
+
+.img-order {
+	position: absolute;
+	left: 150px;
+	height: 80px;
 }
 
 .product__title {
