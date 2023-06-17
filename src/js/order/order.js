@@ -264,6 +264,29 @@ function removeUltimateFormEsquites() {
 		let lastSection = sections[sections.length - 1]
 		lastSection.remove()
 	}
+
+	if (detalles.length > 0) {
+		// Buscar el índice del último objeto con propiedad name igual a "Esquite ch"
+		let index = -1
+		for (let i = detalles.length - 1; i >= 0; i--) {
+			if (detalles[i].name === 'Esquite ch') {
+				index = i
+				break
+			}
+		}
+
+		// Eliminar el objeto del array si se encontró el índice válido
+		if (index !== -1) {
+			detalles.splice(index, 1)
+		}
+
+		orderDetails.value = ''
+		// Imprimir el array actualizado en la consola (opcional)
+		detalles.forEach((objeto) => {
+			// Agregar el detalle al contenido del textarea
+			orderDetails.value += `${objeto.detalle}\n`
+		})
+	}
 }
 function removeUltimateFormEsquitesMed() {
 	const sections = esquitesMedContainer.getElementsByClassName('section-sp')
@@ -271,6 +294,25 @@ function removeUltimateFormEsquitesMed() {
 	if (sections.length > 0) {
 		let lastSection = sections[sections.length - 1]
 		lastSection.remove()
+	}
+
+	if (detalles.length > 0) {
+		let index = -1
+		for (let i = detalles.length - 1; i >= 0; i--) {
+			if (detalles[i].name === 'Esquite 1/2') {
+				index = i
+				break
+			}
+		}
+
+		if (index !== -1) {
+			detalles.splice(index, 1)
+		}
+
+		orderDetails.value = ''
+		detalles.forEach((objeto) => {
+			orderDetails.value += `${objeto.detalle}\n`
+		})
 	}
 }
 function removeUltimateFormDoriesquite() {
@@ -280,6 +322,25 @@ function removeUltimateFormDoriesquite() {
 		let lastSection = sections[sections.length - 1]
 		lastSection.remove()
 	}
+
+	if (detalles.length > 0) {
+		let index = -1
+		for (let i = detalles.length - 1; i >= 0; i--) {
+			if (detalles[i].name === 'Doriesquite') {
+				index = i
+				break
+			}
+		}
+
+		if (index !== -1) {
+			detalles.splice(index, 1)
+		}
+
+		orderDetails.value = ''
+		detalles.forEach((objeto) => {
+			orderDetails.value += `${objeto.detalle}\n`
+		})
+	}
 }
 function removeUltimateFormDoriloco() {
 	const sections = dorilocoContainer.getElementsByClassName('section-sp')
@@ -287,6 +348,25 @@ function removeUltimateFormDoriloco() {
 	if (sections.length > 0) {
 		let lastSection = sections[sections.length - 1]
 		lastSection.remove()
+	}
+
+	if (detalles.length > 0) {
+		let index = -1
+		for (let i = detalles.length - 1; i >= 0; i--) {
+			if (detalles[i].name === 'Doriloco') {
+				index = i
+				break
+			}
+		}
+
+		if (index !== -1) {
+			detalles.splice(index, 1)
+		}
+
+		orderDetails.value = ''
+		detalles.forEach((objeto) => {
+			orderDetails.value += `${objeto.detalle}\n`
+		})
 	}
 }
 function removeUltimateFormTostiloco() {
@@ -296,6 +376,25 @@ function removeUltimateFormTostiloco() {
 		let lastSection = sections[sections.length - 1]
 		lastSection.remove()
 	}
+
+	if (detalles.length > 0) {
+		let index = -1
+		for (let i = detalles.length - 1; i >= 0; i--) {
+			if (detalles[i].name === 'Tostiloco') {
+				index = i
+				break
+			}
+		}
+
+		if (index !== -1) {
+			detalles.splice(index, 1)
+		}
+
+		orderDetails.value = ''
+		detalles.forEach((objeto) => {
+			orderDetails.value += `${objeto.detalle}\n`
+		})
+	}
 }
 function removeUltimateFormFresas() {
 	const sections = fresasContainer.getElementsByClassName('section-sp')
@@ -303,6 +402,25 @@ function removeUltimateFormFresas() {
 	if (sections.length > 0) {
 		let lastSection = sections[sections.length - 1]
 		lastSection.remove()
+	}
+
+	if (detalles.length > 0) {
+		let index = -1
+		for (let i = detalles.length - 1; i >= 0; i--) {
+			if (detalles[i].name === 'Fres.C.C') {
+				index = i
+				break
+			}
+		}
+
+		if (index !== -1) {
+			detalles.splice(index, 1)
+		}
+
+		orderDetails.value = ''
+		detalles.forEach((objeto) => {
+			orderDetails.value += `${objeto.detalle}\n`
+		})
 	}
 }
 function removeUltimateFormFresasMed() {
@@ -312,6 +430,25 @@ function removeUltimateFormFresasMed() {
 		let lastSection = sections[sections.length - 1]
 		lastSection.remove()
 	}
+
+	if (detalles.length > 0) {
+		let index = -1
+		for (let i = detalles.length - 1; i >= 0; i--) {
+			if (detalles[i].name === 'Fres.C.C 1/2') {
+				index = i
+				break
+			}
+		}
+
+		if (index !== -1) {
+			detalles.splice(index, 1)
+		}
+
+		orderDetails.value = ''
+		detalles.forEach((objeto) => {
+			orderDetails.value += `${objeto.detalle}\n`
+		})
+	}
 }
 function removeUltimateFormGelatina() {
 	const sections = gelatinaContainer.getElementsByClassName('section-sp')
@@ -319,6 +456,25 @@ function removeUltimateFormGelatina() {
 	if (sections.length > 0) {
 		let lastSection = sections[sections.length - 1]
 		lastSection.remove()
+	}
+
+	if (detalles.length > 0) {
+		let index = -1
+		for (let i = detalles.length - 1; i >= 0; i--) {
+			if (detalles[i].name === 'Gel.C.D') {
+				index = i
+				break
+			}
+		}
+
+		if (index !== -1) {
+			detalles.splice(index, 1)
+		}
+
+		orderDetails.value = ''
+		detalles.forEach((objeto) => {
+			orderDetails.value += `${objeto.detalle}\n`
+		})
 	}
 }
 function removeUltimateFormGelatinaMed() {
@@ -328,6 +484,25 @@ function removeUltimateFormGelatinaMed() {
 		let lastSection = sections[sections.length - 1]
 		lastSection.remove()
 	}
+
+	if (detalles.length > 0) {
+		let index = -1
+		for (let i = detalles.length - 1; i >= 0; i--) {
+			if (detalles[i].name === 'Gel.C.D 1/2') {
+				index = i
+				break
+			}
+		}
+
+		if (index !== -1) {
+			detalles.splice(index, 1)
+		}
+
+		orderDetails.value = ''
+		detalles.forEach((objeto) => {
+			orderDetails.value += `${objeto.detalle}\n`
+		})
+	}
 }
 function removeUltimateFormEnsalada() {
 	const sections = manzanaContainer.getElementsByClassName('section-sp')
@@ -335,6 +510,25 @@ function removeUltimateFormEnsalada() {
 	if (sections.length > 0) {
 		let lastSection = sections[sections.length - 1]
 		lastSection.remove()
+	}
+
+	if (detalles.length > 0) {
+		let index = -1
+		for (let i = detalles.length - 1; i >= 0; i--) {
+			if (detalles[i].name === 'Ens.D.M') {
+				index = i
+				break
+			}
+		}
+
+		if (index !== -1) {
+			detalles.splice(index, 1)
+		}
+
+		orderDetails.value = ''
+		detalles.forEach((objeto) => {
+			orderDetails.value += `${objeto.detalle}\n`
+		})
 	}
 }
 function removeUltimateFormEnsaladaMed() {
@@ -344,6 +538,25 @@ function removeUltimateFormEnsaladaMed() {
 		let lastSection = sections[sections.length - 1]
 		lastSection.remove()
 	}
+
+	if (detalles.length > 0) {
+		let index = -1
+		for (let i = detalles.length - 1; i >= 0; i--) {
+			if (detalles[i].name === 'Ens.D.M 1/2') {
+				index = i
+				break
+			}
+		}
+
+		if (index !== -1) {
+			detalles.splice(index, 1)
+		}
+
+		orderDetails.value = ''
+		detalles.forEach((objeto) => {
+			orderDetails.value += `${objeto.detalle}\n`
+		})
+	}
 }
 function removeUltimateFormGomiboing() {
 	const sections = gomiboingContainer.getElementsByClassName('section-sp')
@@ -351,6 +564,25 @@ function removeUltimateFormGomiboing() {
 	if (sections.length > 0) {
 		let lastSection = sections[sections.length - 1]
 		lastSection.remove()
+	}
+
+	if (detalles.length > 0) {
+		let index = -1
+		for (let i = detalles.length - 1; i >= 0; i--) {
+			if (detalles[i].name === 'Gomiboing') {
+				index = i
+				break
+			}
+		}
+
+		if (index !== -1) {
+			detalles.splice(index, 1)
+		}
+
+		orderDetails.value = ''
+		detalles.forEach((objeto) => {
+			orderDetails.value += `${objeto.detalle}\n`
+		})
 	}
 }
 function removeUltimateAguaFresca() {
@@ -360,6 +592,25 @@ function removeUltimateAguaFresca() {
 		let lastSection = sections[sections.length - 1]
 		lastSection.remove()
 	}
+
+	if (detalles.length > 0) {
+		let index = -1
+		for (let i = detalles.length - 1; i >= 0; i--) {
+			if (detalles[i].name === 'Agua F.1L') {
+				index = i
+				break
+			}
+		}
+
+		if (index !== -1) {
+			detalles.splice(index, 1)
+		}
+
+		orderDetails.value = ''
+		detalles.forEach((objeto) => {
+			orderDetails.value += `${objeto.detalle}\n`
+		})
+	}
 }
 function removeUltimateAguaFrescaMed() {
 	const sections = aguaFrescaMedContainer.getElementsByClassName('section-sp')
@@ -367,6 +618,25 @@ function removeUltimateAguaFrescaMed() {
 	if (sections.length > 0) {
 		let lastSection = sections[sections.length - 1]
 		lastSection.remove()
+	}
+
+	if (detalles.length > 0) {
+		let index = -1
+		for (let i = detalles.length - 1; i >= 0; i--) {
+			if (detalles[i].name === 'Agua F.1/2') {
+				index = i
+				break
+			}
+		}
+
+		if (index !== -1) {
+			detalles.splice(index, 1)
+		}
+
+		orderDetails.value = ''
+		detalles.forEach((objeto) => {
+			orderDetails.value += `${objeto.detalle}\n`
+		})
 	}
 }
 
