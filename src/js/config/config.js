@@ -207,18 +207,6 @@ const ui = new Ui()
 
 const products = [
 	{
-		name: 'Esquite ch',
-		category: 'botanas',
-		price: 25,
-		id: 11,
-	},
-	{
-		name: 'Esquite 1/2',
-		category: 'botanas',
-		price: 45,
-		id: 111,
-	},
-	{
 		name: 'Doriesquite',
 		category: 'botanas',
 		price: 45,
@@ -237,16 +225,22 @@ const products = [
 		id: 44,
 	},
 	{
+		name: 'Esquite ch',
+		category: 'botanas',
+		price: 25,
+		id: 11,
+	},
+	{
+		name: 'Esquite 1/2',
+		category: 'botanas',
+		price: 45,
+		id: 111,
+	},
+	{
 		name: 'Fres.C.C',
 		category: 'postres',
 		price: 45,
 		id: 55,
-	},
-	{
-		name: 'Fres.C.C 1/2',
-		category: 'postres',
-		price: 35,
-		id: 6622,
 	},
 	{
 		name: 'Gel.C.D',
@@ -255,16 +249,22 @@ const products = [
 		id: 66,
 	},
 	{
-		name: 'Gel.C.D 1/2',
-		category: 'postres',
-		price: 35,
-		id: 6695,
-	},
-	{
 		name: 'Ens.D.M',
 		category: 'postres',
 		price: 45,
 		id: 77,
+	},
+	{
+		name: 'Fres.C.C 1/2',
+		category: 'postres',
+		price: 35,
+		id: 6622,
+	},
+	{
+		name: 'Gel.C.D 1/2',
+		category: 'postres',
+		price: 35,
+		id: 6695,
 	},
 	{
 		name: 'Ens.D.M 1/2',

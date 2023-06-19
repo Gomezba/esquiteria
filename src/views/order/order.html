@@ -83,37 +83,48 @@
 					<a href="#" id="egresos" class="go-order btn">Egresos</a>
 					<a href="#" id="show-order-list" class="go-order btn">Ver ordenes</a>
 				</div>
+				<div id="categories-btns" class="categories">
+					<div class="categories__title categories__botanas">Botanas</div>
+					<div class="categories__title categories__desserts">Postres</div>
+					<div class="categories__title categories__drinks">Bebidas</div>
+					<div class="categories__title categories__others">Otros</div>
+					<div class="categories__title categories__customized">Pers</div>
+				</div>
 				<section class="products-container">
 					<section class="section section-botanas">
-						<h3 class="subtitle">Botanas</h3>
-						<a data-arrow="botanas" class="arrow-down"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
-						<div id="botanas-container" class="desplegable-container" data-category="botanas"></div>
+						<div
+							id="botanas-container"
+							class="desplegable-container desplegable-container-active"
+							data-category="botanas"
+						></div>
 					</section>
 
 					<section class="section section-desserts">
-						<h3 class="subtitle">Postres</h3>
-						<a data-arrow="desserts" class="arrow-down"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
-						<div id="desserts-container" class="desplegable-container" data-category="postres"></div>
+						<div
+							id="desserts-container"
+							class="desplegable-container desplegable-container-active"
+							data-category="postres"
+						></div>
 					</section>
 
 					<section class="section section-drinks">
-						<h3 class="subtitle">Bebidas</h3>
-						<a data-arrow="drinks" class="arrow-down"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
-						<div id="drinks-container" class="desplegable-container" data-category="bebidas"></div>
+						<div
+							id="drinks-container"
+							class="desplegable-container desplegable-container-active"
+							data-category="bebidas"
+						></div>
 					</section>
 
 					<section class="section section-others">
-						<h3 class="subtitle">Otros</h3>
-						<a data-arrow="others" class="arrow-down"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
-						<div id="others-container" class="desplegable-container" data-category="otros"></div>
+						<div id="others-container" class="desplegable-container desplegable-container-active" data-category="otros"></div>
 					</section>
 
 					<section class="section section-customized">
-						<h3 class="subtitle">Personalizado</h3>
-						<a data-arrow="customized" class="arrow-down">
-							<img src="../../assets/icons/arrow-down.svg" alt="arrow down"
-						/></a>
-						<div id="customized-container" class="desplegable-container" data-category="customized">
+						<div
+							id="customized-container"
+							class="desplegable-container desplegable-container-active"
+							data-category="customized"
+						>
 							<form id="form-customized" class="customized-options">
 								<div>
 									<label for="product-name">Nombre del producto</label>
@@ -286,7 +297,6 @@
 				<div class="container-regresar">
 					<button id="regresar" class="btn regresar" title="regresar a tomar order">Regresar</button>
 				</div>
-				<h2 class="title">Lista de ordenes</h2>
 
 				<section id="orders-container" class="container-orders"></section>
 			</section>

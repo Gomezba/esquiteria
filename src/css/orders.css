@@ -40,6 +40,36 @@
 	transform: scale(0.8);
 }
 
+.categories {
+	padding: 0.2em 0;
+	position: sticky;
+	top: 60px;
+	display: flex;
+	justify-content: space-between;
+	gap: 0.4rem;
+	margin-bottom: 1rem;
+	z-index: 7;
+	background-color: #191d21;
+}
+
+.categories__title {
+	color: #ffffffbb;
+	background-color: #233e68;
+	border-radius: 0.2em;
+	padding: 0.19em;
+	transition: background-color 0.1s ease-in;
+}
+
+.categories__botanas.active,
+.categories__desserts.active,
+.categories__drinks.active,
+.categories__others.active,
+.categories__customized.active {
+	transition: background-color 0.1s ease-in;
+	background-color: #1f9974;
+	font-weight: var(--fw-bold);
+}
+
 /* Syles egresos */
 
 .btn-reg-egr {
@@ -134,6 +164,30 @@
 
 .section {
 	overflow: hidden;
+}
+
+.section-botanas {
+	display: none;
+}
+.section-drinks {
+	display: none;
+}
+.section-desserts {
+	display: none;
+}
+.section-others {
+	display: none;
+}
+.section-customized {
+	display: none;
+}
+
+.section-botanas.active,
+.section-desserts.active,
+.section-drinks.active,
+.section-others.active,
+.section-customized.active {
+	display: block;
 }
 
 .customized-options {
@@ -237,7 +291,6 @@
 	transform-origin: top;
 	position: absolute;
 	transform: translateY(-100%);
-	padding: 2em 0;
 	background-color: var(--dark-blue);
 	border-radius: var(--br);
 	visibility: hidden;

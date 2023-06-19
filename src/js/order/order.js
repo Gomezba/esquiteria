@@ -1,11 +1,8 @@
 import { obtenerFechaActual } from '../functions/date.js'
 import { ConectorEscposAndroid } from '../tickets/ConectorEscposAndroid.js'
 
-const arrowBotanas = document.querySelector('[data-arrow="botanas"]')
-const arrowDesserts = document.querySelector('[data-arrow="desserts"]')
-const arrowDrinks = document.querySelector('[data-arrow="drinks"]')
-const arrowOthers = document.querySelector('[data-arrow="others"]')
-const arrowCustomized = document.querySelector('[data-arrow="customized"]')
+const categoriesBtns = document.getElementById('categories-btns')
+
 const arrowSpecification = document.querySelector('[data-arrow="specification"]')
 
 const botanasContainer = document.getElementById('botanas-container')
@@ -344,6 +341,82 @@ function showProducts() {
 
 		if (othersContainer.dataset.category === category) {
 			othersContainer.append(fragment)
+		}
+	})
+}
+
+if (location.pathname.endsWith('/order.html')) {
+	categoriesBtns.addEventListener('click', (e) => {
+		e.preventDefault()
+
+		if (e.target.classList.contains('categories__botanas')) {
+			e.target.classList.toggle('active')
+			document.querySelector('.categories__desserts').classList.remove('active')
+			document.querySelector('.categories__drinks').classList.remove('active')
+			document.querySelector('.categories__others').classList.remove('active')
+			document.querySelector('.categories__customized').classList.remove('active')
+
+			document.querySelector('.section-botanas').classList.toggle('active')
+			document.querySelector('.section-desserts').classList.remove('active')
+			document.querySelector('.section-drinks').classList.remove('active')
+			document.querySelector('.section-customized').classList.remove('active')
+			document.querySelector('.section-others').classList.remove('active')
+		}
+
+		if (e.target.classList.contains('categories__desserts')) {
+			e.target.classList.toggle('active')
+			document.querySelector('.categories__botanas').classList.remove('active')
+			document.querySelector('.categories__drinks').classList.remove('active')
+			document.querySelector('.categories__others').classList.remove('active')
+			document.querySelector('.categories__customized').classList.remove('active')
+
+			document.querySelector('.section-desserts').classList.toggle('active')
+			document.querySelector('.section-botanas').classList.remove('active')
+			document.querySelector('.section-drinks').classList.remove('active')
+			document.querySelector('.section-customized').classList.remove('active')
+			document.querySelector('.section-others').classList.remove('active')
+		}
+
+		if (e.target.classList.contains('categories__drinks')) {
+			e.target.classList.toggle('active')
+			document.querySelector('.categories__botanas').classList.remove('active')
+			document.querySelector('.categories__desserts').classList.remove('active')
+			document.querySelector('.categories__others').classList.remove('active')
+			document.querySelector('.categories__customized').classList.remove('active')
+
+			document.querySelector('.section-drinks').classList.toggle('active')
+			document.querySelector('.section-botanas').classList.remove('active')
+			document.querySelector('.section-desserts').classList.remove('active')
+			document.querySelector('.section-customized').classList.remove('active')
+			document.querySelector('.section-others').classList.remove('active')
+		}
+
+		if (e.target.classList.contains('categories__others')) {
+			e.target.classList.toggle('active')
+			document.querySelector('.categories__botanas').classList.remove('active')
+			document.querySelector('.categories__desserts').classList.remove('active')
+			document.querySelector('.categories__drinks').classList.remove('active')
+			document.querySelector('.categories__customized').classList.remove('active')
+
+			document.querySelector('.section-others').classList.toggle('active')
+			document.querySelector('.section-drinks').classList.remove('active')
+			document.querySelector('.section-botanas').classList.remove('active')
+			document.querySelector('.section-desserts').classList.remove('active')
+			document.querySelector('.section-customized').classList.remove('active')
+		}
+
+		if (e.target.classList.contains('categories__customized')) {
+			e.target.classList.toggle('active')
+			document.querySelector('.categories__botanas').classList.remove('active')
+			document.querySelector('.categories__desserts').classList.remove('active')
+			document.querySelector('.categories__drinks').classList.remove('active')
+			document.querySelector('.categories__others').classList.remove('active')
+
+			document.querySelector('.section-customized').classList.toggle('active')
+			document.querySelector('.section-botanas').classList.remove('active')
+			document.querySelector('.section-desserts').classList.remove('active')
+			document.querySelector('.section-drinks').classList.remove('active')
+			document.querySelector('.section-others').classList.remove('active')
 		}
 	})
 }
@@ -3330,26 +3403,6 @@ export function customerPaymentInput() {
 }
 
 export function eventsListeners() {
-	arrowBotanas.addEventListener('click', (e) => {
-		e.target.classList.toggle('active')
-		botanasContainer.classList.toggle('desplegable-container-active')
-	})
-	arrowDesserts.addEventListener('click', (e) => {
-		e.target.classList.toggle('active')
-		dessertsContainer.classList.toggle('desplegable-container-active')
-	})
-	arrowDrinks.addEventListener('click', (e) => {
-		e.target.classList.toggle('active')
-		drinksContainer.classList.toggle('desplegable-container-active')
-	})
-	arrowOthers.addEventListener('click', (e) => {
-		e.target.classList.toggle('active')
-		othersContainer.classList.toggle('desplegable-container-active')
-	})
-	arrowCustomized.addEventListener('click', (e) => {
-		e.target.classList.toggle('active')
-		customizedContainer.classList.toggle('desplegable-container-active')
-	})
 	arrowSpecification.addEventListener('click', (e) => {
 		e.target.classList.toggle('active')
 		specificationContainer.classList.toggle('desplegable-container-active')
