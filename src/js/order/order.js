@@ -67,6 +67,9 @@ const btnRegresar = document.getElementById('regresar')
 const sectionOder = document.getElementById('section-order')
 const ordersContainer = document.getElementById('orders-container')
 
+const songAdd = document.getElementById('product-add-song')
+const songRemove = document.getElementById('product-remove-song')
+
 const productsStorage = JSON.parse(localStorage.getItem('products'))
 
 function showProducts() {
@@ -249,11 +252,6 @@ function showProducts() {
 		if (btnRemove.id === 'Agua F.1/2') {
 			btnRemove.addEventListener('click', removeUltimateAguaFrescaMed)
 		}
-
-		// const btnAdd = document.createElement('A')
-		// btnAdd.classList.add('btn', 'product__btn', 'btn-add')
-		// btnAdd.textContent = '+'
-		// btnAdd.setAttribute('id', name)
 
 		imgProd.addEventListener('click', addProduct)
 
@@ -443,6 +441,11 @@ function resetOrder() {
 	order.total = ''
 	order.receivedBill = ''
 	order.moneyChange = ''
+}
+
+function songRemoveBtn() {
+	songRemove.currentTime = 0
+	songRemove.play()
 }
 
 // TODO REMUEVE FORMULARIO DEL CONTENEDOR ESQUITES
@@ -3152,6 +3155,8 @@ function addProduct(e) {
 	resetCustomerPayMoneyChange()
 	disabledConfirmMoneyExchanges()
 	showAlert('Producto agregado', 'exit')
+	songAdd.currentTime = 0
+	songAdd.play()
 }
 
 function resetCustomerPayMoneyChange() {
@@ -3207,6 +3212,7 @@ function removeProduct(e) {
 				totalPrice()
 				disabledReceived()
 				disabledConfirmMoneyExchanges()
+				songRemoveBtn()
 
 				if (prod.quantity === 0) {
 					products = products.filter((prod) => prod.id !== idProduct)

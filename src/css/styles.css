@@ -425,3 +425,13 @@ tfoot td {
 .print-cancel-btn {
 	margin: 0;
 }
+
+.licencia-song {
+	text-align: center;
+	color: #fff;
+}
+
+.licencia-song__link {
+	color: #0f967a;
+	text-decoration: underline;
+}
