@@ -3635,7 +3635,8 @@ if (location.pathname.endsWith('/order.html')) {
 	conTicketBtn.addEventListener('click', function () {
 		// Acciones para orden con ticket
 		ticketModal.style.display = 'block'
-		modal.style.display = 'none'
+		// modal.style.display = 'none'
+		imprimirTicketBtn.click()
 	})
 
 	imprimirTicketBtn.addEventListener('click', function () {
@@ -3734,6 +3735,7 @@ if (location.pathname.endsWith('/order.html')) {
 		customerPay.value = ''
 		moneyExchanges.textContent = ''
 		btnConfirm.setAttribute('disabled', 'true')
+		songAdd.play()
 	})
 
 	cancelCustomized.addEventListener('click', (e) => {
