@@ -2343,6 +2343,21 @@ function genFormGomiboing() {
 	gomiboingContainer.appendChild(section)
 	updateCountsProd(gomiboingContainer, 'Gomiboing')
 	button.click()
+
+	$(selects[0])
+		.select2({
+			templateResult: formatOption,
+			dropdownAutoWidth: true, // Ajusta el ancho del menú desplegable automáticamente
+			minimumResultsForSearch: -1, // Desactiva la búsqueda en el select
+		})
+		.on('select2:open', function () {
+			$('.select2-container--open .select2-results__options').css('max-height', '400px')
+			$('.select2-container--open .select2-dropdown').css('max-width', '250px') // Establecer el ancho máximo del select2
+		})
+		.on('change', function (event) {
+			enviarFormulario(event, selects[0].closest('form'), 'Gomiboing') // Llama a la función enviarFormulario con los parámetros adecuados
+			showAlert('Detalle agregado', 'exit')
+		})
 }
 
 function genFormAguaFresca() {
@@ -2489,7 +2504,6 @@ function formatOption(option) {
 
 function getImageUrl(optionText) {
 	// Asigna la URL de la imagen correspondiente a cada opción
-	// Puedes implementar tu propia lógica aquí para asignar las imágenes según el valor de la opción
 	switch (optionText) {
 		case 'Nacho':
 			return '../../assets/frituras-opt/doritos-nacho.webp'
@@ -2531,6 +2545,20 @@ function getImageUrl(optionText) {
 			return '../../assets/frituras-opt/guacamole.webp'
 		case 'Takis salsa brava':
 			return '../../assets/frituras-opt/salsa-brava.webp'
+		// BOINGS
+
+		case 'Mango':
+			return '../../assets/boings/boing-mango.webp'
+		case 'Uva':
+			return '../../assets/boings/boing-uva.webp'
+		case 'Guayaba':
+			return '../../assets/boings/boing-guayaba.webp'
+		case 'Fresa':
+			return '../../assets/boings/boing-fresa.webp'
+		case 'Naranja':
+			return '../../assets/boings/boing-naranja.webp'
+		case 'Manzana':
+			return '../../assets/boings/boing-manzana.webp'
 		default:
 			return null
 	}
