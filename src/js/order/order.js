@@ -2366,7 +2366,7 @@ function genFormAguaFresca() {
 
 	const html = `	
 	<h3 class='prod-l'></h3>
-	<img class='img-order' src='../../assets/productos-opt/agua-fresca.webp' alt="imagen-producto">
+	<img class='img-order' src='../../assets/productos-opt/agua-fresca-litro.webp' alt="imagen-producto">
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 				<div class="specification__select">
@@ -2430,7 +2430,7 @@ function genFormAguaFrescaMed() {
 
 	const html = `	
 	<h3 class='prod-l'></h3>
-	<img class='img-order' src='../../assets/productos-opt/agua-fresca-litro.webp' alt="imagen-producto">
+	<img class='img-order' src='../../assets/productos-opt/agua-fresca.webp' alt="imagen-producto">
 	<a class="arrow-down-sp"> <img src="../../assets/icons/arrow-down.svg" alt="arrow down" /></a>
 	<form class="specification__prod" data-form-id="${Date.now()}">
 				<div class="specification__select">
