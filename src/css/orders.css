@@ -295,6 +295,7 @@
 .desplegable-container-products {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+	gap: 0.4rem;
 }
 
 .desplegable-container-specification {
@@ -321,6 +322,8 @@
 }
 
 .product {
+	position: relative;
+	padding-bottom: 0.4em;
 	justify-content: center;
 	border: 1px solid rgba(255, 255, 255, 0.11);
 }
@@ -426,12 +429,8 @@ img[src='../../assets/productos-opt/coca-mini.webp'] {
 	}
 }
 
-.btn-add {
-	background-color: var(--light-blue);
-}
-
 .btn-remove {
-	background-color: var(--pink-dark);
+	background-color: var(--color-pink);
 }
 
 .delete-prod {
@@ -471,9 +470,22 @@ img[src='../../assets/productos-opt/coca-mini.webp'] {
 }
 
 .product__quantity {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: 2px;
+	right: 2px;
 	width: 20px;
-	height: 26px;
+	height: 20px;
 	color: var(--light-gray);
+	background-color: #344d7d;
+	border-radius: 50%;
+	pointer-events: none;
+}
+
+.product__quantity:empty {
+	background-color: transparent;
 }
 
 .product__symbol,
