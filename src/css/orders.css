@@ -268,7 +268,7 @@
 	background-color: #1a70aa2f;
 	justify-content: end;
 	border-radius: 0;
-	height: 90px;
+	height: 60px;
 }
 
 .arrow-down-sp img {
@@ -288,11 +288,19 @@
 .desplegable-container {
 	--dark-blue: #1a242e;
 	width: 100%;
+	background-color: var(--dark-blue);
+	border-radius: var(--br);
+}
+
+.desplegable-container-products {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+.desplegable-container-specification {
 	transform-origin: top;
 	position: absolute;
 	transform: translateY(-100%);
-	background-color: var(--dark-blue);
-	border-radius: var(--br);
 	visibility: hidden;
 }
 
@@ -313,18 +321,12 @@
 }
 
 .product {
-	display: flex;
 	justify-content: center;
-	width: 100%;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.11);
+	border: 1px solid rgba(255, 255, 255, 0.11);
 }
 
 .product:nth-child(even) .product__title {
 	color: #70828d;
-}
-
-.product:not(.product:last-child) {
-	margin-bottom: 1em;
 }
 
 .product__img-title {
@@ -334,42 +336,35 @@
 }
 
 .product img {
-	/* border: 1px solid red; */
 	width: 70px;
 	height: 70px;
 }
 img[src='../../assets/productos-opt/esquite-ch.webp'] {
 	width: 45px;
-	height: 90px;
 }
 img[src='../../assets/productos-opt/fresas-crema.webp'] {
 	width: 80px;
 }
 img[src='../../assets/productos-opt/jugo-boing.webp'] {
 	width: 40px;
-	height: 90px;
 }
 img[src='../../assets/productos-opt/agua-natural-med.webp'] {
 	width: 40px;
-	height: 90px;
 }
 img[src='../../assets/productos-opt/agua-natural-litro.webp'] {
 	width: 40px;
-	height: 90px;
 }
 img[src='../../assets/productos-opt/cocacola.webp'] {
 	width: 40px;
-	height: 90px;
 }
 img[src='../../assets/productos-opt/coca-mini.webp'] {
 	width: 40px;
-	height: 80px;
 }
 
 .img-order {
 	position: absolute;
 	left: 150px;
-	height: 80px;
+	height: 55px;
 }
 
 .product__title {
@@ -398,22 +393,21 @@ img[src='../../assets/productos-opt/coca-mini.webp'] {
 
 .product__btn {
 	padding: 0;
-	width: 2.8em;
-	height: 2.1em;
+	width: 1.3em;
+	height: 1.3em;
 }
 
 .product__btn:active {
 	transform: scale(0.8);
 }
 
-.btn-add,
 .btn-remove {
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-position: center;
 	font-size: 1.2rem;
 	text-align: center;
-	line-height: 2.1em;
+	line-height: 1.3em;
 }
 
 @media (min-width: 300px) and (max-width: 350px) {
@@ -422,7 +416,6 @@ img[src='../../assets/productos-opt/coca-mini.webp'] {
 		height: 1.8em;
 	}
 
-	.btn-add,
 	.btn-remove {
 		background-repeat: no-repeat;
 		background-size: contain;
@@ -490,7 +483,7 @@ img[src='../../assets/productos-opt/coca-mini.webp'] {
 }
 
 .product-active {
-	color: #1c93d8;
+	color: #189c70;
 	filter: drop-shadow(0px 0px 10px #1c93d8);
 }
 

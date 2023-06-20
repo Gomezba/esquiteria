@@ -86,6 +86,7 @@ function showProducts() {
 		productTitle.textContent = name
 		const imgProd = document.createElement('IMG')
 		imgProd.alt = 'Imagén producto'
+		imgProd.setAttribute('id', name)
 
 		if (name === 'Esquite ch') {
 			imgProd.src = '../../assets/productos-opt/esquite-ch.webp'
@@ -249,55 +250,55 @@ function showProducts() {
 			btnRemove.addEventListener('click', removeUltimateAguaFrescaMed)
 		}
 
-		const btnAdd = document.createElement('A')
-		btnAdd.classList.add('btn', 'product__btn', 'btn-add')
-		btnAdd.textContent = '+'
-		btnAdd.setAttribute('id', name)
+		// const btnAdd = document.createElement('A')
+		// btnAdd.classList.add('btn', 'product__btn', 'btn-add')
+		// btnAdd.textContent = '+'
+		// btnAdd.setAttribute('id', name)
 
-		btnAdd.addEventListener('click', addProduct)
+		imgProd.addEventListener('click', addProduct)
 
-		if (btnAdd.id === 'Esquite ch') {
-			btnAdd.addEventListener('click', genFormEsquite)
+		if (imgProd.id === 'Esquite ch') {
+			imgProd.addEventListener('click', genFormEsquite)
 		}
-		if (btnAdd.id === 'Esquite 1/2') {
-			btnAdd.addEventListener('click', genFormEsquiteMed)
+		if (imgProd.id === 'Esquite 1/2') {
+			imgProd.addEventListener('click', genFormEsquiteMed)
 		}
-		if (btnAdd.id === 'Doriesquite') {
-			btnAdd.addEventListener('click', genFormDoriesquite)
+		if (imgProd.id === 'Doriesquite') {
+			imgProd.addEventListener('click', genFormDoriesquite)
 		}
-		if (btnAdd.id === 'Doriloco') {
-			btnAdd.addEventListener('click', genFormDoriloco)
+		if (imgProd.id === 'Doriloco') {
+			imgProd.addEventListener('click', genFormDoriloco)
 		}
-		if (btnAdd.id === 'Tostiloco') {
-			btnAdd.addEventListener('click', genFormTostiloco)
+		if (imgProd.id === 'Tostiloco') {
+			imgProd.addEventListener('click', genFormTostiloco)
 		}
-		if (btnAdd.id === 'Fres.C.C') {
-			btnAdd.addEventListener('click', genFormFresas)
+		if (imgProd.id === 'Fres.C.C') {
+			imgProd.addEventListener('click', genFormFresas)
 		}
-		if (btnAdd.id === 'Fres.C.C 1/2') {
-			btnAdd.addEventListener('click', genFormFresasMed)
+		if (imgProd.id === 'Fres.C.C 1/2') {
+			imgProd.addEventListener('click', genFormFresasMed)
 		}
-		if (btnAdd.id === 'Gel.C.D') {
-			btnAdd.addEventListener('click', genFormGelatina)
+		if (imgProd.id === 'Gel.C.D') {
+			imgProd.addEventListener('click', genFormGelatina)
 		}
-		if (btnAdd.id === 'Gel.C.D 1/2') {
-			btnAdd.addEventListener('click', genFormGelatinaMed)
+		if (imgProd.id === 'Gel.C.D 1/2') {
+			imgProd.addEventListener('click', genFormGelatinaMed)
 		}
 
-		if (btnAdd.id === 'Ens.D.M') {
-			btnAdd.addEventListener('click', genFormEnsalada)
+		if (imgProd.id === 'Ens.D.M') {
+			imgProd.addEventListener('click', genFormEnsalada)
 		}
-		if (btnAdd.id === 'Ens.D.M 1/2') {
-			btnAdd.addEventListener('click', genFormEnsaladaMed)
+		if (imgProd.id === 'Ens.D.M 1/2') {
+			imgProd.addEventListener('click', genFormEnsaladaMed)
 		}
-		if (btnAdd.id === 'Gomiboing') {
-			btnAdd.addEventListener('click', genFormGomiboing)
+		if (imgProd.id === 'Gomiboing') {
+			imgProd.addEventListener('click', genFormGomiboing)
 		}
 		if (btnRemove.id === 'Agua F.1L') {
-			btnAdd.addEventListener('click', genFormAguaFresca)
+			imgProd.addEventListener('click', genFormAguaFresca)
 		}
 		if (btnRemove.id === 'Agua F.1/2') {
-			btnAdd.addEventListener('click', genFormAguaFrescaMed)
+			imgProd.addEventListener('click', genFormAguaFrescaMed)
 		}
 
 		const productContainerQuantity = document.createElement('DIV')
@@ -318,7 +319,7 @@ function showProducts() {
 
 		divImgTitle.append(imgProd, productTitle)
 		product.append(divImgTitle)
-		productContainBtn.append(btnRemove, btnAdd)
+		productContainBtn.append(btnRemove)
 		productOptions.append(productContainBtn)
 		productContainerQuantity.append(productQuantity)
 		div.append(productSymbol, productPrice)
@@ -3122,6 +3123,7 @@ function addProduct(e) {
 	disabledReceived()
 	resetCustomerPayMoneyChange()
 	disabledConfirmMoneyExchanges()
+	showAlert('Producto agregado', 'exit')
 }
 
 function resetCustomerPayMoneyChange() {
