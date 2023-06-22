@@ -69,6 +69,8 @@ const ordersContainer = document.getElementById('orders-container')
 
 const songAdd = document.getElementById('product-add-song')
 const songRemove = document.getElementById('product-remove-song')
+const ordenCreada = document.getElementById('orden-creada')
+const cambioPag = document.getElementById('cambio-pag')
 
 const productsStorage = JSON.parse(localStorage.getItem('products'))
 
@@ -360,6 +362,9 @@ if (location.pathname.endsWith('/order.html')) {
 			document.querySelector('.section-drinks').classList.remove('active')
 			document.querySelector('.section-customized').classList.remove('active')
 			document.querySelector('.section-others').classList.remove('active')
+
+			cambioPag.currentTime = 0
+			cambioPag.play()
 		}
 
 		if (e.target.classList.contains('categories__desserts')) {
@@ -374,6 +379,9 @@ if (location.pathname.endsWith('/order.html')) {
 			document.querySelector('.section-drinks').classList.remove('active')
 			document.querySelector('.section-customized').classList.remove('active')
 			document.querySelector('.section-others').classList.remove('active')
+
+			cambioPag.currentTime = 0
+			cambioPag.play()
 		}
 
 		if (e.target.classList.contains('categories__drinks')) {
@@ -388,6 +396,9 @@ if (location.pathname.endsWith('/order.html')) {
 			document.querySelector('.section-desserts').classList.remove('active')
 			document.querySelector('.section-customized').classList.remove('active')
 			document.querySelector('.section-others').classList.remove('active')
+
+			cambioPag.currentTime = 0
+			cambioPag.play()
 		}
 
 		if (e.target.classList.contains('categories__others')) {
@@ -402,6 +413,9 @@ if (location.pathname.endsWith('/order.html')) {
 			document.querySelector('.section-botanas').classList.remove('active')
 			document.querySelector('.section-desserts').classList.remove('active')
 			document.querySelector('.section-customized').classList.remove('active')
+
+			cambioPag.currentTime = 0
+			cambioPag.play()
 		}
 
 		if (e.target.classList.contains('categories__customized')) {
@@ -416,6 +430,9 @@ if (location.pathname.endsWith('/order.html')) {
 			document.querySelector('.section-desserts').classList.remove('active')
 			document.querySelector('.section-drinks').classList.remove('active')
 			document.querySelector('.section-others').classList.remove('active')
+
+			cambioPag.currentTime = 0
+			cambioPag.play()
 		}
 	})
 }
@@ -894,6 +911,8 @@ function enviarFormulario(e, form, nameProd) {
 
 	// Llamar a la función para actualizar el área de detalles
 	addDetailsArea()
+	songAdd.currentTime = 0
+	songAdd.play()
 }
 
 // TODO GENERA EL FORMULARIO DE PRODUCTOS
@@ -2599,6 +2618,7 @@ if (location.pathname.endsWith('/order.html')) {
 					section.remove()
 					removeDetailsById(formId, 'Esquite ch')
 					showAlert('Producto eliminado', 'exit')
+					songRemoveBtn()
 				}
 			})
 		}
@@ -2631,6 +2651,7 @@ if (location.pathname.endsWith('/order.html')) {
 					section.remove()
 					removeDetailsById(formId, 'Esquite 1/2')
 					showAlert('Producto eliminado', 'exit')
+					songRemoveBtn()
 				}
 			})
 		}
@@ -2663,6 +2684,7 @@ if (location.pathname.endsWith('/order.html')) {
 					section.remove()
 					removeDetailsById(formId, 'Doriesquite')
 					showAlert('Producto eliminado', 'exit')
+					songRemoveBtn()
 				}
 			})
 		}
@@ -2695,6 +2717,7 @@ if (location.pathname.endsWith('/order.html')) {
 					section.remove()
 					removeDetailsById(formId, 'Doriloco')
 					showAlert('Producto eliminado', 'exit')
+					songRemoveBtn()
 				}
 			})
 		}
@@ -2727,6 +2750,7 @@ if (location.pathname.endsWith('/order.html')) {
 					section.remove()
 					removeDetailsById(formId, 'Tostiloco')
 					showAlert('Producto eliminado', 'exit')
+					songRemoveBtn()
 				}
 			})
 		}
@@ -2759,6 +2783,7 @@ if (location.pathname.endsWith('/order.html')) {
 					section.remove()
 					removeDetailsById(formId, 'Fres.C.C')
 					showAlert('Producto eliminado', 'exit')
+					songRemoveBtn()
 				}
 			})
 		}
@@ -2791,6 +2816,7 @@ if (location.pathname.endsWith('/order.html')) {
 					section.remove()
 					removeDetailsById(formId, 'Fres.C.C 1/2')
 					showAlert('Producto eliminado', 'exit')
+					songRemoveBtn()
 				}
 			})
 		}
@@ -2823,6 +2849,7 @@ if (location.pathname.endsWith('/order.html')) {
 					section.remove()
 					removeDetailsById(formId, 'Gel.C.D')
 					showAlert('Producto eliminado', 'exit')
+					songRemoveBtn()
 				}
 			})
 		}
@@ -2855,6 +2882,7 @@ if (location.pathname.endsWith('/order.html')) {
 					section.remove()
 					removeDetailsById(formId, 'Gel.C.D 1/2')
 					showAlert('Producto eliminado', 'exit')
+					songRemoveBtn()
 				}
 			})
 		}
@@ -2887,6 +2915,7 @@ if (location.pathname.endsWith('/order.html')) {
 					section.remove()
 					removeDetailsById(formId, 'Ens.D.M')
 					showAlert('Producto eliminado', 'exit')
+					songRemoveBtn()
 				}
 			})
 		}
@@ -2919,6 +2948,7 @@ if (location.pathname.endsWith('/order.html')) {
 					section.remove()
 					removeDetailsById(formId, 'Ens.D.M 1/2')
 					showAlert('Producto eliminado', 'exit')
+					songRemoveBtn()
 				}
 			})
 		}
@@ -2951,6 +2981,7 @@ if (location.pathname.endsWith('/order.html')) {
 					section.remove()
 					removeDetailsById(formId, 'Gomiboing')
 					showAlert('Producto eliminado', 'exit')
+					songRemoveBtn()
 				}
 			})
 		}
@@ -2983,6 +3014,7 @@ if (location.pathname.endsWith('/order.html')) {
 					section.remove()
 					removeDetailsById(formId, 'Agua F.1L')
 					showAlert('Producto eliminado', 'exit')
+					songRemoveBtn()
 				}
 			})
 		}
@@ -3015,6 +3047,7 @@ if (location.pathname.endsWith('/order.html')) {
 					section.remove()
 					removeDetailsById(formId, 'Agua F.1/2')
 					showAlert('Producto eliminado', 'exit')
+					songRemoveBtn()
 				}
 			})
 		}
@@ -3248,6 +3281,7 @@ function deleteProductOrder(e) {
 	}).then((result) => {
 		if (result.isConfirmed) {
 			const idProduct = parseInt(e.target.id)
+			songRemove.play()
 
 			products.forEach((prod) => {
 				if (prod.id === idProduct) {
@@ -3407,15 +3441,13 @@ function createDataTable() {
 }
 
 export function customerPaymentInput() {
-	customerPay.addEventListener('blur', (e) => {
+	customerPay.addEventListener('keyup', (e) => {
 		e.preventDefault()
 
 		const customerPayment = Number(e.target.value)
 		const moneyEx = customerPayment - totalGlobal
 
 		if (customerPayment < totalGlobal) {
-			showAlert('El pago no puede ser menor a la venta.', 'error-received')
-			btnConfirm.set
 			order.receivedBill = ''
 			order.moneyChange = ''
 			moneyExchanges.textContent = ''
@@ -3492,6 +3524,7 @@ function addOrder(order) {
 		volverNormalidad()
 		resetDetallesContainer()
 		closeModal()
+		ordenCreada.play()
 	}
 }
 
@@ -3568,14 +3601,6 @@ export function showAlert(msg, type) {
 		setTimeout(() => {
 			alert.remove()
 		}, 1300)
-	}
-
-	if (type === 'error-received') {
-		alert.classList.add('error')
-		customerPay.closest('.received-bill-container').after(alert)
-		setTimeout(() => {
-			alert.remove()
-		}, 3000)
 	}
 
 	if (type === 'exit') {
@@ -4113,7 +4138,7 @@ function eliminarOrdenCreada(id) {
 	submitBtn.addEventListener('click', () => {
 		const password = passwordInput.value
 
-		if (password === 'tatis') {
+		if (password === 'ttss') {
 			const transaction = db.transaction(['orders'], 'readwrite')
 			const objectStore = transaction.objectStore('orders')
 			objectStore.delete(id)

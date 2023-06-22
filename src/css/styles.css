@@ -120,6 +120,12 @@ body {
 	user-select: none;
 }
 
+@media (min-width: 420px) and (max-width: 950px) {
+	body {
+		grid-template-rows: 30px 1fr;
+	}
+}
+
 .header {
 	position: sticky;
 	top: 0;

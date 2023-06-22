@@ -139,7 +139,7 @@ function showEgresos() {
 				submitBtn.addEventListener('click', () => {
 					const password = passwordInput.value
 
-					if (password === 'tatis') {
+					if (password === 'ttss') {
 						passwordModal.style.display = 'none'
 						deletedEgreso(id) // Llamar a la función deletedEgreso() con el ID del egreso
 						Swal.fire({

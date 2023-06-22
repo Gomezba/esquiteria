@@ -42,3 +42,28 @@ addEventListener('DOMContentLoaded', () => {
 		listenDetailsCustomer()
 	}
 })
+
+const menuItems = document.querySelectorAll('#menu .menu__link')
+
+function updateLinkNames(mq) {
+	if (mq.matches) {
+		// Pantalla entre 420px y 950px de ancho
+		menuItems[0].textContent = 'T.Orden'
+		menuItems[1].textContent = 'V.D.Día'
+		menuItems[2].textContent = 'G.D.Inversión'
+		menuItems[3].textContent = 'P.Empleados'
+		menuItems[4].textContent = 'Ganancias'
+	} else {
+		// Pantalla fuera del rango definido
+		menuItems[0].textContent = 'Tomar orden'
+		menuItems[1].textContent = 'Venta del día'
+		menuItems[2].textContent = 'Gastos de inversión'
+		menuItems[3].textContent = 'Pago de empleados'
+		menuItems[4].textContent = 'Ganancias'
+	}
+}
+
+const mediaQuery = window.matchMedia('(min-width: 420px) and (max-width: 950px)')
+updateLinkNames(mediaQuery) // Actualizar los nombres de los enlaces inicialmente según el ancho de la pantalla
+
+mediaQuery.addEventListener('change', updateLinkNames) // Escuchar cambios en el ancho de la pantalla

@@ -4,8 +4,23 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Esquiteria</title>
+		<link rel="apple-touch-icon" sizes="57x57" href="../../assets/favicon/apple-icon-57x57.png" />
+		<link rel="apple-touch-icon" sizes="60x60" href="../../assets/favicon/apple-icon-60x60.png" />
+		<link rel="apple-touch-icon" sizes="72x72" href="../../assets/favicon/apple-icon-72x72.png" />
+		<link rel="apple-touch-icon" sizes="76x76" href="../../assets/favicon/apple-icon-76x76.png" />
+		<link rel="apple-touch-icon" sizes="114x114" href="../../assets/favicon/apple-icon-114x114.png" />
+		<link rel="apple-touch-icon" sizes="120x120" href="../../assets/favicon/apple-icon-120x120.png" />
+		<link rel="apple-touch-icon" sizes="144x144" href="../../assets/favicon/apple-icon-144x144.png" />
+		<link rel="apple-touch-icon" sizes="152x152" href="../../assets/favicon/apple-icon-152x152.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-icon-180x180.png" />
+		<link rel="icon" type="image/png" sizes="192x192" href="../../assets/favicon/android-icon-192x192.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="96x96" href="../../assets/favicon/favicon-96x96.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon/favicon-16x16.png" />
+		<meta name="msapplication-TileColor" content="#ffffff" />
+		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
 		<meta name="theme-color" content="#191d21" />
+		<title>Esquiteria</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -83,191 +98,197 @@
 					<a href="#" id="egresos" class="go-order btn">Egresos</a>
 					<a href="#" id="show-order-list" class="go-order btn">Ver ordenes</a>
 				</div>
-				<div id="categories-btns" class="categories">
-					<div class="categories__title categories__botanas">Botanas</div>
-					<div class="categories__title categories__desserts">Postres</div>
-					<div class="categories__title categories__drinks">Bebidas</div>
-					<div class="categories__title categories__others">Otros</div>
-					<div class="categories__title categories__customized">Pers</div>
-				</div>
-				<section class="products-container">
-					<section class="section section-botanas">
-						<div
-							id="botanas-container"
-							class="desplegable-container desplegable-container-products desplegable-container-active"
-							data-category="botanas"
-						></div>
-					</section>
-
-					<section class="section section-desserts">
-						<div
-							id="desserts-container"
-							class="desplegable-container desplegable-container-products desplegable-container-active"
-							data-category="postres"
-						></div>
-					</section>
-
-					<section class="section section-drinks">
-						<div
-							id="drinks-container"
-							class="desplegable-container desplegable-container-products desplegable-container-active"
-							data-category="bebidas"
-						></div>
-					</section>
-
-					<section class="section section-others">
-						<div
-							id="others-container"
-							class="desplegable-container desplegable-container-products desplegable-container-active"
-							data-category="otros"
-						></div>
-					</section>
-
-					<section class="section section-customized">
-						<div
-							id="customized-container"
-							class="desplegable-container desplegable-container-products desplegable-container-active"
-							data-category="customized"
-						>
-							<form id="form-customized" class="customized-options">
-								<div>
-									<label for="product-name">Nombre del producto</label>
-									<input type="text" id="product-name" maxlength="11" />
-								</div>
-								<div>
-									<label for="product-price">Precio del producto</label>
-									<input type="number" id="product-price" step="0.01" />
-								</div>
-								<div>
-									<label for="quant-prod">Cantidad de producto</label>
-									<select id="quant-prod" class="select-quantity">
-										<option value="1" selected>1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-										<option value="6">6</option>
-										<option value="7">7</option>
-										<option value="8">8</option>
-										<option value="9">9</option>
-										<option value="10">10</option>
-									</select>
-								</div>
-								<div class="personalized-total-label">Total: $<span id="customized-total" class="customized-total"></span></div>
-								<button id="btn-calc" class="btn btn-primary btn-calc" type="button">Calcular</button>
-								<div>
-									<button id="add-customized" type="submit" class="btn btn-save" disabled>Agregar</button>
-									<button id="cancel-customized" type="button" class="btn btn-cancel">Cancelar</button>
-								</div>
-							</form>
+				<section class="container-view-prod-details">
+					<div class="view-prod">
+						<div id="categories-btns" class="categories">
+							<div class="categories__title categories__botanas">Botanas</div>
+							<div class="categories__title categories__desserts">Postres</div>
+							<div class="categories__title categories__drinks">Bebidas</div>
+							<div class="categories__title categories__others">Otros</div>
+							<div class="categories__title categories__customized">Pers</div>
 						</div>
-					</section>
-
-					<section class="section section-specification">
-						<h3 class="subtitle">Especificación</h3>
-						<a data-arrow="specification" class="arrow-down">
-							<img src="../../assets/icons/arrow-down.svg" alt="arrow down"
-						/></a>
-						<div
-							id="specification-container"
-							class="desplegable-container desplegable-container-specification"
-							data-category="specification"
-						>
-							<section>
-								<div class="specification specification--esquites" id="specification-esquites"></div>
-							</section>
-							<section>
-								<div class="specification specification--esquites-med" id="specification-esquites-med"></div>
+						<section class="products-container">
+							<section class="section section-botanas">
+								<div
+									id="botanas-container"
+									class="desplegable-container desplegable-container-products desplegable-container-active"
+									data-category="botanas"
+								></div>
 							</section>
 
-							<section>
-								<div class="specification specification--dorito" id="specification-doriesquite"></div>
+							<section class="section section-desserts">
+								<div
+									id="desserts-container"
+									class="desplegable-container desplegable-container-products desplegable-container-active"
+									data-category="postres"
+								></div>
 							</section>
-							<section>
-								<div class="specification specification--doriloco" id="specification-doriloco"></div>
-							</section>
-							<section>
-								<div class="specification specification--tostiloco" id="specification-tostiloco"></div>
-							</section>
-							<section>
-								<div class="specification specification--fresas" id="specification-fresas"></div>
-							</section>
-							<section>
-								<div class="specification specification--fresas-med" id="specification-fresas-med"></div>
-							</section>
-							<section>
-								<div class="specification specification--gelatina" id="specification-gelatina"></div>
-							</section>
-							<section>
-								<div class="specification specification--gelatina-med" id="specification-gelatina-med"></div>
-							</section>
-							<section>
-								<div class="specification specification--man" id="specification-manzana"></div>
-							</section>
-							<section>
-								<div class="specification specification--man-med" id="specification-manzana-med"></div>
-							</section>
-							<section>
-								<div class="specification specification--gomiboing" id="specification-gomiboing"></div>
-							</section>
-							<section>
-								<div class="specification specification--agua" id="specification-agua-fresca"></div>
-							</section>
-							<section>
-								<div class="specification specification--agua-med" id="specification-agua-fresca-med"></div>
-							</section>
-						</div>
-					</section>
-				</section>
-				<section class="order-specification-section">
-					<h3 class="subtitle subtitle-details">Detalles de orden</h3>
-					<label class="label-customer" for="customer-name">Nombre cliente (Opcional)</label>
-					<input id="customer-name" class="client-name" type="text" />
-					<label class="label-details" for="details">Información adicional (Opcional)</label>
-					<textarea
-						class="details-area"
-						title="Especificación de orden"
-						id="details"
-						cols="30"
-						rows="10"
-						placeholder="Ejemplo: Esquite sin mayonesa"
-					></textarea>
-				</section>
 
-				<section class="section-details">
-					<table class="table-order">
-						<thead>
-							<tr>
-								<th>PROD</th>
-								<th>PU</th>
-								<th>CAN</th>
-								<th>PT</th>
-								<th>OPC</th>
-							</tr>
-						</thead>
-						<tbody id="products-table"></tbody>
-						<tfoot>
-							<tr>
-								<td colspan="4">Total: $<span id="total-order">0</span></td>
-							</tr>
-						</tfoot>
-					</table>
-					<div class="options-order">
-						<div class="received-bill-container">
-							<div>
-								<label class="label-money" for="money">Recibo: $</label>
-								<input id="money" class="input-received-bill" name="recibo" type="number" step="0.01" disabled />
+							<section class="section section-drinks">
+								<div
+									id="drinks-container"
+									class="desplegable-container desplegable-container-products desplegable-container-active"
+									data-category="bebidas"
+								></div>
+							</section>
+
+							<section class="section section-others">
+								<div
+									id="others-container"
+									class="desplegable-container desplegable-container-products desplegable-container-active"
+									data-category="otros"
+								></div>
+							</section>
+
+							<section class="section section-customized">
+								<div
+									id="customized-container"
+									class="desplegable-container desplegable-container-products desplegable-container-active"
+									data-category="customized"
+								>
+									<form id="form-customized" class="customized-options">
+										<div>
+											<label for="product-name">Nombre del producto</label>
+											<input type="text" id="product-name" maxlength="11" />
+										</div>
+										<div>
+											<label for="product-price">Precio del producto</label>
+											<input type="number" id="product-price" step="0.01" />
+										</div>
+										<div>
+											<label for="quant-prod">Cantidad de producto</label>
+											<select id="quant-prod" class="select-quantity">
+												<option value="1" selected>1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+												<option value="6">6</option>
+												<option value="7">7</option>
+												<option value="8">8</option>
+												<option value="9">9</option>
+												<option value="10">10</option>
+											</select>
+										</div>
+										<div class="personalized-total-label">
+											Total: $<span id="customized-total" class="customized-total"></span>
+										</div>
+										<button id="btn-calc" class="btn btn-primary btn-calc" type="button">Calcular</button>
+										<div>
+											<button id="add-customized" type="submit" class="btn btn-save" disabled>Agregar</button>
+											<button id="cancel-customized" type="button" class="btn btn-cancel">Cancelar</button>
+										</div>
+									</form>
+								</div>
+							</section>
+
+							<section class="section section-specification">
+								<h3 class="subtitle">Especificación</h3>
+								<a data-arrow="specification" class="arrow-down">
+									<img src="../../assets/icons/arrow-down.svg" alt="arrow down"
+								/></a>
+								<div
+									id="specification-container"
+									class="desplegable-container desplegable-container-specification"
+									data-category="specification"
+								>
+									<section>
+										<div class="specification specification--dorito" id="specification-doriesquite"></div>
+									</section>
+									<section>
+										<div class="specification specification--doriloco" id="specification-doriloco"></div>
+									</section>
+									<section>
+										<div class="specification specification--tostiloco" id="specification-tostiloco"></div>
+									</section>
+									<section>
+										<div class="specification specification--esquites" id="specification-esquites"></div>
+									</section>
+									<section>
+										<div class="specification specification--esquites-med" id="specification-esquites-med"></div>
+									</section>
+									<section>
+										<div class="specification specification--fresas" id="specification-fresas"></div>
+									</section>
+									<section>
+										<div class="specification specification--fresas-med" id="specification-fresas-med"></div>
+									</section>
+									<section>
+										<div class="specification specification--gelatina" id="specification-gelatina"></div>
+									</section>
+									<section>
+										<div class="specification specification--gelatina-med" id="specification-gelatina-med"></div>
+									</section>
+									<section>
+										<div class="specification specification--man" id="specification-manzana"></div>
+									</section>
+									<section>
+										<div class="specification specification--man-med" id="specification-manzana-med"></div>
+									</section>
+									<section>
+										<div class="specification specification--gomiboing" id="specification-gomiboing"></div>
+									</section>
+									<section>
+										<div class="specification specification--agua" id="specification-agua-fresca"></div>
+									</section>
+									<section>
+										<div class="specification specification--agua-med" id="specification-agua-fresca-med"></div>
+									</section>
+								</div>
+							</section>
+						</section>
+					</div>
+					<div class="view-deatails-customer">
+						<section class="order-specification-section">
+							<h3 class="subtitle subtitle-details">Detalles de orden</h3>
+							<label class="label-customer" for="customer-name">Nombre cliente (Opcional)</label>
+							<input id="customer-name" class="client-name" type="text" />
+							<label class="label-details" for="details">Información adicional (Opcional)</label>
+							<textarea
+								class="details-area"
+								title="Especificación de orden"
+								id="details"
+								cols="30"
+								rows="10"
+								placeholder="Ejemplo: Esquite sin mayonesa"
+							></textarea>
+						</section>
+
+						<section class="section-details">
+							<table class="table-order">
+								<thead>
+									<tr>
+										<th>PROD</th>
+										<th>PU</th>
+										<th>CAN</th>
+										<th>PT</th>
+										<th>OPC</th>
+									</tr>
+								</thead>
+								<tbody id="products-table"></tbody>
+								<tfoot>
+									<tr>
+										<td colspan="4">Total: $<span id="total-order">0</span></td>
+									</tr>
+								</tfoot>
+							</table>
+							<div class="options-order">
+								<div class="received-bill-container">
+									<div>
+										<label class="label-money" for="money">Recibo: $</label>
+										<input id="money" class="input-received-bill" name="recibo" type="number" step="0.01" disabled />
+									</div>
+								</div>
+								<span class="money-exchanges">Cambio: $<span id="money-exchanges"></span></span>
+
+								<div class="confirm-cancel-order">
+									<button type="button" id="confirm" class="btn btn-primary btn-confirm" disabled>Confirmar</button>
+									<button type="button" id="cancel" class="btn btn-cancel">Cancelar</button>
+								</div>
 							</div>
-						</div>
-						<span class="money-exchanges">Cambio: $<span id="money-exchanges"></span></span>
-
-						<div class="confirm-cancel-order">
-							<button type="button" id="confirm" class="btn btn-primary btn-confirm" disabled>Confirmar</button>
-							<button type="button" id="cancel" class="btn btn-cancel">Cancelar</button>
-						</div>
+						</section>
 					</div>
 				</section>
-
 				<div id="modal" class="modal">
 					<div class="modal-content-pedido">
 						<h2>¿Qué desea hacer?</h2>
@@ -337,6 +358,8 @@
 			</section>
 			<audio id="product-add-song" class="product-add-song" src="../../assets/audio/product-add.mp3"></audio>
 			<audio id="product-remove-song" class="product-add-song" src="../../assets/audio/remove-product.mp3"></audio>
+			<audio id="orden-creada" class="product-add-song" src="../../assets/audio/detalle-agregado.mp3"></audio>
+			<audio id="cambio-pag" class="product-add-song" src="../../assets/audio/cambio-pag.mp3"></audio>
 		</main>
 
 		<div id="passwordModal" class="modal">

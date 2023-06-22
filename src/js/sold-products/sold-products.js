@@ -359,7 +359,7 @@ if (location.pathname.endsWith('/products-sold.html')) {
 				document.getElementById('submitBtn').addEventListener('click', function () {
 					const input = document.getElementById('passwordInput')
 					const password = document.getElementById('passwordInput').value
-					if (password === 'tatis') {
+					if (password === 'ttss') {
 						Swal.fire({
 							icon: 'success',
 							title: '¡La venta ha sido eliminada!',

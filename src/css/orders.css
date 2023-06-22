@@ -14,6 +14,12 @@
 	padding-top: 20px;
 }
 
+@media (min-width: 420px) and (max-width: 950px) {
+	.main {
+		padding-top: 0;
+	}
+}
+
 .products-container {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
@@ -741,6 +747,13 @@ img[src='../../assets/productos-opt/coca-mini.webp'] {
 	z-index: 10;
 	padding: 0 0 var(--gap-sm);
 }
+@media (min-width: 420px) and (max-width: 950px) {
+	.container-regresar {
+		position: fixed;
+		top: 70px;
+		width: 100%;
+	}
+}
 
 .regresar {
 	display: flex;
@@ -977,4 +990,28 @@ img[src='../../assets/productos-opt/coca-mini.webp'] {
 
 .product-add-song {
 	display: none;
+}
+
+/* Styles tablet */
+
+@media (min-width: 420px) and (max-width: 950px) {
+	.container-view-prod-details {
+		display: grid;
+		grid-template-columns: 350px 1fr;
+		gap: 1rem;
+	}
+
+	.categories {
+		padding: 0.5em 0;
+		top: 0;
+	}
+
+	.view-prod,
+	.view-deatails-customer {
+		border: 1px solid rgb(153, 150, 150);
+		overflow: auto;
+		height: 80vh;
+		border-radius: 0.2em;
+		padding: 0 0.4em;
+	}
 }
