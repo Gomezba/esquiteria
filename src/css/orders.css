@@ -1,11 +1,11 @@
-@media (min-width: 620px) {
+@media (min-width: 602px) {
 	body {
 		margin-left: auto;
 		margin-right: auto;
 	}
 
 	.main {
-		width: 95%;
+		width: 100%;
 		overflow-x: hidden;
 	}
 }
@@ -17,6 +17,8 @@
 @media (min-width: 420px) and (max-width: 950px) {
 	.main {
 		padding-top: 0;
+		padding-bottom: 0;
+		min-height: 70vh;
 	}
 }
 
@@ -32,6 +34,11 @@
 	gap: var(--gap-md);
 	justify-content: space-between;
 	margin-bottom: 1.5em;
+}
+@media (min-width: 420px) {
+	.btns-egresos-order {
+		margin-top: 20px;
+	}
 }
 
 .go-order {
@@ -66,6 +73,12 @@
 	transition: background-color 0.1s ease-in;
 }
 
+@media (min-width: 420px) {
+	.categories__title {
+		margin: 0 0.3rem;
+	}
+}
+
 .categories__botanas.active,
 .categories__desserts.active,
 .categories__drinks.active,
@@ -81,6 +94,11 @@
 .btn-reg-egr {
 	position: fixed;
 	background-color: #18445e;
+}
+@media (min-width: 420px) {
+	.btn-reg-egr {
+		margin-top: 25px;
+	}
 }
 
 .view-egresos {
@@ -104,6 +122,14 @@
 	flex-direction: column;
 	gap: var(--gap-md);
 	width: calc(100% - 10%);
+}
+
+@media (min-width: 420px) {
+	.form-egresos {
+		width: 70%;
+		left: 50%;
+		transform: translateX(-50%);
+	}
 }
 
 .form-egresos__field {
@@ -132,6 +158,12 @@
 	margin-left: var(--gap-sm);
 }
 
+@media (min-width: 420px) {
+	.form-egresos__btns button {
+		margin-top: 1rem;
+	}
+}
+
 .egresos-container {
 	position: fixed;
 	width: calc(100% - 10%);
@@ -141,6 +173,12 @@
 	top: 350px;
 	height: 250px;
 	overflow-y: scroll;
+}
+@media (min-width: 420px) {
+	.egresos-container {
+		left: 50%;
+		transform: translateX(-50%);
+	}
 }
 
 .egresos-container tbody td {
@@ -161,6 +199,12 @@
 	background-color: orange;
 	color: #fff;
 	border-radius: 0.3em;
+}
+@media (min-width: 420px) {
+	.editar-egreso,
+	.eliminar-egreso {
+		margin-left: 1rem;
+	}
 }
 
 .eliminar-egreso {
@@ -233,6 +277,13 @@
 	background-color: var(--almost-dark-gray);
 }
 
+@media (min-width: 420px) {
+	.subtitle-details,
+	.label-details {
+		display: none;
+	}
+}
+
 .section-sp {
 	position: relative;
 }
@@ -284,6 +335,11 @@
 .arrow-down img {
 	pointer-events: none;
 	transition: transform 0.4s;
+}
+@media (min-width: 420px) {
+	.arrow-down-sp img {
+		margin-left: auto;
+	}
 }
 
 .arrow-down.active img,
@@ -526,9 +582,9 @@ img[src='../../assets/productos-opt/coca-mini.webp'] {
 	white-space: pre-line;
 }
 
-@media (min-width: 620px) {
+@media (min-width: 602px) {
 	.details-area {
-		width: 70%;
+		height: 120px;
 	}
 }
 
@@ -600,6 +656,11 @@ img[src='../../assets/productos-opt/coca-mini.webp'] {
 .btn-confirm[disabled] {
 	background-color: var(--color-disabled);
 }
+@media (min-width: 420px) {
+	.btn-confirm {
+		margin-right: 1rem;
+	}
+}
 
 .money-exchanges {
 	font-size: 1.5rem;
@@ -666,6 +727,12 @@ img[src='../../assets/productos-opt/coca-mini.webp'] {
 	background-color: #18445e;
 	color: #ebe8e3be;
 	border: 1px solid rgba(255, 255, 255, 0.514);
+}
+
+@media (min-width: 420px) {
+	.specification__container select {
+		width: 100px;
+	}
 }
 
 .specification__container div:last-child {
@@ -753,6 +820,10 @@ img[src='../../assets/productos-opt/coca-mini.webp'] {
 		top: 70px;
 		width: 100%;
 	}
+
+	.container-regresar-orders {
+		top: 62px;
+	}
 }
 
 .regresar {
@@ -798,6 +869,12 @@ img[src='../../assets/productos-opt/coca-mini.webp'] {
 	counter-reset: order;
 }
 
+@media (min-width: 420px) {
+	.container-orders {
+		margin-top: 73px;
+	}
+}
+
 .container-orders:empty::before {
 	content: 'No hay órdenes registradas';
 	color: #ffffff5e;
@@ -809,6 +886,12 @@ img[src='../../assets/productos-opt/coca-mini.webp'] {
 .wrapper-order {
 	color: #aaa;
 	position: relative;
+}
+
+@media (min-width: 420px) {
+	.wrapper-order {
+		margin-bottom: 1rem;
+	}
 }
 
 .wrapper-order::before {
@@ -844,6 +927,12 @@ img[src='../../assets/productos-opt/coca-mini.webp'] {
 .arrow-down-order img {
 	pointer-events: none;
 	transition: transform 0.4s;
+}
+
+@media (min-width: 420px) {
+	.arrow-down-order img {
+		margin-left: auto;
+	}
 }
 
 .arrow-down-order.active img {
@@ -994,23 +1083,39 @@ img[src='../../assets/productos-opt/coca-mini.webp'] {
 
 /* Styles tablet */
 
-@media (min-width: 420px) and (max-width: 950px) {
+@media (min-width: 420px) and (max-width: 963px) {
 	.container-view-prod-details {
 		display: grid;
-		grid-template-columns: 350px 1fr;
-		gap: 1rem;
+		grid-template-columns: 260px 1fr;
+		gap: 0.5rem;
 	}
 
 	.categories {
 		padding: 0.5em 0;
 		top: 0;
+		justify-content: start;
+		width: 100%;
+		margin-bottom: 0;
 	}
+
+	/* padding: 0.2em 0;
+	position: sticky;
+	top: 60px;
+	display: flex;
+	justify-content: space-between;
+	gap: 0.4rem;
+	margin-bottom: 1rem;
+	z-index: 7;
+	background-color: #191d21; */
 
 	.view-prod,
 	.view-deatails-customer {
+		position: sticky;
+		top: 0;
+
 		border: 1px solid rgb(153, 150, 150);
 		overflow: auto;
-		height: 80vh;
+		height: 72vh;
 		border-radius: 0.2em;
 		padding: 0 0.4em;
 	}
